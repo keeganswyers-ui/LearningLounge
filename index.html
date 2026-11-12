@@ -3,176 +3,665 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Lounge 2.0</title>
 
-* { box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --purple: #a855f7;
+  --pink: #e879f9;
+  --dark: #080510;
+  --panel: #160d25;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
 body {
-  margin: 0;
-  background-color: #090510;
-  background-image:
-    linear-gradient(#32105a33 1px, transparent 1px),
-    linear-gradient(90deg, #32105a33 1px, transparent 1px);
-  background-size: 35px 35px;
+  background: var(--dark);
   color: white;
-  font-family: Orbitron, sans-serif;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(#a855f710 1px, transparent 1px),
+    linear-gradient(90deg, #a855f710 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 12s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
 }
 
 header {
-  background: #10091d;
-  padding: 25px 15px;
   text-align: center;
-  border-bottom: 2px solid #a855f7;
-  box-shadow: 0 4px 25px #a855f755;
+  padding: 45px 15px 25px;
 }
 
 .logo {
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(18px, 4vw, 32px);
-  color: #d8a2ff;
-  text-shadow: 0 0 10px #a855f7, 0 0 25px #9333ea;
-  line-height: 1.8;
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(30px, 8vw, 65px);
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 0 10px var(--purple),
+               0 0 25px var(--purple),
+               0 0 50px var(--pink);
+  animation: glow 2s infinite alternate;
 }
 
-header p {
-  color: #c084fc;
-  letter-spacing: 3px;
-  font-size: 11px;
+@keyframes glow {
+  from { text-shadow: 0 0 10px var(--purple), 0 0 20px var(--purple); }
+  to { text-shadow: 0 0 20px var(--pink), 0 0 45px var(--purple); }
+}
+
+.subtitle {
+  color: var(--pink);
+  letter-spacing: 5px;
+  margin-top: 12px;
+  font-size: 15px;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 25px;
   flex-wrap: wrap;
-  padding: 17px;
-  background: #170d27;
+  gap: 12px;
+  padding: 18px;
+  border-top: 1px solid #a855f755;
+  border-bottom: 1px solid #a855f755;
+  background: #10091dcc;
 }
 
 nav a {
-  color: #d8b4fe;
+  color: white;
   text-decoration: none;
-  font-size: 12px;
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+  padding: 12px 17px;
+  border: 1px solid #a855f7;
+  border-radius: 7px;
+  transition: .3s;
 }
 
-nav a:hover { color: white; }
+nav a:hover {
+  background: var(--purple);
+  box-shadow: 0 0 20px var(--purple);
+  transform: translateY(-3px);
+}
 
 main {
-  max-width: 1000px;
-  margin: 45px auto;
-  padding: 15px;
+  max-width: 1050px;
+  margin: auto;
+  padding: 25px 18px;
 }
 
 .hero {
   text-align: center;
-  padding: 65px 15px;
-  background: linear-gradient(145deg,#211037,#11091e);
-  border: 2px solid #9333ea;
-  border-radius: 12px;
-  box-shadow: 0 0 25px #9333ea44;
+  padding: 65px 20px;
+  border: 1px solid var(--purple);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1b0d2c, #090510);
+  box-shadow: 0 0 25px #a855f733;
+  margin: 25px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "✦";
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: var(--pink);
+  font-size: 35px;
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px) rotate(25deg); }
 }
 
 .hero h2 {
-  color: #d8a2ff;
-  font-size: clamp(22px, 5vw, 38px);
-  text-shadow: 0 0 15px #9333ea;
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(25px, 5vw, 42px);
+  color: var(--pink);
+  margin-bottom: 20px;
 }
 
 .hero p {
-  color: #c4b5fd;
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 21px;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 25px;
+  background: var(--purple);
+  color: white;
+  border-radius: 7px;
+  text-decoration: none;
+  font-family: Orbitron, sans-serif;
+  font-size: 12px;
+  box-shadow: 0 0 15px #a855f788;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--pink);
+  box-shadow: 0 0 30px var(--pink);
+  transform: scale(1.06);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #a855f766;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 0 18px #a855f722;
+}
+
+.panel h2 {
+  font-family: Orbitron, sans-serif;
+  color: var(--pink);
+  font-size: 19px;
+  margin-bottom: 15px;
 }
 
 .search {
-  display: block;
-  width: min(90%, 450px);
-  margin: 25px auto;
+  width: 100%;
   padding: 15px;
-  background: #10091d;
-  border: 1px solid #9333ea;
-  border-radius: 7px;
+  margin: 15px 0;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  background: #090510;
   color: white;
-  font-family: Orbitron, sans-serif;
+  font-size: 17px;
   outline: none;
 }
 
-.library {
-  margin-top: 40px;
-  padding: 30px;
-  background: #160d25;
-  border: 1px solid #7133a8;
-  border-radius: 12px;
-  text-align: center;
+.search:focus {
+  box-shadow: 0 0 15px var(--purple);
 }
 
-.library h2 { color: #c084fc; }
+.status {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #d8b4fe;
+  font-size: 16px;
+}
 
-.empty {
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: #a3ffb0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a3ffb0;
+  margin-right: 7px;
+}
+
+.coming {
+  text-align: center;
   padding: 35px 10px;
-  color: #a78bfa;
-  border: 1px dashed #9333ea;
-  border-radius: 8px;
-  line-height: 2;
+  color: #c084fc;
+  font-family: Orbitron, sans-serif;
+  line-height: 2.2;
 }
 
 footer {
   text-align: center;
-  padding: 30px;
-  color: #9274b4;
-  font-size: 11px;
-  border-top: 1px solid #54257d;
+  padding: 35px 15px;
+  border-top: 1px solid #a855f755;
+  color: #a78bfa;
+  letter-spacing: 2px;
+  font-size: 13px;
 }
 
+@media(max-width: 600px) {
+  nav a { font-size: 9px; padding: 10px; }
+  .hero { padding: 45px 15px; }
+  .panel { padding: 18px; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">LEARNING<br>LOUNGE</div>
-  <p>★ YOUR RETRO GAMING HUB ★</p>
+  <h1 class="logo">LEARNING LOUNGE</h1>
+  <p class="subtitle">YOUR RETRO GAMING HUB</p>
 </header>
 
 <nav>
-  <a href="#">HOME</a>
+  <a href="#home">HOME</a>
   <a href="#library">GAME LIBRARY</a>
   <a href="#about">ABOUT</a>
 </nav>
 
 <main>
-  <section class="hero">
-    <h2>PRESS START!</h2>
-    <p>WELCOME TO LEARNING LOUNGE</p>
-    <p>Your next gaming destination.</p>
-    <p>THE ARCADE IS GETTING READY...</p>
-  </section>
 
-  <input class="search" type="search"
-    placeholder="Search games... (coming soon)">
+<section class="hero" id="home">
+  <h2>PRESS START!</h2>
+  <p>Welcome to Learning Lounge.</p>
+  <p>Your next adventure is loading...</p>
+  <a href="#library" class="button">ENTER ARCADE</a>
+</section>
 
-  <section class="library" id="library">
-    <h2>🎮 GAME LIBRARY</h2>
-    <div class="empty">
-      <p>INSERT COIN TO CONTINUE</p>
-      <p>GAMES COMING SOON...</p>
-      <p>★ STAY TUNED ★</p>
-    </div>
-  </section>
+<section class="panel">
+  <div class="status">
+    <span><span class="dot"></span> SYSTEM ONLINE</span>
+    <span id="clock">Loading clock...</span>
+  </div>
+</section>
 
-  <section class="library" id="about">
-    <h2>ABOUT US</h2>
-    <p>Welcome to Learning Lounge.</p>
-    <p>A retro-inspired gaming destination.</p>
-  </section>
+<section class="panel" id="library">
+  <h2>🎮 GAME LIBRARY</h2>
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="Search the library..."
+  >
+  <div class="coming" id="libraryMessage">
+    INSERT COIN TO CONTINUE<br>
+    GAMES COMING SOON...
+  </div>
+</section>
+
+<section class="panel" id="about">
+  <h2>ABOUT LEARNING LOUNGE</h2>
+  <p style="font-size:19px; line-height:1.7;">
+    Welcome to Learning Lounge! A retro-inspired gaming hub
+    with a neon purple arcade design.
+    <br><br>
+    The arcade is under construction.
+    Stay tuned for future updates!
+  </p>
+</section>
+
 </main>
 
 <footer>
-  LEARNING LOUNGE © 2026<br>
-  GAME ON. HAVE FUN.
+  LEARNING LOUNGE © 2026<br><br>
+  LEVEL UP YOUR EXPERIENCE
 </footer>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+document.getElementById("search").addEventListener("input", function() {
+  const message = document.getElementById("libraryMessage");
+
+  if (this.value.trim()) {
+    message.textContent = "NO GAMES AVAILABLE YET — CHECK BACK SOON!";
+  } else {
+    message.innerHTML = "INSERT COIN TO CONTINUE<br>GAMES COMING SOON...";
+  }
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Lounge 2.0</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --purple: #a855f7;
+  --pink: #e879f9;
+  --dark: #080510;
+  --panel: #160d25;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(#a855f710 1px, transparent 1px),
+    linear-gradient(90deg, #a855f710 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 12s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+header {
+  text-align: center;
+  padding: 45px 15px 25px;
+}
+
+.logo {
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(30px, 8vw, 65px);
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 0 10px var(--purple),
+               0 0 25px var(--purple),
+               0 0 50px var(--pink);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px var(--purple), 0 0 20px var(--purple); }
+  to { text-shadow: 0 0 20px var(--pink), 0 0 45px var(--purple); }
+}
+
+.subtitle {
+  color: var(--pink);
+  letter-spacing: 5px;
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px;
+  border-top: 1px solid #a855f755;
+  border-bottom: 1px solid #a855f755;
+  background: #10091dcc;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+  padding: 12px 17px;
+  border: 1px solid #a855f7;
+  border-radius: 7px;
+  transition: .3s;
+}
+
+nav a:hover {
+  background: var(--purple);
+  box-shadow: 0 0 20px var(--purple);
+  transform: translateY(-3px);
+}
+
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 25px 18px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px;
+  border: 1px solid var(--purple);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1b0d2c, #090510);
+  box-shadow: 0 0 25px #a855f733;
+  margin: 25px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "✦";
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: var(--pink);
+  font-size: 35px;
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px) rotate(25deg); }
+}
+
+.hero h2 {
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(25px, 5vw, 42px);
+  color: var(--pink);
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 21px;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 25px;
+  background: var(--purple);
+  color: white;
+  border-radius: 7px;
+  text-decoration: none;
+  font-family: Orbitron, sans-serif;
+  font-size: 12px;
+  box-shadow: 0 0 15px #a855f788;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--pink);
+  box-shadow: 0 0 30px var(--pink);
+  transform: scale(1.06);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #a855f766;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 0 18px #a855f722;
+}
+
+.panel h2 {
+  font-family: Orbitron, sans-serif;
+  color: var(--pink);
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+
+.search {
+  width: 100%;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  background: #090510;
+  color: white;
+  font-size: 17px;
+  outline: none;
+}
+
+.search:focus {
+  box-shadow: 0 0 15px var(--purple);
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #d8b4fe;
+  font-size: 16px;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: #a3ffb0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a3ffb0;
+  margin-right: 7px;
+}
+
+.coming {
+  text-align: center;
+  padding: 35px 10px;
+  color: #c084fc;
+  font-family: Orbitron, sans-serif;
+  line-height: 2.2;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  border-top: 1px solid #a855f755;
+  color: #a78bfa;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+@media(max-width: 600px) {
+  nav a { font-size: 9px; padding: 10px; }
+  .hero { padding: 45px 15px; }
+  .panel { padding: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1 class="logo">LEARNING LOUNGE</h1>
+  <p class="subtitle">YOUR RETRO GAMING HUB</p>
+</header>
+
+<nav>
+  <a href="#home">HOME</a>
+  <a href="#library">GAME LIBRARY</a>
+  <a href="#about">ABOUT</a>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+  <h2>PRESS START!</h2>
+  <p>Welcome to Learning Lounge.</p>
+  <p>Your next adventure is loading...</p>
+  <a href="#library" class="button">ENTER ARCADE</a>
+</section>
+
+<section class="panel">
+  <div class="status">
+    <span><span class="dot"></span> SYSTEM ONLINE</span>
+    <span id="clock">Loading clock...</span>
+  </div>
+</section>
+
+<section class="panel" id="library">
+  <h2>🎮 GAME LIBRARY</h2>
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="Search the library..."
+  >
+  <div class="coming" id="libraryMessage">
+    INSERT COIN TO CONTINUE<br>
+    GAMES COMING SOON...
+  </div>
+</section>
+
+<section class="panel" id="about">
+  <h2>ABOUT LEARNING LOUNGE</h2>
+  <p style="font-size:19px; line-height:1.7;">
+    Welcome to Learning Lounge! A retro-inspired gaming hub
+    with a neon purple arcade design.
+    <br><br>
+    The arcade is under construction.
+    Stay tuned for future updates!
+  </p>
+</section>
+
+</main>
+
+<footer>
+  LEARNING LOUNGE © 2026<br><br>
+  LEVEL UP YOUR EXPERIENCE
+</footer>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+document.getElementById("search").addEventListener("input", function() {
+  const message = document.getElementById("libraryMessage");
+
+  if (this.value.trim()) {
+    message.textContent = "NO GAMES AVAILABLE YET — CHECK BACK SOON!";
+  } else {
+    message.innerHTML = "INSERT COIN TO CONTINUE<br>GAMES COMING SOON...";
+  }
+});
+</script>
 
 </body>
 </html>
