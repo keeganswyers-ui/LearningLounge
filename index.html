@@ -3,71 +3,175 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning Lounge</title>
 <style>
-* {
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #10091c;
+  background-color: #090510;
+  background-image:
+    linear-gradient(#32105a33 1px, transparent 1px),
+    linear-gradient(90deg, #32105a33 1px, transparent 1px);
+  background-size: 35px 35px;
   color: white;
+  font-family: Orbitron, sans-serif;
 }
+
 header {
-  background: #1d1030;
-  padding: 25px;
+  background: #10091d;
+  padding: 25px 15px;
   text-align: center;
-  border-bottom: 2px solid #9333ea;
+  border-bottom: 2px solid #a855f7;
+  box-shadow: 0 4px 25px #a855f755;
 }
-header h1 {
-  color: #c084fc;
-  font-size: 34px;
-  margin: 0;
+
+.logo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(18px, 4vw, 32px);
+  color: #d8a2ff;
+  text-shadow: 0 0 10px #a855f7, 0 0 25px #9333ea;
+  line-height: 1.8;
 }
+
 header p {
-  color: #c4b5fd;
+  color: #c084fc;
+  letter-spacing: 3px;
+  font-size: 11px;
 }
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding: 17px;
+  background: #170d27;
+}
+
+nav a {
+  color: #d8b4fe;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+nav a:hover { color: white; }
+
 main {
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 20px;
+  max-width: 1000px;
+  margin: 45px auto;
+  padding: 15px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 15px;
+  background: linear-gradient(145deg,#211037,#11091e);
+  border: 2px solid #9333ea;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #9333ea44;
+}
+
+.hero h2 {
+  color: #d8a2ff;
+  font-size: clamp(22px, 5vw, 38px);
+  text-shadow: 0 0 15px #9333ea;
+}
+
+.hero p {
+  color: #c4b5fd;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.search {
+  display: block;
+  width: min(90%, 450px);
+  margin: 25px auto;
+  padding: 15px;
+  background: #10091d;
+  border: 1px solid #9333ea;
+  border-radius: 7px;
+  color: white;
+  font-family: Orbitron, sans-serif;
+  outline: none;
+}
+
+.library {
+  margin-top: 40px;
+  padding: 30px;
+  background: #160d25;
+  border: 1px solid #7133a8;
+  border-radius: 12px;
   text-align: center;
 }
-.welcome {
-  background: #211334;
-  padding: 40px 20px;
-  border-radius: 18px;
-  border: 1px solid #9333ea;
+
+.library h2 { color: #c084fc; }
+
+.empty {
+  padding: 35px 10px;
+  color: #a78bfa;
+  border: 1px dashed #9333ea;
+  border-radius: 8px;
+  line-height: 2;
 }
-h2 {
-  color: #c084fc;
-}
+
 footer {
   text-align: center;
-  color: #999;
   padding: 30px;
+  color: #9274b4;
+  font-size: 11px;
+  border-top: 1px solid #54257d;
 }
+
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🎮 Learning Lounge</h1>
-  <p>Your ultimate gaming destination</p>
+  <div class="logo">LEARNING<br>LOUNGE</div>
+  <p>★ YOUR RETRO GAMING HUB ★</p>
 </header>
 
+<nav>
+  <a href="#">HOME</a>
+  <a href="#library">GAME LIBRARY</a>
+  <a href="#about">ABOUT</a>
+</nav>
+
 <main>
-  <section class="welcome">
-    <h2>Welcome to Learning Lounge!</h2>
-    <p>Your new favourite place for fun.</p>
-    <p>Games coming soon...</p>
+  <section class="hero">
+    <h2>PRESS START!</h2>
+    <p>WELCOME TO LEARNING LOUNGE</p>
+    <p>Your next gaming destination.</p>
+    <p>THE ARCADE IS GETTING READY...</p>
+  </section>
+
+  <input class="search" type="search"
+    placeholder="Search games... (coming soon)">
+
+  <section class="library" id="library">
+    <h2>🎮 GAME LIBRARY</h2>
+    <div class="empty">
+      <p>INSERT COIN TO CONTINUE</p>
+      <p>GAMES COMING SOON...</p>
+      <p>★ STAY TUNED ★</p>
+    </div>
+  </section>
+
+  <section class="library" id="about">
+    <h2>ABOUT US</h2>
+    <p>Welcome to Learning Lounge.</p>
+    <p>A retro-inspired gaming destination.</p>
   </section>
 </main>
 
 <footer>
-  Learning Lounge © 2026
+  LEARNING LOUNGE © 2026<br>
+  GAME ON. HAVE FUN.
 </footer>
 
 </body>
