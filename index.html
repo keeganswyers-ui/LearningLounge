@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Lounge 2.0</title>
+<title>Learning Lounge</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -26,7 +26,7 @@
 body {
   background: var(--dark);
   color: white;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: Rajdhani, sans-serif;
   overflow-x: hidden;
 }
 
@@ -44,7 +44,6 @@ body::before {
 }
 
 @keyframes gridMove {
-  from { background-position: 0 0; }
   to { background-position: 40px 40px; }
 }
 
@@ -55,25 +54,20 @@ header {
 
 .logo {
   font-family: Orbitron, sans-serif;
-  font-size: clamp(30px, 8vw, 65px);
+  font-size: clamp(27px, 7vw, 60px);
   font-weight: 900;
-  color: white;
-  text-shadow: 0 0 10px var(--purple),
-               0 0 25px var(--purple),
-               0 0 50px var(--pink);
+  text-shadow: 0 0 12px var(--purple), 0 0 30px var(--pink);
   animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 10px var(--purple), 0 0 20px var(--purple); }
-  to { text-shadow: 0 0 20px var(--pink), 0 0 45px var(--purple); }
+  to { text-shadow: 0 0 25px var(--pink), 0 0 45px var(--purple); }
 }
 
 .subtitle {
   color: var(--pink);
   letter-spacing: 5px;
   margin-top: 12px;
-  font-size: 15px;
 }
 
 nav {
@@ -93,15 +87,13 @@ nav a {
   font-family: Orbitron, sans-serif;
   font-size: 11px;
   padding: 12px 17px;
-  border: 1px solid #a855f7;
+  border: 1px solid var(--purple);
   border-radius: 7px;
-  transition: .3s;
 }
 
 nav a:hover {
   background: var(--purple);
   box-shadow: 0 0 20px var(--purple);
-  transform: translateY(-3px);
 }
 
 main {
@@ -118,22 +110,6 @@ main {
   background: linear-gradient(135deg, #1b0d2c, #090510);
   box-shadow: 0 0 25px #a855f733;
   margin: 25px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: "✦";
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: var(--pink);
-  font-size: 35px;
-  animation: float 3s infinite ease-in-out;
-}
-
-@keyframes float {
-  50% { transform: translateY(-12px) rotate(25deg); }
 }
 
 .hero h2 {
@@ -145,12 +121,12 @@ main {
 
 .hero p {
   font-size: 21px;
-  color: #ddd;
-  margin-bottom: 25px;
+  margin-bottom: 12px;
 }
 
 .button {
   display: inline-block;
+  margin-top: 15px;
   padding: 13px 25px;
   background: var(--purple);
   color: white;
@@ -159,13 +135,6 @@ main {
   font-family: Orbitron, sans-serif;
   font-size: 12px;
   box-shadow: 0 0 15px #a855f788;
-  transition: .3s;
-}
-
-.button:hover {
-  background: var(--pink);
-  box-shadow: 0 0 30px var(--pink);
-  transform: scale(1.06);
 }
 
 .panel {
@@ -181,23 +150,7 @@ main {
   font-family: Orbitron, sans-serif;
   color: var(--pink);
   font-size: 19px;
-  margin-bottom: 15px;
-}
-
-.search {
-  width: 100%;
-  padding: 15px;
-  margin: 15px 0;
-  border: 1px solid var(--purple);
-  border-radius: 8px;
-  background: #090510;
-  color: white;
-  font-size: 17px;
-  outline: none;
-}
-
-.search:focus {
-  box-shadow: 0 0 15px var(--purple);
+  margin-bottom: 18px;
 }
 
 .status {
@@ -206,7 +159,6 @@ main {
   flex-wrap: wrap;
   gap: 12px;
   color: #d8b4fe;
-  font-size: 16px;
 }
 
 .dot {
@@ -219,12 +171,94 @@ main {
   margin-right: 7px;
 }
 
-.coming {
-  text-align: center;
-  padding: 35px 10px;
-  color: #c084fc;
+.search {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  background: #090510;
+  color: white;
+  font-size: 17px;
+  outline: none;
+}
+
+.search:focus {
+  box-shadow: 0 0 15px var(--purple);
+}
+
+.game-card {
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  padding: 18px;
+  background: #0d0718;
+  box-shadow: 0 0 15px #a855f733;
+  margin-bottom: 20px;
+}
+
+.game-card h3 {
+  color: var(--pink);
   font-family: Orbitron, sans-serif;
-  line-height: 2.2;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.game-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.fullscreen-btn {
+  border: 1px solid var(--pink);
+  background: #241033;
+  color: white;
+  padding: 11px 15px;
+  border-radius: 7px;
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.fullscreen-btn:hover {
+  background: var(--purple);
+  box-shadow: 0 0 15px var(--purple);
+}
+
+.game-frame {
+  display: block;
+  width: 100%;
+  height: 550px;
+  border: 2px solid var(--purple);
+  border-radius: 10px;
+  background: black;
+}
+
+.game-description {
+  color: #ddd;
+  margin-top: 12px;
+  font-size: 17px;
+}
+
+.game-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--pink);
+}
+
+.no-results {
+  display: none;
+  color: var(--pink);
+  text-align: center;
+  padding: 25px;
+}
+
+.about-text {
+  font-size: 19px;
+  line-height: 1.7;
 }
 
 footer {
@@ -236,363 +270,24 @@ footer {
   font-size: 13px;
 }
 
+/* Fullscreen game mode */
+.game-frame:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: black;
+}
+
 @media(max-width: 600px) {
-  nav a { font-size: 9px; padding: 10px; }
-  .hero { padding: 45px 15px; }
-  .panel { padding: 18px; }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1 class="logo">LEARNING LOUNGE</h1>
-  <p class="subtitle">YOUR RETRO GAMING HUB</p>
-</header>
-
-<nav>
-  <a href="#home">HOME</a>
-  <a href="#library">GAME LIBRARY</a>
-  <a href="#about">ABOUT</a>
-</nav>
-
-<main>
-
-<section class="hero" id="home">
-  <h2>PRESS START!</h2>
-  <p>Welcome to Learning Lounge.</p>
-  <p>Your next adventure is loading...</p>
-  <a href="#library" class="button">ENTER ARCADE</a>
-</section>
-
-<section class="panel">
-  <div class="status">
-    <span><span class="dot"></span> SYSTEM ONLINE</span>
-    <span id="clock">Loading clock...</span>
-  </div>
-</section>
-
-<section class="panel" id="library">
-  <h2>🎮 GAME LIBRARY</h2>
-  <input
-    class="search"
-    id="search"
-    type="text"
-    placeholder="Search the library..."
-  <div style="text-align:center;">
-  <h3 style="color:#e879f9; margin:20px;">
-    🐹 CAPYBARA CLICKER
-  </h3>
-
-  <iframe
-    src="https://nite.games/embed/capybara-clicker"
-    title="Capybara Clicker"
-    width="100%"
-    height="550"
-    style="border:2px solid #a855f7;
-    border-radius:12px;
-    background:#080510;"
-    allow="fullscreen; autoplay; gamepad"
-    allowfullscreen>
-  </iframe>
-
-  <p style="margin-top:12px;">
-    <a href="https://nite.games/game/capybara-clicker"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="color:#e879f9;">
-       Open game on NITE.GAMES
-    </a>
-  </p>
-</div>
-</section>
-
-<section class="panel" id="about">
-  <h2>ABOUT LEARNING LOUNGE</h2>
-  <p style="font-size:19px; line-height:1.7;">
-    Welcome to Learning Lounge! A retro-inspired gaming hub
-    with a neon purple arcade design.
-    <br><br>
-    The arcade is under construction.
-    Stay tuned for future updates!
-  </p>
-</section>
-</main>
-
-<footer>
-  LEARNING LOUNGE © 2026<br><br>
-  LEVEL UP YOUR EXPERIENCE
-</footer>
-
-<script>
-function updateClock() {
-  const now = new Date();
-  document.getElementById("clock").textContent =
-    now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
-    });
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
-document.getElementById("search").addEventListener("input", function() {
-  const message = document.getElementById("libraryMessage");
-
-  if (this.value.trim()) {
-    message.textContent = "NO GAMES AVAILABLE YET — CHECK BACK SOON!";
-  } else {
-    message.innerHTML = "INSERT COIN TO CONTINUE<br>GAMES COMING SOON...";
+  nav a {
+    font-size: 9px;
+    padding: 10px;
   }
-});
-</script>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Lounge 2.0</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --purple: #a855f7;
-  --pink: #e879f9;
-  --dark: #080510;
-  --panel: #160d25;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--dark);
-  color: white;
-  font-family: 'Rajdhani', sans-serif;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(#a855f710 1px, transparent 1px),
-    linear-gradient(90deg, #a855f710 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridMove 12s linear infinite;
-  pointer-events: none;
-  z-index: -1;
-}
-
-@keyframes gridMove {
-  from { background-position: 0 0; }
-  to { background-position: 40px 40px; }
-}
-
-header {
-  text-align: center;
-  padding: 45px 15px 25px;
-}
-
-.logo {
-  font-family: Orbitron, sans-serif;
-  font-size: clamp(30px, 8vw, 65px);
-  font-weight: 900;
-  color: white;
-  text-shadow: 0 0 10px var(--purple),
-               0 0 25px var(--purple),
-               0 0 50px var(--pink);
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px var(--purple), 0 0 20px var(--purple); }
-  to { text-shadow: 0 0 20px var(--pink), 0 0 45px var(--purple); }
-}
-
-.subtitle {
-  color: var(--pink);
-  letter-spacing: 5px;
-  margin-top: 12px;
-  font-size: 15px;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 18px;
-  border-top: 1px solid #a855f755;
-  border-bottom: 1px solid #a855f755;
-  background: #10091dcc;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-family: Orbitron, sans-serif;
-  font-size: 11px;
-  padding: 12px 17px;
-  border: 1px solid #a855f7;
-  border-radius: 7px;
-  transition: .3s;
-}
-
-nav a:hover {
-  background: var(--purple);
-  box-shadow: 0 0 20px var(--purple);
-  transform: translateY(-3px);
-}
-
-main {
-  max-width: 1050px;
-  margin: auto;
-  padding: 25px 18px;
-}
-
-.hero {
-  text-align: center;
-  padding: 65px 20px;
-  border: 1px solid var(--purple);
-  border-radius: 16px;
-  background: linear-gradient(135deg, #1b0d2c, #090510);
-  box-shadow: 0 0 25px #a855f733;
-  margin: 25px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: "✦";
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: var(--pink);
-  font-size: 35px;
-  animation: float 3s infinite ease-in-out;
-}
-
-@keyframes float {
-  50% { transform: translateY(-12px) rotate(25deg); }
-}
-
-.hero h2 {
-  font-family: Orbitron, sans-serif;
-  font-size: clamp(25px, 5vw, 42px);
-  color: var(--pink);
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 21px;
-  color: #ddd;
-  margin-bottom: 25px;
-}
-
-.button {
-  display: inline-block;
-  padding: 13px 25px;
-  background: var(--purple);
-  color: white;
-  border-radius: 7px;
-  text-decoration: none;
-  font-family: Orbitron, sans-serif;
-  font-size: 12px;
-  box-shadow: 0 0 15px #a855f788;
-  transition: .3s;
-}
-
-.button:hover {
-  background: var(--pink);
-  box-shadow: 0 0 30px var(--pink);
-  transform: scale(1.06);
-}
-
-.panel {
-  background: var(--panel);
-  border: 1px solid #a855f766;
-  border-radius: 12px;
-  padding: 25px;
-  margin: 25px 0;
-  box-shadow: 0 0 18px #a855f722;
-}
-
-.panel h2 {
-  font-family: Orbitron, sans-serif;
-  color: var(--pink);
-  font-size: 19px;
-  margin-bottom: 15px;
-}
-
-.search {
-  width: 100%;
-  padding: 15px;
-  margin: 15px 0;
-  border: 1px solid var(--purple);
-  border-radius: 8px;
-  background: #090510;
-  color: white;
-  font-size: 17px;
-  outline: none;
-}
-
-.search:focus {
-  box-shadow: 0 0 15px var(--purple);
-}
-
-.status {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  color: #d8b4fe;
-  font-size: 16px;
-}
-
-.dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  background: #a3ffb0;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #a3ffb0;
-  margin-right: 7px;
-}
-
-.coming {
-  text-align: center;
-  padding: 35px 10px;
-  color: #c084fc;
-  font-family: Orbitron, sans-serif;
-  line-height: 2.2;
-}
-
-footer {
-  text-align: center;
-  padding: 35px 15px;
-  border-top: 1px solid #a855f755;
-  color: #a78bfa;
-  letter-spacing: 2px;
-  font-size: 13px;
-}
-
-@media(max-width: 600px) {
-  nav a { font-size: 9px; padding: 10px; }
   .hero { padding: 45px 15px; }
   .panel { padding: 18px; }
+  .game-frame { height: 480px; }
 }
 </style>
 </head>
@@ -621,48 +316,90 @@ footer {
 
 <section class="panel">
   <div class="status">
-    <span><span class="dot"></span> SYSTEM ONLINE</span>
+    <span><span class="dot"></span>SYSTEM ONLINE</span>
     <span id="clock">Loading clock...</span>
   </div>
 </section>
 
 <section class="panel" id="library">
   <h2>🎮 GAME LIBRARY</h2>
+
   <input
     class="search"
     id="search"
     type="text"
-    placeholder="Search the library..."
+    placeholder="Search games..."
   >
-  <div class="coming" id="libraryMessage">
-    INSERT COIN TO CONTINUE<br>
-    GAMES COMING SOON...
+
+  <div class="game-card" data-game="capybara clicker">
+    <h3>🐹 CAPYBARA CLICKER</h3>
+
+    <div class="game-toolbar">
+      <span>READY TO PLAY?</span>
+
+      <button
+        class="fullscreen-btn"
+        data-target="capybaraFrame"
+        type="button">
+        ⛶ FULL SCREEN
+      </button>
+    </div>
+
+    <iframe
+      id="capybaraFrame"
+      class="game-frame"
+      src="https://nite.games/embed/capybara-clicker"
+      title="Capybara Clicker"
+      loading="lazy"
+      allow="fullscreen; autoplay; gamepad"
+      allowfullscreen>
+    </iframe>
+
+    <p class="game-description">
+      Play Capybara Clicker!
+    </p>
+
+    <a
+      class="game-link"
+      href="https://nite.games/game/capybara-clicker"
+      target="_blank"
+      rel="noopener noreferrer">
+      Open game on NITE.GAMES
+    </a>
+  </div>
+
+  <div class="no-results" id="noResults">
+    NO GAMES FOUND!
   </div>
 </section>
 
 <section class="panel" id="about">
   <h2>ABOUT LEARNING LOUNGE</h2>
-  <p style="font-size:19px; line-height:1.7;">
+
+  <p class="about-text">
     Welcome to Learning Lounge! A retro-inspired gaming hub
     with a neon purple arcade design.
+
     <br><br>
-    The arcade is under construction.
-    Stay tuned for future updates!
+
+    Explore the game library and enjoy the arcade.
+    More games and updates are coming soon!
   </p>
 </section>
 
 </main>
 
 <footer>
-  LEARNING LOUNGE © 2026<br><br>
+  LEARNING LOUNGE © 2026
+  <br><br>
   LEVEL UP YOUR EXPERIENCE
 </footer>
 
 <script>
+// LIVE CLOCK
 function updateClock() {
-  const now = new Date();
   document.getElementById("clock").textContent =
-    now.toLocaleTimeString([], {
+    new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit"
@@ -672,14 +409,45 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-document.getElementById("search").addEventListener("input", function() {
-  const message = document.getElementById("libraryMessage");
+// REUSABLE FULLSCREEN BUTTONS
+document.querySelectorAll(".fullscreen-btn").forEach(button => {
+  button.addEventListener("click", async () => {
+    const frame = document.getElementById(
+      button.dataset.target
+    );
 
-  if (this.value.trim()) {
-    message.textContent = "NO GAMES AVAILABLE YET — CHECK BACK SOON!";
-  } else {
-    message.innerHTML = "INSERT COIN TO CONTINUE<br>GAMES COMING SOON...";
-  }
+    if (!frame) return;
+
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else if (frame.requestFullscreen) {
+        await frame.requestFullscreen();
+      } else {
+        alert("Fullscreen is not supported by this browser.");
+      }
+    } catch (error) {
+      alert("Fullscreen could not open. Try the browser's fullscreen option.");
+    }
+  });
+});
+
+// GAME SEARCH
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".game-card");
+const noResults = document.getElementById("noResults");
+
+search.addEventListener("input", () => {
+  const query = search.value.toLowerCase().trim();
+  let found = 0;
+
+  cards.forEach(card => {
+    const matches = card.dataset.game.includes(query);
+    card.style.display = matches ? "block" : "none";
+    if (matches) found++;
+  });
+
+  noResults.style.display = found ? "none" : "block";
 });
 </script>
 
