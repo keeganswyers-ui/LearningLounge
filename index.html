@@ -9,368 +9,207 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#090512;
+  color:white;
+  font-family:Orbitron,Arial,sans-serif;
 }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: #090512;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
-  overflow-x: hidden;
+header{
+  text-align:center;
+  padding:25px 12px;
+  background:#130a25;
+  border-bottom:2px solid #a855f7;
 }
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(#8b20ff18 1px, transparent 1px),
-    linear-gradient(90deg, #8b20ff18 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridMove 8s linear infinite;
-  pointer-events: none;
-  z-index: -1;
+.logo{
+  color:#d8a5ff;
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(18px,4vw,30px);
+  text-shadow:0 0 15px #a855f7;
 }
-
-@keyframes gridMove {
-  from { background-position: 0 0; }
-  to { background-position: 40px 40px; }
+header p{color:#c9a8e8;font-size:12px}
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:14px;
+  background:#1b1030;
 }
-
-header {
-  padding: 25px 15px;
-  text-align: center;
-  border-bottom: 2px solid #a020f0;
-  background: #10091d;
-  box-shadow: 0 0 20px #8500ff55;
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:10px 15px;
+  border:1px solid #873de0;
+  border-radius:8px;
 }
-
-.logo {
-  font-size: clamp(22px, 5vw, 40px);
-  font-weight: 900;
-  color: #d58aff;
-  text-shadow: 0 0 15px #a020f0;
+nav a:hover{background:#7628c9}
+.hero{
+  text-align:center;
+  padding:45px 15px;
+  background:linear-gradient(135deg,#160b29,#32105b,#10091d);
 }
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  padding: 17px;
-  background: #160b25;
+.hero h1{
+  color:#d9a2ff;
+  font-size:clamp(25px,5vw,42px);
+  text-shadow:0 0 18px #a855f7;
 }
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: bold;
+.hero p{color:#ddd}
+.status{
+  margin:20px auto;
+  max-width:900px;
+  padding:15px;
+  background:#160d25;
+  border:1px solid #7136a9;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:10px;
 }
-
-nav a:hover { color: #d58aff; }
-
-.hero {
-  text-align: center;
-  padding: 65px 15px;
+.online{color:#55ff9a}
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:28px 16px;
 }
-
-.hero h1 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(20px, 5vw, 34px);
-  color: #d58aff;
-  line-height: 1.8;
-  text-shadow: 0 0 15px #a020f0;
+.section-title{
+  color:#d9a2ff;
+  font-size:23px;
+  text-shadow:0 0 10px #922cff;
 }
-
-.hero p {
-  color: #c5b3d8;
-  margin: 20px 0;
-  font-size: 14px;
+#search{
+  width:100%;
+  padding:14px;
+  margin:12px 0 22px;
+  background:#160d25;
+  border:1px solid #a855f7;
+  border-radius:9px;
+  color:white;
+  font-size:16px;
 }
-
-.main-button {
-  display: inline-block;
-  padding: 13px 22px;
-  margin-top: 10px;
-  background: #8b20ff;
-  border: 2px solid #d58aff;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-  font-family: 'Orbitron', sans-serif;
-  box-shadow: 0 0 18px #8b20ff;
-  cursor: pointer;
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
 }
-
-.main-button:hover {
-  background: #b14aff;
+.game-card{
+  background:#160d25;
+  border:1px solid #7938b5;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 0 12px #4c1680;
 }
-
-.status {
-  max-width: 600px;
-  margin: 0 auto 35px;
-  padding: 20px;
-  text-align: center;
-  background: #160b25;
-  border: 1px solid #8b20ff;
-  border-radius: 10px;
+.game-card h3{color:#d9a2ff}
+.game-card p{color:#cbb9df;font-size:13px;line-height:1.6}
+.game-picture{
+  width:100%;
+  height:155px;
+  object-fit:cover;
+  border-radius:9px;
+  border:2px solid #a855f7;
+  display:block;
 }
-
-.online { color: #55ff99; }
-
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 35px 20px;
+.play-button,.action-button{
+  display:block;
+  width:100%;
+  margin-top:12px;
+  padding:13px;
+  background:#782ac5;
+  border:1px solid #c78aff;
+  border-radius:8px;
+  color:white;
+  font-weight:bold;
+  text-align:center;
+  text-decoration:none;
+  cursor:pointer;
+  font-family:Orbitron,Arial,sans-serif;
 }
-
-.section-title {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 16px;
-  color: #d58aff;
-  text-align: center;
-  margin-bottom: 30px;
-  line-height: 1.8;
+.play-button:hover,.action-button:hover{background:#a044ed}
+.game-window{
+  display:none;
+  position:fixed;
+  z-index:20;
+  inset:0;
+  background:#080410;
+  overflow:auto;
+  padding:12px;
 }
-
-.search-box {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto 25px;
-  padding: 14px;
-  border: 1px solid #a020f0;
-  border-radius: 8px;
-  background: #160b25;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
+.game-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  flex-wrap:wrap;
+  max-width:1000px;
+  margin:0 auto 15px;
 }
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+.game-top h2{color:#d9a2ff;font-size:18px}
+.game-top button{
+  padding:10px;
+  border:1px solid #a855f7;
+  background:#35115b;
+  color:white;
+  border-radius:7px;
+  cursor:pointer;
 }
-
-.game-card {
-  background: #160b25;
-  border: 1px solid #8b20ff;
-  border-radius: 12px;
-  padding: 18px;
-  text-align: center;
-  box-shadow: 0 0 15px #8b20ff33;
+#clickerScreen{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
 }
-
-.game-card h3 {
-  color: #d58aff;
-  margin: 12px 0;
-  font-size: 14px;
+#coinCount{
+  font-size:27px;
+  color:#ffe66d;
+  margin:15px;
 }
-
-.game-card p {
-  color: #c5b3d8;
-  font-size: 12px;
-  line-height: 1.7;
+.critter{
+  font-size:100px;
+  cursor:pointer;
+  user-select:none;
+  display:inline-block;
+  padding:25px;
+  border-radius:50%;
+  background:#211039;
+  border:3px solid #b45cff;
+  box-shadow:0 0 30px #9b37ff;
+  margin:20px;
 }
-
-/* CLICKABLE GAME THUMBNAIL */
-
-.game-thumbnail {
-  width: 100%;
-  max-width: 180px;
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle, #6720a0, #160b25 70%);
-  border: 2px solid #d58aff;
-  border-radius: 15px;
-  box-shadow: 0 0 20px #8b20ff77;
-  font-size: 85px;
-  cursor: pointer;
-  transition: 0.2s;
+.critter:active{transform:scale(.94)}
+.upgrades{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:10px;
+  margin:20px auto;
+  text-align:left;
 }
-
-.game-thumbnail:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 35px #bd66ff;
+.upgrade{
+  background:#190d2a;
+  border:1px solid #7439a7;
+  border-radius:9px;
+  padding:12px;
 }
-
-.thumbnail-label {
-  display: block;
-  margin-top: 10px;
-  color: #d58aff;
-  font-size: 10px;
+.upgrade button{
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  background:#7025b5;
+  color:white;
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
 }
-
-/* GAME WINDOW */
-
-.game-window {
-  display: none;
-  margin-top: 25px;
-  padding: 15px;
-  background: #10091d;
-  border: 2px solid #a020f0;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #8b20ff66;
-}
-
-.game-window.active { display: block; }
-
-.game-screen {
-  min-height: 450px;
-  background: #090512;
-  border: 1px solid #8b20ff;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-}
-
-.game-screen:fullscreen {
-  background: #090512;
-  border: none;
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-}
-
-.game-controls {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-}
-
-.game-controls button,
-.shop-button {
-  padding: 11px 15px;
-  background: #8b20ff;
-  color: white;
-  border: 1px solid #d58aff;
-  border-radius: 6px;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.game-controls button:hover,
-.shop-button:hover {
-  background: #b14aff;
-}
-
-#gameTitle {
-  color: #d58aff;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 15px;
-  line-height: 1.8;
-  margin: 15px 0;
-}
-
-.coin-display {
-  display: inline-block;
-  background: #160b25;
-  border: 1px solid #a020f0;
-  border-radius: 10px;
-  padding: 14px 22px;
-  margin: 12px;
-  color: #ffe36e;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-#critter {
-  display: block;
-  margin: 15px auto;
-  font-size: 105px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  filter: drop-shadow(0 0 18px #a020f0);
-  transition: transform 0.1s;
-  user-select: none;
-  touch-action: manipulation;
-}
-
-#critter:active {
-  transform: scale(0.85);
-}
-
-#clickMessage {
-  color: #d58aff;
-  min-height: 24px;
-  font-size: 13px;
-}
-
-.shop {
-  max-width: 650px;
-  margin: 25px auto 0;
-  background: #160b25;
-  border: 1px solid #8b20ff;
-  border-radius: 10px;
-  padding: 18px;
-}
-
-.shop h3 {
-  color: #d58aff;
-  margin-bottom: 15px;
-}
-
-.shop-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  border-top: 1px solid #63318c;
-  padding: 13px 0;
-  text-align: left;
-  font-size: 12px;
-}
-
-.shop-item p {
-  color: #c5b3d8;
-  margin-top: 5px;
-  line-height: 1.5;
-}
-
-.shop-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.reset-button {
-  background: #321044;
-  color: #ffb3d9;
-  border: 1px solid #a020f0;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.about {
-  text-align: center;
-  color: #c5b3d8;
-  line-height: 2;
-  font-size: 13px;
-}
-
-footer {
-  margin-top: 40px;
-  padding: 25px;
-  text-align: center;
-  background: #10091d;
-  border-top: 2px solid #8b20ff;
-  color: #a98abb;
-  font-size: 11px;
+.upgrade button:disabled{opacity:.4;cursor:not-allowed}
+#gameMessage{color:#cba3f4}
+footer{
+  text-align:center;
+  padding:25px;
+  background:#130a25;
+  border-top:1px solid #7136a9;
+  color:#bda6d5;
+  font-size:12px;
 }
 </style>
 </head>
@@ -379,364 +218,295 @@ footer {
 
 <header>
   <div class="logo">LEARNING LOUNGE</div>
+  <p>YOUR NEON ARCADE DESTINATION</p>
 </header>
 
 <nav>
   <a href="#home">HOME</a>
-  <a href="#games">GAME LIBRARY</a>
+  <a href="#library">GAME LIBRARY</a>
   <a href="#about">ABOUT</a>
 </nav>
 
 <div class="hero" id="home">
   <h1>PRESS START!</h1>
-  <p>Welcome to your arcade. Your next adventure starts here.</p>
-  <a href="#games" class="main-button">ENTER ARCADE</a>
+  <p>Welcome to your arcade. Pick a game and have fun!</p>
+  <a class="play-button" href="#library" style="max-width:220px;margin:20px auto">
+    ENTER ARCADE
+  </a>
 </div>
 
 <div class="status">
-  <p>SYSTEM STATUS: <span class="online">● ONLINE</span></p>
-  <p id="clock" style="margin-top:10px;color:#c5b3d8;"></p>
+  <span><span class="online">● SYSTEM ONLINE</span></span>
+  <span id="clock">LOADING CLOCK...</span>
+  <span>VERSION 2.8</span>
 </div>
 
-<section id="games">
-  <h2 class="section-title">GAME LIBRARY</h2>
+<section id="library">
+  <h2 class="section-title">🎮 GAME LIBRARY</h2>
+  <p>Choose a game to play!</p>
 
-  <input
-    class="search-box"
-    id="gameSearch"
-    type="text"
+  <input id="search" type="text"
     placeholder="Search games..."
-    oninput="searchGames()"
-  >
+    oninput="searchGames()">
 
-  <div class="game-grid">
+  <div class="games" id="gameList">
 
-    <div class="game-card" data-game="neon critter clicker">
+    <!-- SANDBOXELS -->
+    <div class="game-card" data-name="sandboxels sandbox simulation">
+      <h3>SANDBOXELS</h3>
 
-      <button
-        class="game-thumbnail"
-        onclick="openGame('game1')"
-        aria-label="Open Neon Critter Clicker">
-        👾
-      </button>
+      <a href="https://neal.fun/sandboxels/"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img class="game-picture"
+          src="https://sandboxels.r74n.com/icons/wallpaper.png"
+          alt="Sandboxels official game artwork">
+        <span class="play-button">▶ PLAY SANDBOXELS</span>
+      </a>
 
-      <span class="thumbnail-label">TAP PICTURE TO PLAY</span>
+      <p>Experiment with hundreds of elements, create reactions and build pixel worlds!</p>
+      <p style="font-size:10px">Game and artwork by R74n. Official game: Neal.fun.</p>
+    </div>
 
+    <!-- NEON CRITTER CLICKER -->
+    <div class="game-card" data-name="neon critter clicker arcade">
       <h3>NEON CRITTER CLICKER</h3>
 
-      <p>Click, collect coins and unlock 17 upgrades!</p>
+      <button onclick="openGame('clickerGame')"
+        style="padding:0;border:0;background:none;width:100%;cursor:pointer">
+        <div class="game-picture"
+          style="height:155px;background:linear-gradient(135deg,#210b3e,#7427ad);display:flex;align-items:center;justify-content:center;font-size:75px">
+          👾
+        </div>
+        <span class="play-button">▶ TAP PICTURE TO PLAY</span>
+      </button>
 
+      <p>Click your critter, collect coins and buy powerful upgrades!</p>
     </div>
 
-  </div>
-
-  <div class="game-window" id="game1">
-
-    <div class="game-controls">
-      <button onclick="closeGame('game1')">CLOSE GAME</button>
-      <button onclick="fullscreenGame('game1')">FULL SCREEN</button>
-    </div>
-
-    <div class="game-screen" id="screen-game1">
-
-      <h2 id="gameTitle">NEON CRITTER CLICKER</h2>
-
-      <div class="coin-display">
-        🪙 <span id="coins">0</span> COINS
-      </div>
-
-      <p style="color:#c5b3d8;font-size:12px;">
-        Tap your creature to earn coins!
-      </p>
-
-      <button id="critter" onclick="clickCritter()">👾</button>
-
-      <p id="clickMessage">READY? START CLICKING!</p>
-
-      <div class="shop">
-        <h3>⚡ UPGRADE SHOP</h3>
-        <p style="color:#c5b3d8;font-size:11px;margin-bottom:15px;">
-          17 upgrades available!
-        </p>
-
-        <div id="upgradeList"></div>
-
-        <button class="reset-button" onclick="resetGame()">
-          RESET GAME
-        </button>
-      </div>
-
-    </div>
   </div>
 </section>
 
 <section id="about">
-  <h2 class="section-title">ABOUT US</h2>
-  <div class="about">
-    <p>Welcome to Learning Lounge!</p>
-    <p>A neon arcade with games, fun and original creations.</p>
-    <p>Built for players. Powered by imagination.</p>
-  </div>
+  <h2 class="section-title">ABOUT LEARNING LOUNGE</h2>
+  <p>
+    Welcome to Learning Lounge! A purple neon arcade with games,
+    experiments and original creations.
+  </p>
 </section>
 
 <footer>
-  <p>LEARNING LOUNGE © 2026</p>
-  <p style="margin-top:8px;">PRESS START TO PLAY</p>
+  LEARNING LOUNGE © 2026<br><br>
+  Keep playing. Keep exploring.
 </footer>
 
-<script>
+<!-- CLICKER GAME WINDOW -->
+<div class="game-window" id="clickerGame">
 
+  <div class="game-top">
+    <h2>👾 NEON CRITTER CLICKER</h2>
+    <div>
+      <button onclick="fullscreenGame()">⛶ FULL SCREEN</button>
+      <button onclick="closeGame()">✕ CLOSE GAME</button>
+    </div>
+  </div>
+
+  <div id="clickerScreen">
+    <h2>CLICK THE CRITTER!</h2>
+    <div id="coinCount">🪙 0 Coins</div>
+
+    <div class="critter" onclick="clickCritter()">👾</div>
+
+    <p id="gameMessage">Your adventure starts here!</p>
+    <p id="powerText">Click power: 1 | Auto coins: 0/sec</p>
+
+    <h2 style="color:#d9a2ff">UPGRADES SHOP</h2>
+    <div class="upgrades" id="upgradeList"></div>
+
+    <button class="action-button" onclick="resetGame()">
+      RESET GAME
+    </button>
+  </div>
+</div>
+
+<script>
 // CLOCK
-function updateClock() {
+function updateClock(){
   document.getElementById("clock").textContent =
     new Date().toLocaleTimeString();
 }
+setInterval(updateClock,1000);
 updateClock();
-setInterval(updateClock, 1000);
 
-// ORIGINAL TWO UPGRADES + 15 NEW UPGRADES
-const upgrades = [
-  {name:"Power Click", description:"+1 coin per click", type:"click", amount:1, base:25},
-  {name:"Auto Clicker", description:"+1 coin every second", type:"auto", amount:1, base:100},
+// SEARCH
+function searchGames(){
+  const query=document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".game-card").forEach(card=>{
+    card.style.display=card.dataset.name.includes(query)?"block":"none";
+  });
+}
 
-  {name:"Mega Finger", description:"+3 coins per click", type:"click", amount:3, base:250},
-  {name:"Coin Magnet", description:"+3 coins per second", type:"auto", amount:3, base:500},
-  {name:"Super Tap", description:"+7 coins per click", type:"click", amount:7, base:1000},
-  {name:"Neon Generator", description:"+8 coins per second", type:"auto", amount:8, base:2500},
-  {name:"Crystal Gloves", description:"+15 coins per click", type:"click", amount:15, base:5000},
-  {name:"Robot Helper", description:"+20 coins per second", type:"auto", amount:20, base:10000},
-  {name:"Turbo Touch", description:"+35 coins per click", type:"click", amount:35, base:25000},
-  {name:"Power Plant", description:"+45 coins per second", type:"auto", amount:45, base:50000},
-  {name:"Golden Fingers", description:"+80 coins per click", type:"click", amount:80, base:100000},
-  {name:"Coin Factory", description:"+100 coins per second", type:"auto", amount:100, base:250000},
-  {name:"Galaxy Touch", description:"+200 coins per click", type:"click", amount:200, base:500000},
-  {name:"Space Machine", description:"+250 coins per second", type:"auto", amount:250, base:1000000},
-  {name:"Quantum Click", description:"+500 coins per click", type:"click", amount:500, base:2500000},
-  {name:"Neon Overlord", description:"+1000 coins per second", type:"auto", amount:1000, base:5000000},
-  {name:"Ultimate Critter", description:"+2500 coins per click", type:"click", amount:2500, base:10000000}
+// GAME WINDOW
+function openGame(id){
+  document.getElementById(id).style.display="block";
+  renderUpgrades();
+}
+function closeGame(){
+  document.getElementById("clickerGame").style.display="none";
+  if(document.fullscreenElement){
+    document.exitFullscreen().catch(()=>{});
+  }
+}
+function fullscreenGame(){
+  const screen=document.getElementById("clickerGame");
+  if(!document.fullscreenElement){
+    screen.requestFullscreen?.().catch(()=>{});
+  }else{
+    document.exitFullscreen?.().catch(()=>{});
+  }
+}
+
+// CLICKER SAVE
+const SAVE_KEY="neonCritterSave";
+let coins=0;
+let levels={};
+
+const upgrades=[
+  {name:"Power Click",desc:"+1 coin per click",cost:25,click:1},
+  {name:"Auto Clicker",desc:"+1 coin per second",cost:50,auto:1},
+
+  {name:"Mega Finger",desc:"+3 coins per click",cost:150,click:3},
+  {name:"Coin Magnet",desc:"+3 coins per second",cost:250,auto:3},
+  {name:"Super Tap",desc:"+7 coins per click",cost:500,click:7},
+  {name:"Neon Generator",desc:"+8 coins per second",cost:900,auto:8},
+  {name:"Crystal Gloves",desc:"+15 coins per click",cost:1800,click:15},
+  {name:"Robot Helper",desc:"+20 coins per second",cost:3500,auto:20},
+  {name:"Turbo Touch",desc:"+35 coins per click",cost:7000,click:35},
+  {name:"Power Plant",desc:"+45 coins per second",cost:14000,auto:45},
+  {name:"Golden Fingers",desc:"+80 coins per click",cost:28000,click:80},
+  {name:"Coin Factory",desc:"+100 coins per second",cost:55000,auto:100},
+  {name:"Galaxy Touch",desc:"+200 coins per click",cost:110000,click:200},
+  {name:"Space Machine",desc:"+250 coins per second",cost:220000,auto:250},
+  {name:"Quantum Click",desc:"+500 coins per click",cost:450000,click:500},
+  {name:"Neon Overlord",desc:"+1,000 coins per second",cost:900000,auto:1000},
+  {name:"Ultimate Critter",desc:"+2,500 coins per click",cost:2000000,click:2500}
 ];
 
-let coins = 0;
-let levels = upgrades.map(() => 0);
-
-// CALCULATE CLICK POWER
-function getClickPower() {
-  let total = 1;
-
-  upgrades.forEach((upgrade, i) => {
-    if (upgrade.type === "click") {
-      total += upgrade.amount * levels[i];
+function loadGame(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(saved){
+      coins=Number(saved.coins)||0;
+      levels=saved.levels||{};
     }
-  });
-
-  return total;
-}
-
-// CALCULATE AUTOMATIC INCOME
-function getAutoIncome() {
-  let total = 0;
-
-  upgrades.forEach((upgrade, i) => {
-    if (upgrade.type === "auto") {
-      total += upgrade.amount * levels[i];
-    }
-  });
-
-  return total;
-}
-
-// SAVE PROGRESS
-function saveGame() {
-  const data = {coins, levels};
-
-  try {
-    localStorage.setItem("neonCritterSave", JSON.stringify(data));
-  } catch (error) {
-    console.log("Save unavailable.");
+  }catch(e){
+    coins=0;
+    levels={};
   }
+  renderUpgrades();
+  updateStats();
 }
 
-// LOAD PROGRESS
-function loadGame() {
-  try {
-    const saved = JSON.parse(
-      localStorage.getItem("neonCritterSave")
-    );
-
-    if (saved && typeof saved === "object") {
-      coins = Math.max(0, Number(saved.coins) || 0);
-
-      if (Array.isArray(saved.levels)) {
-        levels = upgrades.map((upgrade, i) =>
-          Math.max(0, Math.floor(Number(saved.levels[i]) || 0))
-        );
-      }
-    }
-  } catch (error) {
-    console.log("Starting a new game.");
-  }
+function saveGame(){
+  localStorage.setItem(SAVE_KEY,JSON.stringify({coins,levels}));
 }
 
-// UPGRADE PRICE
-function getCost(i) {
-  return Math.ceil(
-    upgrades[i].base * Math.pow(1.65, levels[i])
-  );
+function getCost(index){
+  return Math.floor(upgrades[index].cost*Math.pow(1.65,levels[index]||0));
 }
 
-// DRAW SHOP
-function renderShop() {
-  const list = document.getElementById("upgradeList");
-
-  list.innerHTML = "";
-
-  upgrades.forEach((upgrade, i) => {
-    const cost = getCost(i);
-
-    const item = document.createElement("div");
-    item.className = "shop-item";
-
-    const info = document.createElement("div");
-
-    const name = document.createElement("strong");
-    name.textContent = upgrade.name;
-
-    const description = document.createElement("p");
-    description.textContent = upgrade.description;
-
-    const level = document.createElement("p");
-    level.textContent = "Level: " + levels[i];
-
-    info.appendChild(name);
-    info.appendChild(description);
-    info.appendChild(level);
-
-    const button = document.createElement("button");
-    button.className = "shop-button";
-    button.textContent = "BUY: " + cost.toLocaleString();
-    button.disabled = coins < cost;
-
-    button.onclick = () => buyUpgrade(i);
-
-    item.appendChild(info);
-    item.appendChild(button);
-
-    list.appendChild(item);
-  });
+function getClickPower(){
+  return 1+upgrades.reduce((total,item,index)=>{
+    return total+(item.click||0)*(levels[index]||0);
+  },0);
 }
 
-// UPDATE DISPLAY
-function updateGame() {
-  document.getElementById("coins").textContent =
-    Math.floor(coins).toLocaleString();
-
-  renderShop();
+function getAutoPower(){
+  return upgrades.reduce((total,item,index)=>{
+    return total+(item.auto||0)*(levels[index]||0);
+  },0);
 }
 
-// CLICK CREATURE
-function clickCritter() {
-  const amount = getClickPower();
-
-  coins += amount;
-
-  document.getElementById("clickMessage").textContent =
-    "+" + amount.toLocaleString() + " COINS! ✨";
-
-  updateGame();
+function clickCritter(){
+  coins+=getClickPower();
+  updateStats();
   saveGame();
 }
 
-// BUY ANY UPGRADE
-function buyUpgrade(i) {
-  const cost = getCost(i);
+function buyUpgrade(index){
+  const cost=getCost(index);
+  if(coins<cost)return;
 
-  if (coins >= cost) {
-    coins -= cost;
-    levels[i]++;
+  coins-=cost;
+  levels[index]=(levels[index]||0)+1;
 
-    document.getElementById("clickMessage").textContent =
-      upgrades[i].name + " UPGRADED! ⚡";
+  renderUpgrades();
+  updateStats();
+  saveGame();
+  document.getElementById("gameMessage").textContent=
+    upgrades[index].name+" upgraded!";
+}
 
-    updateGame();
-    saveGame();
-  }
+function renderUpgrades(){
+  const list=document.getElementById("upgradeList");
+  if(!list)return;
+
+  list.innerHTML="";
+
+  upgrades.forEach((item,index)=>{
+    const level=levels[index]||0;
+    const cost=getCost(index);
+
+    const card=document.createElement("div");
+    card.className="upgrade";
+
+    const title=document.createElement("strong");
+    title.textContent=item.name;
+
+    const description=document.createElement("p");
+    description.textContent=item.desc;
+
+    const levelText=document.createElement("p");
+    levelText.textContent="Level: "+level;
+
+    const button=document.createElement("button");
+    button.textContent="BUY - "+cost.toLocaleString()+" coins";
+    button.disabled=coins<cost;
+    button.onclick=()=>buyUpgrade(index);
+
+    card.append(title,description,levelText,button);
+    list.appendChild(card);
+  });
+}
+
+function updateStats(){
+  document.getElementById("coinCount").textContent=
+    "🪙 "+Math.floor(coins).toLocaleString()+" Coins";
+
+  document.getElementById("powerText").textContent=
+    "Click power: "+getClickPower().toLocaleString()+
+    " | Auto coins: "+getAutoPower().toLocaleString()+"/sec";
+
+  renderUpgrades();
+}
+
+function resetGame(){
+  if(!confirm("Are you sure you want to reset your game?"))return;
+  coins=0;
+  levels={};
+  saveGame();
+  updateStats();
+  document.getElementById("gameMessage").textContent="Fresh start!";
 }
 
 // AUTOMATIC COINS
-setInterval(() => {
-  const income = getAutoIncome();
+setInterval(()=>{
+  coins+=getAutoPower();
+  updateStats();
+  saveGame();
+},1000);
 
-  if (income > 0) {
-    coins += income;
-    updateGame();
-    saveGame();
-  }
-}, 1000);
-
-// RESET GAME
-function resetGame() {
-  if (confirm("Are you sure you want to reset your progress?")) {
-    coins = 0;
-    levels = upgrades.map(() => 0);
-
-    document.getElementById("clickMessage").textContent =
-      "NEW GAME STARTED!";
-
-    updateGame();
-    saveGame();
-  }
-}
-
-// SEARCH
-function searchGames() {
-  const search = document
-    .getElementById("gameSearch")
-    .value.toLowerCase();
-
-  document.querySelectorAll(".game-card").forEach(card => {
-    card.style.display =
-      card.dataset.game.includes(search) ? "block" : "none";
-  });
-}
-
-// OPEN GAME
-function openGame(id) {
-  document.querySelectorAll(".game-window").forEach(game => {
-    game.classList.remove("active");
-  });
-
-  const game = document.getElementById(id);
-  game.classList.add("active");
-  game.scrollIntoView({behavior:"smooth"});
-}
-
-// CLOSE GAME
-function closeGame(id) {
-  const game = document.getElementById(id);
-  const screen = game.querySelector(".game-screen");
-
-  if (document.fullscreenElement === screen) {
-    document.exitFullscreen();
-  }
-
-  game.classList.remove("active");
-}
-
-// FULLSCREEN
-function fullscreenGame(id) {
-  const screen = document.getElementById("screen-" + id);
-
-  if (document.fullscreenElement === screen) {
-    document.exitFullscreen();
-  } else if (screen.requestFullscreen) {
-    screen.requestFullscreen();
-  }
-}
-
-// START
 loadGame();
-updateGame();
-
 </script>
 
 </body>
