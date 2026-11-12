@@ -3,30 +3,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning Lounge</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --purple: #a855f7;
-  --pink: #e879f9;
-  --dark: #080510;
-  --panel: #160d25;
-}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--dark);
+  background: #090512;
   color: white;
-  font-family: Rajdhani, sans-serif;
+  font-family: 'Orbitron', sans-serif;
   overflow-x: hidden;
 }
 
@@ -35,259 +31,269 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(#a855f710 1px, transparent 1px),
-    linear-gradient(90deg, #a855f710 1px, transparent 1px);
+    linear-gradient(#8b20ff18 1px, transparent 1px),
+    linear-gradient(90deg, #8b20ff18 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: gridMove 12s linear infinite;
+  animation: gridMove 8s linear infinite;
   pointer-events: none;
   z-index: -1;
 }
 
 @keyframes gridMove {
+  from { background-position: 0 0; }
   to { background-position: 40px 40px; }
 }
 
 header {
+  padding: 25px 15px;
   text-align: center;
-  padding: 45px 15px 25px;
+  border-bottom: 2px solid #a020f0;
+  box-shadow: 0 0 20px #8500ff55;
+  background: #10091d;
 }
 
 .logo {
-  font-family: Orbitron, sans-serif;
-  font-size: clamp(27px, 7vw, 60px);
+  font-size: clamp(22px, 5vw, 40px);
   font-weight: 900;
-  text-shadow: 0 0 12px var(--purple), 0 0 30px var(--pink);
+  color: #d58aff;
+  text-shadow: 0 0 10px #a020f0, 0 0 25px #8b00ff;
   animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-  to { text-shadow: 0 0 25px var(--pink), 0 0 45px var(--purple); }
-}
-
-.subtitle {
-  color: var(--pink);
-  letter-spacing: 5px;
-  margin-top: 12px;
+  from { text-shadow: 0 0 8px #a020f0; }
+  to { text-shadow: 0 0 25px #d000ff, 0 0 40px #8b00ff; }
 }
 
 nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
-  padding: 18px;
-  border-top: 1px solid #a855f755;
-  border-bottom: 1px solid #a855f755;
-  background: #10091dcc;
+  gap: 25px;
+  padding: 17px;
+  background: #160b25;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  font-family: Orbitron, sans-serif;
-  font-size: 11px;
-  padding: 12px 17px;
-  border: 1px solid var(--purple);
-  border-radius: 7px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 nav a:hover {
-  background: var(--purple);
-  box-shadow: 0 0 20px var(--purple);
-}
-
-main {
-  max-width: 1050px;
-  margin: auto;
-  padding: 25px 18px;
+  color: #d58aff;
 }
 
 .hero {
   text-align: center;
-  padding: 65px 20px;
-  border: 1px solid var(--purple);
-  border-radius: 16px;
-  background: linear-gradient(135deg, #1b0d2c, #090510);
-  box-shadow: 0 0 25px #a855f733;
-  margin: 25px 0;
+  padding: 75px 15px;
 }
 
-.hero h2 {
-  font-family: Orbitron, sans-serif;
-  font-size: clamp(25px, 5vw, 42px);
-  color: var(--pink);
-  margin-bottom: 20px;
+.hero h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(20px, 5vw, 34px);
+  color: #d58aff;
+  line-height: 1.8;
+  text-shadow: 0 0 15px #a020f0;
 }
 
 .hero p {
-  font-size: 21px;
-  margin-bottom: 12px;
+  color: #c5b3d8;
+  margin: 20px 0;
+  font-size: 14px;
 }
 
-.button {
+.main-button {
   display: inline-block;
-  margin-top: 15px;
-  padding: 13px 25px;
-  background: var(--purple);
+  padding: 15px 25px;
+  margin-top: 10px;
+  background: #8b20ff;
+  border: 2px solid #d58aff;
+  border-radius: 6px;
   color: white;
-  border-radius: 7px;
   text-decoration: none;
-  font-family: Orbitron, sans-serif;
-  font-size: 12px;
-  box-shadow: 0 0 15px #a855f788;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 18px #8b20ff;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid #a855f766;
-  border-radius: 12px;
-  padding: 25px;
-  margin: 25px 0;
-  box-shadow: 0 0 18px #a855f722;
-}
-
-.panel h2 {
-  font-family: Orbitron, sans-serif;
-  color: var(--pink);
-  font-size: 19px;
-  margin-bottom: 18px;
+.main-button:hover {
+  background: #b14aff;
+  transform: scale(1.05);
 }
 
 .status {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  color: #d8b4fe;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  padding: 20px;
+  text-align: center;
+  background: #160b25;
+  border: 1px solid #8b20ff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #8b20ff44;
 }
 
-.dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  background: #a3ffb0;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #a3ffb0;
-  margin-right: 7px;
+.online {
+  color: #55ff99;
+  font-weight: bold;
 }
 
-.search {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 20px;
-  border: 1px solid var(--purple);
-  border-radius: 8px;
-  background: #090510;
-  color: white;
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+.section-title {
+  font-family: 'Press Start 2P', monospace;
   font-size: 17px;
+  color: #d58aff;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+.search-box {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 25px;
+  padding: 14px;
+  border: 1px solid #a020f0;
+  border-radius: 8px;
+  background: #160b25;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
   outline: none;
 }
 
-.search:focus {
-  box-shadow: 0 0 15px var(--purple);
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .game-card {
-  border: 1px solid var(--purple);
+  background: #160b25;
+  border: 1px solid #8b20ff;
   border-radius: 12px;
-  padding: 18px;
-  background: #0d0718;
-  box-shadow: 0 0 15px #a855f733;
-  margin-bottom: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 15px #8b20ff33;
+  transition: 0.2s;
 }
 
-.game-card h3 {
-  color: var(--pink);
-  font-family: Orbitron, sans-serif;
-  font-size: 16px;
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px #a020f0;
+}
+
+.game-icon {
+  font-size: 45px;
   margin-bottom: 15px;
 }
 
-.game-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+.game-card h3 {
+  color: #d58aff;
   margin-bottom: 12px;
 }
 
-.fullscreen-btn {
-  border: 1px solid var(--pink);
-  background: #241033;
-  color: white;
-  padding: 11px 15px;
-  border-radius: 7px;
-  font-family: Orbitron, sans-serif;
-  font-size: 11px;
-  cursor: pointer;
+.game-card p {
+  color: #c5b3d8;
+  font-size: 12px;
+  line-height: 1.7;
 }
 
-.fullscreen-btn:hover {
-  background: var(--purple);
-  box-shadow: 0 0 15px var(--purple);
-}
+/* GAME WINDOW */
 
-.game-frame {
-  display: block;
-  width: 100%;
-  height: 550px;
-  border: 2px solid var(--purple);
-  border-radius: 10px;
-  background: black;
-}
-
-.game-description {
-  color: #ddd;
-  margin-top: 12px;
-  font-size: 17px;
-}
-
-.game-link {
-  display: inline-block;
-  margin-top: 12px;
-  color: var(--pink);
-}
-
-.no-results {
+.game-window {
   display: none;
-  color: var(--pink);
+  margin-top: 25px;
+  padding: 15px;
+  background: #10091d;
+  border: 2px solid #a020f0;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #8b20ff66;
+}
+
+.game-window.active {
+  display: block;
+}
+
+.game-screen {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 15px;
+  background: #090512;
+  border: 1px solid #8b20ff;
+  border-radius: 8px;
   text-align: center;
   padding: 25px;
 }
 
-.about-text {
-  font-size: 19px;
+.game-screen:fullscreen {
+  background: #090512;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.game-controls button {
+  padding: 12px 18px;
+  background: #8b20ff;
+  color: white;
+  border: 1px solid #d58aff;
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.game-controls button:hover {
+  background: #b14aff;
+}
+
+.game-screen h2 {
+  color: #d58aff;
+  font-size: 22px;
+}
+
+.game-screen p {
+  color: #c5b3d8;
+  font-size: 13px;
   line-height: 1.7;
 }
 
-footer {
+.about {
   text-align: center;
-  padding: 35px 15px;
-  border-top: 1px solid #a855f755;
-  color: #a78bfa;
-  letter-spacing: 2px;
+  color: #c5b3d8;
+  line-height: 2;
   font-size: 13px;
 }
 
-/* Fullscreen game mode */
-.game-frame:fullscreen {
-  width: 100vw;
-  height: 100vh;
-  border: 0;
-  border-radius: 0;
-  background: black;
-}
-
-@media(max-width: 600px) {
-  nav a {
-    font-size: 9px;
-    padding: 10px;
-  }
-
-  .hero { padding: 45px 15px; }
-  .panel { padding: 18px; }
-  .game-frame { height: 480px; }
+footer {
+  margin-top: 40px;
+  padding: 25px;
+  text-align: center;
+  background: #10091d;
+  border-top: 2px solid #8b20ff;
+  color: #a98abb;
+  font-size: 11px;
 }
 </style>
 </head>
@@ -295,160 +301,143 @@ footer {
 <body>
 
 <header>
-  <h1 class="logo">LEARNING LOUNGE</h1>
-  <p class="subtitle">YOUR RETRO GAMING HUB</p>
+  <div class="logo">LEARNING LOUNGE</div>
 </header>
 
 <nav>
   <a href="#home">HOME</a>
-  <a href="#library">GAME LIBRARY</a>
+  <a href="#games">GAME LIBRARY</a>
   <a href="#about">ABOUT</a>
 </nav>
 
-<main>
+<div class="hero" id="home">
+  <h1>PRESS START!</h1>
+  <p>Welcome to your arcade. Your next adventure starts here.</p>
+  <a href="#games" class="main-button">ENTER ARCADE</a>
+</div>
 
-<section class="hero" id="home">
-  <h2>PRESS START!</h2>
-  <p>Welcome to Learning Lounge.</p>
-  <p>Your next adventure is loading...</p>
-  <a href="#library" class="button">ENTER ARCADE</a>
-</section>
+<div class="status">
+  <p>SYSTEM STATUS: <span class="online">● ONLINE</span></p>
+  <p id="clock" style="margin-top:10px;color:#c5b3d8;"></p>
+</div>
 
-<section class="panel">
-  <div class="status">
-    <span><span class="dot"></span>SYSTEM ONLINE</span>
-    <span id="clock">Loading clock...</span>
-  </div>
-</section>
-
-<section class="panel" id="library">
-  <h2>🎮 GAME LIBRARY</h2>
+<section id="games">
+  <h2 class="section-title">GAME LIBRARY</h2>
 
   <input
-    class="search"
-    id="search"
+    class="search-box"
+    id="gameSearch"
     type="text"
     placeholder="Search games..."
+    oninput="searchGames()"
   >
 
-  <div class="game-card" data-game="capybara clicker">
-    <h3>🐹 CAPYBARA CLICKER</h3>
+  <div class="game-grid" id="gameGrid">
 
-    <div class="game-toolbar">
-      <span>READY TO PLAY?</span>
-
-      <button
-        class="fullscreen-btn"
-        data-target="capybaraFrame"
-        type="button">
-        ⛶ FULL SCREEN
+    <div class="game-card" data-game="our first original game">
+      <div class="game-icon">👾</div>
+      <h3>OUR FIRST GAME</h3>
+      <p>Our very own original game is coming!</p>
+      <button class="main-button" onclick="openGame('game1')">
+        PLAY GAME
       </button>
     </div>
 
-    <iframe
-      id="capybaraFrame"
-      class="game-frame"
-      src="https://nite.games/embed/capybara-clicker"
-      title="Capybara Clicker"
-      loading="lazy"
-      allow="fullscreen; autoplay; gamepad"
-      allowfullscreen>
-    </iframe>
-
-    <p class="game-description">
-      Play Capybara Clicker!
-    </p>
-
-    <a
-      class="game-link"
-      href="https://nite.games/game/capybara-clicker"
-      target="_blank"
-      rel="noopener noreferrer">
-      Open game on NITE.GAMES
-    </a>
   </div>
 
-  <div class="no-results" id="noResults">
-    NO GAMES FOUND!
+  <!-- GAME WINDOW -->
+  <div class="game-window" id="game1">
+
+    <div class="game-controls">
+      <button onclick="closeGame('game1')">
+        CLOSE GAME
+      </button>
+
+      <button onclick="fullscreenGame('game1')">
+        FULL SCREEN
+      </button>
+    </div>
+
+    <div class="game-screen" id="screen-game1">
+      <h2>👾 OUR GAME IS COMING!</h2>
+      <p>Our first original game will go here.</p>
+    </div>
+
   </div>
 </section>
 
-<section class="panel" id="about">
-  <h2>ABOUT LEARNING LOUNGE</h2>
+<section id="about">
+  <h2 class="section-title">ABOUT US</h2>
 
-  <p class="about-text">
-    Welcome to Learning Lounge! A retro-inspired gaming hub
-    with a neon purple arcade design.
-
-    <br><br>
-
-    Explore the game library and enjoy the arcade.
-    More games and updates are coming soon!
-  </p>
+  <div class="about">
+    <p>Welcome to Learning Lounge!</p>
+    <p>A neon arcade with games, fun and original creations.</p>
+    <p>Built for players. Powered by imagination.</p>
+  </div>
 </section>
-
-</main>
 
 <footer>
-  LEARNING LOUNGE © 2026
-  <br><br>
-  LEVEL UP YOUR EXPERIENCE
+  <p>LEARNING LOUNGE © 2026</p>
+  <p style="margin-top:8px;">PRESS START TO PLAY</p>
 </footer>
 
 <script>
+
 // LIVE CLOCK
 function updateClock() {
   document.getElementById("clock").textContent =
-    new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
-    });
+    new Date().toLocaleTimeString();
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-// REUSABLE FULLSCREEN BUTTONS
-document.querySelectorAll(".fullscreen-btn").forEach(button => {
-  button.addEventListener("click", async () => {
-    const frame = document.getElementById(
-      button.dataset.target
-    );
-
-    if (!frame) return;
-
-    try {
-      if (document.fullscreenElement) {
-        await document.exitFullscreen();
-      } else if (frame.requestFullscreen) {
-        await frame.requestFullscreen();
-      } else {
-        alert("Fullscreen is not supported by this browser.");
-      }
-    } catch (error) {
-      alert("Fullscreen could not open. Try the browser's fullscreen option.");
-    }
-  });
-});
-
 // GAME SEARCH
-const search = document.getElementById("search");
-const cards = document.querySelectorAll(".game-card");
-const noResults = document.getElementById("noResults");
+function searchGames() {
+  const search = document
+    .getElementById("gameSearch")
+    .value.toLowerCase();
 
-search.addEventListener("input", () => {
-  const query = search.value.toLowerCase().trim();
-  let found = 0;
+  document.querySelectorAll(".game-card").forEach(card => {
+    const name = card.dataset.game.toLowerCase();
+    card.style.display = name.includes(search) ? "block" : "none";
+  });
+}
 
-  cards.forEach(card => {
-    const matches = card.dataset.game.includes(query);
-    card.style.display = matches ? "block" : "none";
-    if (matches) found++;
+// OPEN GAME
+function openGame(id) {
+  document.querySelectorAll(".game-window").forEach(game => {
+    game.classList.remove("active");
   });
 
-  noResults.style.display = found ? "none" : "block";
-});
+  const game = document.getElementById(id);
+  game.classList.add("active");
+  game.scrollIntoView({ behavior: "smooth" });
+}
+
+// CLOSE GAME
+function closeGame(id) {
+  const game = document.getElementById(id);
+  const screen = game.querySelector(".game-screen");
+
+  if (document.fullscreenElement === screen) {
+    document.exitFullscreen();
+  }
+
+  game.classList.remove("active");
+}
+
+// REUSABLE FULLSCREEN
+function fullscreenGame(id) {
+  const screen = document.getElementById("screen-" + id);
+
+  if (document.fullscreenElement === screen) {
+    document.exitFullscreen();
+  } else if (screen.requestFullscreen) {
+    screen.requestFullscreen();
+  }
+}
+
 </script>
 
 </body>
