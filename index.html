@@ -15,9 +15,7 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: #090512;
@@ -81,9 +79,7 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
-  color: #d58aff;
-}
+nav a:hover { color: #d58aff; }
 
 .hero {
   text-align: center;
@@ -117,7 +113,6 @@ nav a:hover {
   font-family: 'Orbitron', sans-serif;
   box-shadow: 0 0 18px #8b20ff;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .main-button:hover {
@@ -133,7 +128,6 @@ nav a:hover {
   background: #160b25;
   border: 1px solid #8b20ff;
   border-radius: 10px;
-  box-shadow: 0 0 15px #8b20ff44;
 }
 
 .online {
@@ -167,7 +161,6 @@ section {
   background: #160b25;
   color: white;
   font-family: 'Orbitron', sans-serif;
-  outline: none;
 }
 
 .game-grid {
@@ -183,12 +176,6 @@ section {
   padding: 25px;
   text-align: center;
   box-shadow: 0 0 15px #8b20ff33;
-  transition: 0.2s;
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px #a020f0;
 }
 
 .game-icon {
@@ -219,21 +206,15 @@ section {
   box-shadow: 0 0 20px #8b20ff66;
 }
 
-.game-window.active {
-  display: block;
-}
+.game-window.active { display: block; }
 
 .game-screen {
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 15px;
+  min-height: 450px;
   background: #090512;
   border: 1px solid #8b20ff;
   border-radius: 8px;
+  padding: 20px;
   text-align: center;
-  padding: 25px;
 }
 
 .game-screen:fullscreen {
@@ -242,7 +223,7 @@ section {
   border-radius: 0;
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  overflow-y: auto;
 }
 
 .game-controls {
@@ -253,7 +234,8 @@ section {
   margin-bottom: 15px;
 }
 
-.game-controls button {
+.game-controls button,
+.shop-button {
   padding: 12px 18px;
   background: #8b20ff;
   color: white;
@@ -264,19 +246,97 @@ section {
   cursor: pointer;
 }
 
-.game-controls button:hover {
+.game-controls button:hover,
+.shop-button:hover {
   background: #b14aff;
 }
 
-.game-screen h2 {
+#gameTitle {
   color: #d58aff;
-  font-size: 22px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 15px 0;
 }
 
-.game-screen p {
-  color: #c5b3d8;
+.coin-display {
+  display: inline-block;
+  background: #160b25;
+  border: 1px solid #a020f0;
+  border-radius: 10px;
+  padding: 14px 22px;
+  margin: 12px;
+  color: #ffe36e;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#critter {
+  display: block;
+  margin: 15px auto;
+  font-size: 105px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  filter: drop-shadow(0 0 18px #a020f0);
+  transition: transform 0.1s;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#critter:active {
+  transform: scale(0.85);
+}
+
+#clickMessage {
+  color: #d58aff;
+  min-height: 24px;
   font-size: 13px;
-  line-height: 1.7;
+}
+
+.shop {
+  max-width: 600px;
+  margin: 25px auto 0;
+  background: #160b25;
+  border: 1px solid #8b20ff;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.shop h3 {
+  color: #d58aff;
+  margin-bottom: 15px;
+}
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid #63318c;
+  padding: 14px 0;
+  font-size: 12px;
+}
+
+.shop-item p {
+  color: #c5b3d8;
+  margin-top: 5px;
+}
+
+.shop-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reset-button {
+  background: #321044;
+  color: #ffb3d9;
+  border: 1px solid #a020f0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 .about {
@@ -334,10 +394,10 @@ footer {
 
   <div class="game-grid" id="gameGrid">
 
-    <div class="game-card" data-game="our first original game">
+    <div class="game-card" data-game="neon critter clicker">
       <div class="game-icon">👾</div>
-      <h3>OUR FIRST GAME</h3>
-      <p>Our very own original game is coming!</p>
+      <h3>NEON CRITTER CLICKER</h3>
+      <p>Click, collect coins and upgrade your creature!</p>
       <button class="main-button" onclick="openGame('game1')">
         PLAY GAME
       </button>
@@ -345,30 +405,71 @@ footer {
 
   </div>
 
-  <!-- GAME WINDOW -->
   <div class="game-window" id="game1">
 
     <div class="game-controls">
-      <button onclick="closeGame('game1')">
-        CLOSE GAME
-      </button>
-
-      <button onclick="fullscreenGame('game1')">
-        FULL SCREEN
-      </button>
+      <button onclick="closeGame('game1')">CLOSE GAME</button>
+      <button onclick="fullscreenGame('game1')">FULL SCREEN</button>
     </div>
 
     <div class="game-screen" id="screen-game1">
-      <h2>👾 OUR GAME IS COMING!</h2>
-      <p>Our first original game will go here.</p>
-    </div>
 
+      <h2 id="gameTitle">NEON CRITTER CLICKER</h2>
+
+      <div class="coin-display">
+        🪙 <span id="coins">0</span> COINS
+      </div>
+
+      <p style="color:#c5b3d8;font-size:12px;">
+        Click your little creature to earn coins!
+      </p>
+
+      <button id="critter" onclick="clickCritter()">
+        👾
+      </button>
+
+      <p id="clickMessage">READY? START CLICKING!</p>
+
+      <div class="shop">
+
+        <h3>⚡ UPGRADE SHOP</h3>
+
+        <div class="shop-item">
+          <div>
+            **POWER CLICK**
+            <p>Earn +1 coin per click</p>
+            <p>Level: <span id="powerLevel">0</span></p>
+          </div>
+          <button class="shop-button" id="powerButton"
+            onclick="buyPower()">
+            BUY: 25
+          </button>
+        </div>
+
+        <div class="shop-item">
+          <div>
+            **AUTO CLICKER**
+            <p>Earn coins automatically</p>
+            <p>Level: <span id="autoLevel">0</span></p>
+          </div>
+          <button class="shop-button" id="autoButton"
+            onclick="buyAuto()">
+            BUY: 100
+          </button>
+        </div>
+
+        <button class="reset-button" onclick="resetGame()">
+          RESET GAME
+        </button>
+
+      </div>
+
+    </div>
   </div>
 </section>
 
 <section id="about">
   <h2 class="section-title">ABOUT US</h2>
-
   <div class="about">
     <p>Welcome to Learning Lounge!</p>
     <p>A neon arcade with games, fun and original creations.</p>
@@ -383,14 +484,131 @@ footer {
 
 <script>
 
-// LIVE CLOCK
+// CLOCK
 function updateClock() {
   document.getElementById("clock").textContent =
     new Date().toLocaleTimeString();
 }
-
 updateClock();
 setInterval(updateClock, 1000);
+
+// GAME DATA
+let coins = 0;
+let power = 1;
+let auto = 0;
+let powerCost = 25;
+let autoCost = 100;
+
+function saveGame() {
+  const data = { coins, power, auto, powerCost, autoCost };
+  localStorage.setItem("neonCritterSave", JSON.stringify(data));
+}
+
+function loadGame() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("neonCritterSave")
+    );
+
+    if (saved && typeof saved === "object") {
+      coins = Math.max(0, Number(saved.coins) || 0);
+      power = Math.max(1, Number(saved.power) || 1);
+      auto = Math.max(0, Number(saved.auto) || 0);
+      powerCost = Math.max(25, Number(saved.powerCost) || 25);
+      autoCost = Math.max(100, Number(saved.autoCost) || 100);
+    }
+  } catch (error) {
+    console.log("Starting a new game.");
+  }
+}
+
+// UPDATE DISPLAY
+function updateGame() {
+  document.getElementById("coins").textContent =
+    Math.floor(coins).toLocaleString();
+
+  document.getElementById("powerLevel").textContent = power - 1;
+  document.getElementById("autoLevel").textContent = auto;
+
+  document.getElementById("powerButton").textContent =
+    "BUY: " + powerCost.toLocaleString();
+
+  document.getElementById("autoButton").textContent =
+    "BUY: " + autoCost.toLocaleString();
+
+  document.getElementById("powerButton").disabled =
+    coins < powerCost;
+
+  document.getElementById("autoButton").disabled =
+    coins < autoCost;
+}
+
+// CLICK CREATURE
+function clickCritter() {
+  coins += power;
+
+  document.getElementById("clickMessage").textContent =
+    "+" + power + " COINS! ✨";
+
+  updateGame();
+  saveGame();
+}
+
+// POWER UPGRADE
+function buyPower() {
+  if (coins >= powerCost) {
+    coins -= powerCost;
+    power++;
+    powerCost = Math.ceil(powerCost * 1.7);
+
+    document.getElementById("clickMessage").textContent =
+      "POWER UPGRADED! ⚡";
+
+    updateGame();
+    saveGame();
+  }
+}
+
+// AUTO CLICK UPGRADE
+function buyAuto() {
+  if (coins >= autoCost) {
+    coins -= autoCost;
+    auto++;
+    autoCost = Math.ceil(autoCost * 1.8);
+
+    document.getElementById("clickMessage").textContent =
+      "AUTO CLICKER BOUGHT! 🚀";
+
+    updateGame();
+    saveGame();
+  }
+}
+
+// AUTOMATIC COINS
+setInterval(() => {
+  if (auto > 0) {
+    coins += auto;
+    updateGame();
+    saveGame();
+  }
+}, 1000);
+
+// RESET
+function resetGame() {
+  if (confirm("Are you sure you want to reset your progress?")) {
+    coins = 0;
+    power = 1;
+    auto = 0;
+    powerCost = 25;
+    autoCost = 100;
+
+    document.getElementById("clickMessage").textContent =
+      "NEW GAME STARTED!";
+
+    updateGame();
+    saveGame();
+  }
+}
 
 // GAME SEARCH
 function searchGames() {
@@ -399,8 +617,8 @@ function searchGames() {
     .value.toLowerCase();
 
   document.querySelectorAll(".game-card").forEach(card => {
-    const name = card.dataset.game.toLowerCase();
-    card.style.display = name.includes(search) ? "block" : "none";
+    card.style.display =
+      card.dataset.game.includes(search) ? "block" : "none";
   });
 }
 
@@ -427,7 +645,7 @@ function closeGame(id) {
   game.classList.remove("active");
 }
 
-// REUSABLE FULLSCREEN
+// FULLSCREEN
 function fullscreenGame(id) {
   const screen = document.getElementById("screen-" + id);
 
@@ -437,6 +655,10 @@ function fullscreenGame(id) {
     screen.requestFullscreen();
   }
 }
+
+// START GAME
+loadGame();
+updateGame();
 
 </script>
 
