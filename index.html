@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.0</title>
+<title>Learning Lounge 4.1</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
@@ -170,7 +170,7 @@ section{
 .critter-art{background:linear-gradient(135deg,#210b3e,#7427ad)}
 .trex-art{background:linear-gradient(135deg,#153b16,#42a52c,#a5e65b)}
 .hexgl-art{background:linear-gradient(135deg,#071b46,#174fbd,#8a35ff)}
-.cards-art{background:linear-gradient(135deg,#15082c,#7924bd,#e9a52d)}
+.cards-art{background:linear-gradient(135deg,#123b50,#087e78,#b18b36)}
 
 .play-button,.action-button{
   display:block;
@@ -299,13 +299,15 @@ footer{
   font-size:12px;
 }
 
-/* CARD CLASH */
+/* CARD CLASH MONSTER THEME */
 
 #cardGame{
   z-index:30;
   background:
-    radial-gradient(circle at top,#28104b,#080410 65%);
+    radial-gradient(ellipse at 50% 0%,#174b58 0%,#102b3a 38%,#07131f 100%);
 }
+
+#cardGame .game-top h2{color:#83f5df}
 
 .card-game-content{
   max-width:1000px;
@@ -315,9 +317,9 @@ footer{
 
 .card-logo{
   font-family:'Press Start 2P',monospace;
-  color:#ffd66b;
+  color:#8effe6;
   font-size:clamp(20px,5vw,32px);
-  text-shadow:0 0 15px #ffae00;
+  text-shadow:0 0 18px #00d9bd;
   margin:25px 0;
 }
 
@@ -338,8 +340,8 @@ footer{
 
 .card-tabs button{
   padding:12px 16px;
-  background:#291044;
-  border:1px solid #a855f7;
+  background:#123744;
+  border:1px solid #3b9998;
   border-radius:8px;
   color:white;
   font-family:Orbitron;
@@ -348,17 +350,16 @@ footer{
 }
 
 .card-tabs button.active,
-.card-tabs button:hover{
-  background:#8735ce;
-}
+.card-tabs button:hover{background:#087e78}
 
 .card-panel{
   display:none;
-  background:#160d25;
-  border:1px solid #7136a9;
+  background:linear-gradient(145deg,#102b3a,#0a1b29);
+  border:1px solid #327b83;
   border-radius:14px;
   padding:18px;
   margin:15px 0;
+  box-shadow:0 0 15px #00b9aa22;
 }
 
 .card-panel.active{display:block}
@@ -367,15 +368,15 @@ footer{
   width:180px;
   height:245px;
   margin:20px auto;
-  border:3px solid #f7c95a;
+  border:3px solid #8effe6;
   border-radius:13px;
-  background:linear-gradient(145deg,#220b4c,#8425bd,#f0a52c);
+  background:linear-gradient(145deg,#123b50,#087e78,#b18b36);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:20px;
-  box-shadow:0 0 25px #a855f7;
+  box-shadow:0 0 25px #00d9bd66;
   animation:packFloat 2s infinite ease-in-out;
 }
 
@@ -393,9 +394,9 @@ footer{
 
 .card-button{
   padding:13px 20px;
-  background:linear-gradient(90deg,#762ac5,#a34de8);
+  background:linear-gradient(90deg,#087e78,#16b6a2);
   color:white;
-  border:1px solid #d7a1ff;
+  border:1px solid #8effe6;
   border-radius:9px;
   font-family:Orbitron;
   font-weight:bold;
@@ -404,7 +405,6 @@ footer{
 }
 
 .card-button:disabled{opacity:.4;cursor:not-allowed}
-
 .card-button:hover:not(:disabled){filter:brightness(1.2)}
 
 .card-grid{
@@ -419,14 +419,9 @@ footer{
   border:2px solid #777;
   border-radius:11px;
   padding:12px 7px;
-  background:linear-gradient(145deg,#292333,#100b19);
+  background:linear-gradient(160deg,#193d4b,#0b1b29);
   position:relative;
   overflow:hidden;
-}
-
-.collect-card .creature-art{
-  font-size:53px;
-  padding:13px 0;
 }
 
 .collect-card h3{
@@ -446,11 +441,24 @@ footer{
   margin-top:7px;
   border:0;
   border-radius:6px;
-  background:#7130b3;
+  background:#087e78;
   color:white;
   font-family:Orbitron;
   font-size:10px;
   cursor:pointer;
+}
+
+.creature-art{
+  height:110px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:9px 0;
+  border-radius:10px;
+  font-size:68px;
+  background:radial-gradient(circle,#5c9fa0,#214c5a 55%,#102532);
+  text-shadow:0 5px 12px #000;
+  box-shadow:inset 0 0 18px #80fff044;
 }
 
 .rarity-common{border-color:#aeb5c2}
@@ -459,16 +467,17 @@ footer{
 .rarity-epic{border-color:#bd72ff;box-shadow:0 0 10px #8739c9}
 .rarity-legendary{border-color:#ffd04c;box-shadow:0 0 12px #b77a17}
 .rarity-mythic{border-color:#ff668e;box-shadow:0 0 15px #ff336e}
-.rarity-godly{
-  border-color:#ffb52e;
-  box-shadow:0 0 20px #ffb52e;
-  animation:godlyGlow 1.5s infinite alternate;
-}
-.rarity-secret{
-  border-color:#ff347e;
-  box-shadow:0 0 20px #a000ff;
-  animation:secretGlow 1.2s infinite alternate;
-}
+.rarity-godly{border-color:#ffb52e;box-shadow:0 0 20px #ffb52e;animation:godlyGlow 1.5s infinite alternate}
+.rarity-secret{border-color:#ff347e;box-shadow:0 0 20px #a000ff;animation:secretGlow 1.2s infinite alternate}
+
+.rarity-common .creature-art{background:linear-gradient(145deg,#354957,#8a9da6)}
+.rarity-uncommon .creature-art{background:linear-gradient(145deg,#075a45,#3edc94)}
+.rarity-rare .creature-art{background:linear-gradient(145deg,#104b91,#48baff)}
+.rarity-epic .creature-art{background:linear-gradient(145deg,#492080,#b65cff)}
+.rarity-legendary .creature-art{background:linear-gradient(145deg,#9a5b0c,#ffdb65)}
+.rarity-mythic .creature-art{background:linear-gradient(145deg,#81204e,#ff75ba)}
+.rarity-godly .creature-art{background:linear-gradient(145deg,#80600b,#fff09b)}
+.rarity-secret .creature-art{background:linear-gradient(145deg,#241047,#a60070,#101020)}
 
 @keyframes godlyGlow{
   from{box-shadow:0 0 8px #ffb52e}
@@ -505,7 +514,7 @@ footer{
   border:2px solid #888;
   border-radius:10px;
   padding:12px 5px;
-  background:#21142f;
+  background:linear-gradient(160deg,#193d4b,#0b1b29);
   animation:reveal .4s ease-out;
 }
 
@@ -514,18 +523,18 @@ footer{
   to{transform:scale(1);opacity:1}
 }
 
-.pack-result-card .creature-art{font-size:50px;margin:10px}
+.pack-result-card .creature-art{font-size:50px}
 .pack-result-card h3{font-size:11px}
 .pack-result-card p{font-size:10px}
 
 #packMessage{
   min-height:25px;
-  color:#e2bdff;
+  color:#b9fff0;
   font-size:13px;
 }
 
 .card-info{
-  color:#bda9d3;
+  color:#a9d8d7;
   font-size:12px;
   line-height:1.7;
 }
@@ -535,10 +544,117 @@ footer{
   padding:25px;
 }
 
+/* DUEL ARENA */
+
+#duelSetup,#duelBattle{
+  max-width:850px;
+  margin:auto;
+}
+
+.duel-pick-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
+  gap:10px;
+  margin:18px 0;
+}
+
+.duel-pick{
+  background:#142f3c;
+  border:2px solid #347d86;
+  border-radius:12px;
+  padding:12px 5px;
+  color:white;
+  cursor:pointer;
+  font-family:Orbitron;
+}
+
+.duel-pick.selected{
+  border-color:#8effe6;
+  background:#12665f;
+  box-shadow:0 0 14px #00d9bd88;
+}
+
+.duel-pick .creature-art{
+  font-size:42px;
+  height:70px;
+}
+
+.duel-fighters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:20px 0;
+}
+
+.duel-fighter{
+  background:#142f3c;
+  border:2px solid #347d86;
+  border-radius:12px;
+  padding:12px;
+  min-width:0;
+}
+
+.duel-fighter.active-fighter{
+  border-color:#8effe6;
+  box-shadow:0 0 15px #00d9bd66;
+}
+
+.duel-monster{
+  font-size:65px;
+  margin:10px;
+}
+
+.duel-health{
+  width:100%;
+  height:15px;
+  background:#07131f;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #56848b;
+}
+
+.duel-health-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#13b96e,#8cff9e);
+  transition:width .3s;
+}
+
+.duel-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0;
+}
+
+.duel-log{
+  min-height:65px;
+  padding:14px;
+  background:#071c28;
+  border:1px solid #347d86;
+  border-radius:10px;
+  color:#b9fff0;
+  line-height:1.7;
+}
+
+.duel-info{
+  color:#a9d8d7;
+  font-size:12px;
+  line-height:1.7;
+}
+
+#duelMessage{
+  color:#8effe6;
+  min-height:25px;
+}
+
 @media(max-width:500px){
   .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .card-panel{padding:12px}
   .card-tabs button{padding:10px;font-size:11px}
+  .duel-fighters{grid-template-columns:1fr 1fr}
+  .duel-monster{font-size:48px}
 }
 </style>
 </head>
@@ -559,8 +675,7 @@ footer{
 <div class="hero" id="home">
   <h1>PRESS START!</h1>
   <p>Welcome to your arcade. Pick a game and have fun!</p>
-  <a class="play-button" href="#library"
-     style="max-width:220px;margin:20px auto">
+  <a class="play-button" href="#library" style="max-width:220px;margin:20px auto">
     ENTER ARCADE
   </a>
 </div>
@@ -568,7 +683,7 @@ footer{
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 4.0</span>
+  <span>VERSION 4.1</span>
 </div>
 
 <section id="library">
@@ -583,11 +698,8 @@ footer{
 
     <div class="game-card" data-name="sandboxels sandbox simulation">
       <h3>SANDBOXELS</h3>
-      <a class="game-link" href="https://neal.fun/sandboxels/"
-         target="_blank" rel="noopener noreferrer">
-        <div class="game-picture sandbox-art">
-          🧪🌋<small>SANDBOX EXPERIMENTS</small>
-        </div>
+      <a class="game-link" href="https://neal.fun/sandboxels/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture sandbox-art">🧪🌋<small>SANDBOX EXPERIMENTS</small></div>
         <span class="play-button">▶ PLAY SANDBOXELS</span>
       </a>
       <p>Experiment with elements, create reactions and build pixel worlds!</p>
@@ -595,11 +707,8 @@ footer{
 
     <div class="game-card" data-name="smash karts racing cars battle">
       <h3>SMASH KARTS</h3>
-      <a class="game-link" href="https://smashkarts.io/"
-         target="_blank" rel="noopener noreferrer">
-        <div class="game-picture smash-art">
-          🏎️💥<small>KART BATTLES</small>
-        </div>
+      <a class="game-link" href="https://smashkarts.io/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture smash-art">🏎️💥<small>KART BATTLES</small></div>
         <span class="play-button">▶ PLAY SMASH KARTS</span>
       </a>
       <p>Race around arenas and enjoy chaotic kart battles!</p>
@@ -607,11 +716,8 @@ footer{
 
     <div class="game-card" data-name="diep io tank shooter">
       <h3>DIEP.IO</h3>
-      <a class="game-link" href="https://diep.io/"
-         target="_blank" rel="noopener noreferrer">
-        <div class="game-picture diep-art">
-          🔵🎯<small>TANK ARENA</small>
-        </div>
+      <a class="game-link" href="https://diep.io/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture diep-art">🔵🎯<small>TANK ARENA</small></div>
         <span class="play-button">▶ PLAY DIEP.IO</span>
       </a>
       <p>Upgrade your tank and compete in the arena!</p>
@@ -619,11 +725,8 @@ footer{
 
     <div class="game-card" data-name="neon critter clicker arcade">
       <h3>NEON CRITTER CLICKER</h3>
-      <button onclick="openGame()"
-        style="padding:0;border:0;background:none;width:100%;cursor:pointer">
-        <div class="game-picture critter-art">
-          👾<small>CLICKER ARCADE</small>
-        </div>
+      <button onclick="openGame()" style="padding:0;border:0;background:none;width:100%;cursor:pointer">
+        <div class="game-picture critter-art">👾<small>CLICKER ARCADE</small></div>
         <span class="play-button">▶ TAP PICTURE TO PLAY</span>
       </button>
       <p>Click your critter, collect coins and buy 17 powerful upgrades!</p>
@@ -631,50 +734,37 @@ footer{
 
     <div class="game-card" data-name="t rex trex dinosaur runner running">
       <h3>T-REX RUNNER</h3>
-      <a class="game-link" href="https://wayou.github.io/t-rex-runner/"
-         target="_blank" rel="noopener noreferrer">
-        <div class="game-picture trex-art">
-          🦖<small>DINO RUNNER</small>
-        </div>
+      <a class="game-link" href="https://wayou.github.io/t-rex-runner/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture trex-art">🦖<small>DINO RUNNER</small></div>
         <span class="play-button">▶ PLAY T-REX RUNNER</span>
       </a>
       <p>Jump over obstacles and see how far your dinosaur can run!</p>
       <p class="license-note">
         Open-source version • BSD-3-Clause.
-        <a href="https://github.com/wayou/t-rex-runner"
-           target="_blank" rel="noopener noreferrer">Source and licence</a>
+        <a href="https://github.com/wayou/t-rex-runner" target="_blank" rel="noopener noreferrer">Source and licence</a>
       </p>
     </div>
 
     <div class="game-card" data-name="hexgl racing futuristic spaceship race">
       <h3>HEXGL</h3>
-      <a class="game-link" href="https://hexgl.bkcore.com/play/"
-         target="_blank" rel="noopener noreferrer">
-        <div class="game-picture hexgl-art">
-          🏎️⚡<small>FUTURE RACING</small>
-        </div>
+      <a class="game-link" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture hexgl-art">🏎️⚡<small>FUTURE RACING</small></div>
         <span class="play-button">▶ PLAY HEXGL</span>
       </a>
       <p>Take control of a futuristic racing ship and speed through the track!</p>
       <p class="license-note">
         Open-source code • MIT License.
-        <a href="https://github.com/BKcore/HexGL"
-           target="_blank" rel="noopener noreferrer">Source and licence</a>
+        <a href="https://github.com/BKcore/HexGL" target="_blank" rel="noopener noreferrer">Source and licence</a>
       </p>
     </div>
 
-    <!-- ORIGINAL CARD CLASH GAME -->
-    <div class="game-card" data-name="card clash trading cards booster pack collector">
+    <div class="game-card" data-name="card clash trading cards booster pack collector monster duel">
       <h3>🎴 CARD CLASH</h3>
-      <button onclick="openCardClash()"
-        style="padding:0;border:0;background:none;width:100%;cursor:pointer">
-        <div class="game-picture cards-art">
-          🃏✨
-          <small>OPEN • COLLECT • SELL</small>
-        </div>
+      <button onclick="openCardClash()" style="padding:0;border:0;background:none;width:100%;cursor:pointer">
+        <div class="game-picture cards-art">🃏✨<small>OPEN • COLLECT • DUEL</small></div>
         <span class="play-button">▶ PLAY CARD CLASH</span>
       </button>
-      <p>Open booster packs, discover rare creatures, build your collection and sell cards for coins!</p>
+      <p>Open booster packs, discover rare creatures, build your collection and battle monsters!</p>
       <p class="license-note">Original Learning Lounge game.</p>
     </div>
 
@@ -696,6 +786,7 @@ footer{
 
 
 <!-- NEON CRITTER CLICKER WINDOW -->
+
 <div class="game-window" id="clickerGame">
   <div class="game-top">
     <h2>👾 NEON CRITTER CLICKER</h2>
@@ -719,6 +810,7 @@ footer{
 
 
 <!-- CARD CLASH GAME WINDOW -->
+
 <div class="game-window" id="cardGame">
 
   <div class="game-top">
@@ -732,16 +824,17 @@ footer{
   <div class="card-game-content">
 
     <div class="card-logo">CARD CLASH</div>
-
     <div class="card-coins" id="cardCoins">🪙 500 COINS</div>
 
     <div class="card-tabs">
       <button class="active" onclick="showCardTab('shop',this)">🛒 SHOP</button>
       <button onclick="showCardTab('collection',this)">📚 COLLECTION</button>
+      <button onclick="showCardTab('duel',this)">⚔️ DUEL</button>
       <button onclick="showCardTab('odds',this)">✨ ODDS</button>
     </div>
 
     <!-- SHOP -->
+
     <div class="card-panel active" id="cardShop">
       <h2>BOOSTER PACK SHOP</h2>
       <p class="card-info">
@@ -755,30 +848,80 @@ footer{
       </div>
 
       <h2 style="color:#ffe66d">100 COINS</h2>
-      <button class="card-button" onclick="openPack()">
-        🎁 OPEN BOOSTER PACK
-      </button>
+      <button class="card-button" onclick="openPack()">🎁 OPEN BOOSTER PACK</button>
 
       <p id="packMessage">Good luck finding a rare card!</p>
-
       <div id="packResults"></div>
     </div>
 
     <!-- COLLECTION -->
+
     <div class="card-panel" id="cardCollection">
       <h2>YOUR COLLECTION</h2>
       <p class="card-info" id="collectionStats">
         You have discovered 0 cards.
       </p>
 
-      <button class="card-button" onclick="sellDuplicates()">
-        💰 SELL ALL DUPLICATES
-      </button>
-
+      <button class="card-button" onclick="sellDuplicates()">💰 SELL ALL DUPLICATES</button>
       <div class="card-grid" id="collectionGrid"></div>
     </div>
 
+    <!-- DUEL ARENA -->
+
+    <div class="card-panel" id="cardDuel">
+      <h2>⚔️ MONSTER DUEL ARENA</h2>
+      <p class="duel-info">
+        Choose three monsters from your collection and battle
+        the computer for coins!
+      </p>
+
+      <p id="duelStreak" class="duel-info">🔥 Win streak: 0</p>
+
+      <div id="duelSetup">
+        <h3>CHOOSE YOUR TEAM</h3>
+        <p id="duelSelectionText" class="duel-info">Select 3 monsters.</p>
+        <div class="duel-pick-grid" id="duelPickGrid"></div>
+        <button class="card-button" onclick="startDuel()">⚔️ START DUEL</button>
+      </div>
+
+      <div id="duelBattle" style="display:none">
+        <h3>YOUR MONSTER VS ENEMY</h3>
+
+        <div class="duel-fighters">
+          <div class="duel-fighter" id="playerFighter">
+            <strong id="playerName">Your Monster</strong>
+            <div class="duel-monster" id="playerEmoji">🐺</div>
+            <p id="playerHPText">100 / 100 HP</p>
+            <div class="duel-health">
+              <div class="duel-health-fill" id="playerHPBar"></div>
+            </div>
+          </div>
+
+          <div class="duel-fighter" id="enemyFighter">
+            <strong id="enemyName">Enemy Monster</strong>
+            <div class="duel-monster" id="enemyEmoji">👹</div>
+            <p id="enemyHPText">100 / 100 HP</p>
+            <div class="duel-health">
+              <div class="duel-health-fill" id="enemyHPBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <p id="duelTurn" class="duel-info">Your turn!</p>
+
+        <div class="duel-actions">
+          <button class="card-button" id="attackButton" onclick="duelAttack()">⚔️ ATTACK</button>
+          <button class="card-button" id="specialButton" onclick="duelSpecial()">✨ SPECIAL</button>
+        </div>
+
+        <div class="duel-log" id="duelLog">The battle is starting!</div>
+      </div>
+
+      <p id="duelMessage"></p>
+    </div>
+
     <!-- ODDS -->
+
     <div class="card-panel" id="cardOdds">
       <h2>PACK DROP CHANCES</h2>
       <p class="card-info">
@@ -787,27 +930,35 @@ footer{
 
       <div class="card-grid">
         <div class="collect-card rarity-common">
+          <div class="creature-art">🐸</div>
           <h3>COMMON</h3><p>55%</p>
         </div>
         <div class="collect-card rarity-uncommon">
+          <div class="creature-art">🐦</div>
           <h3>UNCOMMON</h3><p>25%</p>
         </div>
         <div class="collect-card rarity-rare">
+          <div class="creature-art">🐺</div>
           <h3>RARE</h3><p>12%</p>
         </div>
         <div class="collect-card rarity-epic">
+          <div class="creature-art">🦉</div>
           <h3>EPIC</h3><p>5%</p>
         </div>
         <div class="collect-card rarity-legendary">
+          <div class="creature-art">🔥</div>
           <h3>LEGENDARY</h3><p>2%</p>
         </div>
         <div class="collect-card rarity-mythic">
+          <div class="creature-art">🐲</div>
           <h3>MYTHIC</h3><p>0.8%</p>
         </div>
         <div class="collect-card rarity-godly">
+          <div class="creature-art">👑</div>
           <h3>✨ GODLY</h3><p>0.18%</p>
         </div>
         <div class="collect-card rarity-secret">
+          <div class="creature-art">👁️</div>
           <h3>👁️ SECRET</h3><p>0.02%</p>
         </div>
       </div>
@@ -824,15 +975,18 @@ footer{
 <script>
 
 // CLOCK
+
 function updateClock(){
   document.getElementById("clock").textContent =
     new Date().toLocaleTimeString();
 }
+
 setInterval(updateClock,1000);
 updateClock();
 
 
 // SEARCH
+
 function searchGames(){
   const query=document.getElementById("search").value.toLowerCase();
 
@@ -844,6 +998,7 @@ function searchGames(){
 
 
 // NEON CRITTER GAME WINDOW
+
 function openGame(){
   document.getElementById("clickerGame").style.display="block";
   renderUpgrades();
@@ -851,6 +1006,7 @@ function openGame(){
 
 function closeGame(){
   document.getElementById("clickerGame").style.display="none";
+
   if(document.fullscreenElement){
     document.exitFullscreen().catch(()=>{});
   }
@@ -868,12 +1024,14 @@ function fullscreenGame(){
 
 
 // CLICKER SAVE
+
 const SAVE_KEY="neonCritterSave";
 let coins=0;
 let levels={};
 
 
 // 17 UPGRADES
+
 const upgrades=[
   {name:"Power Click",desc:"+1 coin per click",cost:25,click:1},
   {name:"Auto Clicker",desc:"+1 coin per second",cost:50,auto:1},
@@ -905,6 +1063,7 @@ function loadGame(){
     coins=0;
     levels={};
   }
+
   renderUpgrades();
   updateStats();
 }
@@ -1017,9 +1176,11 @@ const CARD_SAVE_KEY="cardClashSave";
 let cardCoins=500;
 let collection={};
 let lastPack=[];
+let duelStreak=0;
 
 
-// Original creatures and card artwork
+// ORIGINAL CREATURE CARDS
+
 const creatureCards=[
   {id:"embercub",name:"Ember Cub",emoji:"🦊",rarity:"Common"},
   {id:"leafling",name:"Leafling",emoji:"🌱",rarity:"Common"},
@@ -1048,7 +1209,8 @@ const creatureCards=[
 ];
 
 
-// Rarity chances add up to 100%
+// RARITY CHANCES
+
 const rarityOdds=[
   {name:"Common",chance:55,min:1,max:5},
   {name:"Uncommon",chance:25,min:5,max:15},
@@ -1061,7 +1223,8 @@ const rarityOdds=[
 ];
 
 
-// LOAD CARD GAME SAVE
+// CARD SAVE SYSTEM
+
 function loadCardGame(){
   try{
     const saved=JSON.parse(localStorage.getItem(CARD_SAVE_KEY));
@@ -1069,27 +1232,28 @@ function loadCardGame(){
     if(saved){
       cardCoins=Number(saved.cardCoins)||0;
       collection=saved.collection||{};
+      duelStreak=Number(saved.duelStreak)||0;
     }
   }catch(e){
     cardCoins=500;
     collection={};
+    duelStreak=0;
   }
 
   updateCardCoins();
   renderCollection();
 }
 
-
-// SAVE CARD GAME
 function saveCardGame(){
   localStorage.setItem(
     CARD_SAVE_KEY,
-    JSON.stringify({cardCoins,collection})
+    JSON.stringify({cardCoins,collection,duelStreak})
   );
 }
 
 
-// OPEN CARD GAME
+// OPEN AND CLOSE CARD GAME
+
 function openCardClash(){
   document.getElementById("cardGame").style.display="block";
   updateCardCoins();
@@ -1116,6 +1280,7 @@ function cardFullscreen(){
 
 
 // CARD GAME TABS
+
 function showCardTab(tab,button){
   document.querySelectorAll("#cardGame .card-panel").forEach(panel=>{
     panel.classList.remove("active");
@@ -1125,16 +1290,24 @@ function showCardTab(tab,button){
     btn.classList.remove("active");
   });
 
-  document.getElementById(
-    tab==="shop"?"cardShop":
-    tab==="collection"?"cardCollection":"cardOdds"
-  ).classList.add("active");
+  const panels={
+    shop:"cardShop",
+    collection:"cardCollection",
+    duel:"cardDuel",
+    odds:"cardOdds"
+  };
 
+  document.getElementById(panels[tab]).classList.add("active");
   button.classList.add("active");
+
+  if(tab==="duel"){
+    renderDuelChoices();
+  }
 }
 
 
 // UPDATE COINS
+
 function updateCardCoins(){
   document.getElementById("cardCoins").textContent =
     "🪙 "+cardCoins.toLocaleString()+" COINS";
@@ -1142,6 +1315,7 @@ function updateCardCoins(){
 
 
 // RANDOM RARITY
+
 function rollRarity(){
   const roll=Math.random()*100;
   let total=0;
@@ -1156,6 +1330,7 @@ function rollRarity(){
 
 
 // PICK CREATURE
+
 function pickCreature(rarity){
   const possible=creatureCards.filter(
     card=>card.rarity===rarity.name
@@ -1165,9 +1340,9 @@ function pickCreature(rarity){
 }
 
 
-// OPEN PACK
-function openPack(){
+// OPEN BOOSTER PACK
 
+function openPack(){
   const packCost=100;
 
   if(cardCoins<packCost){
@@ -1180,7 +1355,6 @@ function openPack(){
   lastPack=[];
 
   for(let i=0;i<5;i++){
-
     const rarity=rollRarity();
     const creature=pickCreature(rarity);
 
@@ -1188,10 +1362,7 @@ function openPack(){
       rarity.min+Math.random()*(rarity.max-rarity.min+1)
     );
 
-    lastPack.push({
-      ...creature,
-      sellValue:sellValue
-    });
+    lastPack.push({...creature,sellValue:sellValue});
 
     if(!collection[creature.id]){
       collection[creature.id]={
@@ -1225,16 +1396,14 @@ function openPack(){
 
 
 // DISPLAY PACK RESULTS
-function renderPackResults(){
 
+function renderPackResults(){
   const area=document.getElementById("packResults");
   area.innerHTML="";
 
   lastPack.forEach(card=>{
-
     const div=document.createElement("div");
-    div.className=
-      "pack-result-card rarity-"+card.rarity.toLowerCase();
+    div.className="pack-result-card rarity-"+card.rarity.toLowerCase();
 
     const emoji=document.createElement("div");
     emoji.className="creature-art";
@@ -1257,15 +1426,14 @@ function renderPackResults(){
 
 
 // DISPLAY COLLECTION
-function renderCollection(){
 
+function renderCollection(){
   const grid=document.getElementById("collectionGrid");
   if(!grid)return;
 
   grid.innerHTML="";
 
   const cards=Object.values(collection).filter(card=>card.count>0);
-
   const totalCards=cards.reduce((sum,card)=>sum+card.count,0);
 
   document.getElementById("collectionStats").textContent =
@@ -1283,7 +1451,6 @@ function renderCollection(){
   });
 
   cards.forEach(card=>{
-
     const div=document.createElement("div");
     div.className="collect-card rarity-"+card.rarity.toLowerCase();
 
@@ -1315,8 +1482,8 @@ function renderCollection(){
 
 
 // SELL ONE CARD
-function sellCard(id){
 
+function sellCard(id){
   const card=collection[id];
 
   if(!card||card.count<1)return;
@@ -1334,21 +1501,18 @@ function sellCard(id){
 
 
 // SELL DUPLICATES
-function sellDuplicates(){
 
+function sellDuplicates(){
   let earned=0;
   let sold=0;
 
   Object.values(collection).forEach(card=>{
-
     if(card.count>1){
       const duplicates=card.count-1;
-
       earned+=duplicates*card.sellValue;
       sold+=duplicates;
       card.count=1;
     }
-
   });
 
   if(sold===0){
@@ -1368,7 +1532,305 @@ function sellDuplicates(){
 }
 
 
+// =================================
+// CARD CLASH - DUEL ENGINE
+// =================================
+
+let duelTeam=[];
+let enemyTeam=[];
+let playerIndex=0;
+let enemyIndex=0;
+let duelBusy=false;
+
+const monsterStats={
+  Common:{hp:80,attack:15},
+  Uncommon:{hp:100,attack:22},
+  Rare:{hp:120,attack:30},
+  Epic:{hp:145,attack:38},
+  Legendary:{hp:170,attack:48},
+  Mythic:{hp:210,attack:60},
+  Godly:{hp:260,attack:75},
+  Secret:{hp:320,attack:90}
+};
+
+function getMonsterStats(card){
+  const base=monsterStats[card.rarity]||monsterStats.Common;
+
+  return {
+    maxHP:base.hp,
+    hp:base.hp,
+    attack:base.attack
+  };
+}
+
+
+// SHOW OWNED MONSTERS TO PICK
+
+function renderDuelChoices(){
+  const grid=document.getElementById("duelPickGrid");
+  if(!grid)return;
+
+  grid.innerHTML="";
+
+  const owned=Object.values(collection).filter(card=>card.count>0);
+
+  document.getElementById("duelSelectionText").textContent =
+    "Selected "+duelTeam.length+" / 3 monsters";
+
+  document.getElementById("duelStreak").textContent =
+    "🔥 Win streak: "+duelStreak;
+
+  if(owned.length===0){
+    grid.innerHTML='<p class="card-empty">Open some booster packs to get monsters for your team!</p>';
+    return;
+  }
+
+  owned.forEach(card=>{
+    const button=document.createElement("button");
+
+    button.className="duel-pick"+
+      (duelTeam.some(c=>c.id===card.id)?" selected":"");
+
+    const art=document.createElement("div");
+    art.className="creature-art";
+    art.textContent=card.emoji;
+
+    const name=document.createElement("strong");
+    name.textContent=card.name;
+
+    const rarity=document.createElement("p");
+    rarity.textContent=card.rarity;
+
+    const stats=getMonsterStats(card);
+
+    const power=document.createElement("p");
+    power.textContent="HP "+stats.hp+" | ATK "+stats.attack;
+
+    button.append(art,name,rarity,power);
+
+    button.onclick=()=>{
+      const existing=duelTeam.findIndex(c=>c.id===card.id);
+
+      if(existing!==-1){
+        duelTeam.splice(existing,1);
+      }else if(duelTeam.length<3){
+        duelTeam.push(card);
+      }
+
+      renderDuelChoices();
+    };
+
+    grid.appendChild(button);
+  });
+}
+
+
+// START BATTLE
+
+function startDuel(){
+  if(duelTeam.length!==3){
+    document.getElementById("duelMessage").textContent =
+      "Choose exactly 3 monsters first!";
+    return;
+  }
+
+  const enemies=[...creatureCards]
+    .sort(()=>Math.random()-.5)
+    .slice(0,3);
+
+  enemyTeam=enemies.map(card=>({
+    ...card,
+    ...getMonsterStats(card)
+  }));
+
+  duelTeam=duelTeam.map(card=>({
+    ...card,
+    ...getMonsterStats(card)
+  }));
+
+  playerIndex=0;
+  enemyIndex=0;
+  duelBusy=false;
+
+  document.getElementById("duelSetup").style.display="none";
+  document.getElementById("duelBattle").style.display="block";
+  document.getElementById("duelMessage").textContent="";
+  document.getElementById("duelLog").textContent=
+    "A new battle begins! Your monster goes first.";
+
+  updateDuelScreen();
+}
+
+
+// UPDATE BATTLE DISPLAY
+
+function updateDuelScreen(){
+  const player=duelTeam[playerIndex];
+  const enemy=enemyTeam[enemyIndex];
+
+  if(!player||!enemy)return;
+
+  document.getElementById("playerName").textContent=player.name;
+  document.getElementById("playerEmoji").textContent=player.emoji;
+  document.getElementById("playerHPText").textContent=
+    player.hp+" / "+player.maxHP+" HP";
+
+  document.getElementById("playerHPBar").style.width=
+    Math.max(0,player.hp/player.maxHP*100)+"%";
+
+  document.getElementById("enemyName").textContent=enemy.name;
+  document.getElementById("enemyEmoji").textContent=enemy.emoji;
+  document.getElementById("enemyHPText").textContent=
+    enemy.hp+" / "+enemy.maxHP+" HP";
+
+  document.getElementById("enemyHPBar").style.width=
+    Math.max(0,enemy.hp/enemy.maxHP*100)+"%";
+
+  document.getElementById("playerFighter").classList.add("active-fighter");
+  document.getElementById("enemyFighter").classList.remove("active-fighter");
+
+  document.getElementById("attackButton").disabled=duelBusy;
+  document.getElementById("specialButton").disabled=duelBusy;
+}
+
+
+// NORMAL ATTACK
+
+function duelAttack(){
+  if(duelBusy)return;
+  duelPlayerMove(1);
+}
+
+
+// SPECIAL ATTACK
+
+function duelSpecial(){
+  if(duelBusy)return;
+  duelPlayerMove(1.8);
+}
+
+
+// PLAYER TURN
+
+function duelPlayerMove(multiplier){
+  const player=duelTeam[playerIndex];
+  const enemy=enemyTeam[enemyIndex];
+
+  const damage=Math.floor(
+    player.attack*multiplier*(0.85+Math.random()*0.3)
+  );
+
+  enemy.hp=Math.max(0,enemy.hp-damage);
+
+  document.getElementById("duelLog").textContent =
+    player.name+" dealt "+damage+" damage to "+enemy.name+"!";
+
+  if(enemy.hp<=0){
+    enemyIndex++;
+
+    if(enemyIndex>=enemyTeam.length){
+      finishDuel(true);
+      return;
+    }
+
+    document.getElementById("duelLog").textContent+=
+      " Enemy monster defeated! A new opponent appears.";
+  }
+
+  duelBusy=true;
+  updateDuelScreen();
+
+  setTimeout(duelEnemyMove,800);
+}
+
+
+// COMPUTER TURN
+
+function duelEnemyMove(){
+  if(playerIndex>=duelTeam.length){
+    finishDuel(false);
+    return;
+  }
+
+  const player=duelTeam[playerIndex];
+  const enemy=enemyTeam[enemyIndex];
+
+  const damage=Math.floor(
+    enemy.attack*(0.8+Math.random()*0.4)
+  );
+
+  player.hp=Math.max(0,player.hp-damage);
+
+  document.getElementById("duelLog").textContent+=
+    " "+enemy.name+" attacked for "+damage+" damage!";
+
+  if(player.hp<=0){
+    playerIndex++;
+
+    if(playerIndex>=duelTeam.length){
+      updateDuelScreen();
+      finishDuel(false);
+      return;
+    }
+
+    document.getElementById("duelLog").textContent+=
+      " Your monster is defeated! Your next monster enters.";
+  }
+
+  duelBusy=false;
+  updateDuelScreen();
+}
+
+
+// BATTLE REWARDS
+
+function finishDuel(won){
+  duelBusy=true;
+
+  document.getElementById("attackButton").disabled=true;
+  document.getElementById("specialButton").disabled=true;
+
+  if(won){
+    duelStreak++;
+    cardCoins+=150;
+
+    let message="🏆 VICTORY! You earned 150 coins!";
+
+    if(duelStreak===3){
+      cardCoins+=300;
+      message+=" 🔥 3-WIN STREAK BONUS: +300 coins!";
+    }
+
+    document.getElementById("duelMessage").textContent=message;
+    document.getElementById("duelLog").textContent=
+      "YOU WON THE DUEL! All enemy monsters were defeated!";
+  }else{
+    duelStreak=0;
+    cardCoins+=25;
+
+    document.getElementById("duelMessage").textContent=
+      "Battle over! You earned 25 coins for participating.";
+
+    document.getElementById("duelLog").textContent=
+      "Your team was defeated. Train your collection and try again!";
+  }
+
+  updateCardCoins();
+  saveCardGame();
+  renderDuelChoices();
+
+  setTimeout(()=>{
+    document.getElementById("duelBattle").style.display="none";
+    document.getElementById("duelSetup").style.display="block";
+
+    duelTeam=[];
+    renderDuelChoices();
+  },2500);
+}
+
+
 // START BOTH GAMES
+
 loadGame();
 loadCardGame();
 
