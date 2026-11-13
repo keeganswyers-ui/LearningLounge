@@ -1,1 +1,35 @@
+from pathlib import Path
+p=Path("/mnt/data/tcg-store.html")
+s=p.read_text(encoding="utf-8")
+
+s=s.replace("""<button onclick="openModal('stock')">🗄️ Stock Shelves</button><button onclick="openModal('binder')">📖 Card Binder</button>""",
+            """<button onclick="openModal('stock')">🗄️ Stock Shelves</button><button onclick="openModal('open')">✨ Open Packs</button><button onclick="openModal('binder')">📖 Card Binder</button>""")
+s=s.replace("""const names={packs:"Buy Booster Packs",stock:"Stock Your Shelves",binder:"Card Binder · 100 Cards",checkout:"Checkout Register",shop:"Shop Upgrades",saves:"Save Slots"};""",
+            """const names={packs:"Buy Booster Packs",stock:"Stock Your Shelves",open:"Open Booster Packs",binder:"Card Binder · 100 Cards",checkout:"Checkout Register",shop:"Shop Upgrades",saves:"Save Slots"};""")
+
+old="""if(modalTab==="stock"){const items=state.inventory.map((it,i)=>`<div class="item"><div><strong>${it.name}</strong><span class="muted">${it.qty} available in back room</span></div><button onclick="putOnShelf(${i})" ${it.qty<1?"disabled":""}>Stock 1</button></div>`).join("");body.innerHTML='<p class="muted">Put products on display so customers can buy them. You can stock up to five product types.</p><div class="inventory-list">'+(items||'<div class="task">Your back room is empty. Buy booster packs first.</div>')+'</div>'}"""
+new="""if(modalTab==="stock"){const items=state.inventory.map((it,i)=>`<div class="item"><div><strong>${it.name}</strong><span class="muted">${it.qty} available in back room</span></div><button onclick="putOnShelf(${i})" ${it.qty<1?"disabled":""}>Stock 1</button></div>`).join("");const singles=cards.filter(c=>state.owned[c.id-1]>0).map(c=>`<div class="item"><div><strong>${c.name}</strong><span class="muted">${state.owned[c.id-1]} owned · ${c.rarity} · ${money(c.value*1.5)} shelf price</span></div><button onclick="putCardOnShelf(${c.id})">Stock 1</button></div>`).join("");body.innerHTML='<p class="muted">Put booster packs or individual cards on display so customers can buy them.</p><div class="inventory-list">'+(items||'<div class="task">Your back room is empty. Buy booster packs first.</div>')+(singles?'<h3 style="margin-top:14px">Your individual cards</h3>'+singles:'')+'</div>'}"""
+if old not in s:
+    print("Stock section not found")
+else:
+    s=s.replace(old,new)
+
+needle=' if(modalTab==="binder"){const found=state.owned.reduce((a,b)=>a+(b>0?1:0),0);'
+insert=""" if(modalTab==="open"){const packItems=state.inventory.filter(it=>it.qty>0&&Number.isInteger(it.pack));body.innerHTML='<p class="muted">Open packs you bought for your own collection. Each pack reveals five original monster cards and adds them to your binder.</p><div class="pack-grid">'+(packItems.map(it=>`<div class="pack"><div class="pack-art" style="--c1:${packs[it.pack].color[0]};--c2:${packs[it.pack].color[1]}">${packs[it.pack].emoji}</div><b>${it.name}</b><p>${it.qty} sealed pack(s) in your back room</p><button class="primary" onclick="openBooster(${it.pack})">Open one pack</button></div>`).join("")||'<div class="task">No unopened packs. Buy some booster packs first.</div>')+'</div>'}
+"""
+if needle in s and 'if(modalTab==="open")' not in s:
+    s=s.replace(needle,insert+needle)
+
+needle='function putOnShelf(i){'
+insert="""function openBooster(packIndex){const inv=state.inventory.find(x=>x.pack===packIndex&&x.qty>0);if(!inv){toast("You don't have that pack.");return}inv.qty--;const pack=packs[packIndex];const pulls=[];for(let n=0;n<5;n++){let pool=cards.filter(c=>(!pack.element||c.element===pack.element)&&c.id>=pack.range[0]&&c.id<=pack.range[1]);if(!pool.length)pool=cards;let card=pool[Math.floor(Math.random()*pool.length)];if(packIndex>=5&&Math.random()<.42){const premium=cards.filter(c=>c.rarity==="Epic"||c.rarity==="Legendary");card=premium[Math.floor(Math.random()*premium.length)]}state.owned[card.id-1]++;state.binderSeen[card.id-1]=true;pulls.push(card)}state.inventory=state.inventory.filter(x=>x.qty>0);save();render();$("modalTitle").textContent="Pack Opening Results";$("modalBody").innerHTML='<div class="task">You opened a '+pack.name+' and discovered '+pulls.length+' cards!</div><div class="gridcards" style="margin-top:12px">'+pulls.map(c=>cardHTML(c,state.owned[c.id-1])).join("")+'</div><button class="primary" style="margin-top:12px" onclick="openModal(\\'open\\')">Open another pack</button>';paintArts();toast("New cards added to your binder!")}
+function putCardOnShelf(cardId){const c=cards[cardId-1];if(!c||state.owned[cardId-1]<1)return;if(state.stock.length>=5&&!state.stock.some(x=>x.key==="card-"+cardId)){toast("All shelf spaces are full. Upgrade your shop!");return}state.owned[cardId-1]--;const item={key:"card-"+cardId,name:c.name,qty:1,price:Math.round(c.value*1.5*100)/100,cardId};const onShelf=state.stock.find(x=>x.key===item.key);if(onShelf)onShelf.qty++;else state.stock.push(item);save();render();drawModal();toast(c.name+" placed on the shelf")}
+"""
+if needle in s and 'function openBooster(' not in s:
+    s=s.replace(needle,insert+needle)
+
+s=s.replace('const p=packs[chosen.pack];const items=Array.from({length:qty},()=>({name:p.name,price:Math.round(p.price*1.35*100)/100}));',
+            'const unitPrice=chosen.price||packs[chosen.pack].price;const items=Array.from({length:qty},()=>({name:chosen.name,price:Math.round(unitPrice*1.35*100)/100}));')
+
+p.write_text(s,encoding="utf-8")
+print(f"Updated {p} ({len(s):,} characters)")
 
