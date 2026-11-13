@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge</title>
+<title>Learning Lounge 3.0</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
@@ -180,6 +180,14 @@ section{
   background:linear-gradient(135deg,#210b3e,#7427ad);
 }
 
+.trex-art{
+  background:linear-gradient(135deg,#153b16,#42a52c,#a5e65b);
+}
+
+.hexgl-art{
+  background:linear-gradient(135deg,#071b46,#174fbd,#8a35ff);
+}
+
 .play-button,.action-button{
   display:block;
   width:100%;
@@ -197,6 +205,16 @@ section{
 }
 
 .play-button:hover,.action-button:hover{background:#a044ed}
+
+.license-note{
+  color:#a995bd;
+  font-size:10px;
+  line-height:1.5;
+}
+
+.license-note a{
+  color:#d9a2ff;
+}
 
 .game-window{
   display:none;
@@ -329,7 +347,7 @@ footer{
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 2.9</span>
+  <span>VERSION 3.0</span>
 </div>
 
 <section id="library">
@@ -418,6 +436,62 @@ footer{
       </button>
 
       <p>Click your critter, collect coins and buy 17 powerful upgrades!</p>
+    </div>
+
+    <!-- T-REX RUNNER -->
+    <div class="game-card" data-name="t rex trex dinosaur runner running">
+      <h3>T-REX RUNNER</h3>
+
+      <a class="game-link"
+         href="https://wayou.github.io/t-rex-runner/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <div class="game-picture trex-art">
+          🦖
+          <small>DINO RUNNER</small>
+        </div>
+
+        <span class="play-button">▶ PLAY T-REX RUNNER</span>
+      </a>
+
+      <p>Jump over obstacles and see how far your dinosaur can run!</p>
+
+      <p class="license-note">
+        Open-source version • BSD-3-Clause.
+        <a href="https://github.com/wayou/t-rex-runner"
+           target="_blank" rel="noopener noreferrer">
+          Source and licence
+        </a>
+      </p>
+    </div>
+
+    <!-- HEXGL -->
+    <div class="game-card" data-name="hexgl racing futuristic spaceship race">
+      <h3>HEXGL</h3>
+
+      <a class="game-link"
+         href="https://hexgl.bkcore.com/play/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <div class="game-picture hexgl-art">
+          🏎️⚡
+          <small>FUTURE RACING</small>
+        </div>
+
+        <span class="play-button">▶ PLAY HEXGL</span>
+      </a>
+
+      <p>Take control of a futuristic racing ship and speed through the track!</p>
+
+      <p class="license-note">
+        Open-source code • MIT License.
+        <a href="https://github.com/BKcore/HexGL"
+           target="_blank" rel="noopener noreferrer">
+          Source and licence
+        </a>
+      </p>
     </div>
 
   </div>
