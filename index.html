@@ -1,168 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.4</title>
+<title>Learning Lounge 4.5</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
 
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#090512;
-  color:white;
-  font-family:Orbitron,Arial,sans-serif;
-}
-
-header{
-  text-align:center;
-  padding:28px 12px;
-  background:#130a25;
-  border-bottom:2px solid #a855f7;
-}
-
-.logo{
-  color:#d8a5ff;
-  font-family:'Press Start 2P',monospace;
-  font-size:clamp(17px,4vw,30px);
-  text-shadow:0 0 15px #a855f7;
-}
-
+body{margin:0;background:#090512;color:white;font-family:Orbitron,Arial,sans-serif}
+header{text-align:center;padding:28px 12px;background:#130a25;border-bottom:2px solid #a855f7}
+.logo{color:#d8a5ff;font-family:'Press Start 2P',monospace;font-size:clamp(17px,4vw,30px);text-shadow:0 0 15px #a855f7}
 header p{color:#c9a8e8;font-size:12px}
-
-nav{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:14px;
-  background:#1b1030;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  padding:10px 15px;
-  border:1px solid #873de0;
-  border-radius:8px;
-}
-
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:14px;background:#1b1030}
+nav a{color:white;text-decoration:none;padding:10px 15px;border:1px solid #873de0;border-radius:8px}
 nav a:hover{background:#7628c9}
-
-.hero{
-  text-align:center;
-  padding:48px 15px;
-  background:linear-gradient(135deg,#160b29,#32105b,#10091d);
-}
-
-.hero h1{
-  color:#d9a2ff;
-  font-size:clamp(25px,5vw,42px);
-  text-shadow:0 0 18px #a855f7;
-}
-
+.hero{text-align:center;padding:48px 15px;background:linear-gradient(135deg,#160b29,#32105b,#10091d)}
+.hero h1{color:#d9a2ff;font-size:clamp(25px,5vw,42px);text-shadow:0 0 18px #a855f7}
 .hero p{color:#ddd}
-
-.status{
-  margin:20px auto;
-  max-width:950px;
-  padding:15px;
-  background:#160d25;
-  border:1px solid #7136a9;
-  border-radius:10px;
-  display:flex;
-  justify-content:space-around;
-  flex-wrap:wrap;
-  gap:10px;
-  font-size:12px;
-}
-
+.status{margin:20px auto;max-width:950px;padding:15px;background:#160d25;border:1px solid #7136a9;border-radius:10px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;font-size:12px}
 .online{color:#55ff9a}
-
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:28px 16px;
-}
-
-.section-title{
-  color:#d9a2ff;
-  font-size:23px;
-  text-shadow:0 0 10px #922cff;
-}
-
-#search{
-  width:100%;
-  padding:14px;
-  margin:12px 0 22px;
-  background:#160d25;
-  border:1px solid #a855f7;
-  border-radius:9px;
-  color:white;
-  font-size:16px;
-}
-
-.games{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:20px;
-}
-
-.game-card{
-  background:#160d25;
-  border:1px solid #7938b5;
-  border-radius:14px;
-  padding:14px;
-  box-shadow:0 0 12px #4c1680;
-  transition:.2s;
-}
-
-.game-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 22px #963dff;
-}
-
+section{max-width:1100px;margin:auto;padding:28px 16px}
+.section-title{color:#d9a2ff;font-size:23px;text-shadow:0 0 10px #922cff}
+#search{width:100%;padding:14px;margin:12px 0 22px;background:#160d25;border:1px solid #a855f7;border-radius:9px;color:white;font-size:16px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.game-card{background:#160d25;border:1px solid #7938b5;border-radius:14px;padding:14px;box-shadow:0 0 12px #4c1680;transition:.2s}
+.game-card:hover{transform:translateY(-4px);box-shadow:0 0 22px #963dff}
 .game-card h3{color:#d9a2ff}
-
-.game-card p{
-  color:#cbb9df;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.game-link{
-  display:block;
-  text-decoration:none;
-  color:white;
-}
-
-.game-picture{
-  height:155px;
-  width:100%;
-  border-radius:10px;
-  border:2px solid #a855f7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:8px;
-  overflow:hidden;
-  font-size:65px;
-  text-shadow:0 0 18px white;
-  transition:.2s;
-}
-
+.game-card p{color:#cbb9df;font-size:13px;line-height:1.6}
+.game-link{display:block;text-decoration:none;color:white}
+.game-picture{height:155px;width:100%;border-radius:10px;border:2px solid #a855f7;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;overflow:hidden;font-size:65px;text-shadow:0 0 18px white;transition:.2s}
 .game-picture:hover{filter:brightness(1.25)}
-
-.game-picture small{
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
+.game-picture small{font-size:12px;font-weight:bold;letter-spacing:2px}
 .sandbox-art{background:linear-gradient(135deg,#063c3c,#1d9959,#d1a02b)}
 .smash-art{background:linear-gradient(135deg,#21115c,#b52baf,#ed812e)}
 .diep-art{background:linear-gradient(135deg,#092a63,#1675bc,#42d5ef)}
@@ -170,299 +41,51 @@ section{
 .trex-art{background:linear-gradient(135deg,#153b16,#42a52c,#a5e65b)}
 .hexgl-art{background:linear-gradient(135deg,#071b46,#174fbd,#8a35ff)}
 .cards-art{background:linear-gradient(135deg,#123b50,#087e78,#b18b36)}
-
-.play-button,.action-button{
-  display:block;
-  width:100%;
-  margin-top:12px;
-  padding:13px;
-  background:#782ac5;
-  border:1px solid #c78aff;
-  border-radius:8px;
-  color:white;
-  font-weight:bold;
-  text-align:center;
-  cursor:pointer;
-  font-family:Orbitron,Arial,sans-serif;
-  text-decoration:none;
-}
-
+.dungeon-art{background:linear-gradient(135deg,#090b24,#452078,#b34b72,#f4a34b)}
+.play-button,.action-button{display:block;width:100%;margin-top:12px;padding:13px;background:#782ac5;border:1px solid #c78aff;border-radius:8px;color:white;font-weight:bold;text-align:center;cursor:pointer;font-family:Orbitron,Arial,sans-serif;text-decoration:none}
 .play-button:hover,.action-button:hover{background:#a044ed}
-
-.license-note{
-  color:#a995bd;
-  font-size:10px;
-  line-height:1.5;
-}
-
+.license-note{color:#a995bd;font-size:10px;line-height:1.5}
 .license-note a{color:#d9a2ff}
-
-.reset-progress-button{
-  display:block;
-  width:100%;
-  max-width:300px;
-  margin:20px auto;
-  padding:14px;
-  background:#8e202f;
-  border:1px solid #ff7585;
-  border-radius:8px;
-  color:white;
-  font-family:Orbitron,Arial,sans-serif;
-  font-weight:bold;
-  cursor:pointer;
-}
-
+.reset-progress-button{display:block;width:100%;max-width:300px;margin:20px auto;padding:14px;background:#8e202f;border:1px solid #ff7585;border-radius:8px;color:white;font-family:Orbitron,Arial,sans-serif;font-weight:bold;cursor:pointer}
 .reset-progress-button:hover{background:#bd3045}
-
-.game-window{
-  display:none;
-  position:fixed;
-  z-index:20;
-  inset:0;
-  background:#080410;
-  overflow:auto;
-  padding:12px;
-}
-
-.game-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  flex-wrap:wrap;
-  max-width:1000px;
-  margin:0 auto 15px;
-}
-
+.game-window{display:none;position:fixed;z-index:20;inset:0;background:#080410;overflow:auto;padding:12px}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;max-width:1000px;margin:0 auto 15px}
 .game-top h2{color:#d9a2ff;font-size:18px}
-
-.game-top button{
-  padding:10px;
-  border:1px solid #a855f7;
-  background:#35115b;
-  color:white;
-  border-radius:7px;
-  cursor:pointer;
-}
-
-#clickerScreen{
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
-
-#coinCount{
-  font-size:27px;
-  color:#ffe66d;
-  margin:15px;
-}
-
-.critter{
-  font-size:100px;
-  cursor:pointer;
-  user-select:none;
-  display:inline-block;
-  padding:25px;
-  border-radius:50%;
-  background:#211039;
-  border:3px solid #b45cff;
-  box-shadow:0 0 30px #9b37ff;
-  margin:20px;
-  transition:.1s;
-}
-
+.game-top button{padding:10px;border:1px solid #a855f7;background:#35115b;color:white;border-radius:7px;cursor:pointer}
+#clickerScreen{max-width:900px;margin:auto;text-align:center}
+#coinCount{font-size:27px;color:#ffe66d;margin:15px}
+.critter{font-size:100px;cursor:pointer;user-select:none;display:inline-block;padding:25px;border-radius:50%;background:#211039;border:3px solid #b45cff;box-shadow:0 0 30px #9b37ff;margin:20px;transition:.1s}
 .critter:active{transform:scale(.92)}
-
-.upgrades{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:10px;
-  margin:20px auto;
-  text-align:left;
-}
-
-.upgrade{
-  background:#190d2a;
-  border:1px solid #7439a7;
-  border-radius:9px;
-  padding:12px;
-}
-
+.upgrades{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:20px auto;text-align:left}
+.upgrade{background:#190d2a;border:1px solid #7439a7;border-radius:9px;padding:12px}
 .upgrade p{font-size:12px;color:#cbb9df}
-
-.upgrade button{
-  width:100%;
-  margin-top:8px;
-  padding:10px;
-  background:#7025b5;
-  color:white;
-  border:0;
-  border-radius:7px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
+.upgrade button{width:100%;margin-top:8px;padding:10px;background:#7025b5;color:white;border:0;border-radius:7px;cursor:pointer;font-weight:bold}
 .upgrade button:disabled{opacity:.4;cursor:not-allowed}
-
 #gameMessage{color:#cba3f4}
+footer{text-align:center;padding:25px;background:#130a25;border-top:1px solid #7136a9;color:#bda6d5;font-size:12px}
 
-footer{
-  text-align:center;
-  padding:25px;
-  background:#130a25;
-  border-top:1px solid #7136a9;
-  color:#bda6d5;
-  font-size:12px;
-}
-
-/* CARD CLASH MONSTER THEME */
-
-#cardGame{
-  z-index:30;
-  background:
-    radial-gradient(ellipse at 50% 0%,#174b58 0%,#102b3a 38%,#07131f 100%);
-}
-
+/* CARD CLASH */
+#cardGame{z-index:30;background:radial-gradient(ellipse at 50% 0%,#174b58 0%,#102b3a 38%,#07131f 100%)}
 #cardGame .game-top h2{color:#83f5df}
-
-.card-game-content{
-  max-width:1000px;
-  margin:auto;
-  text-align:center;
-}
-
-.card-logo{
-  font-family:'Press Start 2P',monospace;
-  color:#8effe6;
-  font-size:clamp(20px,5vw,32px);
-  text-shadow:0 0 18px #00d9bd;
-  margin:25px 0;
-}
-
-.card-coins{
-  color:#ffe66d;
-  font-size:23px;
-  font-weight:bold;
-  margin:18px;
-}
-
-.card-tabs{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:9px;
-  margin:20px 0;
-}
-
-.card-tabs button{
-  padding:12px 16px;
-  background:#123744;
-  border:1px solid #3b9998;
-  border-radius:8px;
-  color:white;
-  font-family:Orbitron;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.card-tabs button.active,
-.card-tabs button:hover{background:#087e78}
-
-.card-panel{
-  display:none;
-  background:linear-gradient(145deg,#102b3a,#0a1b29);
-  border:1px solid #327b83;
-  border-radius:14px;
-  padding:18px;
-  margin:15px 0;
-  box-shadow:0 0 15px #00b9aa22;
-}
-
+.card-game-content{max-width:1000px;margin:auto;text-align:center}
+.card-logo{font-family:'Press Start 2P',monospace;color:#8effe6;font-size:clamp(20px,5vw,32px);text-shadow:0 0 18px #00d9bd;margin:25px 0}
+.card-coins{color:#ffe66d;font-size:23px;font-weight:bold;margin:18px}
+.card-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin:20px 0}
+.card-tabs button{padding:12px 16px;background:#123744;border:1px solid #3b9998;border-radius:8px;color:white;font-family:Orbitron;font-weight:bold;cursor:pointer}
+.card-tabs button.active,.card-tabs button:hover{background:#087e78}
+.card-panel{display:none;background:linear-gradient(145deg,#102b3a,#0a1b29);border:1px solid #327b83;border-radius:14px;padding:18px;margin:15px 0;box-shadow:0 0 15px #00b9aa22}
 .card-panel.active{display:block}
-
-.card-button{
-  padding:13px 20px;
-  background:linear-gradient(90deg,#087e78,#16b6a2);
-  color:white;
-  border:1px solid #8effe6;
-  border-radius:9px;
-  font-family:Orbitron;
-  font-weight:bold;
-  cursor:pointer;
-  margin:7px;
-}
-
+.card-button{padding:13px 20px;background:linear-gradient(90deg,#087e78,#16b6a2);color:white;border:1px solid #8effe6;border-radius:9px;font-family:Orbitron;font-weight:bold;cursor:pointer;margin:7px}
 .card-button:disabled{opacity:.4;cursor:not-allowed}
 .card-button:hover:not(:disabled){filter:brightness(1.2)}
-
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:13px;
-  margin-top:18px;
-}
-
-.collect-card{
-  min-width:0;
-  border:2px solid #777;
-  border-radius:11px;
-  padding:12px 7px;
-  background:linear-gradient(160deg,#193d4b,#0b1b29);
-  position:relative;
-  overflow:hidden;
-}
-
-.collect-card h3{
-  font-size:12px;
-  margin:5px 0;
-}
-
-.collect-card p{
-  font-size:10px;
-  color:#d5c7e4;
-  margin:6px 0;
-}
-
-.collect-card button{
-  width:100%;
-  padding:9px 3px;
-  margin-top:7px;
-  border:0;
-  border-radius:6px;
-  background:#087e78;
-  color:white;
-  font-family:Orbitron;
-  font-size:10px;
-  cursor:pointer;
-}
-
-.collect-card button:disabled{
-  opacity:.4;
-  cursor:not-allowed;
-}
-
-.creature-art{
-  height:110px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin:9px 0;
-  border-radius:10px;
-  font-size:68px;
-  background:radial-gradient(circle,#5c9fa0,#214c5a 55%,#102532);
-  text-shadow:0 5px 12px #000;
-  box-shadow:inset 0 0 18px #80fff044;
-}
-
-.rarity-common{border-color:#aeb5c2}
-.rarity-uncommon{border-color:#45d483}
-.rarity-rare{border-color:#42a5ff}
-.rarity-epic{border-color:#bd72ff;box-shadow:0 0 10px #8739c9}
-.rarity-legendary{border-color:#ffd04c;box-shadow:0 0 12px #b77a17}
-.rarity-mythic{border-color:#ff668e;box-shadow:0 0 15px #ff336e}
-.rarity-godly{border-color:#ffb52e;box-shadow:0 0 20px #ffb52e;animation:godlyGlow 1.5s infinite alternate}
-.rarity-secret{border-color:#ff347e;box-shadow:0 0 20px #a000ff;animation:secretGlow 1.2s infinite alternate}
-
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px;margin-top:18px}
+.collect-card{min-width:0;border:2px solid #777;border-radius:11px;padding:12px 7px;background:linear-gradient(160deg,#193d4b,#0b1b29);position:relative;overflow:hidden}
+.collect-card h3{font-size:12px;margin:5px 0}
+.collect-card p{font-size:10px;color:#d5c7e4;margin:6px 0}
+.collect-card button{width:100%;padding:9px 3px;margin-top:7px;border:0;border-radius:6px;background:#087e78;color:white;font-family:Orbitron;font-size:10px;cursor:pointer}
+.collect-card button:disabled{opacity:.4;cursor:not-allowed}
+.creature-art{height:110px;display:flex;justify-content:center;align-items:center;margin:9px 0;border-radius:10px;font-size:68px;background:radial-gradient(circle,#5c9fa0,#214c5a 55%,#102532);text-shadow:0 5px 12px #000;box-shadow:inset 0 0 18px #80fff044}
+.rarity-common{border-color:#aeb5c2}.rarity-uncommon{border-color:#45d483}.rarity-rare{border-color:#42a5ff}.rarity-epic{border-color:#bd72ff;box-shadow:0 0 10px #8739c9}.rarity-legendary{border-color:#ffd04c;box-shadow:0 0 12px #b77a17}.rarity-mythic{border-color:#ff668e;box-shadow:0 0 15px #ff336e}.rarity-godly{border-color:#ffb52e;box-shadow:0 0 20px #ffb52e;animation:godlyGlow 1.5s infinite alternate}.rarity-secret{border-color:#ff347e;box-shadow:0 0 20px #a000ff;animation:secretGlow 1.2s infinite alternate}
 .rarity-common .creature-art{background:linear-gradient(145deg,#354957,#8a9da6)}
 .rarity-uncommon .creature-art{background:linear-gradient(145deg,#075a45,#3edc94)}
 .rarity-rare .creature-art{background:linear-gradient(145deg,#104b91,#48baff)}
@@ -471,197 +94,65 @@ footer{
 .rarity-mythic .creature-art{background:linear-gradient(145deg,#81204e,#ff75ba)}
 .rarity-godly .creature-art{background:linear-gradient(145deg,#80600b,#fff09b)}
 .rarity-secret .creature-art{background:linear-gradient(145deg,#241047,#a60070,#101020)}
+@keyframes godlyGlow{from{box-shadow:0 0 8px #ffb52e}to{box-shadow:0 0 28px #fff000}}
+@keyframes secretGlow{from{box-shadow:0 0 10px #a000ff}to{box-shadow:0 0 30px #ff347e}}
+.rarity-label{font-size:10px;font-weight:bold;letter-spacing:1px}
+.rarity-godly .rarity-label{color:#ffc84d}.rarity-secret .rarity-label{color:#ff63a6}.rarity-legendary .rarity-label{color:#ffdc65}.rarity-mythic .rarity-label{color:#ff83a6}.rarity-epic .rarity-label{color:#d49aff}.rarity-rare .rarity-label{color:#70c5ff}.rarity-uncommon .rarity-label{color:#65ed9a}
+#packResults{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px;margin:20px 0}
+.pack-result-card{border:2px solid #888;border-radius:10px;padding:12px 5px;background:linear-gradient(160deg,#193d4b,#0b1b29);animation:reveal .4s ease-out}
+@keyframes reveal{from{transform:scale(.5) rotateY(90deg);opacity:0}to{transform:scale(1);opacity:1}}
+.pack-result-card .creature-art{font-size:50px}.pack-result-card h3{font-size:11px}.pack-result-card p{font-size:10px}
+#packMessage{min-height:25px;color:#b9fff0;font-size:13px}
+.card-info{color:#a9d8d7;font-size:12px;line-height:1.7}
+.card-empty{color:#a995bd;padding:25px}
+#superPackTimer{min-height:18px;margin:8px 0 0;color:#8effe6;font-size:10px;line-height:1.5}
+.duel-pick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin:18px 0}
+.duel-pick{background:#142f3c;border:2px solid #347d86;border-radius:12px;padding:12px 5px;color:white;cursor:pointer;font-family:Orbitron}
+.duel-pick.selected{border-color:#8effe6;background:#12665f;box-shadow:0 0 14px #00d9bd88}
+.duel-pick .creature-art{font-size:42px;height:70px}
+.duel-fighters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.duel-fighter{background:#142f3c;border:2px solid #347d86;border-radius:12px;padding:12px;min-width:0}
+.duel-fighter.active-fighter{border-color:#8effe6;box-shadow:0 0 15px #00d9bd66}
+.duel-monster{font-size:65px;margin:10px}
+.duel-health{width:100%;height:15px;background:#07131f;border-radius:20px;overflow:hidden;border:1px solid #56848b}
+.duel-health-fill{height:100%;width:100%;background:linear-gradient(90deg,#13b96e,#8cff9e);transition:width .3s}
+.duel-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:18px 0}
+.duel-log{min-height:65px;padding:14px;background:#071c28;border:1px solid #347d86;border-radius:10px;color:#b9fff0;line-height:1.7}
+.duel-info{color:#a9d8d7;font-size:12px;line-height:1.7}
+#duelMessage{color:#8effe6;min-height:25px}
 
-@keyframes godlyGlow{
-  from{box-shadow:0 0 8px #ffb52e}
-  to{box-shadow:0 0 28px #fff000}
-}
-
-@keyframes secretGlow{
-  from{box-shadow:0 0 10px #a000ff}
-  to{box-shadow:0 0 30px #ff347e}
-}
-
-.rarity-label{
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.rarity-godly .rarity-label{color:#ffc84d}
-.rarity-secret .rarity-label{color:#ff63a6}
-.rarity-legendary .rarity-label{color:#ffdc65}
-.rarity-mythic .rarity-label{color:#ff83a6}
-.rarity-epic .rarity-label{color:#d49aff}
-.rarity-rare .rarity-label{color:#70c5ff}
-.rarity-uncommon .rarity-label{color:#65ed9a}
-
-#packResults{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(125px,1fr));
-  gap:12px;
-  margin:20px 0;
-}
-
-.pack-result-card{
-  border:2px solid #888;
-  border-radius:10px;
-  padding:12px 5px;
-  background:linear-gradient(160deg,#193d4b,#0b1b29);
-  animation:reveal .4s ease-out;
-}
-
-@keyframes reveal{
-  from{transform:scale(.5) rotateY(90deg);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-
-.pack-result-card .creature-art{font-size:50px}
-.pack-result-card h3{font-size:11px}
-.pack-result-card p{font-size:10px}
-
-#packMessage{
-  min-height:25px;
-  color:#b9fff0;
-  font-size:13px;
-}
-
-.card-info{
-  color:#a9d8d7;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.card-empty{
-  color:#a995bd;
-  padding:25px;
-}
-
-#superPackTimer{
-  min-height:18px;
-  margin:8px 0 0;
-  color:#8effe6;
-  font-size:10px;
-  line-height:1.5;
-}
-
-/* DUEL ARENA */
-
-#duelSetup,#duelBattle{
-  max-width:850px;
-  margin:auto;
-}
-
-.duel-pick-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(135px,1fr));
-  gap:10px;
-  margin:18px 0;
-}
-
-.duel-pick{
-  background:#142f3c;
-  border:2px solid #347d86;
-  border-radius:12px;
-  padding:12px 5px;
-  color:white;
-  cursor:pointer;
-  font-family:Orbitron;
-}
-
-.duel-pick.selected{
-  border-color:#8effe6;
-  background:#12665f;
-  box-shadow:0 0 14px #00d9bd88;
-}
-
-.duel-pick .creature-art{
-  font-size:42px;
-  height:70px;
-}
-
-.duel-fighters{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin:20px 0;
-}
-
-.duel-fighter{
-  background:#142f3c;
-  border:2px solid #347d86;
-  border-radius:12px;
-  padding:12px;
-  min-width:0;
-}
-
-.duel-fighter.active-fighter{
-  border-color:#8effe6;
-  box-shadow:0 0 15px #00d9bd66;
-}
-
-.duel-monster{
-  font-size:65px;
-  margin:10px;
-}
-
-.duel-health{
-  width:100%;
-  height:15px;
-  background:#07131f;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #56848b;
-}
-
-.duel-health-fill{
-  height:100%;
-  width:100%;
-  background:linear-gradient(90deg,#13b96e,#8cff9e);
-  transition:width .3s;
-}
-
-.duel-actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:18px 0;
-}
-
-.duel-log{
-  min-height:65px;
-  padding:14px;
-  background:#071c28;
-  border:1px solid #347d86;
-  border-radius:10px;
-  color:#b9fff0;
-  line-height:1.7;
-}
-
-.duel-info{
-  color:#a9d8d7;
-  font-size:12px;
-  line-height:1.7;
-}
-
-#duelMessage{
-  color:#8effe6;
-  min-height:25px;
-}
-
+/* DUNGEON RUSH */
+#dungeonGame{z-index:35;background:radial-gradient(ellipse at top,#24103d,#090817 70%)}
+#dungeonGame .game-top h2{color:#ffc16b}
+.dungeon-wrap{max-width:900px;margin:auto;text-align:center}
+.dungeon-title{font-family:'Press Start 2P',monospace;color:#ffc16b;font-size:clamp(17px,4vw,27px);text-shadow:0 0 15px #ff853b;margin:14px}
+.dungeon-subtitle{color:#d5b8e9;font-size:12px;line-height:1.7}
+.dungeon-hud{display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;background:#170f29;border:1px solid #8051a7;border-radius:10px;padding:12px;margin:12px 0;color:#ffe6a6;font-size:12px}
+#dungeonCanvas{display:block;width:100%;max-width:768px;height:auto;margin:10px auto;border:3px solid #a56add;border-radius:8px;background:#080817;image-rendering:pixelated;box-shadow:0 0 25px #8d3fba66;touch-action:none}
+.dungeon-message{min-height:25px;color:#ffdc93;font-size:12px;line-height:1.6}
+.dungeon-controls{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;margin:14px auto}
+.dpad{display:grid;grid-template-columns:48px 48px 48px;grid-template-rows:48px 48px 48px;gap:4px}
+.dpad button,.attack-touch{background:linear-gradient(145deg,#59317d,#28163f);border:2px solid #c18bff;border-radius:9px;color:white;font-size:20px;font-weight:bold;touch-action:none;user-select:none}
+.dpad button:active,.attack-touch:active{background:#a34fe3;transform:scale(.95)}
+.dpad .up{grid-column:2;grid-row:1}.dpad .left{grid-column:1;grid-row:2}.dpad .right{grid-column:3;grid-row:2}.dpad .down{grid-column:2;grid-row:3}
+.attack-touch{width:95px;height:95px;border-radius:50%;background:linear-gradient(145deg,#a34b3a,#5a1b38);border-color:#ffad7c;font-size:13px}
+.dungeon-shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:15px 0}
+.dungeon-upgrade{background:#1a1029;border:1px solid #8756ad;border-radius:9px;padding:12px}
+.dungeon-upgrade p{font-size:11px;color:#d7c3e9;line-height:1.5}
+.dungeon-upgrade button{width:100%;padding:10px;border:1px solid #d3a2ff;border-radius:7px;background:#66309a;color:white;font-family:Orbitron;font-weight:bold;cursor:pointer}
+.dungeon-upgrade button:disabled{opacity:.4}
+.dungeon-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.dungeon-actions button{padding:11px 15px;background:#59317d;border:1px solid #c18bff;color:white;border-radius:8px;font-family:Orbitron;cursor:pointer}
 @media(max-width:500px){
-  .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .card-panel{padding:12px}
-  .card-tabs button{padding:10px;font-size:11px}
-  .duel-fighters{grid-template-columns:1fr 1fr}
-  .duel-monster{font-size:48px}
+.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card-panel{padding:12px}.card-tabs button{padding:10px;font-size:11px}
+.duel-fighters{grid-template-columns:1fr 1fr}.duel-monster{font-size:48px}
+.dungeon-controls{gap:12px}.dpad{grid-template-columns:43px 43px 43px;grid-template-rows:43px 43px 43px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
   <div class="logo">LEARNING LOUNGE</div>
   <p>YOUR NEON ARCADE DESTINATION</p>
@@ -676,24 +167,19 @@ footer{
 <div class="hero" id="home">
   <h1>PRESS START!</h1>
   <p>Welcome to your arcade. Pick a game and have fun!</p>
-  <a class="play-button" href="#library" style="max-width:220px;margin:20px auto">
-    ENTER ARCADE
-  </a>
+  <a class="play-button" href="#library" style="max-width:220px;margin:20px auto">ENTER ARCADE</a>
 </div>
 
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 4.4</span>
+  <span>VERSION 4.5</span>
 </div>
 
 <section id="library">
   <h2 class="section-title">🎮 GAME LIBRARY</h2>
   <p>Choose your next game!</p>
-
-  <input id="search" type="text"
-    placeholder="Search games..."
-    oninput="searchGames()">
+  <input id="search" type="text" placeholder="Search games..." oninput="searchGames()">
 
   <div class="games" id="gameList">
 
@@ -740,10 +226,7 @@ footer{
         <span class="play-button">▶ PLAY T-REX RUNNER</span>
       </a>
       <p>Jump over obstacles and see how far your dinosaur can run!</p>
-      <p class="license-note">
-        Open-source version • BSD-3-Clause.
-        <a href="https://github.com/wayou/t-rex-runner" target="_blank" rel="noopener noreferrer">Source and licence</a>
-      </p>
+      <p class="license-note">Open-source version • BSD-3-Clause. <a href="https://github.com/wayou/t-rex-runner" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
     </div>
 
     <div class="game-card" data-name="hexgl racing futuristic spaceship race">
@@ -753,10 +236,7 @@ footer{
         <span class="play-button">▶ PLAY HEXGL</span>
       </a>
       <p>Take control of a futuristic racing ship and speed through the track!</p>
-      <p class="license-note">
-        Open-source code • MIT License.
-        <a href="https://github.com/BKcore/HexGL" target="_blank" rel="noopener noreferrer">Source and licence</a>
-      </p>
+      <p class="license-note">Open-source code • MIT License. <a href="https://github.com/BKcore/HexGL" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
     </div>
 
     <div class="game-card" data-name="card clash trading cards booster pack collector monster duel">
@@ -769,36 +249,30 @@ footer{
       <p class="license-note">Original Learning Lounge game.</p>
     </div>
 
+    <div class="game-card" data-name="dungeon rush dungeon crawler pixel art monsters boss adventure">
+      <h3>⚔️ DUNGEON RUSH</h3>
+      <button onclick="openDungeon()" style="padding:0;border:0;background:none;width:100%;cursor:pointer">
+        <div class="game-picture dungeon-art">🏰⚔️<small>ENTER THE DUNGEON</small></div>
+        <span class="play-button">▶ PLAY DUNGEON RUSH</span>
+      </button>
+      <p>Explore dangerous rooms, fight monsters, find treasure and defeat the dungeon boss!</p>
+      <p class="license-note">Original Learning Lounge game.</p>
+    </div>
+
   </div>
 </section>
 
 <section id="about">
   <h2 class="section-title">ABOUT LEARNING LOUNGE</h2>
-  <p>
-    Welcome to Learning Lounge! A purple neon arcade
-    featuring games, experiments and original creations.
-  </p>
-
-  <h3 style="color:#ff8b9b;text-align:center;margin-top:35px">
-    RESET ALL PROGRESS
-  </h3>
-  <p style="text-align:center">
-    This resets saved progress in Neon Critter Clicker and Card Clash.
-    Your games and website will stay here.
-  </p>
-  <button class="reset-progress-button" onclick="resetProgress()">
-    RESET ALL PROGRESS
-  </button>
+  <p>Welcome to Learning Lounge! A purple neon arcade featuring games, experiments and original creations.</p>
+  <h3 style="color:#ff8b9b;text-align:center;margin-top:35px">RESET ALL PROGRESS</h3>
+  <p style="text-align:center">This resets saved progress in Neon Critter Clicker, Card Clash and Dungeon Rush. Your games and website will stay here.</p>
+  <button class="reset-progress-button" onclick="resetProgress()">RESET ALL PROGRESS</button>
 </section>
 
-<footer>
-  LEARNING LOUNGE © 2026<br><br>
-  Keep playing. Keep exploring.
-</footer>
+<footer>LEARNING LOUNGE © 2026<br><br>Keep playing. Keep exploring.</footer>
 
-
-<!-- NEON CRITTER CLICKER WINDOW -->
-
+<!-- NEON CRITTER CLICKER -->
 <div class="game-window" id="clickerGame">
   <div class="game-top">
     <h2>👾 NEON CRITTER CLICKER</h2>
@@ -807,7 +281,6 @@ footer{
       <button onclick="closeGame()">✕ CLOSE GAME</button>
     </div>
   </div>
-
   <div id="clickerScreen">
     <h2>CLICK THE CRITTER!</h2>
     <div id="coinCount">🪙 0 Coins</div>
@@ -820,11 +293,8 @@ footer{
   </div>
 </div>
 
-
-<!-- CARD CLASH GAME WINDOW -->
-
+<!-- CARD CLASH -->
 <div class="game-window" id="cardGame">
-
   <div class="game-top">
     <h2>🎴 CARD CLASH</h2>
     <div>
@@ -832,12 +302,9 @@ footer{
       <button onclick="closeCardClash()">✕ CLOSE GAME</button>
     </div>
   </div>
-
   <div class="card-game-content">
-
     <div class="card-logo">CARD CLASH</div>
     <div class="card-coins" id="cardCoins">🪙 500 COINS</div>
-
     <div class="card-tabs">
       <button class="active" onclick="showCardTab('shop',this)">🛒 SHOP</button>
       <button onclick="showCardTab('collection',this)">📚 COLLECTION</button>
@@ -845,1332 +312,1043 @@ footer{
       <button onclick="showCardTab('odds',this)">✨ ODDS</button>
     </div>
 
-    <!-- SHOP -->
-
     <div class="card-panel active" id="cardShop">
       <h2>🎁 BOOSTER PACK SHOP</h2>
-      <p class="card-info">
-        Super Common gives 1 card. Every paid pack contains 5 random creature cards.
-        Higher-tier packs have better chances of rare creatures!
-      </p>
-
+      <p class="card-info">Super Common gives 1 card. Every paid pack contains 5 random creature cards. Higher-tier packs have better chances of rare creatures!</p>
       <div class="card-grid">
-
-        <div class="collect-card rarity-common">
-          <div class="creature-art">🟢</div>
-          <h3>SUPER COMMON</h3>
-          <p>FREE • 1 Common card • 60-sec cooldown</p>
-          <button id="superPackButton" onclick="openPack('super')">CLAIM FREE PACK</button>
-          <p id="superPackTimer">Free pack ready!</p>
-        </div>
-
-        <div class="collect-card rarity-common">
-          <div class="creature-art">📦</div>
-          <h3>COMMON PACK</h3>
-          <p>50 coins • Better Uncommon odds</p>
-          <button onclick="openPack('common')">BUY FOR 50</button>
-        </div>
-
-        <div class="collect-card rarity-uncommon">
-          <div class="creature-art">🍀</div>
-          <h3>UNCOMMON PACK</h3>
-          <p>100 coins • Better Rare odds</p>
-          <button onclick="openPack('uncommon')">BUY FOR 100</button>
-        </div>
-
-        <div class="collect-card rarity-rare">
-          <div class="creature-art">💎</div>
-          <h3>RARE PACK</h3>
-          <p>200 coins • Better Legendary odds</p>
-          <button onclick="openPack('rare')">BUY FOR 200</button>
-        </div>
-
-        <div class="collect-card rarity-legendary">
-          <div class="creature-art">🔥</div>
-          <h3>LEGENDARY PACK</h3>
-          <p>500 coins • Better high-rarity odds</p>
-          <button onclick="openPack('legendary')">BUY FOR 500</button>
-        </div>
-
-        <div class="collect-card rarity-secret">
-          <div class="creature-art">👁️</div>
-          <h3>MYSTERY PACK</h3>
-          <p>2,000 coins • Best overall odds</p>
-          <button onclick="openPack('mystery')">BUY FOR 2,000</button>
-        </div>
-
+        <div class="collect-card rarity-common"><div class="creature-art">🟢</div><h3>SUPER COMMON</h3><p>FREE • 1 Common card • 60-sec cooldown</p><button id="superPackButton" onclick="openPack('super')">CLAIM FREE PACK</button><p id="superPackTimer">Free pack ready!</p></div>
+        <div class="collect-card rarity-common"><div class="creature-art">📦</div><h3>COMMON PACK</h3><p>50 coins • Better Uncommon odds</p><button onclick="openPack('common')">BUY FOR 50</button></div>
+        <div class="collect-card rarity-uncommon"><div class="creature-art">🍀</div><h3>UNCOMMON PACK</h3><p>100 coins • Better Rare odds</p><button onclick="openPack('uncommon')">BUY FOR 100</button></div>
+        <div class="collect-card rarity-rare"><div class="creature-art">💎</div><h3>RARE PACK</h3><p>200 coins • Better Legendary odds</p><button onclick="openPack('rare')">BUY FOR 200</button></div>
+        <div class="collect-card rarity-legendary"><div class="creature-art">🔥</div><h3>LEGENDARY PACK</h3><p>500 coins • Better high-rarity odds</p><button onclick="openPack('legendary')">BUY FOR 500</button></div>
+        <div class="collect-card rarity-secret"><div class="creature-art">👁️</div><h3>MYSTERY PACK</h3><p>2,000 coins • Best overall odds</p><button onclick="openPack('mystery')">BUY FOR 2,000</button></div>
       </div>
-
       <p id="packMessage">Choose a pack and see what you discover!</p>
       <div id="packResults"></div>
     </div>
 
-    <!-- COLLECTION -->
-
     <div class="card-panel" id="cardCollection">
       <h2>YOUR COLLECTION</h2>
-      <p class="card-info" id="collectionStats">
-        You have discovered 0 cards.
-      </p>
-
+      <p class="card-info" id="collectionStats">You have discovered 0 cards.</p>
       <button class="card-button" onclick="sellDuplicates()">💰 SELL ALL DUPLICATES</button>
       <div class="card-grid" id="collectionGrid"></div>
     </div>
 
-    <!-- DUEL ARENA -->
-
     <div class="card-panel" id="cardDuel">
       <h2>⚔️ MONSTER DUEL ARENA</h2>
-      <p class="duel-info">
-        Choose three monsters from your collection and battle
-        the computer for coins!
-      </p>
-
+      <p class="duel-info">Choose three monsters from your collection and battle the computer for coins!</p>
       <p id="duelStreak" class="duel-info">🔥 Win streak: 0</p>
-
       <div id="duelSetup">
         <h3>CHOOSE YOUR TEAM</h3>
         <p id="duelSelectionText" class="duel-info">Select 3 monsters.</p>
         <div class="duel-pick-grid" id="duelPickGrid"></div>
         <button class="card-button" onclick="startDuel()">⚔️ START DUEL</button>
       </div>
-
       <div id="duelBattle" style="display:none">
         <h3>YOUR MONSTER VS ENEMY</h3>
-
         <div class="duel-fighters">
-          <div class="duel-fighter" id="playerFighter">
-            <strong id="playerName">Your Monster</strong>
-            <div class="duel-monster" id="playerEmoji">🐺</div>
-            <p id="playerHPText">100 / 100 HP</p>
-            <div class="duel-health">
-              <div class="duel-health-fill" id="playerHPBar"></div>
-            </div>
-          </div>
-
-          <div class="duel-fighter" id="enemyFighter">
-            <strong id="enemyName">Enemy Monster</strong>
-            <div class="duel-monster" id="enemyEmoji">👹</div>
-            <p id="enemyHPText">100 / 100 HP</p>
-            <div class="duel-health">
-              <div class="duel-health-fill" id="enemyHPBar"></div>
-            </div>
-          </div>
+          <div class="duel-fighter" id="playerFighter"><strong id="playerName">Your Monster</strong><div class="duel-monster" id="playerEmoji">🐺</div><p id="playerHPText">100 / 100 HP</p><div class="duel-health"><div class="duel-health-fill" id="playerHPBar"></div></div></div>
+          <div class="duel-fighter" id="enemyFighter"><strong id="enemyName">Enemy Monster</strong><div class="duel-monster" id="enemyEmoji">👹</div><p id="enemyHPText">100 / 100 HP</p><div class="duel-health"><div class="duel-health-fill" id="enemyHPBar"></div></div></div>
         </div>
-
         <p id="duelTurn" class="duel-info">Your turn!</p>
-
         <div class="duel-actions">
           <button class="card-button" id="attackButton" onclick="duelAttack()">⚔️ ATTACK</button>
           <button class="card-button" id="specialButton" onclick="duelSpecial()">✨ SPECIAL</button>
         </div>
-
         <div class="duel-log" id="duelLog">The battle is starting!</div>
       </div>
-
       <p id="duelMessage"></p>
     </div>
 
-    <!-- ODDS -->
-
     <div class="card-panel" id="cardOdds">
       <h2>✨ PACK DROP CHANCES</h2>
-      <p class="card-info">
-        These are the chances for each individual card.
-        Paid packs contain five separate card rolls.
-        The free Super Common Pack contains one card.
-      </p>
-
+      <p class="card-info">These are the chances for each individual card. Paid packs contain five separate card rolls. The free Super Common Pack contains one card.</p>
       <div class="card-grid">
-
-        <div class="collect-card rarity-common">
-          <div class="creature-art">🟢</div>
-          <h3>SUPER COMMON</h3>
-          <p>Common: 100%</p>
-        </div>
-
-        <div class="collect-card rarity-common">
-          <div class="creature-art">📦</div>
-          <h3>COMMON PACK</h3>
-          <p>Common: 75%</p>
-          <p>Uncommon: 20%</p>
-          <p>Rare: 5%</p>
-        </div>
-
-        <div class="collect-card rarity-uncommon">
-          <div class="creature-art">🍀</div>
-          <h3>UNCOMMON PACK</h3>
-          <p>Common: 45%</p>
-          <p>Uncommon: 40%</p>
-          <p>Rare: 12%</p>
-          <p>Epic: 3%</p>
-        </div>
-
-        <div class="collect-card rarity-rare">
-          <div class="creature-art">💎</div>
-          <h3>RARE PACK</h3>
-          <p>Common: 25%</p>
-          <p>Uncommon: 35%</p>
-          <p>Rare: 25%</p>
-          <p>Epic: 12%</p>
-          <p>Legendary: 3%</p>
-        </div>
-
-        <div class="collect-card rarity-legendary">
-          <div class="creature-art">🔥</div>
-          <h3>LEGENDARY PACK</h3>
-          <p>Common: 10%</p>
-          <p>Uncommon: 20%</p>
-          <p>Rare: 30%</p>
-          <p>Epic: 22%</p>
-          <p>Legendary: 14%</p>
-          <p>Mythic: 3%</p>
-          <p>Godly: 1%</p>
-        </div>
-
-        <div class="collect-card rarity-secret">
-          <div class="creature-art">👁️</div>
-          <h3>MYSTERY PACK</h3>
-          <p>Common: 5%</p>
-          <p>Uncommon: 10%</p>
-          <p>Rare: 20%</p>
-          <p>Epic: 25%</p>
-          <p>Legendary: 20%</p>
-          <p>Mythic: 12%</p>
-          <p>Godly: 6%</p>
-          <p>Secret: 2%</p>
-        </div>
-
+        <div class="collect-card rarity-common"><div class="creature-art">🟢</div><h3>SUPER COMMON</h3><p>Common: 100%</p></div>
+        <div class="collect-card rarity-common"><div class="creature-art">📦</div><h3>COMMON PACK</h3><p>Common: 75%</p><p>Uncommon: 20%</p><p>Rare: 5%</p></div>
+        <div class="collect-card rarity-uncommon"><div class="creature-art">🍀</div><h3>UNCOMMON PACK</h3><p>Common: 45%</p><p>Uncommon: 40%</p><p>Rare: 12%</p><p>Epic: 3%</p></div>
+        <div class="collect-card rarity-rare"><div class="creature-art">💎</div><h3>RARE PACK</h3><p>Common: 25%</p><p>Uncommon: 35%</p><p>Rare: 25%</p><p>Epic: 12%</p><p>Legendary: 3%</p></div>
+        <div class="collect-card rarity-legendary"><div class="creature-art">🔥</div><h3>LEGENDARY PACK</h3><p>Common: 10%</p><p>Uncommon: 20%</p><p>Rare: 30%</p><p>Epic: 22%</p><p>Legendary: 14%</p><p>Mythic: 3%</p><p>Godly: 1%</p></div>
+        <div class="collect-card rarity-secret"><div class="creature-art">👁️</div><h3>MYSTERY PACK</h3><p>Common: 5%</p><p>Uncommon: 10%</p><p>Rare: 20%</p><p>Epic: 25%</p><p>Legendary: 20%</p><p>Mythic: 12%</p><p>Godly: 6%</p><p>Secret: 2%</p></div>
       </div>
     </div>
-
   </div>
 </div>
 
+<!-- DUNGEON RUSH -->
+<div class="game-window" id="dungeonGame">
+  <div class="game-top">
+    <h2>⚔️ DUNGEON RUSH</h2>
+    <div>
+      <button onclick="dungeonFullscreen()">⛶ FULL SCREEN</button>
+      <button onclick="closeDungeon()">✕ CLOSE GAME</button>
+    </div>
+  </div>
+
+  <div class="dungeon-wrap">
+    <div class="dungeon-title">DUNGEON RUSH</div>
+    <p class="dungeon-subtitle">Explore five dangerous rooms. Collect treasure, upgrade your hero and defeat the dungeon boss!</p>
+
+    <div class="dungeon-hud">
+      <span id="dungeonRoom">ROOM 1 / 5</span>
+      <span id="dungeonHealth">❤️ 100 / 100</span>
+      <span id="dungeonCoins">🪙 0</span>
+      <span id="dungeonEnemies">MONSTERS: 0</span>
+      <span id="dungeonWeapon">SWORD LV. 1</span>
+    </div>
+
+    <canvas id="dungeonCanvas" width="768" height="512"></canvas>
+    <p class="dungeon-message" id="dungeonMessage">Find the monsters and clear the room. Then enter the glowing door!</p>
+
+    <div class="dungeon-controls">
+      <div class="dpad">
+        <button class="up" data-move="up">▲</button>
+        <button class="left" data-move="left">◀</button>
+        <button class="right" data-move="right">▶</button>
+        <button class="down" data-move="down">▼</button>
+      </div>
+      <button class="attack-touch" id="dungeonAttack">⚔️<br>ATTACK</button>
+    </div>
+
+    <p class="dungeon-subtitle">Keyboard: WASD or arrow keys to move • Space to attack. On mobile, use the buttons above.</p>
+
+    <div class="dungeon-actions">
+      <button onclick="dungeonRestartRoom()">↻ RESTART ROOM</button>
+      <button onclick="dungeonHeal()">❤️ USE POTION</button>
+    </div>
+
+    <h3 style="color:#ffc16b">🛒 HERO UPGRADES</h3>
+    <div class="dungeon-shop">
+      <div class="dungeon-upgrade">
+        <strong>❤️ Health Potion</strong>
+        <p>Restore 40 health. Costs 30 coins.</p>
+        <button onclick="buyDungeonPotion()">BUY - 30 COINS</button>
+      </div>
+      <div class="dungeon-upgrade">
+        <strong>⚔️ Sword Upgrade</strong>
+        <p>Increase your sword damage permanently.</p>
+        <button id="swordUpgradeButton" onclick="buyDungeonSword()">UPGRADE SWORD</button>
+      </div>
+      <div class="dungeon-upgrade">
+        <strong>🛡️ Heart Upgrade</strong>
+        <p>Increase your maximum health by 25.</p>
+        <button id="heartUpgradeButton" onclick="buyDungeonHeart()">UPGRADE HEALTH</button>
+      </div>
+    </div>
+    <p class="dungeon-subtitle">Your coins and upgrades are saved automatically on this device.</p>
+  </div>
+</div>
 
 <script>
-
 // CLOCK
-
 function updateClock(){
-  document.getElementById("clock").textContent =
-    new Date().toLocaleTimeString();
+  document.getElementById("clock").textContent=new Date().toLocaleTimeString();
 }
-
 setInterval(updateClock,1000);
 updateClock();
 
-
 // SEARCH
-
 function searchGames(){
   const query=document.getElementById("search").value.toLowerCase();
-
   document.querySelectorAll(".game-card").forEach(card=>{
-    card.style.display =
-      card.dataset.name.includes(query) ? "block" : "none";
+    card.style.display=card.dataset.name.includes(query)?"block":"none";
   });
 }
 
-
-// NEON CRITTER GAME WINDOW
-
+// CLICKER WINDOW
 function openGame(){
   document.getElementById("clickerGame").style.display="block";
   renderUpgrades();
 }
-
 function closeGame(){
   document.getElementById("clickerGame").style.display="none";
-
-  if(document.fullscreenElement){
-    document.exitFullscreen().catch(()=>{});
-  }
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
 }
-
 function fullscreenGame(){
   const screen=document.getElementById("clickerGame");
-
-  if(!document.fullscreenElement){
-    screen.requestFullscreen?.().catch(()=>{});
-  }else{
-    document.exitFullscreen?.().catch(()=>{});
-  }
+  if(!document.fullscreenElement)screen.requestFullscreen?.().catch(()=>{});
+  else document.exitFullscreen?.().catch(()=>{});
 }
 
-
 // CLICKER SAVE
-
 const SAVE_KEY="neonCritterSave";
 let coins=0;
 let levels={};
 
-
-// 17 UPGRADES
-
 const upgrades=[
-  {name:"Power Click",desc:"+1 coin per click",cost:25,click:1},
-  {name:"Auto Clicker",desc:"+1 coin per second",cost:50,auto:1},
-  {name:"Mega Finger",desc:"+3 coins per click",cost:150,click:3},
-  {name:"Coin Magnet",desc:"+3 coins per second",cost:250,auto:3},
-  {name:"Super Tap",desc:"+7 coins per click",cost:500,click:7},
-  {name:"Neon Generator",desc:"+8 coins per second",cost:900,auto:8},
-  {name:"Crystal Gloves",desc:"+15 coins per click",cost:1800,click:15},
-  {name:"Robot Helper",desc:"+20 coins per second",cost:3500,auto:20},
-  {name:"Turbo Touch",desc:"+35 coins per click",cost:7000,click:35},
-  {name:"Power Plant",desc:"+45 coins per second",cost:14000,auto:45},
-  {name:"Golden Fingers",desc:"+80 coins per click",cost:28000,click:80},
-  {name:"Coin Factory",desc:"+100 coins per second",cost:55000,auto:100},
-  {name:"Galaxy Touch",desc:"+200 coins per click",cost:110000,click:200},
-  {name:"Space Machine",desc:"+250 coins per second",cost:220000,auto:250},
-  {name:"Quantum Click",desc:"+500 coins per click",cost:450000,click:500},
-  {name:"Neon Overlord",desc:"+1,000 coins per second",cost:900000,auto:1000},
-  {name:"Ultimate Critter",desc:"+2,500 coins per click",cost:2000000,click:2500}
+{name:"Power Click",desc:"+1 coin per click",cost:25,click:1},
+{name:"Auto Clicker",desc:"+1 coin per second",cost:50,auto:1},
+{name:"Mega Finger",desc:"+3 coins per click",cost:150,click:3},
+{name:"Coin Magnet",desc:"+3 coins per second",cost:250,auto:3},
+{name:"Super Tap",desc:"+7 coins per click",cost:500,click:7},
+{name:"Neon Generator",desc:"+8 coins per second",cost:900,auto:8},
+{name:"Crystal Gloves",desc:"+15 coins per click",cost:1800,click:15},
+{name:"Robot Helper",desc:"+20 coins per second",cost:3500,auto:20},
+{name:"Turbo Touch",desc:"+35 coins per click",cost:7000,click:35},
+{name:"Power Plant",desc:"+45 coins per second",cost:14000,auto:45},
+{name:"Golden Fingers",desc:"+80 coins per click",cost:28000,click:80},
+{name:"Coin Factory",desc:"+100 coins per second",cost:55000,auto:100},
+{name:"Galaxy Touch",desc:"+200 coins per click",cost:110000,click:200},
+{name:"Space Machine",desc:"+250 coins per second",cost:220000,auto:250},
+{name:"Quantum Click",desc:"+500 coins per click",cost:450000,click:500},
+{name:"Neon Overlord",desc:"+1,000 coins per second",cost:900000,auto:1000},
+{name:"Ultimate Critter",desc:"+2,500 coins per click",cost:2000000,click:2500}
 ];
 
 function loadGame(){
   try{
     const saved=JSON.parse(localStorage.getItem(SAVE_KEY));
-    if(saved){
-      coins=Number(saved.coins)||0;
-      levels=saved.levels||{};
-    }
-  }catch(e){
-    coins=0;
-    levels={};
-  }
-
-  renderUpgrades();
-  updateStats();
+    if(saved){coins=Number(saved.coins)||0;levels=saved.levels||{};}
+  }catch(e){coins=0;levels={};}
+  renderUpgrades();updateStats();
 }
-
-function saveGame(){
-  localStorage.setItem(SAVE_KEY,JSON.stringify({coins,levels}));
-}
-
-function getCost(index){
-  return Math.floor(upgrades[index].cost*Math.pow(1.65,levels[index]||0));
-}
-
+function saveGame(){localStorage.setItem(SAVE_KEY,JSON.stringify({coins,levels}));}
+function getCost(index){return Math.floor(upgrades[index].cost*Math.pow(1.65,levels[index]||0));}
 function getClickPower(){
-  return 1+upgrades.reduce((total,item,index)=>{
-    return total+(item.click||0)*(levels[index]||0);
-  },0);
+  return 1+upgrades.reduce((total,item,index)=>total+(item.click||0)*(levels[index]||0),0);
 }
-
 function getAutoPower(){
-  return upgrades.reduce((total,item,index)=>{
-    return total+(item.auto||0)*(levels[index]||0);
-  },0);
+  return upgrades.reduce((total,item,index)=>total+(item.auto||0)*(levels[index]||0),0);
 }
-
-function clickCritter(){
-  coins+=getClickPower();
-  updateStats();
-  saveGame();
-}
-
+function clickCritter(){coins+=getClickPower();updateStats();saveGame();}
 function buyUpgrade(index){
-  const cost=getCost(index);
-  if(coins<cost)return;
-
-  coins-=cost;
-  levels[index]=(levels[index]||0)+1;
-
-  renderUpgrades();
-  updateStats();
-  saveGame();
-
-  document.getElementById("gameMessage").textContent =
-    upgrades[index].name+" upgraded!";
+  const cost=getCost(index);if(coins<cost)return;
+  coins-=cost;levels[index]=(levels[index]||0)+1;
+  renderUpgrades();updateStats();saveGame();
+  document.getElementById("gameMessage").textContent=upgrades[index].name+" upgraded!";
 }
-
 function renderUpgrades(){
-  const list=document.getElementById("upgradeList");
-  if(!list)return;
+  const list=document.getElementById("upgradeList");if(!list)return;
   list.innerHTML="";
-
   upgrades.forEach((item,index)=>{
-    const level=levels[index]||0;
-    const cost=getCost(index);
-
-    const card=document.createElement("div");
-    card.className="upgrade";
-
-    const title=document.createElement("strong");
-    title.textContent=item.name;
-
-    const description=document.createElement("p");
-    description.textContent=item.desc;
-
-    const levelText=document.createElement("p");
-    levelText.textContent="Level: "+level;
-
+    const level=levels[index]||0,cost=getCost(index);
+    const card=document.createElement("div");card.className="upgrade";
+    const title=document.createElement("strong");title.textContent=item.name;
+    const description=document.createElement("p");description.textContent=item.desc;
+    const levelText=document.createElement("p");levelText.textContent="Level: "+level;
     const button=document.createElement("button");
     button.textContent="BUY - "+cost.toLocaleString()+" coins";
-    button.disabled=coins<cost;
-    button.onclick=()=>buyUpgrade(index);
-
-    card.append(title,description,levelText,button);
-    list.appendChild(card);
+    button.disabled=coins<cost;button.onclick=()=>buyUpgrade(index);
+    card.append(title,description,levelText,button);list.appendChild(card);
   });
 }
-
 function updateStats(){
-  document.getElementById("coinCount").textContent =
-    "🪙 "+Math.floor(coins).toLocaleString()+" Coins";
-
-  document.getElementById("powerText").textContent =
-    "Click power: "+getClickPower().toLocaleString()+
-    " | Auto coins: "+getAutoPower().toLocaleString()+"/sec";
-
+  document.getElementById("coinCount").textContent="🪙 "+Math.floor(coins).toLocaleString()+" Coins";
+  document.getElementById("powerText").textContent="Click power: "+getClickPower().toLocaleString()+" | Auto coins: "+getAutoPower().toLocaleString()+"/sec";
   renderUpgrades();
 }
-
 function resetGame(){
   if(!confirm("Are you sure you want to reset Neon Critter Clicker?"))return;
-  coins=0;
-  levels={};
-  saveGame();
-  updateStats();
+  coins=0;levels={};saveGame();updateStats();
   document.getElementById("gameMessage").textContent="Fresh start!";
 }
+setInterval(()=>{coins+=getAutoPower();updateStats();saveGame();},1000);
 
-setInterval(()=>{
-  coins+=getAutoPower();
-  updateStats();
-  saveGame();
-},1000);
-
-
-// =================================
-// CARD CLASH - ORIGINAL CARD GAME
-// =================================
-
+// CARD CLASH
 const CARD_SAVE_KEY="cardClashSave";
 const FREE_PACK_COOLDOWN_KEY="cardClashFreePackCooldown";
 const FREE_PACK_COOLDOWN_MS=60000;
-
-let cardCoins=500;
-let collection={};
-let lastPack=[];
-let duelStreak=0;
-
-let nextFreePackTime=0;
-let freePackTimerInterval=null;
-
-
-// ORIGINAL CREATURE CARDS
+let cardCoins=500,collection={},lastPack=[],duelStreak=0,nextFreePackTime=0,freePackTimerInterval=null;
 
 const creatureCards=[
-  {id:"embercub",name:"Ember Cub",emoji:"🦊",rarity:"Common"},
-  {id:"leafling",name:"Leafling",emoji:"🌱",rarity:"Common"},
-  {id:"bubbletoad",name:"Bubble Toad",emoji:"🐸",rarity:"Common"},
-  {id:"rockpup",name:"Rock Pup",emoji:"🐶",rarity:"Uncommon"},
-  {id:"stormbird",name:"Storm Bird",emoji:"🐦",rarity:"Uncommon"},
-  {id:"frostkit",name:"Frost Kit",emoji:"🐱",rarity:"Uncommon"},
-  {id:"flamewolf",name:"Flame Wolf",emoji:"🐺",rarity:"Rare"},
-  {id:"thunderhorn",name:"Thunderhorn",emoji:"🦏",rarity:"Rare"},
-  {id:"coraldragon",name:"Coral Dragon",emoji:"🐉",rarity:"Rare"},
-  {id:"shadowfang",name:"Shadow Fang",emoji:"🐈‍⬛",rarity:"Epic"},
-  {id:"crystalowl",name:"Crystal Owl",emoji:"🦉",rarity:"Epic"},
-  {id:"magmarex",name:"Magma Rex",emoji:"🦖",rarity:"Epic"},
-  {id:"sunphoenix",name:"Sun Phoenix",emoji:"🔥",rarity:"Legendary"},
-  {id:"moonserpent",name:"Moon Serpent",emoji:"🐍",rarity:"Legendary"},
-  {id:"stargriffin",name:"Star Griffin",emoji:"🦅",rarity:"Legendary"},
-  {id:"voidtitan",name:"Void Titan",emoji:"👹",rarity:"Mythic"},
-  {id:"galaxydrake",name:"Galaxy Drake",emoji:"🐲",rarity:"Mythic"},
-  {id:"aurorabeast",name:"Aurora Beast",emoji:"🦄",rarity:"Mythic"},
-  {id:"celestialking",name:"Celestial King",emoji:"👑",rarity:"Godly"},
-  {id:"goldenhydra",name:"Golden Hydra",emoji:"🐉",rarity:"Godly"},
-  {id:"cosmicemperor",name:"Cosmic Emperor",emoji:"🌌",rarity:"Godly"},
-  {id:"unknownone",name:"The Unknown",emoji:"👁️",rarity:"Secret"},
-  {id:"glitchbeast",name:"Glitch Beast",emoji:"👾",rarity:"Secret"},
-  {id:"ancientzero",name:"Ancient Zero",emoji:"💀",rarity:"Secret"}
+{id:"embercub",name:"Ember Cub",emoji:"🦊",rarity:"Common"},
+{id:"leafling",name:"Leafling",emoji:"🌱",rarity:"Common"},
+{id:"bubbletoad",name:"Bubble Toad",emoji:"🐸",rarity:"Common"},
+{id:"rockpup",name:"Rock Pup",emoji:"🐶",rarity:"Uncommon"},
+{id:"stormbird",name:"Storm Bird",emoji:"🐦",rarity:"Uncommon"},
+{id:"frostkit",name:"Frost Kit",emoji:"🐱",rarity:"Uncommon"},
+{id:"flamewolf",name:"Flame Wolf",emoji:"🐺",rarity:"Rare"},
+{id:"thunderhorn",name:"Thunderhorn",emoji:"🦏",rarity:"Rare"},
+{id:"coraldragon",name:"Coral Dragon",emoji:"🐉",rarity:"Rare"},
+{id:"shadowfang",name:"Shadow Fang",emoji:"🐈‍⬛",rarity:"Epic"},
+{id:"crystalowl",name:"Crystal Owl",emoji:"🦉",rarity:"Epic"},
+{id:"magmarex",name:"Magma Rex",emoji:"🦖",rarity:"Epic"},
+{id:"sunphoenix",name:"Sun Phoenix",emoji:"🔥",rarity:"Legendary"},
+{id:"moonserpent",name:"Moon Serpent",emoji:"🐍",rarity:"Legendary"},
+{id:"stargriffin",name:"Star Griffin",emoji:"🦅",rarity:"Legendary"},
+{id:"voidtitan",name:"Void Titan",emoji:"👹",rarity:"Mythic"},
+{id:"galaxydrake",name:"Galaxy Drake",emoji:"🐲",rarity:"Mythic"},
+{id:"aurorabeast",name:"Aurora Beast",emoji:"🦄",rarity:"Mythic"},
+{id:"celestialking",name:"Celestial King",emoji:"👑",rarity:"Godly"},
+{id:"goldenhydra",name:"Golden Hydra",emoji:"🐉",rarity:"Godly"},
+{id:"cosmicemperor",name:"Cosmic Emperor",emoji:"🌌",rarity:"Godly"},
+{id:"unknownone",name:"The Unknown",emoji:"👁️",rarity:"Secret"},
+{id:"glitchbeast",name:"Glitch Beast",emoji:"👾",rarity:"Secret"},
+{id:"ancientzero",name:"Ancient Zero",emoji:"💀",rarity:"Secret"}
 ];
-
-
-// ORIGINAL RARITY AND SELL VALUES
 
 const rarityOdds=[
-  {name:"Common",chance:55,min:1,max:5},
-  {name:"Uncommon",chance:25,min:5,max:15},
-  {name:"Rare",chance:12,min:15,max:50},
-  {name:"Epic",chance:5,min:50,max:150},
-  {name:"Legendary",chance:2,min:150,max:500},
-  {name:"Mythic",chance:0.8,min:500,max:2000},
-  {name:"Godly",chance:0.18,min:2000,max:10000},
-  {name:"Secret",chance:0.02,min:10000,max:50000}
+{name:"Common",chance:55,min:1,max:5},
+{name:"Uncommon",chance:25,min:5,max:15},
+{name:"Rare",chance:12,min:15,max:50},
+{name:"Epic",chance:5,min:50,max:150},
+{name:"Legendary",chance:2,min:150,max:500},
+{name:"Mythic",chance:0.8,min:500,max:2000},
+{name:"Godly",chance:0.18,min:2000,max:10000},
+{name:"Secret",chance:0.02,min:10000,max:50000}
 ];
-
-
-// CARD SAVE SYSTEM
 
 function loadCardGame(){
   try{
     const saved=JSON.parse(localStorage.getItem(CARD_SAVE_KEY));
-
-    if(saved){
-      cardCoins=Number(saved.cardCoins)||0;
-      collection=saved.collection||{};
-      duelStreak=Number(saved.duelStreak)||0;
-    }
-  }catch(e){
-    cardCoins=500;
-    collection={};
-    duelStreak=0;
-  }
-
-  // Older saved cards are treated as previously owned paid cards.
+    if(saved){cardCoins=Number(saved.cardCoins)||0;collection=saved.collection||{};duelStreak=Number(saved.duelStreak)||0;}
+  }catch(e){cardCoins=500;collection={};duelStreak=0;}
   Object.values(collection).forEach(card=>{
-    if(!Number.isFinite(Number(card.sellableCount))){
-      card.sellableCount=Number(card.count)||0;
-    }
-
-    if(!Number.isFinite(Number(card.freeCount))){
-      card.freeCount=0;
-    }
-
-    card.sellableCount=Number(card.sellableCount)||0;
-    card.freeCount=Number(card.freeCount)||0;
+    if(!Number.isFinite(Number(card.sellableCount)))card.sellableCount=Number(card.count)||0;
+    if(!Number.isFinite(Number(card.freeCount)))card.freeCount=0;
+    card.sellableCount=Number(card.sellableCount)||0;card.freeCount=Number(card.freeCount)||0;
   });
-
-  // Load the free pack cooldown separately.
   try{
-    const savedCooldown=Number(
-      localStorage.getItem(FREE_PACK_COOLDOWN_KEY)
-    );
-
-    nextFreePackTime=
-      Number.isFinite(savedCooldown)&&savedCooldown>Date.now()
-      ?savedCooldown:0;
-  }catch(e){
-    nextFreePackTime=0;
-  }
-
-  updateCardCoins();
-  renderCollection();
+    const savedCooldown=Number(localStorage.getItem(FREE_PACK_COOLDOWN_KEY));
+    nextFreePackTime=Number.isFinite(savedCooldown)&&savedCooldown>Date.now()?savedCooldown:0;
+  }catch(e){nextFreePackTime=0;}
+  updateCardCoins();renderCollection();
 }
-
-function saveCardGame(){
-  localStorage.setItem(
-    CARD_SAVE_KEY,
-    JSON.stringify({cardCoins,collection,duelStreak})
-  );
-}
-
-
-// FREE PACK COOLDOWN SYSTEM
-
+function saveCardGame(){localStorage.setItem(CARD_SAVE_KEY,JSON.stringify({cardCoins,collection,duelStreak}));}
 function saveFreePackCooldown(){
-  try{
-    localStorage.setItem(
-      FREE_PACK_COOLDOWN_KEY,
-      String(nextFreePackTime)
-    );
-  }catch(e){}
+  try{localStorage.setItem(FREE_PACK_COOLDOWN_KEY,String(nextFreePackTime));}catch(e){}
 }
-
 function formatCooldown(milliseconds){
-  const totalSeconds=Math.ceil(milliseconds/1000);
-  const minutes=Math.floor(totalSeconds/60);
-  const seconds=totalSeconds%60;
-
+  const totalSeconds=Math.ceil(milliseconds/1000),minutes=Math.floor(totalSeconds/60),seconds=totalSeconds%60;
   return minutes+":"+String(seconds).padStart(2,"0");
 }
-
 function updateFreePackButton(){
-  const button=document.getElementById("superPackButton");
-  const timer=document.getElementById("superPackTimer");
-
+  const button=document.getElementById("superPackButton"),timer=document.getElementById("superPackTimer");
   if(!button||!timer)return;
-
   const remaining=Math.max(0,nextFreePackTime-Date.now());
-
   if(remaining>0){
     const displayTime=formatCooldown(remaining);
-
-    button.disabled=true;
-    button.textContent="WAIT "+displayTime;
-    timer.textContent="Next free pack in "+displayTime;
+    button.disabled=true;button.textContent="WAIT "+displayTime;timer.textContent="Next free pack in "+displayTime;
   }else{
-    if(nextFreePackTime!==0){
-      nextFreePackTime=0;
-
-      try{
-        localStorage.removeItem(FREE_PACK_COOLDOWN_KEY);
-      }catch(e){}
-    }
-
-    button.disabled=false;
-    button.textContent="CLAIM FREE PACK";
-    timer.textContent="Free pack ready!";
+    if(nextFreePackTime!==0){nextFreePackTime=0;try{localStorage.removeItem(FREE_PACK_COOLDOWN_KEY);}catch(e){}}
+    button.disabled=false;button.textContent="CLAIM FREE PACK";timer.textContent="Free pack ready!";
   }
 }
-
 function startFreePackTimer(){
-  if(freePackTimerInterval){
-    clearInterval(freePackTimerInterval);
-  }
-
-  updateFreePackButton();
-
-  freePackTimerInterval=setInterval(()=>{
-    updateFreePackButton();
-  },1000);
+  if(freePackTimerInterval)clearInterval(freePackTimerInterval);
+  updateFreePackButton();freePackTimerInterval=setInterval(updateFreePackButton,1000);
 }
-
-
-// OPEN AND CLOSE CARD GAME
-
 function openCardClash(){
   document.getElementById("cardGame").style.display="block";
-  updateCardCoins();
-  renderCollection();
-  updateFreePackButton();
+  updateCardCoins();renderCollection();updateFreePackButton();
 }
-
 function closeCardClash(){
   document.getElementById("cardGame").style.display="none";
-
-  if(document.fullscreenElement){
-    document.exitFullscreen().catch(()=>{});
-  }
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
 }
-
 function cardFullscreen(){
   const screen=document.getElementById("cardGame");
-
-  if(!document.fullscreenElement){
-    screen.requestFullscreen?.().catch(()=>{});
-  }else{
-    document.exitFullscreen?.().catch(()=>{});
-  }
+  if(!document.fullscreenElement)screen.requestFullscreen?.().catch(()=>{});
+  else document.exitFullscreen?.().catch(()=>{});
 }
-
-
-// CARD GAME TABS
-
 function showCardTab(tab,button){
-  document.querySelectorAll("#cardGame .card-panel").forEach(panel=>{
-    panel.classList.remove("active");
-  });
-
-  document.querySelectorAll("#cardGame .card-tabs button").forEach(btn=>{
-    btn.classList.remove("active");
-  });
-
-  const panels={
-    shop:"cardShop",
-    collection:"cardCollection",
-    duel:"cardDuel",
-    odds:"cardOdds"
-  };
-
-  document.getElementById(panels[tab]).classList.add("active");
-  button.classList.add("active");
-
-  if(tab==="duel"){
-    renderDuelChoices();
-  }
-
-  if(tab==="shop"){
-    updateFreePackButton();
-  }
+  document.querySelectorAll("#cardGame .card-panel").forEach(panel=>panel.classList.remove("active"));
+  document.querySelectorAll("#cardGame .card-tabs button").forEach(btn=>btn.classList.remove("active"));
+  const panels={shop:"cardShop",collection:"cardCollection",duel:"cardDuel",odds:"cardOdds"};
+  document.getElementById(panels[tab]).classList.add("active");button.classList.add("active");
+  if(tab==="duel")renderDuelChoices();
+  if(tab==="shop")updateFreePackButton();
 }
-
-
-// UPDATE COINS
-
-function updateCardCoins(){
-  document.getElementById("cardCoins").textContent =
-    "🪙 "+cardCoins.toLocaleString()+" COINS";
-}
-
-
-// =================================
-// SIX DIFFERENT BOOSTER PACKS
-// =================================
+function updateCardCoins(){document.getElementById("cardCoins").textContent="🪙 "+cardCoins.toLocaleString()+" COINS";}
 
 const packTypes={
-  super:{
-    name:"Super Common",
-    cost:0,
-    odds:[
-      {name:"Common",chance:100}
-    ]
-  },
-
-  common:{
-    name:"Common",
-    cost:50,
-    odds:[
-      {name:"Common",chance:75},
-      {name:"Uncommon",chance:20},
-      {name:"Rare",chance:5}
-    ]
-  },
-
-  uncommon:{
-    name:"Uncommon",
-    cost:100,
-    odds:[
-      {name:"Common",chance:45},
-      {name:"Uncommon",chance:40},
-      {name:"Rare",chance:12},
-      {name:"Epic",chance:3}
-    ]
-  },
-
-  rare:{
-    name:"Rare",
-    cost:200,
-    odds:[
-      {name:"Common",chance:25},
-      {name:"Uncommon",chance:35},
-      {name:"Rare",chance:25},
-      {name:"Epic",chance:12},
-      {name:"Legendary",chance:3}
-    ]
-  },
-
-  legendary:{
-    name:"Legendary",
-    cost:500,
-    odds:[
-      {name:"Common",chance:10},
-      {name:"Uncommon",chance:20},
-      {name:"Rare",chance:30},
-      {name:"Epic",chance:22},
-      {name:"Legendary",chance:14},
-      {name:"Mythic",chance:3},
-      {name:"Godly",chance:1}
-    ]
-  },
-
-  mystery:{
-    name:"Mystery",
-    cost:2000,
-    odds:[
-      {name:"Common",chance:5},
-      {name:"Uncommon",chance:10},
-      {name:"Rare",chance:20},
-      {name:"Epic",chance:25},
-      {name:"Legendary",chance:20},
-      {name:"Mythic",chance:12},
-      {name:"Godly",chance:6},
-      {name:"Secret",chance:2}
-    ]
-  }
+super:{name:"Super Common",cost:0,odds:[{name:"Common",chance:100}]},
+common:{name:"Common",cost:50,odds:[{name:"Common",chance:75},{name:"Uncommon",chance:20},{name:"Rare",chance:5}]},
+uncommon:{name:"Uncommon",cost:100,odds:[{name:"Common",chance:45},{name:"Uncommon",chance:40},{name:"Rare",chance:12},{name:"Epic",chance:3}]},
+rare:{name:"Rare",cost:200,odds:[{name:"Common",chance:25},{name:"Uncommon",chance:35},{name:"Rare",chance:25},{name:"Epic",chance:12},{name:"Legendary",chance:3}]},
+legendary:{name:"Legendary",cost:500,odds:[{name:"Common",chance:10},{name:"Uncommon",chance:20},{name:"Rare",chance:30},{name:"Epic",chance:22},{name:"Legendary",chance:14},{name:"Mythic",chance:3},{name:"Godly",chance:1}]},
+mystery:{name:"Mystery",cost:2000,odds:[{name:"Common",chance:5},{name:"Uncommon",chance:10},{name:"Rare",chance:20},{name:"Epic",chance:25},{name:"Legendary",chance:20},{name:"Mythic",chance:12},{name:"Godly",chance:6},{name:"Secret",chance:2}]}
 };
-
-
-// ROLL A RARITY FOR THE SELECTED PACK
-
 function rollRarity(pack){
-  const roll=Math.random()*100;
-  let total=0;
-
-  for(const rarity of pack.odds){
-    total+=rarity.chance;
-
-    if(roll<total){
-      return rarityOdds.find(r=>r.name===rarity.name);
-    }
-  }
-
+  const roll=Math.random()*100;let total=0;
+  for(const rarity of pack.odds){total+=rarity.chance;if(roll<total)return rarityOdds.find(r=>r.name===rarity.name);}
   return rarityOdds[0];
 }
-
-
-// PICK CREATURE
-
 function pickCreature(rarity){
-  const possible=creatureCards.filter(
-    card=>card.rarity===rarity.name
-  );
-
+  const possible=creatureCards.filter(card=>card.rarity===rarity.name);
   return possible[Math.floor(Math.random()*possible.length)];
 }
-
-
-// OPEN SELECTED BOOSTER PACK
-
 function openPack(packId){
-  const pack=packTypes[packId];
-
-  if(!pack)return;
-
+  const pack=packTypes[packId];if(!pack)return;
   const isFreePack=packId==="super";
-
-  // Check the free pack cooldown before opening.
   if(isFreePack){
-    const remaining=nextFreePackTime-Date.now();
-
-    if(remaining>0){
-      updateFreePackButton();
-
-      document.getElementById("packMessage").textContent=
-        "Your free pack is cooling down. Please wait!";
-      return;
-    }
+    if(nextFreePackTime>Date.now()){updateFreePackButton();document.getElementById("packMessage").textContent="Your free pack is cooling down. Please wait!";return;}
   }else if(cardCoins<pack.cost){
-    document.getElementById("packMessage").textContent=
-      "Not enough coins! Try the FREE Super Common Pack!";
-    return;
+    document.getElementById("packMessage").textContent="Not enough coins! Try the FREE Super Common Pack!";return;
   }
-
-  // Start cooldown after a valid free-pack opening.
-  if(isFreePack){
-    nextFreePackTime=Date.now()+FREE_PACK_COOLDOWN_MS;
-    saveFreePackCooldown();
-    updateFreePackButton();
-  }else{
-    cardCoins-=pack.cost;
-  }
-
+  if(isFreePack){nextFreePackTime=Date.now()+FREE_PACK_COOLDOWN_MS;saveFreePackCooldown();updateFreePackButton();}
+  else cardCoins-=pack.cost;
   lastPack=[];
-
-  // Free pack gives one card. Paid packs still give five.
   const cardsToOpen=isFreePack?1:5;
-
   for(let i=0;i<cardsToOpen;i++){
-    const rarity=rollRarity(pack);
-    const creature=pickCreature(rarity);
-
-    // Free cards always have zero sell value.
-    const sellValue=isFreePack?0:Math.floor(
-      rarity.min+
-      Math.random()*(rarity.max-rarity.min+1)
-    );
-
-    lastPack.push({
-      ...creature,
-      sellValue:sellValue
-    });
-
-    if(!collection[creature.id]){
-      collection[creature.id]={
-        ...creature,
-        count:0,
-        sellValue:sellValue,
-        sellableCount:0,
-        freeCount:0
-      };
-    }
-
-    const ownedCard=collection[creature.id];
-
-    // Keep paid and free copies separate.
-    ownedCard.count++;
-
-    if(isFreePack){
-      ownedCard.freeCount=(Number(ownedCard.freeCount)||0)+1;
-    }else{
-      ownedCard.sellableCount=
-        (Number(ownedCard.sellableCount)||0)+1;
-    }
+    const rarity=rollRarity(pack),creature=pickCreature(rarity);
+    const sellValue=isFreePack?0:Math.floor(rarity.min+Math.random()*(rarity.max-rarity.min+1));
+    lastPack.push({...creature,sellValue});
+    if(!collection[creature.id])collection[creature.id]={...creature,count:0,sellValue,sellableCount:0,freeCount:0};
+    const ownedCard=collection[creature.id];ownedCard.count++;
+    if(isFreePack)ownedCard.freeCount=(Number(ownedCard.freeCount)||0)+1;
+    else ownedCard.sellableCount=(Number(ownedCard.sellableCount)||0)+1;
   }
-
-  updateCardCoins();
-  renderPackResults();
-  renderCollection();
-  saveCardGame();
-
-  const secret=lastPack.some(c=>c.rarity==="Secret");
-  const godly=lastPack.some(c=>c.rarity==="Godly");
-  const legendary=lastPack.some(c=>c.rarity==="Legendary");
-
-  let message=pack.name+" Pack opened! You got "+cardsToOpen+
-    (cardsToOpen===1?" card!":" cards!");
-
-  if(secret){
-    message="👁️ SECRET PULL!!! INCREDIBLE!!!";
-  }else if(godly){
-    message="✨ GODLY PULL!!! AMAZING!!!";
-  }else if(legendary){
-    message="🔥 LEGENDARY PULL!!!";
-  }
-
+  updateCardCoins();renderPackResults();renderCollection();saveCardGame();
+  const secret=lastPack.some(c=>c.rarity==="Secret"),godly=lastPack.some(c=>c.rarity==="Godly"),legendary=lastPack.some(c=>c.rarity==="Legendary");
+  let message=pack.name+" Pack opened! You got "+cardsToOpen+(cardsToOpen===1?" card!":" cards!");
+  if(secret)message="👁️ SECRET PULL!!! INCREDIBLE!!!";
+  else if(godly)message="✨ GODLY PULL!!! AMAZING!!!";
+  else if(legendary)message="🔥 LEGENDARY PULL!!!";
   document.getElementById("packMessage").textContent=message;
 }
-
-
-// DISPLAY PACK RESULTS
-
 function renderPackResults(){
-  const area=document.getElementById("packResults");
-  area.innerHTML="";
-
+  const area=document.getElementById("packResults");area.innerHTML="";
   lastPack.forEach(card=>{
-    const div=document.createElement("div");
-    div.className="pack-result-card rarity-"+card.rarity.toLowerCase();
-
-    const emoji=document.createElement("div");
-    emoji.className="creature-art";
-    emoji.textContent=card.emoji;
-
-    const name=document.createElement("h3");
-    name.textContent=card.name;
-
-    const rarity=document.createElement("p");
-    rarity.className="rarity-label";
-    rarity.textContent=card.rarity.toUpperCase();
-
-    const value=document.createElement("p");
-    value.textContent="Sell value: "+card.sellValue.toLocaleString()+" coins";
-
-    div.append(emoji,name,rarity,value);
-    area.appendChild(div);
+    const div=document.createElement("div");div.className="pack-result-card rarity-"+card.rarity.toLowerCase();
+    const emoji=document.createElement("div");emoji.className="creature-art";emoji.textContent=card.emoji;
+    const name=document.createElement("h3");name.textContent=card.name;
+    const rarity=document.createElement("p");rarity.className="rarity-label";rarity.textContent=card.rarity.toUpperCase();
+    const value=document.createElement("p");value.textContent="Sell value: "+card.sellValue.toLocaleString()+" coins";
+    div.append(emoji,name,rarity,value);area.appendChild(div);
   });
 }
-
-
-// DISPLAY COLLECTION
-
 function renderCollection(){
-  const grid=document.getElementById("collectionGrid");
-  if(!grid)return;
-
+  const grid=document.getElementById("collectionGrid");if(!grid)return;
   grid.innerHTML="";
-
   const cards=Object.values(collection).filter(card=>card.count>0);
   const totalCards=cards.reduce((sum,card)=>sum+card.count,0);
-
-  document.getElementById("collectionStats").textContent =
-    cards.length+" different creatures discovered • "+
-    totalCards+" total cards owned.";
-
-  if(cards.length===0){
-    grid.innerHTML='<div class="card-empty">No cards yet! Claim your FREE Super Common Pack in the shop.</div>';
-    return;
-  }
-
+  document.getElementById("collectionStats").textContent=cards.length+" different creatures discovered • "+totalCards+" total cards owned.";
+  if(cards.length===0){grid.innerHTML='<div class="card-empty">No cards yet! Claim your FREE Super Common Pack in the shop.</div>';return;}
   cards.sort((a,b)=>{
     const order=["Secret","Godly","Mythic","Legendary","Epic","Rare","Uncommon","Common"];
     return order.indexOf(a.rarity)-order.indexOf(b.rarity);
   });
-
   cards.forEach(card=>{
-    const div=document.createElement("div");
-    div.className="collect-card rarity-"+card.rarity.toLowerCase();
-
-    const emoji=document.createElement("div");
-    emoji.className="creature-art";
-    emoji.textContent=card.emoji;
-
-    const name=document.createElement("h3");
-    name.textContent=card.name;
-
-    const rarity=document.createElement("div");
-    rarity.className="rarity-label";
-    rarity.textContent=card.rarity.toUpperCase();
-
-    const count=document.createElement("p");
-    count.textContent="Owned: "+card.count;
-
+    const div=document.createElement("div");div.className="collect-card rarity-"+card.rarity.toLowerCase();
+    const emoji=document.createElement("div");emoji.className="creature-art";emoji.textContent=card.emoji;
+    const name=document.createElement("h3");name.textContent=card.name;
+    const rarity=document.createElement("div");rarity.className="rarity-label";rarity.textContent=card.rarity.toUpperCase();
+    const count=document.createElement("p");count.textContent="Owned: "+card.count;
     const value=document.createElement("p");
-
-    const paidCount=Number(card.sellableCount)||0;
-    const freeCount=Number(card.freeCount)||0;
-
-    if(paidCount>0){
-      value.textContent=
-        "Paid copies: "+paidCount+
-        " • Sell value: "+card.sellValue.toLocaleString()+
-        " coins • Free copies: "+freeCount;
-    }else{
-      value.textContent="Free copies only • Sell value: 0 coins";
-    }
-
-    const sell=document.createElement("button");
-    sell.textContent="SELL ONE";
-    sell.onclick=()=>sellCard(card.id);
-
-    div.append(emoji,name,rarity,count,value,sell);
-    grid.appendChild(div);
+    const paidCount=Number(card.sellableCount)||0,freeCount=Number(card.freeCount)||0;
+    if(paidCount>0)value.textContent="Paid copies: "+paidCount+" • Sell value: "+card.sellValue.toLocaleString()+" coins • Free copies: "+freeCount;
+    else value.textContent="Free copies only • Sell value: 0 coins";
+    const sell=document.createElement("button");sell.textContent="SELL ONE";sell.onclick=()=>sellCard(card.id);
+    div.append(emoji,name,rarity,count,value,sell);grid.appendChild(div);
   });
 }
-
-
-// SELL ONE CARD
-
 function sellCard(id){
-  const card=collection[id];
-
-  if(!card||card.count<1)return;
-
+  const card=collection[id];if(!card||card.count<1)return;
   let earned=0;
-
-  // Sell paid copies first. Free copies sell for zero.
-  if((Number(card.sellableCount)||0)>0){
-    card.sellableCount--;
-    earned=Number(card.sellValue)||0;
-  }else if((Number(card.freeCount)||0)>0){
-    card.freeCount--;
-    earned=0;
-  }
-
-  card.count--;
-  cardCoins+=earned;
-
-  updateCardCoins();
-  renderCollection();
-  saveCardGame();
-
-  document.getElementById("packMessage").textContent =
-    "Sold "+card.name+" for "+earned.toLocaleString()+" coins!";
+  if((Number(card.sellableCount)||0)>0){card.sellableCount--;earned=Number(card.sellValue)||0;}
+  else if((Number(card.freeCount)||0)>0)card.freeCount--;
+  card.count--;cardCoins+=earned;
+  updateCardCoins();renderCollection();saveCardGame();
+  document.getElementById("packMessage").textContent="Sold "+card.name+" for "+earned.toLocaleString()+" coins!";
 }
-
-
-// SELL DUPLICATES
-
 function sellDuplicates(){
-  let earned=0;
-  let sold=0;
-
+  let earned=0,sold=0;
   Object.values(collection).forEach(card=>{
     if(card.count>1){
-      const duplicates=card.count-1;
-
-      const paidCount=Number(card.sellableCount)||0;
-      const freeCount=Number(card.freeCount)||0;
-
-      // Sell paid duplicates first, then free duplicates.
-      const paidToSell=Math.min(duplicates,paidCount);
-      const freeToSell=Math.min(
-        duplicates-paidToSell,
-        freeCount
-      );
-
-      earned+=paidToSell*(Number(card.sellValue)||0);
-      sold+=paidToSell+freeToSell;
-
-      card.sellableCount=paidCount-paidToSell;
-      card.freeCount=freeCount-freeToSell;
-      card.count-=paidToSell+freeToSell;
+      const duplicates=card.count-1,paidCount=Number(card.sellableCount)||0,freeCount=Number(card.freeCount)||0;
+      const paidToSell=Math.min(duplicates,paidCount),freeToSell=Math.min(duplicates-paidToSell,freeCount);
+      earned+=paidToSell*(Number(card.sellValue)||0);sold+=paidToSell+freeToSell;
+      card.sellableCount=paidCount-paidToSell;card.freeCount=freeCount-freeToSell;card.count-=paidToSell+freeToSell;
     }
   });
-
-  if(sold===0){
-    document.getElementById("packMessage").textContent =
-      "No duplicate cards to sell yet!";
-    return;
-  }
-
-  cardCoins+=earned;
-
-  updateCardCoins();
-  renderCollection();
-  saveCardGame();
-
-  document.getElementById("packMessage").textContent =
-    "Sold "+sold+" duplicate cards for "+earned.toLocaleString()+" coins!";
+  if(sold===0){document.getElementById("packMessage").textContent="No duplicate cards to sell yet!";return;}
+  cardCoins+=earned;updateCardCoins();renderCollection();saveCardGame();
+  document.getElementById("packMessage").textContent="Sold "+sold+" duplicate cards for "+earned.toLocaleString()+" coins!";
 }
 
-
-// =================================
-// CARD CLASH - DUEL ENGINE
-// =================================
-
-let duelTeam=[];
-let enemyTeam=[];
-let playerIndex=0;
-let enemyIndex=0;
-let duelBusy=false;
-let duelTimeouts=[];
-
+// DUEL ENGINE
+let duelTeam=[],enemyTeam=[],playerIndex=0,enemyIndex=0,duelBusy=false,duelTimeouts=[];
 const monsterStats={
-  Common:{hp:80,attack:15},
-  Uncommon:{hp:100,attack:22},
-  Rare:{hp:120,attack:30},
-  Epic:{hp:145,attack:38},
-  Legendary:{hp:170,attack:48},
-  Mythic:{hp:210,attack:60},
-  Godly:{hp:260,attack:75},
-  Secret:{hp:320,attack:90}
+Common:{hp:80,attack:15},Uncommon:{hp:100,attack:22},Rare:{hp:120,attack:30},Epic:{hp:145,attack:38},
+Legendary:{hp:170,attack:48},Mythic:{hp:210,attack:60},Godly:{hp:260,attack:75},Secret:{hp:320,attack:90}
 };
-
 function getMonsterStats(card){
   const base=monsterStats[card.rarity]||monsterStats.Common;
-
-  return {
-    maxHP:base.hp,
-    hp:base.hp,
-    attack:base.attack
-  };
+  return{maxHP:base.hp,hp:base.hp,attack:base.attack};
 }
-
-
-// SHOW OWNED MONSTERS TO PICK
-
 function renderDuelChoices(){
-  const grid=document.getElementById("duelPickGrid");
-  if(!grid)return;
-
+  const grid=document.getElementById("duelPickGrid");if(!grid)return;
   grid.innerHTML="";
-
   const owned=Object.values(collection).filter(card=>card.count>0);
-
-  document.getElementById("duelSelectionText").textContent =
-    "Selected "+duelTeam.length+" / 3 monsters";
-
-  document.getElementById("duelStreak").textContent =
-    "🔥 Win streak: "+duelStreak;
-
-  if(owned.length===0){
-    grid.innerHTML='<p class="card-empty">Claim a free Super Common Pack to get monsters for your team!</p>';
-    return;
-  }
-
+  document.getElementById("duelSelectionText").textContent="Selected "+duelTeam.length+" / 3 monsters";
+  document.getElementById("duelStreak").textContent="🔥 Win streak: "+duelStreak;
+  if(owned.length===0){grid.innerHTML='<p class="card-empty">Claim a free Super Common Pack to get monsters for your team!</p>';return;}
   owned.forEach(card=>{
     const button=document.createElement("button");
-
-    button.className="duel-pick"+
-      (duelTeam.some(c=>c.id===card.id)?" selected":"");
-
-    const art=document.createElement("div");
-    art.className="creature-art";
-    art.textContent=card.emoji;
-
-    const name=document.createElement("strong");
-    name.textContent=card.name;
-
-    const rarity=document.createElement("p");
-    rarity.textContent=card.rarity;
-
-    const stats=getMonsterStats(card);
-
-    const power=document.createElement("p");
-    power.textContent="HP "+stats.hp+" | ATK "+stats.attack;
-
+    button.className="duel-pick"+(duelTeam.some(c=>c.id===card.id)?" selected":"");
+    const art=document.createElement("div");art.className="creature-art";art.textContent=card.emoji;
+    const name=document.createElement("strong");name.textContent=card.name;
+    const rarity=document.createElement("p");rarity.textContent=card.rarity;
+    const stats=getMonsterStats(card);const power=document.createElement("p");power.textContent="HP "+stats.hp+" | ATK "+stats.attack;
     button.append(art,name,rarity,power);
-
     button.onclick=()=>{
       const existing=duelTeam.findIndex(c=>c.id===card.id);
-
-      if(existing!==-1){
-        duelTeam.splice(existing,1);
-      }else if(duelTeam.length<3){
-        duelTeam.push(card);
-      }
-
+      if(existing!==-1)duelTeam.splice(existing,1);
+      else if(duelTeam.length<3)duelTeam.push(card);
       renderDuelChoices();
     };
-
     grid.appendChild(button);
   });
 }
-
-
-// START BATTLE
-
 function startDuel(){
-  if(duelTeam.length!==3){
-    document.getElementById("duelMessage").textContent =
-      "Choose exactly 3 monsters first!";
-    return;
-  }
-
-  const enemies=[...creatureCards]
-    .sort(()=>Math.random()-.5)
-    .slice(0,3);
-
-  enemyTeam=enemies.map(card=>({
-    ...card,
-    ...getMonsterStats(card)
-  }));
-
-  duelTeam=duelTeam.map(card=>({
-    ...card,
-    ...getMonsterStats(card)
-  }));
-
-  playerIndex=0;
-  enemyIndex=0;
-  duelBusy=false;
-
+  if(duelTeam.length!==3){document.getElementById("duelMessage").textContent="Choose exactly 3 monsters first!";return;}
+  const enemies=[...creatureCards].sort(()=>Math.random()-.5).slice(0,3);
+  enemyTeam=enemies.map(card=>({...card,...getMonsterStats(card)}));
+  duelTeam=duelTeam.map(card=>({...card,...getMonsterStats(card)}));
+  playerIndex=0;enemyIndex=0;duelBusy=false;
   document.getElementById("duelSetup").style.display="none";
   document.getElementById("duelBattle").style.display="block";
   document.getElementById("duelMessage").textContent="";
-  document.getElementById("duelLog").textContent=
-    "A new battle begins! Your monster goes first.";
-
+  document.getElementById("duelLog").textContent="A new battle begins! Your monster goes first.";
   updateDuelScreen();
 }
-
-
-// UPDATE BATTLE DISPLAY
-
 function updateDuelScreen(){
-  const player=duelTeam[playerIndex];
-  const enemy=enemyTeam[enemyIndex];
-
-  if(!player||!enemy)return;
-
+  const player=duelTeam[playerIndex],enemy=enemyTeam[enemyIndex];if(!player||!enemy)return;
   document.getElementById("playerName").textContent=player.name;
   document.getElementById("playerEmoji").textContent=player.emoji;
-  document.getElementById("playerHPText").textContent=
-    player.hp+" / "+player.maxHP+" HP";
-
-  document.getElementById("playerHPBar").style.width=
-    Math.max(0,player.hp/player.maxHP*100)+"%";
-
+  document.getElementById("playerHPText").textContent=player.hp+" / "+player.maxHP+" HP";
+  document.getElementById("playerHPBar").style.width=Math.max(0,player.hp/player.maxHP*100)+"%";
   document.getElementById("enemyName").textContent=enemy.name;
   document.getElementById("enemyEmoji").textContent=enemy.emoji;
-  document.getElementById("enemyHPText").textContent=
-    enemy.hp+" / "+enemy.maxHP+" HP";
-
-  document.getElementById("enemyHPBar").style.width=
-    Math.max(0,enemy.hp/enemy.maxHP*100)+"%";
-
+  document.getElementById("enemyHPText").textContent=enemy.hp+" / "+enemy.maxHP+" HP";
+  document.getElementById("enemyHPBar").style.width=Math.max(0,enemy.hp/enemy.maxHP*100)+"%";
   document.getElementById("playerFighter").classList.add("active-fighter");
   document.getElementById("enemyFighter").classList.remove("active-fighter");
-
   document.getElementById("attackButton").disabled=duelBusy;
   document.getElementById("specialButton").disabled=duelBusy;
 }
-
-
-// NORMAL ATTACK
-
-function duelAttack(){
-  if(duelBusy)return;
-  duelPlayerMove(1);
-}
-
-
-// SPECIAL ATTACK
-
-function duelSpecial(){
-  if(duelBusy)return;
-  duelPlayerMove(1.8);
-}
-
-
-// PLAYER TURN
-
+function duelAttack(){if(duelBusy)return;duelPlayerMove(1);}
+function duelSpecial(){if(duelBusy)return;duelPlayerMove(1.8);}
 function duelPlayerMove(multiplier){
-  const player=duelTeam[playerIndex];
-  const enemy=enemyTeam[enemyIndex];
-
-  const damage=Math.floor(
-    player.attack*multiplier*(0.85+Math.random()*0.3)
-  );
-
+  const player=duelTeam[playerIndex],enemy=enemyTeam[enemyIndex];
+  const damage=Math.floor(player.attack*multiplier*(0.85+Math.random()*0.3));
   enemy.hp=Math.max(0,enemy.hp-damage);
-
-  document.getElementById("duelLog").textContent =
-    player.name+" dealt "+damage+" damage to "+enemy.name+"!";
-
+  document.getElementById("duelLog").textContent=player.name+" dealt "+damage+" damage to "+enemy.name+"!";
   if(enemy.hp<=0){
     enemyIndex++;
-
-    if(enemyIndex>=enemyTeam.length){
-      finishDuel(true);
-      return;
-    }
-
-    document.getElementById("duelLog").textContent+=
-      " Enemy monster defeated! A new opponent appears.";
+    if(enemyIndex>=enemyTeam.length){finishDuel(true);return;}
+    document.getElementById("duelLog").textContent+=" Enemy monster defeated! A new opponent appears.";
   }
-
-  duelBusy=true;
-  updateDuelScreen();
-
-  duelTimeouts.push(setTimeout(duelEnemyMove,800));
+  duelBusy=true;updateDuelScreen();duelTimeouts.push(setTimeout(duelEnemyMove,800));
 }
-
-
-// COMPUTER TURN
-
 function duelEnemyMove(){
-  if(playerIndex>=duelTeam.length){
-    finishDuel(false);
-    return;
-  }
-
-  const player=duelTeam[playerIndex];
-  const enemy=enemyTeam[enemyIndex];
-
-  const damage=Math.floor(
-    enemy.attack*(0.8+Math.random()*0.4)
-  );
-
+  if(playerIndex>=duelTeam.length){finishDuel(false);return;}
+  const player=duelTeam[playerIndex],enemy=enemyTeam[enemyIndex];
+  const damage=Math.floor(enemy.attack*(0.8+Math.random()*0.4));
   player.hp=Math.max(0,player.hp-damage);
-
-  document.getElementById("duelLog").textContent+=
-    " "+enemy.name+" attacked for "+damage+" damage!";
-
+  document.getElementById("duelLog").textContent+=" "+enemy.name+" attacked for "+damage+" damage!";
   if(player.hp<=0){
     playerIndex++;
-
-    if(playerIndex>=duelTeam.length){
-      updateDuelScreen();
-      finishDuel(false);
-      return;
-    }
-
-    document.getElementById("duelLog").textContent+=
-      " Your monster is defeated! Your next monster enters.";
+    if(playerIndex>=duelTeam.length){updateDuelScreen();finishDuel(false);return;}
+    document.getElementById("duelLog").textContent+=" Your monster is defeated! Your next monster enters.";
   }
-
-  duelBusy=false;
-  updateDuelScreen();
+  duelBusy=false;updateDuelScreen();
 }
-
-
-// BATTLE REWARDS
-
 function finishDuel(won){
   duelBusy=true;
-
-  document.getElementById("attackButton").disabled=true;
-  document.getElementById("specialButton").disabled=true;
-
+  document.getElementById("attackButton").disabled=true;document.getElementById("specialButton").disabled=true;
   if(won){
-    duelStreak++;
-    cardCoins+=150;
-
+    duelStreak++;cardCoins+=150;
     let message="🏆 VICTORY! You earned 150 coins!";
-
-    if(duelStreak===3){
-      cardCoins+=300;
-      message+=" 🔥 3-WIN STREAK BONUS: +300 coins!";
-    }
-
+    if(duelStreak===3){cardCoins+=300;message+=" 🔥 3-WIN STREAK BONUS: +300 coins!";}
     document.getElementById("duelMessage").textContent=message;
-    document.getElementById("duelLog").textContent=
-      "YOU WON THE DUEL! All enemy monsters were defeated!";
+    document.getElementById("duelLog").textContent="YOU WON THE DUEL! All enemy monsters were defeated!";
   }else{
-    duelStreak=0;
-    cardCoins+=25;
-
-    document.getElementById("duelMessage").textContent=
-      "Battle over! You earned 25 coins for participating.";
-
-    document.getElementById("duelLog").textContent=
-      "Your team was defeated. Train your collection and try again!";
+    duelStreak=0;cardCoins+=25;
+    document.getElementById("duelMessage").textContent="Battle over! You earned 25 coins for participating.";
+    document.getElementById("duelLog").textContent="Your team was defeated. Train your collection and try again!";
   }
-
-  updateCardCoins();
-  saveCardGame();
-  renderDuelChoices();
-
+  updateCardCoins();saveCardGame();renderDuelChoices();
   duelTimeouts.push(setTimeout(()=>{
     document.getElementById("duelBattle").style.display="none";
     document.getElementById("duelSetup").style.display="block";
-
-    duelTeam=[];
-    renderDuelChoices();
+    duelTeam=[];renderDuelChoices();
   },2500));
 }
 
+// ======================================
+// DUNGEON RUSH - PIXEL DUNGEON GAME
+// ======================================
+const DUNGEON_SAVE_KEY="dungeonRushSave";
+const dungeonCanvas=document.getElementById("dungeonCanvas");
+const dungeonCtx=dungeonCanvas.getContext("2d");
+const TILE=48,MAP_W=16,MAP_H=10;
+let dungeonOpen=false,dungeonRAF=0,dungeonLastTime=0;
+let dungeonRoom=1,dungeonCoins=0,dungeonWeapon=1,dungeonMaxHP=100,dungeonHP=100;
+let dungeonPotions=1,dungeonEnemies=[],dungeonChests=[],dungeonMap=[];
+let dungeonPlayer={x:2.5,y:2.5,dir:"down",swing:0,invulnerable:0,walk:0};
+let dungeonKeys={},dungeonTouch={};
+let dungeonDoorOpen=false,dungeonDead=false,dungeonWon=false,dungeonRoomRewarded=false;
+let dungeonBoss=null,dungeonAttackCooldown=0,dungeonTime=0;
 
-// =================================
-// RESET ALL LEARNING LOUNGE PROGRESS
-// =================================
+function saveDungeon(){
+  try{
+    localStorage.setItem(DUNGEON_SAVE_KEY,JSON.stringify({
+      room:dungeonRoom,coins:dungeonCoins,weapon:dungeonWeapon,
+      maxHP:dungeonMaxHP,potions:dungeonPotions
+    }));
+  }catch(e){}
+}
+function loadDungeon(){
+  try{
+    const s=JSON.parse(localStorage.getItem(DUNGEON_SAVE_KEY));
+    if(s){
+      dungeonRoom=Math.max(1,Math.min(5,Number(s.room)||1));
+      dungeonCoins=Math.max(0,Number(s.coins)||0);
+      dungeonWeapon=Math.max(1,Math.min(10,Number(s.weapon)||1));
+      dungeonMaxHP=Math.max(100,Math.min(250,Number(s.maxHP)||100));
+      dungeonPotions=Math.max(0,Number(s.potions)||0);
+    }
+  }catch(e){}
+  dungeonHP=dungeonMaxHP;
+}
+function openDungeon(){
+  document.getElementById("dungeonGame").style.display="block";
+  dungeonOpen=true;
+  dungeonDead=false;dungeonWon=false;
+  loadDungeon();
+  buildDungeonRoom();
+  updateDungeonHUD();
+  if(!dungeonRAF){dungeonLastTime=0;dungeonRAF=requestAnimationFrame(dungeonLoop);}
+}
+function closeDungeon(){
+  dungeonOpen=false;
+  if(dungeonRAF){cancelAnimationFrame(dungeonRAF);dungeonRAF=0;}
+  document.getElementById("dungeonGame").style.display="none";
+  dungeonKeys={};dungeonTouch={};
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
+}
+function dungeonFullscreen(){
+  const screen=document.getElementById("dungeonGame");
+  if(!document.fullscreenElement)screen.requestFullscreen?.().catch(()=>{});
+  else document.exitFullscreen?.().catch(()=>{});
+}
+function dungeonMessage(message){
+  document.getElementById("dungeonMessage").textContent=message;
+}
+function dungeonTile(x,y){
+  if(x<0||y<0||x>=MAP_W||y>=MAP_H)return 1;
+  return dungeonMap[y]?.[x]??1;
+}
+function dungeonWalkable(x,y){
+  const tx=Math.floor(x),ty=Math.floor(y);
+  return dungeonTile(tx,ty)===0||dungeonTile(tx,ty)===2;
+}
+function buildDungeonRoom(){
+  dungeonMap=[];
+  for(let y=0;y<MAP_H;y++){
+    const row=[];
+    for(let x=0;x<MAP_W;x++){
+      row.push((x===0||y===0||x===MAP_W-1||y===MAP_H-1)?1:0);
+    }
+    dungeonMap.push(row);
+  }
+  // Room-specific stone pillars and barriers.
+  if(dungeonRoom===2){
+    for(let y=2;y<8;y++)if(y!==4&&y!==5)dungeonMap[y][5]=1;
+    for(let y=2;y<8;y++)if(y!==3&&y!==6)dungeonMap[y][10]=1;
+  }else if(dungeonRoom===3){
+    for(let x=3;x<13;x++)if(x!==7&&x!==8)dungeonMap[4][x]=1;
+    for(let x=3;x<13;x++)if(x!==5&&x!==10)dungeonMap[7][x]=1;
+  }else if(dungeonRoom===4){
+    for(let y=2;y<8;y++){if(y!==3)dungeonMap[y][4]=1;if(y!==6)dungeonMap[y][11]=1;}
+    dungeonMap[3][8]=1;dungeonMap[6][8]=1;
+  }else if(dungeonRoom===5){
+    for(let x=4;x<12;x++){if(x!==7&&x!==8)dungeonMap[3][x]=1;}
+    dungeonMap[6][4]=1;dungeonMap[6][11]=1;
+  }
+  dungeonPlayer={x:2.5,y:2.5,dir:"down",swing:0,invulnerable:0,walk:0};
+  dungeonEnemies=[];dungeonChests=[];dungeonDoorOpen=false;dungeonRoomRewarded=false;
+  dungeonDead=false;dungeonWon=false;dungeonBoss=null;
+  const enemySets={
+    1:[["slime",9,3],["slime",11,7],["bat",6,7]],
+    2:[["slime",8,2],["skeleton",12,3],["bat",8,7],["skeleton",12,7]],
+    3:[["skeleton",6,2],["bat",10,2],["slime",12,6],["skeleton",5,8],["bat",9,8]],
+    4:[["skeleton",8,2],["skeleton",12,5],["bat",7,7],["slime",3,7],["slime",12,8]],
+    5:[]
+  };
+  (enemySets[dungeonRoom]||[]).forEach(e=>addDungeonEnemy(e[0],e[1]+.5,e[2]+.5));
+  if(dungeonRoom===5){
+    dungeonBoss={x:11.5,y:5.5,hp:260,maxHP:260,attackTimer:0,flash:0};
+    dungeonMessage("THE DUNGEON BOSS HAS AWAKENED! Watch out for its attacks!");
+  }else{
+    dungeonMessage("Room "+dungeonRoom+": Defeat every monster to unlock the exit!");
+  }
+  // Chests
+  const chestSpots=dungeonRoom===1?[[7,7]]:dungeonRoom===2?[[3,7],[13,2]]:dungeonRoom===3?[[2,2],[13,8]]:dungeonRoom===4?[[8,8],[13,2]]:[];
+  chestSpots.forEach(p=>dungeonChests.push({x:p[0]+.5,y:p[1]+.5,opened:false}));
+}
+function addDungeonEnemy(type,x,y){
+  const stats={
+    slime:{hp:35,damage:8,speed:.65,color:"#65e58a"},
+    bat:{hp:24,damage:6,speed:1.0,color:"#a77aff"},
+    skeleton:{hp:55,damage:12,speed:.48,color:"#e4d8bc"}
+  }[type];
+  dungeonEnemies.push({type,x,y,hp:stats.hp,maxHP:stats.hp,damage:stats.damage,speed:stats.speed,flash:0,attackTimer:0,phase:Math.random()*6});
+}
+function dungeonMove(dx,dy){
+  if(!dungeonOpen||dungeonDead||dungeonWon)return;
+  const speed=.13;
+  const nx=dungeonPlayer.x+dx*speed,ny=dungeonPlayer.y+dy*speed;
+  if(dx<0)dungeonPlayer.dir="left";
+  if(dx>0)dungeonPlayer.dir="right";
+  if(dy<0)dungeonPlayer.dir="up";
+  if(dy>0)dungeonPlayer.dir="down";
+  if(dungeonWalkable(nx,dungeonPlayer.y))dungeonPlayer.x=nx;
+  if(dungeonWalkable(dungeonPlayer.x,ny))dungeonPlayer.y=ny;
+  if(dx||dy)dungeonPlayer.walk+=.25;
+  checkDungeonChest();
+  checkDungeonDoor();
+}
+function checkDungeonChest(){
+  dungeonChests.forEach(chest=>{
+    if(!chest.opened&&Math.hypot(chest.x-dungeonPlayer.x,chest.y-dungeonPlayer.y)<.8){
+      chest.opened=true;
+      const reward=25+Math.floor(Math.random()*36);
+      dungeonCoins+=reward;
+      dungeonPotions++;
+      dungeonMessage("TREASURE FOUND! +"+reward+" coins and +1 potion!");
+      saveDungeon();updateDungeonHUD();
+    }
+  });
+}
+function checkDungeonDoor(){
+  if(!dungeonDoorOpen)return;
+  const doorX=13.5,doorY=8.5;
+  if(Math.hypot(dungeonPlayer.x-doorX,dungeonPlayer.y-doorY)<.8){
+    if(dungeonRoom<5){
+      dungeonRoom++;
+      dungeonHP=Math.min(dungeonMaxHP,dungeonHP+20);
+      saveDungeon();buildDungeonRoom();updateDungeonHUD();
+      dungeonMessage("Room "+dungeonRoom+"! You recovered 20 health.");
+    }else if(dungeonBoss&&dungeonBoss.hp<=0){
+      dungeonWon=true;dungeonCoins+=300;saveDungeon();
+      dungeonMessage("🏆 DUNGEON CLEARED! You defeated the boss! +300 bonus coins!");
+      updateDungeonHUD();
+    }
+  }
+}
+function dungeonAttack(){
+  if(!dungeonOpen||dungeonDead||dungeonWon||dungeonAttackCooldown>0)return;
+  dungeonAttackCooldown=.38;dungeonPlayer.swing=.22;
+  const direction={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[dungeonPlayer.dir];
+  const hit=(target)=>{
+    const dx=target.x-dungeonPlayer.x,dy=target.y-dungeonPlayer.y;
+    const distance=Math.hypot(dx,dy);
+    if(distance>1.55)return false;
+    const dot=(dx*direction[0]+dy*direction[1])/Math.max(.01,distance);
+    return dot>.05;
+  };
+  let hits=0;
+  dungeonEnemies.forEach(enemy=>{
+    if(enemy.hp>0&&hit(enemy)){
+      const damage=14+dungeonWeapon*9;
+      enemy.hp=Math.max(0,enemy.hp-damage);enemy.flash=.18;hits++;
+      if(enemy.hp===0){
+        const reward=8+Math.floor(Math.random()*9);
+        dungeonCoins+=reward;
+        dungeonMessage(enemy.type.toUpperCase()+" defeated! +"+reward+" coins.");
+      }
+    }
+  });
+  if(dungeonBoss&&dungeonBoss.hp>0&&hit(dungeonBoss)){
+    const damage=12+dungeonWeapon*8;
+    dungeonBoss.hp=Math.max(0,dungeonBoss.hp-damage);dungeonBoss.flash=.2;hits++;
+    if(dungeonBoss.hp===0){
+      dungeonDoorOpen=true;
+      dungeonMessage("THE BOSS IS DEFEATED! The final exit is open!");
+    }
+  }
+  if(hits===0)dungeonMessage("Your sword swings through the air!");
+  checkDungeonClear();updateDungeonHUD();saveDungeon();
+}
+function checkDungeonClear(){
+  const enemiesLeft=dungeonEnemies.some(e=>e.hp>0);
+  const bossAlive=dungeonBoss&&dungeonBoss.hp>0;
+  if(!enemiesLeft&&!bossAlive&&!dungeonDoorOpen){
+    dungeonDoorOpen=true;
+    if(!dungeonRoomRewarded){
+      dungeonRoomRewarded=true;
+      const reward=35+dungeonRoom*15;
+      dungeonCoins+=reward;
+      dungeonMessage("ROOM CLEARED! Exit unlocked. Room reward: +"+reward+" coins!");
+      saveDungeon();
+    }
+  }
+}
+function dungeonHurt(amount){
+  if(dungeonPlayer.invulnerable>0||dungeonDead||dungeonWon)return;
+  dungeonHP=Math.max(0,dungeonHP-amount);
+  dungeonPlayer.invulnerable=.65;
+  updateDungeonHUD();
+  if(dungeonHP<=0){
+    dungeonDead=true;
+    dungeonMessage("You were knocked out! Restart the room to try again.");
+  }
+}
+function updateDungeonEnemies(dt){
+  dungeonEnemies.forEach(enemy=>{
+    if(enemy.hp<=0)return;
+    enemy.phase+=dt*4;
+    enemy.flash=Math.max(0,enemy.flash-dt);
+    enemy.attackTimer=Math.max(0,enemy.attackTimer-dt);
+    const dx=dungeonPlayer.x-enemy.x,dy=dungeonPlayer.y-enemy.y;
+    const dist=Math.hypot(dx,dy);
+    if(dist>0.65){
+      const nx=enemy.x+(dx/Math.max(dist,.01))*enemy.speed*dt;
+      const ny=enemy.y+(dy/Math.max(dist,.01))*enemy.speed*dt;
+      if(dungeonWalkable(nx,enemy.y))enemy.x=nx;
+      if(dungeonWalkable(enemy.x,ny))enemy.y=ny;
+    }else if(enemy.attackTimer<=0){
+      dungeonHurt(enemy.damage);enemy.attackTimer=1.15;
+    }
+  });
+  if(dungeonBoss&&dungeonBoss.hp>0){
+    dungeonBoss.attackTimer-=dt;dungeonBoss.flash=Math.max(0,dungeonBoss.flash-dt);
+    const dx=dungeonPlayer.x-dungeonBoss.x,dy=dungeonPlayer.y-dungeonBoss.y;
+    const dist=Math.hypot(dx,dy);
+    if(dist>1.35){
+      const nx=dungeonBoss.x+(dx/Math.max(dist,.01))*.35*dt;
+      const ny=dungeonBoss.y+(dy/Math.max(dist,.01))*.35*dt;
+      if(dungeonWalkable(nx,dungeonBoss.y))dungeonBoss.x=nx;
+      if(dungeonWalkable(dungeonBoss.x,ny))dungeonBoss.y=ny;
+    }else if(dungeonBoss.attackTimer<=0){
+      dungeonHurt(18);dungeonBoss.attackTimer=1.4;
+    }
+  }
+  checkDungeonClear();
+}
+function dungeonLoop(timestamp){
+  if(!dungeonOpen){dungeonRAF=0;return;}
+  const dt=dungeonLastTime?Math.min(.04,(timestamp-dungeonLastTime)/1000):0;
+  dungeonLastTime=timestamp;dungeonTime+=dt;
+  if(!dungeonDead&&!dungeonWon){
+    let dx=0,dy=0;
+    if(dungeonKeys.ArrowLeft||dungeonKeys.a||dungeonTouch.left)dx--;
+    if(dungeonKeys.ArrowRight||dungeonKeys.d||dungeonTouch.right)dx++;
+    if(dungeonKeys.ArrowUp||dungeonKeys.w||dungeonTouch.up)dy--;
+    if(dungeonKeys.ArrowDown||dungeonKeys.s||dungeonTouch.down)dy++;
+    if(dx||dy){
+      const length=Math.hypot(dx,dy);dungeonMove(dx/length,dy/length);
+    }
+    if(dungeonKeys[" "]||dungeonTouch.attack)dungeonAttack();
+    dungeonPlayer.invulnerable=Math.max(0,dungeonPlayer.invulnerable-dt);
+    dungeonPlayer.swing=Math.max(0,dungeonPlayer.swing-dt);
+    dungeonAttackCooldown=Math.max(0,dungeonAttackCooldown-dt);
+    updateDungeonEnemies(dt);
+  }
+  drawDungeon();
+  dungeonRAF=requestAnimationFrame(dungeonLoop);
+}
+function drawDungeon(){
+  const c=dungeonCtx;
+  c.clearRect(0,0,768,512);
+  // Stone floor tiles
+  for(let y=0;y<MAP_H;y++)for(let x=0;x<MAP_W;x++){
+    const px=x*TILE,py=y*TILE,wall=dungeonMap[y][x]===1;
+    if(wall){
+      c.fillStyle="#29243c";c.fillRect(px,py,TILE,TILE);
+      c.fillStyle="#48405a";c.fillRect(px+2,py+2,TILE-4,5);
+      c.fillStyle="#171426";c.fillRect(px+3,py+TILE-7,TILE-6,5);
+      c.fillStyle="#39334a";c.fillRect(px+5,py+12,3,12);
+    }else{
+      c.fillStyle=((x+y)%2===0)?"#242139":"#211e35";
+      c.fillRect(px,py,TILE,TILE);
+      c.strokeStyle="#302a43";c.lineWidth=1;c.strokeRect(px+.5,py+.5,TILE-1,TILE-1);
+      if((x*7+y*11)%9===0){
+        c.fillStyle="#39304b";c.fillRect(px+12,py+15,3,3);c.fillRect(px+31,py+34,2,2);
+      }
+    }
+  }
+  // Torches and crystals
+  for(const t of [[1,1],[14,1],[1,8],[14,8]]){
+    const x=t[0]*TILE+24,y=t[1]*TILE+22;
+    c.fillStyle="#5b315b";c.fillRect(x-4,y+4,8,18);
+    c.fillStyle="#ff9c47";c.shadowColor="#ff702b";c.shadowBlur=18+Math.sin(dungeonTime*7)*5;
+    c.fillRect(x-4,y-7,8,12);c.shadowBlur=0;
+    c.fillStyle="#ffe5a0";c.fillRect(x-2,y-5,4,5);
+  }
+  for(const crystal of [[3,2],[12,2],[3,7],[12,7]]){
+    const x=crystal[0]*TILE+24,y=crystal[1]*TILE+25;
+    c.fillStyle="#572b8a";c.shadowColor="#a64cff";c.shadowBlur=14;
+    c.beginPath();c.moveTo(x,y-13);c.lineTo(x+8,y);c.lineTo(x,y+12);c.lineTo(x-8,y);c.closePath();c.fill();c.shadowBlur=0;
+  }
+  // Treasure chests
+  dungeonChests.forEach(ch=>{
+    if(ch.opened){
+      c.fillStyle="#49324b";c.fillRect(ch.x*TILE-12,ch.y*TILE-8,24,15);
+      c.fillStyle="#b58b57";c.fillRect(ch.x*TILE-12,ch.y*TILE-8,24,4);
+    }else{
+      c.fillStyle="#8c4d21";c.fillRect(ch.x*TILE-13,ch.y*TILE-8,26,17);
+      c.fillStyle="#e5a73d";c.fillRect(ch.x*TILE-13,ch.y*TILE-8,26,5);
+      c.fillStyle="#ffe78b";c.fillRect(ch.x*TILE-3,ch.y*TILE-3,6,7);
+    }
+  });
+  // Exit door
+  c.fillStyle=dungeonDoorOpen?"#35dca2":"#603a74";
+  c.shadowColor=dungeonDoorOpen?"#42ffbd":"#b34cff";c.shadowBlur=15;
+  c.fillRect(13*TILE+7,8*TILE+3,34,43);c.shadowBlur=0;
+  c.fillStyle="#171124";c.fillRect(13*TILE+12,8*TILE+8,24,38);
+  c.fillStyle=dungeonDoorOpen?"#8effd1":"#b78ad3";c.fillRect(13*TILE+29,8*TILE+27,3,3);
+  if(dungeonDoorOpen){
+    c.fillStyle="#b8ffe7";c.font="10px Arial";c.fillText("EXIT",13*TILE+10,8*TILE-4);
+  }
+  // Enemies
+  dungeonEnemies.forEach(e=>{
+    if(e.hp<=0)return;
+    const x=e.x*TILE,y=e.y*TILE+Math.sin(e.phase)*2;
+    c.save();c.translate(x,y);
+    if(e.flash>0)c.globalAlpha=.55;
+    if(e.type==="slime"){
+      c.fillStyle="#3acb73";c.fillRect(-15,-8,30,18);
+      c.fillStyle="#79ff9e";c.fillRect(-11,-13,22,8);
+      c.fillStyle="#122d27";c.fillRect(-7,-5,4,5);c.fillRect(4,-5,4,5);
+      c.fillStyle="#b4ffd0";c.fillRect(-6,-6,2,2);c.fillRect(5,-6,2,2);
+    }else if(e.type==="bat"){
+      c.fillStyle="#7542ad";c.fillRect(-9,-10,18,18);
+      c.fillStyle="#a87bea";c.fillRect(-20,-5,11,9);c.fillRect(9,-5,11,9);
+      c.fillStyle="#ff557c";c.fillRect(-5,-3,3,3);c.fillRect(3,-3,3,3);
+    }else{
+      c.fillStyle="#d5c8aa";c.fillRect(-11,-13,22,24);
+      c.fillStyle="#514b56";c.fillRect(-9,-18,18,9);
+      c.fillStyle="#e94c62";c.fillRect(-6,-9,4,4);c.fillRect(3,-9,4,4);
+      c.fillStyle="#5c5260";c.fillRect(-14,5,8,8);c.fillRect(6,5,8,8);
+    }
+    c.restore();
+    c.fillStyle="#120e1c";c.fillRect(x-16,y-24,32,4);
+    c.fillStyle="#f35b67";c.fillRect(x-16,y-24,32*(e.hp/e.maxHP),4);
+  });
+  // Boss
+  if(dungeonBoss&&dungeonBoss.hp>0){
+    const b=dungeonBoss,x=b.x*TILE,y=b.y*TILE+Math.sin(dungeonTime*3)*3;
+    c.save();c.translate(x,y);
+    c.fillStyle=b.flash>0?"#fff":"#702b85";c.fillRect(-22,-23,44,44);
+    c.fillStyle="#a84a9c";c.fillRect(-17,-31,34,15);
+    c.fillStyle="#ffcc55";c.fillRect(-13,-18,8,7);c.fillRect(6,-18,8,7);
+    c.fillStyle="#21112e";c.fillRect(-10,-16,4,4);c.fillRect(9,-16,4,4);
+    c.fillStyle="#492052";c.fillRect(-30,-10,9,23);c.fillRect(21,-10,9,23);
+    c.fillStyle="#d94c73";c.fillRect(-7,3,14,5);
+    c.restore();
+    c.fillStyle="#160e22";c.fillRect(x-30,y-42,60,7);
+    c.fillStyle="#f04d73";c.fillRect(x-30,y-42,60*(b.hp/b.maxHP),7);
+    c.fillStyle="#ffe0a5";c.font="12px Arial";c.textAlign="center";c.fillText("DUNGEON BOSS",x,y-48);c.textAlign="left";
+  }
+  // Player hero
+  const p=dungeonPlayer,px=p.x*TILE,py=p.y*TILE+Math.sin(p.walk)*2;
+  c.save();c.translate(px,py);
+  if(p.invulnerable>0&&Math.floor(dungeonTime*18)%2===0)c.globalAlpha=.4;
+  // Shadow
+  c.fillStyle="#090713";c.beginPath();c.ellipse(0,13,15,6,0,0,Math.PI*2);c.fill();
+  // Boots
+  c.fillStyle="#49305a";c.fillRect(-10,4,8,10);c.fillRect(3,4,8,10);
+  // Body
+  c.fillStyle="#3d65a5";c.fillRect(-12,-12,24,19);
+  c.fillStyle="#68a7ed";c.fillRect(-9,-11,18,5);
+  // Head
+  c.fillStyle="#e6b98f";c.fillRect(-10,-26,20,16);
+  // Hair
+  c.fillStyle="#58304a";c.fillRect(-11,-29,22,7);c.fillRect(-11,-23,4,7);
+  // Eyes
+  c.fillStyle="#21152b";
+  if(p.dir==="left")c.fillRect(-8,-20,3,3);
+  else if(p.dir==="right")c.fillRect(5,-20,3,3);
+  else{c.fillRect(-6,-20,3,3);c.fillRect(4,-20,3,3);}
+  // Belt
+  c.fillStyle="#e3b54f";c.fillRect(-11,1,22,3);
+  // Sword swing
+  c.fillStyle="#d9e9ff";
+  if(p.swing>0){
+    c.save();c.rotate(p.dir==="left"?-.9:p.dir==="right"?.9:p.dir==="up"?-1.5:1.5);
+    c.fillRect(9,-28,5,29);c.fillStyle="#f9d77b";c.fillRect(5,-3,13,4);
+    c.restore();
+  }else{
+    c.fillRect(p.dir==="left"?-18:12,p.dir==="up"?-24:0,4,22);
+    c.fillStyle="#e4b65c";c.fillRect(p.dir==="left"?-20:10,p.dir==="up"?-5:15,8,4);
+  }
+  c.restore();
+  // Vignette
+  const grad=c.createRadialGradient(384,256,140,384,256,450);
+  grad.addColorStop(0,"rgba(0,0,0,0)");grad.addColorStop(1,"rgba(0,0,0,.3)");
+  c.fillStyle=grad;c.fillRect(0,0,768,512);
+  if(dungeonDead||dungeonWon){
+    c.fillStyle="rgba(5,3,15,.72)";c.fillRect(0,0,768,512);
+    c.textAlign="center";c.font="bold 30px Orbitron";
+    c.fillStyle=dungeonWon?"#ffe28c":"#ff8495";
+    c.fillText(dungeonWon?"DUNGEON CLEARED!":"YOU WERE DEFEATED",384,230);
+    c.font="16px Orbitron";c.fillStyle="white";
+    c.fillText(dungeonWon?"You conquered all five rooms!":"Tap RESTART ROOM to try again.",384,270);
+    c.textAlign="left";
+  }
+}
+function updateDungeonHUD(){
+  document.getElementById("dungeonRoom").textContent="ROOM "+dungeonRoom+" / 5";
+  document.getElementById("dungeonHealth").textContent="❤️ "+dungeonHP+" / "+dungeonMaxHP;
+  document.getElementById("dungeonCoins").textContent="🪙 "+dungeonCoins;
+  const count=dungeonEnemies.filter(e=>e.hp>0).length+(dungeonBoss&&dungeonBoss.hp>0?1:0);
+  document.getElementById("dungeonEnemies").textContent="MONSTERS: "+count;
+  document.getElementById("dungeonWeapon").textContent="SWORD LV. "+dungeonWeapon;
+  const swordCost=100*dungeonWeapon,heartCost=120+((dungeonMaxHP-100)/25)*60;
+  const sb=document.getElementById("swordUpgradeButton"),hb=document.getElementById("heartUpgradeButton");
+  sb.textContent="UPGRADE - "+swordCost+" COINS";sb.disabled=dungeonCoins<swordCost||dungeonWeapon>=10;
+  hb.textContent="UPGRADE - "+heartCost+" COINS";hb.disabled=dungeonCoins<heartCost||dungeonMaxHP>=250;
+}
+function dungeonRestartRoom(){
+  dungeonHP=dungeonMaxHP;
+  buildDungeonRoom();updateDungeonHUD();
+  dungeonMessage("Room restarted. Good luck!");
+}
+function dungeonHeal(){
+  if(dungeonPotions<=0){dungeonMessage("You have no potions! Find a treasure chest.");return;}
+  if(dungeonHP>=dungeonMaxHP){dungeonMessage("Your health is already full!");return;}
+  dungeonPotions--;dungeonHP=Math.min(dungeonMaxHP,dungeonHP+40);
+  updateDungeonHUD();saveDungeon();dungeonMessage("Potion used! +40 health. Potions left: "+dungeonPotions);
+}
+function buyDungeonPotion(){
+  if(dungeonCoins<30){dungeonMessage("You need 30 coins for a potion.");return;}
+  dungeonCoins-=30;dungeonPotions++;saveDungeon();updateDungeonHUD();
+  dungeonMessage("Potion purchased! You now have "+dungeonPotions+" potions.");
+}
+function buyDungeonSword(){
+  const cost=100*dungeonWeapon;
+  if(dungeonWeapon>=10||dungeonCoins<cost)return;
+  dungeonCoins-=cost;dungeonWeapon++;saveDungeon();updateDungeonHUD();
+  dungeonMessage("Sword upgraded to level "+dungeonWeapon+"! Your attacks are stronger.");
+}
+function buyDungeonHeart(){
+  const cost=120+((dungeonMaxHP-100)/25)*60;
+  if(dungeonMaxHP>=250||dungeonCoins<cost)return;
+  dungeonCoins-=cost;dungeonMaxHP+=25;dungeonHP+=25;
+  saveDungeon();updateDungeonHUD();dungeonMessage("Maximum health increased to "+dungeonMaxHP+"!");
+}
 
+// KEYBOARD AND TOUCH INPUT
+window.addEventListener("keydown",e=>{
+  if(!dungeonOpen)return;
+  const key=e.key.length===1?e.key.toLowerCase():e.key;
+  if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(key))e.preventDefault();
+  dungeonKeys[key]=true;
+});
+window.addEventListener("keyup",e=>{
+  const key=e.key.length===1?e.key.toLowerCase():e.key;
+  dungeonKeys[key]=false;
+});
+document.querySelectorAll("[data-move]").forEach(button=>{
+  const dir=button.dataset.move;
+  const start=e=>{e.preventDefault();dungeonTouch[dir]=true;};
+  const end=e=>{e.preventDefault();dungeonTouch[dir]=false;};
+  button.addEventListener("pointerdown",start);
+  button.addEventListener("pointerup",end);
+  button.addEventListener("pointerleave",end);
+  button.addEventListener("pointercancel",end);
+});
+const attackButton=document.getElementById("dungeonAttack");
+attackButton.addEventListener("pointerdown",e=>{e.preventDefault();dungeonTouch.attack=true;dungeonAttack();});
+["pointerup","pointerleave","pointercancel"].forEach(event=>{
+  attackButton.addEventListener(event,e=>{e.preventDefault();dungeonTouch.attack=false;});
+});
+
+// RESET ALL PROGRESS
 function resetProgress(){
   const confirmed=confirm(
     "Are you sure you want to reset ALL Learning Lounge progress?\n\n"+
@@ -2178,84 +1356,45 @@ function resetProgress(){
     "• Neon Critter Clicker coins and upgrades\n"+
     "• Card Clash coins and collection\n"+
     "• Duel win streak\n"+
-    "• Free pack cooldown\n\n"+
+    "• Free pack cooldown\n"+
+    "• Dungeon Rush coins, rooms and upgrades\n\n"+
     "This cannot be undone!"
   );
-
   if(!confirmed)return;
-
-  // Stop any pending duel actions.
-  duelTimeouts.forEach(timeout=>{
-    clearTimeout(timeout);
-  });
-  duelTimeouts=[];
-
-  // Reset Neon Critter Clicker.
-  coins=0;
-  levels={};
-
-  // Reset Card Clash.
-  cardCoins=500;
-  collection={};
-  lastPack=[];
-  duelStreak=0;
-
-  // Reset free pack cooldown.
+  duelTimeouts.forEach(timeout=>clearTimeout(timeout));duelTimeouts=[];
+  coins=0;levels={};
+  cardCoins=500;collection={};lastPack=[];duelStreak=0;
   nextFreePackTime=0;
-
-  // Reset duel state.
-  duelTeam=[];
-  enemyTeam=[];
-  playerIndex=0;
-  enemyIndex=0;
-  duelBusy=false;
-
-  // Clear all saved progress.
+  duelTeam=[];enemyTeam=[];playerIndex=0;enemyIndex=0;duelBusy=false;
+  dungeonCoins=0;dungeonRoom=1;dungeonWeapon=1;dungeonMaxHP=100;dungeonHP=100;dungeonPotions=1;
+  dungeonKeys={};dungeonTouch={};dungeonDead=false;dungeonWon=false;
   try{
     localStorage.removeItem(SAVE_KEY);
     localStorage.removeItem(CARD_SAVE_KEY);
     localStorage.removeItem(FREE_PACK_COOLDOWN_KEY);
+    localStorage.removeItem(DUNGEON_SAVE_KEY);
   }catch(e){}
-
-  // Refresh the visible game displays.
-  updateStats();
-  updateCardCoins();
-  renderCollection();
-  renderPackResults();
-  renderDuelChoices();
-  updateFreePackButton();
-
-  document.getElementById("gameMessage").textContent=
-    "All progress reset! Fresh start!";
-
-  document.getElementById("packMessage").textContent=
-    "Card Clash has been reset! Claim your free pack to begin.";
-
+  updateStats();updateCardCoins();renderCollection();renderPackResults();renderDuelChoices();updateFreePackButton();
+  document.getElementById("gameMessage").textContent="All progress reset! Fresh start!";
+  document.getElementById("packMessage").textContent="Card Clash has been reset! Claim your free pack to begin.";
   document.getElementById("duelMessage").textContent="";
   document.getElementById("duelBattle").style.display="none";
   document.getElementById("duelSetup").style.display="block";
-
-  document.getElementById("duelLog").textContent=
-    "The battle is starting!";
-
-  document.getElementById("duelStreak").textContent=
-    "🔥 Win streak: 0";
-
-  // Save the default starting values so they stay reset.
-  saveGame();
-  saveCardGame();
-
+  document.getElementById("duelLog").textContent="The battle is starting!";
+  document.getElementById("duelStreak").textContent="🔥 Win streak: 0";
+  if(dungeonOpen){
+    dungeonHP=dungeonMaxHP;buildDungeonRoom();updateDungeonHUD();
+    dungeonMessage("Dungeon progress reset. Your new adventure begins!");
+  }
+  saveGame();saveCardGame();saveDungeon();
   alert("All Learning Lounge progress has been reset!");
 }
 
-
-// START BOTH GAMES
-
+// START ALL GAMES
 loadGame();
 loadCardGame();
 startFreePackTimer();
-
+loadDungeon();
 </script>
-
 </body>
 </html>
