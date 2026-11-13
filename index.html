@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090512">
-<title>Learning Lounge 4.7</title>
+<title>Learning Lounge 4.8</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 </head>
@@ -31,86 +31,52 @@
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock"></span>
-  <span>VERSION 4.7</span>
+  <span>VERSION 4.8</span>
 </div>
 
+<!-- GAME LIBRARY -->
 <section id="library">
   <h2 class="section-title">🎮 GAME LIBRARY</h2>
-  <p>Choose your next game!</p>
+  <p>Three original arcade games. Choose your adventure!</p>
 
   <input id="search" type="text" placeholder="Search games...">
 
   <div class="games" id="gameList">
 
-    <div class="game-card" data-name="sandboxels sandbox simulation">
-      <h3>SANDBOXELS</h3>
-      <a class="game-link" href="https://neal.fun/sandboxels/" target="_blank" rel="noopener noreferrer">
-        <div class="game-picture sandbox-art">🧪🌋<small>SANDBOX EXPERIMENTS</small></div>
-        <span class="play-button">▶ PLAY SANDBOXELS</span>
-      </a>
-      <p>Experiment with elements, create reactions and build pixel worlds!</p>
-    </div>
-
-    <div class="game-card" data-name="smash karts racing cars battle">
-      <h3>SMASH KARTS</h3>
-      <a class="game-link" href="https://smashkarts.io/" target="_blank" rel="noopener noreferrer">
-        <div class="game-picture smash-art">🏎️💥<small>KART BATTLES</small></div>
-        <span class="play-button">▶ PLAY SMASH KARTS</span>
-      </a>
-      <p>Race around arenas and enjoy chaotic kart battles!</p>
-    </div>
-
-    <div class="game-card" data-name="diep io tank shooter">
-      <h3>DIEP.IO</h3>
-      <a class="game-link" href="https://diep.io/" target="_blank" rel="noopener noreferrer">
-        <div class="game-picture diep-art">🔵🎯<small>TANK ARENA</small></div>
-        <span class="play-button">▶ PLAY DIEP.IO</span>
-      </a>
-      <p>Upgrade your tank and compete in the arena!</p>
-    </div>
-
-    <div class="game-card" data-name="neon critter clicker arcade">
-      <h3>NEON CRITTER CLICKER</h3>
+    <!-- NEON CRITTER CLICKER -->
+    <div class="game-card" data-name="neon critter clicker arcade coins upgrades">
+      <h3>👾 NEON CRITTER CLICKER</h3>
       <button class="game-card-open" onclick="openGame()">
-        <div class="game-picture critter-art">👾<small>CLICKER ARCADE</small></div>
-        <span class="play-button">▶ TAP PICTURE TO PLAY</span>
+        <div class="game-picture critter-art">
+          👾
+          <small>CLICKER ARCADE</small>
+        </div>
+        <span class="play-button">▶ PLAY NEON CRITTER CLICKER</span>
       </button>
       <p>Click your critter, collect coins and buy 17 powerful upgrades!</p>
     </div>
 
-    <div class="game-card" data-name="t rex trex dinosaur runner">
-      <h3>T-REX RUNNER</h3>
-      <a class="game-link" href="https://wayou.github.io/t-rex-runner/" target="_blank" rel="noopener noreferrer">
-        <div class="game-picture trex-art">🦖<small>DINO RUNNER</small></div>
-        <span class="play-button">▶ PLAY T-REX RUNNER</span>
-      </a>
-      <p>Jump over obstacles and see how far your dinosaur can run!</p>
-      <p class="license-note">BSD-3-Clause • <a href="https://github.com/wayou/t-rex-runner" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
-    </div>
-
-    <div class="game-card" data-name="hexgl racing futuristic spaceship">
-      <h3>HEXGL</h3>
-      <a class="game-link" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener noreferrer">
-        <div class="game-picture hexgl-art">🏎️⚡<small>FUTURE RACING</small></div>
-        <span class="play-button">▶ PLAY HEXGL</span>
-      </a>
-      <p>Take control of a futuristic racing ship and speed through the track!</p>
-      <p class="license-note">MIT License • <a href="https://github.com/BKcore/HexGL" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
-    </div>
-
+    <!-- CARD CLASH -->
     <div class="game-card" data-name="card clash trading cards booster collector monster duel">
       <h3>🎴 CARD CLASH</h3>
       <button class="game-card-open" onclick="openCardClash()">
-        <div class="game-picture cards-art">🃏✨<small>OPEN • COLLECT • DUEL</small></div>
+        <div class="game-picture cards-art">
+          🃏✨
+          <small>OPEN • COLLECT • DUEL</small>
+        </div>
         <span class="play-button">▶ PLAY CARD CLASH</span>
       </button>
       <p>Open booster packs, discover rare creatures, build your collection and battle monsters!</p>
     </div>
 
+    <!-- DUNGEON RUSH -->
     <div class="game-card" data-name="dungeon rush dungeon crawler pixel art monsters boss adventure 50 rooms">
       <h3>⚔️ DUNGEON RUSH</h3>
       <button class="game-card-open" onclick="openDungeon()">
-        <div class="game-picture dungeon-art">🏰⚔️<small>50 ROOM ADVENTURE</small></div>
+        <div class="game-picture dungeon-art">
+          🏰⚔️
+          <small>50 ROOM ADVENTURE</small>
+        </div>
         <span class="play-button">▶ PLAY DUNGEON RUSH</span>
       </button>
       <p>Explore 50 rooms, battle stronger monsters, collect treasure and defeat powerful bosses!</p>
@@ -119,12 +85,13 @@
   </div>
 </section>
 
+<!-- ABOUT AND RESET -->
 <section id="about">
   <h2 class="section-title">ABOUT LEARNING LOUNGE</h2>
-  <p>Welcome to Learning Lounge! A purple neon arcade featuring games, experiments and original creations.</p>
+  <p>Welcome to Learning Lounge! A purple neon arcade featuring three original games.</p>
 
   <h3 class="reset-heading">RESET ALL PROGRESS</h3>
-  <p class="center-text">This resets saved progress in all Learning Lounge games.</p>
+  <p class="center-text">This resets saved progress in all three Learning Lounge games.</p>
   <button class="reset-progress-button" onclick="resetProgress()">RESET ALL PROGRESS</button>
 </section>
 
