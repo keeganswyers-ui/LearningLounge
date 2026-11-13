@@ -1,1 +1,974 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #090512;
+  color: white;
+  font-family: Orbitron, Arial, sans-serif;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+header {
+  text-align: center;
+  padding: 28px 12px;
+  background: #130a25;
+  border-bottom: 2px solid #a855f7;
+}
+
+.logo {
+  color: #d8a5ff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(17px, 4vw, 30px);
+  text-shadow: 0 0 15px #a855f7;
+}
+
+header p {
+  color: #c9a8e8;
+  font-size: 12px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  background: #1b1030;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #873de0;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  background: #7025b5;
+}
+
+.hero {
+  text-align: center;
+  padding: 48px 15px;
+  background: linear-gradient(135deg, #160b29, #32105b, #10091d);
+}
+
+.hero h1 {
+  color: #d9a2ff;
+  font-size: clamp(25px, 5vw, 42px);
+  text-shadow: 0 0 18px #a855f7;
+}
+
+.hero p {
+  color: #ddd;
+}
+
+.hero-button {
+  max-width: 220px;
+  margin: 20px auto;
+}
+
+.status {
+  margin: 20px auto;
+  max-width: 950px;
+  padding: 15px;
+  background: #160d25;
+  border: 1px solid #7136a9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.online {
+  color: #55ff9a;
+}
+
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 16px;
+}
+
+.section-title {
+  color: #d9a2ff;
+  font-size: 23px;
+  text-shadow: 0 0 10px #922cff;
+}
+
+#search {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0 22px;
+  background: #160d25;
+  border: 1px solid #a855f7;
+  border-radius: 9px;
+  color: white;
+  font-size: 16px;
+}
+
+#search:focus {
+  outline: 2px solid #d9a2ff;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  min-width: 0;
+  background: #160d25;
+  border: 1px solid #7938b5;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 0 12px #4c1680;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px #963dff;
+}
+
+.game-card h3 {
+  color: #d9a2ff;
+  font-size: 15px;
+}
+
+.game-card p {
+  color: #cbb9df;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.game-link {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+
+.game-card-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.game-picture {
+  height: 155px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #a855f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  font-size: 65px;
+  text-shadow: 0 0 18px white;
+  transition: transform .2s, filter .2s;
+}
+
+.game-card:hover .game-picture {
+  filter: brightness(1.2);
+}
+
+.game-picture small {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.sandbox-art {
+  background: linear-gradient(135deg, #063c3c, #1d9959, #d1a02b);
+}
+
+.smash-art {
+  background: linear-gradient(135deg, #21115c, #b52baf, #ed812e);
+}
+
+.diep-art {
+  background: linear-gradient(135deg, #092a63, #1675bc, #42d5ef);
+}
+
+.critter-art {
+  background: linear-gradient(135deg, #210b3e, #7427ad);
+}
+
+.trex-art {
+  background: linear-gradient(135deg, #153b16, #42a52c, #a5e65b);
+}
+
+.hexgl-art {
+  background: linear-gradient(135deg, #071b46, #174fbd, #8a35ff);
+}
+
+.cards-art {
+  background: linear-gradient(135deg, #123b50, #087e78, #b18b36);
+}
+
+.dungeon-art {
+  background: linear-gradient(135deg, #090b24, #452078, #b34b72, #f4a34b);
+}
+
+.racing-art {
+  background: linear-gradient(135deg, #07152f, #087fbb, #7c2cff, #ff3d91);
+}
+
+.rhythm-art {
+  background: linear-gradient(135deg, #170b40, #6626c5, #e13b9b, #27c9dc);
+}
+
+.play-button,
+.action-button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  background: #782ac5;
+  border: 1px solid #c78aff;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  font-family: Orbitron;
+  text-decoration: none;
+}
+
+.play-button:hover,
+.action-button:hover {
+  background: #963dff;
+}
+
+.license-note {
+  color: #a995bd;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.license-note a {
+  color: #d9a2ff;
+}
+
+.reset-heading {
+  color: #ff8b9b;
+  text-align: center;
+  margin-top: 35px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.reset-progress-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 14px;
+  background: #8e202f;
+  border: 1px solid #ff7585;
+  border-radius: 8px;
+  color: white;
+  font-family: Orbitron;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reset-progress-button:hover {
+  background: #bd3047;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #130a25;
+  border-top: 1px solid #7136a9;
+  color: #bda6d5;
+  font-size: 12px;
+}
+
+/* ALL GAME WINDOWS */
+
+.game-window {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  background: #080410;
+  overflow: auto;
+  padding: 12px;
+}
+
+.game-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto 15px;
+}
+
+.game-top h2 {
+  color: #d9a2ff;
+  font-size: 18px;
+}
+
+.game-top button {
+  padding: 10px;
+  border: 1px solid #a855f7;
+  background: #35115b;
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.game-top button:hover {
+  background: #782ac5;
+}
+
+/* NEON CRITTER CLICKER */
+
+#clickerScreen {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+#coinCount {
+  font-size: 27px;
+  color: #ffe66d;
+  margin: 15px;
+}
+
+.critter {
+  font-size: 100px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  padding: 25px;
+  border-radius: 50%;
+  background: #211039;
+  border: 3px solid #b45cff;
+  box-shadow: 0 0 30px #9b37ff;
+  margin: 20px;
+}
+
+.critter:active {
+  transform: scale(.94);
+}
+
+.upgrade-heading {
+  color: #d9a2ff;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.upgrade {
+  background: #190d2a;
+  border: 1px solid #7439a7;
+  border-radius: 9px;
+  padding: 12px;
+}
+
+.upgrade p {
+  font-size: 12px;
+  color: #cbb9df;
+}
+
+.upgrade button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  background: #7025b5;
+  color: white;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.upgrade button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* CARD CLASH */
+
+#cardGame {
+  z-index: 30;
+  background: radial-gradient(ellipse at 50% 0%, #174b58, #07131f 85%);
+}
+
+.card-game-content {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.card-logo {
+  font-family: 'Press Start 2P';
+  color: #8effe6;
+  font-size: clamp(20px, 5vw, 32px);
+  margin: 25px 0;
+}
+
+.card-coins {
+  color: #ffe66d;
+  font-size: 23px;
+  margin: 18px;
+}
+
+.card-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 20px 0;
+}
+
+.card-tabs button,
+.card-button {
+  padding: 12px 16px;
+  background: #123744;
+  border: 1px solid #3b9998;
+  border-radius: 8px;
+  color: white;
+  font-family: Orbitron;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.card-tabs button.active,
+.card-tabs button:hover,
+.card-button:hover {
+  background: #087e78;
+}
+
+.card-panel {
+  display: none;
+  background: #102b3a;
+  border: 1px solid #327b83;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 15px 0;
+}
+
+.card-panel.active {
+  display: block;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 13px;
+  margin-top: 18px;
+}
+
+.collect-card {
+  border: 2px solid #777;
+  border-radius: 11px;
+  padding: 12px 7px;
+  background: #102532;
+  overflow: hidden;
+}
+
+.collect-card h3 {
+  font-size: 12px;
+}
+
+.collect-card p {
+  font-size: 10px;
+  color: #d5c7e4;
+}
+
+.collect-card button {
+  width: 100%;
+  padding: 9px;
+  margin-top: 7px;
+  border: 0;
+  border-radius: 6px;
+  background: #087e78;
+  color: white;
+  font-family: Orbitron;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.creature-art {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 9px 0;
+  border-radius: 10px;
+  font-size: 65px;
+  background: radial-gradient(circle, #5c9fa0, #102532);
+}
+
+.rarity-common { border-color: #aeb5c2; }
+.rarity-uncommon { border-color: #45d483; }
+.rarity-rare { border-color: #42a5ff; }
+.rarity-epic { border-color: #bd72ff; }
+.rarity-legendary { border-color: #ffd04c; }
+.rarity-mythic { border-color: #ff668e; }
+.rarity-godly { border-color: #ffb52e; }
+.rarity-secret { border-color: #ff347e; }
+
+.card-info,
+.duel-info {
+  color: #a9d8d7;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+#packResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pack-result-card {
+  border: 2px solid #888;
+  border-radius: 10px;
+  padding: 12px;
+  background: #193d4b;
+}
+
+#packMessage,
+#duelMessage {
+  min-height: 25px;
+  color: #b9fff0;
+}
+
+.duel-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.duel-pick {
+  background: #142f3c;
+  border: 2px solid #347d86;
+  border-radius: 12px;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  font-family: Orbitron;
+}
+
+.duel-pick.selected {
+  border-color: #8effe6;
+  background: #12665f;
+}
+
+.duel-fighters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.duel-fighter {
+  background: #142f3c;
+  border: 2px solid #347d86;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.duel-monster {
+  font-size: 55px;
+  margin: 10px;
+}
+
+.duel-health {
+  height: 15px;
+  background: #07131f;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.duel-health-fill {
+  height: 100%;
+  background: #13b96e;
+  transition: width .3s;
+}
+
+.duel-log {
+  min-height: 65px;
+  padding: 14px;
+  background: #071c28;
+  border: 1px solid #347d86;
+  border-radius: 10px;
+  color: #b9fff0;
+}
+
+/* DUNGEON RUSH */
+
+#dungeonGame {
+  z-index: 35;
+  background: radial-gradient(ellipse at top, #24103d, #090817 70%);
+}
+
+#dungeonGame .game-top h2 {
+  color: #ffc16b;
+}
+
+.dungeon-wrap {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.dungeon-title {
+  font-family: 'Press Start 2P';
+  color: #ffc16b;
+  font-size: clamp(17px, 4vw, 27px);
+  text-shadow: 0 0 15px #ff853b;
+  margin: 14px;
+}
+
+.dungeon-subtitle {
+  color: #d5b8e9;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.dungeon-hud {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #170f29;
+  border: 1px solid #8051a7;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
+  color: #ffe6a6;
+  font-size: 12px;
+}
+
+#dungeonCanvas {
+  display: block;
+  width: 100%;
+  max-width: 768px;
+  height: auto;
+  margin: 10px auto;
+  border: 3px solid #a56add;
+  border-radius: 8px;
+  background: #080817;
+  image-rendering: pixelated;
+  touch-action: none;
+}
+
+.dungeon-message {
+  min-height: 25px;
+  color: #ffdc93;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.dungeon-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 14px auto;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: 48px 48px 48px;
+  grid-template-rows: 48px 48px 48px;
+  gap: 4px;
+}
+
+.dpad button,
+.attack-touch {
+  background: linear-gradient(145deg, #59317d, #28163f);
+  border: 2px solid #c18bff;
+  border-radius: 9px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  touch-action: none;
+  user-select: none;
+}
+
+.dpad .up { grid-column: 2; grid-row: 1; }
+.dpad .left { grid-column: 1; grid-row: 2; }
+.dpad .right { grid-column: 3; grid-row: 2; }
+.dpad .down { grid-column: 2; grid-row: 3; }
+
+.attack-touch {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #a34b3a, #5a1b38);
+  border-color: #ffad7c;
+  font-size: 13px;
+}
+
+.dungeon-shop-heading {
+  color: #ffc16b;
+}
+
+.dungeon-shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.dungeon-upgrade {
+  background: #1a1029;
+  border: 1px solid #8756ad;
+  border-radius: 9px;
+  padding: 12px;
+}
+
+.dungeon-upgrade p {
+  font-size: 11px;
+  color: #d7c3e9;
+  line-height: 1.5;
+}
+
+.dungeon-upgrade button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d3a2ff;
+  border-radius: 7px;
+  background: #66309a;
+  color: white;
+  font-family: Orbitron;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dungeon-upgrade button:disabled {
+  opacity: .4;
+}
+
+.dungeon-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dungeon-actions button {
+  padding: 11px 15px;
+  background: #59317d;
+  border: 1px solid #c18bff;
+  color: white;
+  border-radius: 8px;
+  font-family: Orbitron;
+  cursor: pointer;
+}
+
+/* NEW GAMES */
+
+.new-game-wrap {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  text-align: center;
+}
+
+#racingStats,
+#rhythmStats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 10px auto;
+  padding: 13px;
+  background: #190d2b;
+  border: 1px solid #8c48c5;
+  border-radius: 10px;
+  color: #e8caff;
+  font-size: 13px;
+}
+
+#neonRacingCanvas,
+#rhythmJumperCanvas {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 12px auto;
+  border: 3px solid #a855f7;
+  border-radius: 12px;
+  background: #080817;
+  box-shadow: 0 0 22px #6622a8;
+  touch-action: none;
+}
+
+.new-game-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px auto;
+}
+
+.new-game-controls button {
+  min-width: 95px;
+  padding: 13px 16px;
+  background: linear-gradient(135deg, #7025b5, #39115f);
+  border: 1px solid #d19aff;
+  border-radius: 9px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.new-game-controls button:hover {
+  background: #963dff;
+}
+
+.new-game-controls button:active {
+  transform: scale(.96);
+}
+
+.new-game-help {
+  color: #cbb9df;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 12px auto 25px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  header {
+    padding: 22px 10px;
+  }
+
+  nav {
+    gap: 7px;
+  }
+
+  nav a {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 35px 12px;
+  }
+
+  .games {
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 12px;
+  }
+
+  .game-card {
+    padding: 10px;
+  }
+
+  .game-card h3 {
+    font-size: 12px;
+  }
+
+  .game-picture {
+    height: 125px;
+    font-size: 48px;
+  }
+
+  .game-picture small {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .play-button {
+    padding: 11px 7px;
+    font-size: 11px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-panel {
+    padding: 12px;
+  }
+
+  .duel-fighters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dungeon-controls {
+    gap: 12px;
+  }
+
+  .dpad {
+    grid-template-columns: 43px 43px 43px;
+    grid-template-rows: 43px 43px 43px;
+  }
+
+  .game-top h2 {
+    font-size: 14px;
+  }
+
+  .game-top button {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .new-game-controls button {
+    min-width: 85px;
+    padding: 12px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .games {
+    grid-template-columns: 1fr;
+  }
+
+  .game-picture {
+    height: 150px;
+  }
+}
