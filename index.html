@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,7 +259,7 @@ let room=1,dCoins=0,weapon=1,maxHP=100,hp=100,potions=1;
 let enemies=[],chests=[],map=[],boss=null,doorOpen=false,dead=false,won=false;
 let player={x:2.5,y:2.5,dir:"down",swing:0,invuln:0,walk:0};
 let keys={},touch={},attackCooldown=0;
-let upgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
+let dungeonUpgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
 const enemyTypes={
 slime:{hp:35,damage:7,speed:.62,reward:9,color:"#48d879"},
 bat:{hp:25,damage:6,speed:1.05,reward:10,color:"#a77aff"},
@@ -273,8 +274,8 @@ voidbeast:{hp:480,damage:55,speed:.75,reward:120,color:"#b34be8"}
 };
 const enemyOrder=["slime","bat","skeleton","goblin","spider","orc","ghost","demon","darkknight","voidbeast"];
 const bossNames=["Cave Brute","Bone King","Web Matriarch","Orc Warlord","Frost Horror","Demon General","Phantom Lord","Infernal Dragon","Void Guardian","THE DUNGEON OVERLORD"];
-function saveDungeon(){try{localStorage.setItem(DUNGEON_SAVE_KEY,JSON.stringify({room,coins:dCoins,weapon,maxHP,potions,upgrades}))}catch(e){}}
-function loadDungeon(){try{let s=JSON.parse(localStorage.getItem(DUNGEON_SAVE_KEY));if(s){room=Math.max(1,Math.min(50,Number(s.room)||1));dCoins=Math.max(0,Number(s.coins)||0);weapon=Math.max(1,Number(s.weapon)||1);maxHP=Math.max(100,Number(s.maxHP)||100);potions=Math.max(0,Number(s.potions)||0);upgrades={...upgrades,...(s.upgrades||{})}}}catch(e){}hp=maxHP}
+function saveDungeon(){try{localStorage.setItem(DUNGEON_SAVE_KEY,JSON.stringify({room,coins:dCoins,weapon,maxHP,potions,upgrades:dungeonUpgrades}))}catch(e){}}
+function loadDungeon(){try{let s=JSON.parse(localStorage.getItem(DUNGEON_SAVE_KEY));if(s){room=Math.max(1,Math.min(50,Number(s.room)||1));dCoins=Math.max(0,Number(s.coins)||0);weapon=Math.max(1,Number(s.weapon)||1);maxHP=Math.max(100,Number(s.maxHP)||100);potions=Math.max(0,Number(s.potions)||0);dungeonUpgrades={...dungeonUpgrades,...(s.upgrades||{})}}}catch(e){}hp=maxHP}
 function openDungeon(){document.getElementById("dungeonGame").style.display="block";dungeonOpen=true;loadDungeon();dead=false;won=false;buildRoom();updateHUD();renderDungeonShop();if(!raf){lastTime=0;raf=requestAnimationFrame(loop)}}
 function closeDungeon(){dungeonOpen=false;if(raf)cancelAnimationFrame(raf);raf=0;keys={};touch={};document.getElementById("dungeonGame").style.display="none";if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{})}
 function dungeonFullscreen(){fullscreen("dungeonGame")}
@@ -284,7 +285,6 @@ function walkable(x,y){return tile(Math.floor(x),Math.floor(y))===0}
 function addEnemy(type,x,y){let s=enemyTypes[type],scale=1+(room-1)*.085;enemies.push({type,x,y,hp:Math.round(s.hp*scale),maxHP:Math.round(s.hp*scale),damage:Math.round(s.damage*(1+(room-1)*.045)),speed:s.speed*(1+Math.min(room,30)*.008),reward:Math.round(s.reward*(1+room*.035)),flash:0,timer:0,phase:Math.random()*6})}
 function buildRoom(){
  map=Array.from({length:MH},(_,y)=>Array.from({length:MW},(_,x)=>(x===0||y===0||x===MW-1||y===MH-1)?1:0));
- // Different layouts rotate through the 50 rooms.
  let pattern=room%5;
  if(pattern===1){for(let y=2;y<8;y++)if(y!==4&&y!==5)map[y][5]=1;for(let y=2;y<8;y++)if(y!==3&&y!==6)map[y][10]=1}
  if(pattern===2){for(let x=3;x<13;x++)if(x!==7&&x!==8)map[4][x]=1;for(let x=3;x<13;x++)if(x!==5&&x!==10)map[7][x]=1}
@@ -295,18 +295,17 @@ function buildRoom(){
  let tier=Math.min(9,Math.floor((room-1)/5));
  let count=Math.min(3+Math.floor(room/2),13);
  for(let i=0;i<count;i++){
-   let type=enemyOrder[Math.min(9,Math.max(0,tier+(Math.random()<.25?1:0)))];
-   let x=7+Math.random()*6,y=2+Math.random()*6;
-   if(!walkable(x,y)){x=12.5;y=6.5}
-   addEnemy(type,x,y)
+ let type=enemyOrder[Math.min(9,Math.max(0,tier+(Math.random()<.25?1:0)))];
+ let x=7+Math.random()*6,y=2+Math.random()*6;
+ if(!walkable(x,y)){x=12.5;y=6.5}
+ addEnemy(type,x,y)
  }
- // A boss appears every fifth room.
  if(bossRoom){
-   let bossTier=room/5-1;
-   let type=enemyOrder[Math.min(9,bossTier)];
-   let s=enemyTypes[type],scale=2.5+room*.12;
-   boss={x:11.5,y:5.5,hp:Math.round(s.hp*scale*2),maxHP:Math.round(s.hp*scale*2),damage:Math.round(s.damage*1.7+room*1.4),speed:.35+room*.004,flash:0,timer:0,name:bossNames[bossTier]};
-   message("BOSS ROOM "+room+"! "+boss.name+" is waiting!");
+ let bossTier=room/5-1;
+ let type=enemyOrder[Math.min(9,bossTier)];
+ let s=enemyTypes[type],scale=2.5+room*.12;
+ boss={x:11.5,y:5.5,hp:Math.round(s.hp*scale*2),maxHP:Math.round(s.hp*scale*2),damage:Math.round(s.damage*1.7+room*1.4),speed:.35+room*.004,flash:0,timer:0,name:bossNames[bossTier]};
+ message("BOSS ROOM "+room+"! "+boss.name+" is waiting!");
  }else message("Room "+room+"! Defeat every monster to unlock the exit.");
  let chestCount=room<5?1:2+Math.floor(room/12);
  for(let i=0;i<chestCount;i++){let x=3+Math.floor(Math.random()*10),y=2+Math.floor(Math.random()*6);chests.push({x:x+.5,y:y+.5,opened:false})}
@@ -314,12 +313,12 @@ function buildRoom(){
 }
 function movePlayer(dx,dy){
  if(dead||won)return;
- let speed=.12+upgrades.speed*.009;
+ let speed=.12+dungeonUpgrades.speed*.009;
  let nx=player.x+dx*speed,ny=player.y+dy*speed;
  if(dx<0)player.dir="left";if(dx>0)player.dir="right";if(dy<0)player.dir="up";if(dy>0)player.dir="down";
  if(walkable(nx,player.y))player.x=nx;if(walkable(player.x,ny))player.y=ny;
  if(dx||dy)player.walk+=.25;
- chests.forEach(ch=>{if(!ch.opened&&Math.hypot(ch.x-player.x,ch.y-player.y)<.8){ch.opened=true;let reward=Math.floor((25+Math.random()*35)*(1+upgrades.fortune*.12));dCoins+=reward;potions++;message("TREASURE! +"+reward+" coins and +1 potion!");saveDungeon();updateHUD()}});
+ chests.forEach(ch=>{if(!ch.opened&&Math.hypot(ch.x-player.x,ch.y-player.y)<.8){ch.opened=true;let reward=Math.floor((25+Math.random()*35)*(1+dungeonUpgrades.fortune*.12));dCoins+=reward;potions++;message("TREASURE! +"+reward+" coins and +1 potion!");saveDungeon();updateHUD()}});
  if(doorOpen&&Math.hypot(player.x-13.5,player.y-8.5)<.8)nextRoom()
 }
 function nextRoom(){
@@ -331,16 +330,16 @@ function attack(){
  attackCooldown=.38;player.swing=.22;
  let v={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[player.dir],hits=0;
  function hit(t){let dx=t.x-player.x,dy=t.y-player.y,d=Math.hypot(dx,dy);return d<1.65&&d>.01&&(dx*v[0]+dy*v[1])/d>.05}
- function damageTarget(t){let crit=Math.random()<Math.min(.65,.05+upgrades.crit*.035),d=Math.floor((18+weapon*9+upgrades.heavy*7)*(crit?2:1));t.hp=Math.max(0,t.hp-d);t.flash=.2;hits++;if(crit)message("CRITICAL HIT! "+d+" damage!");return d}
+ function damageTarget(t){let crit=Math.random()<Math.min(.65,.05+dungeonUpgrades.crit*.035),d=Math.floor((18+weapon*9+dungeonUpgrades.heavy*7)*(crit?2:1));t.hp=Math.max(0,t.hp-d);t.flash=.2;hits++;if(crit)message("CRITICAL HIT! "+d+" damage!");return d}
  enemies.forEach(e=>{if(e.hp>0&&hit(e)){damageTarget(e);if(e.hp===0){let r=e.reward;dCoins+=r;message(e.type.toUpperCase()+" defeated! +"+r+" coins.")}}});
  if(boss&&boss.hp>0&&hit(boss)){damageTarget(boss);if(boss.hp===0){message("BOSS DEFEATED! The exit is open!");doorOpen=true;dCoins+=room*30}}
  if(!hits)message("Your sword swings through the air!");
  checkClear();updateHUD();saveDungeon()
 }
 function checkClear(){if(enemies.every(e=>e.hp<=0)&&(!boss||boss.hp<=0)){if(!doorOpen){doorOpen=true;let reward=40+room*18;dCoins+=reward;message("ROOM CLEAR! Exit unlocked! +"+reward+" coins.")}}}
-function hurt(n){if(player.invuln>0||dead||won)return;let reduced=Math.max(1,Math.round(n*(1-upgrades.armor*.055)));hp=Math.max(0,hp-reduced);player.invuln=.7;if(hp<=0){dead=true;message("You were defeated! Restart this room to try again.")}updateHUD()}
+function hurt(n){if(player.invuln>0||dead||won)return;let reduced=Math.max(1,Math.round(n*(1-dungeonUpgrades.armor*.055)));hp=Math.max(0,hp-reduced);player.invuln=.7;if(hp<=0){dead=true;message("You were defeated! Restart this room to try again.")}updateHUD()}
 function updateEnemies(dt){
- enemies.forEach(e=>{if(e.hp<=0)return;e.phase+=dt*4;e.flash=Math.max(0,e.flash-dt);e.timer-=dt;let dx=player.x-e.x,dy=player.y-e.y,d=Math.hypot(dx,dy);if(d>.65){let nx=e.x+dx/Math.max(d,.01)*e.speed*dt,ny=e.y+dy/Math.max(d,.01)*e.speed*dt;if(walkable(nx,e.y))e.x=nx;if(walkable(e.x,ny))e.y=ny}else if(e.timer<=0){hurt(e.damage);e.timer=Math.max(.65,1.25-upgrades.swift*.04)}});
+ enemies.forEach(e=>{if(e.hp<=0)return;e.phase+=dt*4;e.flash=Math.max(0,e.flash-dt);e.timer-=dt;let dx=player.x-e.x,dy=player.y-e.y,d=Math.hypot(dx,dy);if(d>.65){let nx=e.x+dx/Math.max(d,.01)*e.speed*dt,ny=e.y+dy/Math.max(d,.01)*e.speed*dt;if(walkable(nx,e.y))e.x=nx;if(walkable(e.x,ny))e.y=ny}else if(e.timer<=0){hurt(e.damage);e.timer=Math.max(.65,1.25-dungeonUpgrades.swift*.04)}});
  if(boss&&boss.hp>0){boss.timer-=dt;boss.flash=Math.max(0,boss.flash-dt);let dx=player.x-boss.x,dy=player.y-boss.y,d=Math.hypot(dx,dy);if(d>1.25){let nx=boss.x+dx/Math.max(d,.01)*boss.speed*dt,ny=boss.y+dy/Math.max(d,.01)*boss.speed*dt;if(walkable(nx,boss.y))boss.x=nx;if(walkable(boss.x,ny))boss.y=ny}else if(boss.timer<=0){hurt(boss.damage);boss.timer=1.3}}
  checkClear()
 }
@@ -353,7 +352,7 @@ function loop(ts){
  if(keys[" "]||touch.attack)attack();
  player.invuln=Math.max(0,player.invuln-dt);player.swing=Math.max(0,player.swing-dt);attackCooldown=Math.max(0,attackCooldown-dt);
  updateEnemies(dt);
- if(upgrades.regen&&Math.random()<dt*.35&&hp<maxHP)hp=Math.min(maxHP,hp+1);
+ if(dungeonUpgrades.regen&&Math.random()<dt*.35&&hp<maxHP)hp=Math.min(maxHP,hp+1);
  }
  draw();updateHUD();raf=requestAnimationFrame(loop)
 }
@@ -390,8 +389,8 @@ const shopItems=[
 ["life","🌟 Potion Master","Potions restore more health."],
 ["blast","✨ Power Surge","Increase your critical-hit power."]
 ];
-function renderDungeonShop(){let el=document.getElementById("dungeonShop");el.innerHTML="";shopItems.forEach(([id,name,desc])=>{let level=id==="sword"?weapon-1:id==="heart"?Math.round((maxHP-100)/25):upgrades[id]||0;let cost=id==="sword"?100*weapon:id==="heart"?150+Math.round((maxHP-100)*2):Math.round(100*Math.pow(1.65,level));let d=document.createElement("div");d.className="dungeon-upgrade";d.innerHTML="<strong>"+name+"</strong><p>"+desc+"</p><p>Level: "+level+"</p>";let b=document.createElement("button");b.textContent="UPGRADE - "+cost+" COINS";b.disabled=dCoins<cost||(id==="sword"&&weapon>=30)||(id==="heart"&&maxHP>=500);b.onclick=()=>buyDungeonUpgrade(id,cost);d.appendChild(b);el.appendChild(d)})}
-function buyDungeonUpgrade(id,cost){if(dCoins<cost)return;dCoins-=cost;if(id==="sword")weapon++;else if(id==="heart"){maxHP+=25;hp+=25}else upgrades[id]++;saveDungeon();renderDungeonShop();updateHUD();message("Upgrade purchased! "+id.toUpperCase()+" improved!")}
+function renderDungeonShop(){let el=document.getElementById("dungeonShop");el.innerHTML="";shopItems.forEach(([id,name,desc])=>{let level=id==="sword"?weapon-1:id==="heart"?Math.round((maxHP-100)/25):dungeonUpgrades[id]||0;let cost=id==="sword"?100*weapon:id==="heart"?150+Math.round((maxHP-100)*2):Math.round(100*Math.pow(1.65,level));let d=document.createElement("div");d.className="dungeon-upgrade";d.innerHTML="<strong>"+name+"</strong><p>"+desc+"</p><p>Level: "+level+"</p>";let b=document.createElement("button");b.textContent="UPGRADE - "+cost+" COINS";b.disabled=dCoins<cost||(id==="sword"&&weapon>=30)||(id==="heart"&&maxHP>=500);b.onclick=()=>buyDungeonUpgrade(id,cost);d.appendChild(b);el.appendChild(d)})}
+function buyDungeonUpgrade(id,cost){if(dCoins<cost)return;dCoins-=cost;if(id==="sword")weapon++;else if(id==="heart"){maxHP+=25;hp+=25}else dungeonUpgrades[id]++;saveDungeon();renderDungeonShop();updateHUD();message("Upgrade purchased! "+id.toUpperCase()+" improved!")}
 function buyDungeonPotion(){if(dCoins<30){message("You need 30 coins for a potion.");return}dCoins-=30;potions++;saveDungeon();updateHUD();message("Potion purchased!")}
 function dungeonLoopKey(e,down){let k=e.key.length===1?e.key.toLowerCase():e.key;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(k)&&dungeonOpen)e.preventDefault();keys[k]=down}
 window.addEventListener("keydown",e=>dungeonLoopKey(e,true));window.addEventListener("keyup",e=>dungeonLoopKey(e,false));
@@ -402,7 +401,7 @@ let ab=document.getElementById("dungeonAttack");ab.addEventListener("pointerdown
 function resetProgress(){
  if(!confirm("Reset ALL Learning Lounge progress? This erases Clicker, Card Clash, Duel and Dungeon Rush saves. This cannot be undone."))return;
  coins=0;levels={};cardCoins=500;collection={};duelStreak=0;duelTeam=[];enemyTeam=[];lastPack=[];nextFreePackTime=0;
- room=1;dCoins=0;weapon=1;maxHP=100;hp=100;potions=1;upgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
+ room=1;dCoins=0;weapon=1;maxHP=100;hp=100;potions=1;dungeonUpgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
  try{[SAVE_KEY,CARD_SAVE_KEY,COOLDOWN_KEY,DUNGEON_SAVE_KEY].forEach(k=>localStorage.removeItem(k))}catch(e){}
  saveGame();saveCards();saveDungeon();updateStats();updateCardCoins();renderCollection();renderPackShop();renderDuelChoices();renderDungeonShop();
  document.getElementById("packResults").innerHTML="";document.getElementById("packMessage").textContent="Progress reset!";document.getElementById("duelBattle").style.display="none";document.getElementById("duelSetup").style.display="block";
