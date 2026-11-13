@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.3</title>
+<title>Learning Lounge 4.4</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
@@ -196,6 +196,23 @@ section{
 }
 
 .license-note a{color:#d9a2ff}
+
+.reset-progress-button{
+  display:block;
+  width:100%;
+  max-width:300px;
+  margin:20px auto;
+  padding:14px;
+  background:#8e202f;
+  border:1px solid #ff7585;
+  border-radius:8px;
+  color:white;
+  font-family:Orbitron,Arial,sans-serif;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.reset-progress-button:hover{background:#bd3045}
 
 .game-window{
   display:none;
@@ -520,8 +537,6 @@ footer{
   padding:25px;
 }
 
-/* FREE PACK COOLDOWN */
-
 #superPackTimer{
   min-height:18px;
   margin:8px 0 0;
@@ -669,7 +684,7 @@ footer{
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 4.3</span>
+  <span>VERSION 4.4</span>
 </div>
 
 <section id="library">
@@ -763,6 +778,17 @@ footer{
     Welcome to Learning Lounge! A purple neon arcade
     featuring games, experiments and original creations.
   </p>
+
+  <h3 style="color:#ff8b9b;text-align:center;margin-top:35px">
+    RESET ALL PROGRESS
+  </h3>
+  <p style="text-align:center">
+    This resets saved progress in Neon Critter Clicker and Card Clash.
+    Your games and website will stay here.
+  </p>
+  <button class="reset-progress-button" onclick="resetProgress()">
+    RESET ALL PROGRESS
+  </button>
 </section>
 
 <footer>
@@ -824,8 +850,8 @@ footer{
     <div class="card-panel active" id="cardShop">
       <h2>🎁 BOOSTER PACK SHOP</h2>
       <p class="card-info">
-        Paid packs contain 5 random creature cards.
-        The free Super Common Pack contains 1 card and has a 60-second cooldown.
+        Super Common gives 1 card. Every paid pack contains 5 random creature cards.
+        Higher-tier packs have better chances of rare creatures!
       </p>
 
       <div class="card-grid">
@@ -833,7 +859,7 @@ footer{
         <div class="collect-card rarity-common">
           <div class="creature-art">🟢</div>
           <h3>SUPER COMMON</h3>
-          <p>FREE • 1 Common card</p>
+          <p>FREE • 1 Common card • 60-sec cooldown</p>
           <button id="superPackButton" onclick="openPack('super')">CLAIM FREE PACK</button>
           <p id="superPackTimer">Free pack ready!</p>
         </div>
@@ -1202,7 +1228,7 @@ function updateStats(){
 }
 
 function resetGame(){
-  if(!confirm("Are you sure you want to reset your game?"))return;
+  if(!confirm("Are you sure you want to reset Neon Critter Clicker?"))return;
   coins=0;
   levels={};
   saveGame();
@@ -1295,8 +1321,7 @@ function loadCardGame(){
     duelStreak=0;
   }
 
-  // Keep existing cards sellable and prepare copy tracking.
-  // Older saves are treated as previously owned paid cards.
+  // Older saved cards are treated as previously owned paid cards.
   Object.values(collection).forEach(card=>{
     if(!Number.isFinite(Number(card.sellableCount))){
       card.sellableCount=Number(card.count)||0;
@@ -1306,11 +1331,11 @@ function loadCardGame(){
       card.freeCount=0;
     }
 
-    card.sellableCount=Number(card.sellableCount);
-    card.freeCount=Number(card.freeCount);
+    card.sellableCount=Number(card.sellableCount)||0;
+    card.freeCount=Number(card.freeCount)||0;
   });
 
-  // Load the free pack cooldown separately from the card save.
+  // Load the free pack cooldown separately.
   try{
     const savedCooldown=Number(
       localStorage.getItem(FREE_PACK_COOLDOWN_KEY)
@@ -1595,7 +1620,7 @@ function openPack(packId){
     return;
   }
 
-  // Start the cooldown only after a valid free-pack opening.
+  // Start cooldown after a valid free-pack opening.
   if(isFreePack){
     nextFreePackTime=Date.now()+FREE_PACK_COOLDOWN_MS;
     saveFreePackCooldown();
@@ -1636,8 +1661,7 @@ function openPack(packId){
 
     const ownedCard=collection[creature.id];
 
-    // Track paid and free copies separately.
-    // This prevents free copies from being sold for paid-card coins.
+    // Keep paid and free copies separate.
     ownedCard.count++;
 
     if(isFreePack){
@@ -1778,7 +1802,7 @@ function sellCard(id){
 
   let earned=0;
 
-  // Sell paid copies first. Free copies always sell for zero.
+  // Sell paid copies first. Free copies sell for zero.
   if((Number(card.sellableCount)||0)>0){
     card.sellableCount--;
     earned=Number(card.sellValue)||0;
@@ -1824,7 +1848,7 @@ function sellDuplicates(){
 
       card.sellableCount=paidCount-paidToSell;
       card.freeCount=freeCount-freeToSell;
-      card.count=1;
+      card.count-=paidToSell+freeToSell;
     }
   });
 
@@ -1854,6 +1878,7 @@ let enemyTeam=[];
 let playerIndex=0;
 let enemyIndex=0;
 let duelBusy=false;
+let duelTimeouts=[];
 
 const monsterStats={
   Common:{hp:80,attack:15},
@@ -2053,7 +2078,7 @@ function duelPlayerMove(multiplier){
   duelBusy=true;
   updateDuelScreen();
 
-  setTimeout(duelEnemyMove,800);
+  duelTimeouts.push(setTimeout(duelEnemyMove,800));
 }
 
 
@@ -2132,13 +2157,95 @@ function finishDuel(won){
   saveCardGame();
   renderDuelChoices();
 
-  setTimeout(()=>{
+  duelTimeouts.push(setTimeout(()=>{
     document.getElementById("duelBattle").style.display="none";
     document.getElementById("duelSetup").style.display="block";
 
     duelTeam=[];
     renderDuelChoices();
-  },2500);
+  },2500));
+}
+
+
+// =================================
+// RESET ALL LEARNING LOUNGE PROGRESS
+// =================================
+
+function resetProgress(){
+  const confirmed=confirm(
+    "Are you sure you want to reset ALL Learning Lounge progress?\n\n"+
+    "This will erase:\n"+
+    "• Neon Critter Clicker coins and upgrades\n"+
+    "• Card Clash coins and collection\n"+
+    "• Duel win streak\n"+
+    "• Free pack cooldown\n\n"+
+    "This cannot be undone!"
+  );
+
+  if(!confirmed)return;
+
+  // Stop any pending duel actions.
+  duelTimeouts.forEach(timeout=>{
+    clearTimeout(timeout);
+  });
+  duelTimeouts=[];
+
+  // Reset Neon Critter Clicker.
+  coins=0;
+  levels={};
+
+  // Reset Card Clash.
+  cardCoins=500;
+  collection={};
+  lastPack=[];
+  duelStreak=0;
+
+  // Reset free pack cooldown.
+  nextFreePackTime=0;
+
+  // Reset duel state.
+  duelTeam=[];
+  enemyTeam=[];
+  playerIndex=0;
+  enemyIndex=0;
+  duelBusy=false;
+
+  // Clear all saved progress.
+  try{
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(CARD_SAVE_KEY);
+    localStorage.removeItem(FREE_PACK_COOLDOWN_KEY);
+  }catch(e){}
+
+  // Refresh the visible game displays.
+  updateStats();
+  updateCardCoins();
+  renderCollection();
+  renderPackResults();
+  renderDuelChoices();
+  updateFreePackButton();
+
+  document.getElementById("gameMessage").textContent=
+    "All progress reset! Fresh start!";
+
+  document.getElementById("packMessage").textContent=
+    "Card Clash has been reset! Claim your free pack to begin.";
+
+  document.getElementById("duelMessage").textContent="";
+  document.getElementById("duelBattle").style.display="none";
+  document.getElementById("duelSetup").style.display="block";
+
+  document.getElementById("duelLog").textContent=
+    "The battle is starting!";
+
+  document.getElementById("duelStreak").textContent=
+    "🔥 Win streak: 0";
+
+  // Save the default starting values so they stay reset.
+  saveGame();
+  saveCardGame();
+
+  alert("All Learning Lounge progress has been reset!");
 }
 
 
