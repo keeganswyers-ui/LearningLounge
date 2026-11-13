@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.1</title>
+<title>Learning Lounge 4.2</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
@@ -364,34 +364,6 @@ footer{
 
 .card-panel.active{display:block}
 
-.pack-art{
-  width:180px;
-  height:245px;
-  margin:20px auto;
-  border:3px solid #8effe6;
-  border-radius:13px;
-  background:linear-gradient(145deg,#123b50,#087e78,#b18b36);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:20px;
-  box-shadow:0 0 25px #00d9bd66;
-  animation:packFloat 2s infinite ease-in-out;
-}
-
-.pack-art span{font-size:70px}
-.pack-art strong{
-  font-family:'Press Start 2P';
-  font-size:12px;
-  line-height:1.8;
-  color:#fff2b5;
-}
-
-@keyframes packFloat{
-  50%{transform:translateY(-7px)}
-}
-
 .card-button{
   padding:13px 20px;
   background:linear-gradient(90deg,#087e78,#16b6a2);
@@ -683,7 +655,7 @@ footer{
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 4.1</span>
+  <span>VERSION 4.2</span>
 </div>
 
 <section id="library">
@@ -836,21 +808,59 @@ footer{
     <!-- SHOP -->
 
     <div class="card-panel active" id="cardShop">
-      <h2>BOOSTER PACK SHOP</h2>
+      <h2>🎁 BOOSTER PACK SHOP</h2>
       <p class="card-info">
         Every pack contains 5 random creature cards.
-        Who knows what you'll discover?
+        Higher-tier packs have better chances of rare creatures!
       </p>
 
-      <div class="pack-art">
-        <span>🃏</span>
-        <strong>CARD<br>CLASH</strong>
+      <div class="card-grid">
+
+        <div class="collect-card rarity-common">
+          <div class="creature-art">🟢</div>
+          <h3>SUPER COMMON</h3>
+          <p>FREE • 100% Common cards</p>
+          <button onclick="openPack('super')">CLAIM FREE PACK</button>
+        </div>
+
+        <div class="collect-card rarity-common">
+          <div class="creature-art">📦</div>
+          <h3>COMMON PACK</h3>
+          <p>50 coins • Better Uncommon odds</p>
+          <button onclick="openPack('common')">BUY FOR 50</button>
+        </div>
+
+        <div class="collect-card rarity-uncommon">
+          <div class="creature-art">🍀</div>
+          <h3>UNCOMMON PACK</h3>
+          <p>100 coins • Better Rare odds</p>
+          <button onclick="openPack('uncommon')">BUY FOR 100</button>
+        </div>
+
+        <div class="collect-card rarity-rare">
+          <div class="creature-art">💎</div>
+          <h3>RARE PACK</h3>
+          <p>200 coins • Better Legendary odds</p>
+          <button onclick="openPack('rare')">BUY FOR 200</button>
+        </div>
+
+        <div class="collect-card rarity-legendary">
+          <div class="creature-art">🔥</div>
+          <h3>LEGENDARY PACK</h3>
+          <p>500 coins • Better high-rarity odds</p>
+          <button onclick="openPack('legendary')">BUY FOR 500</button>
+        </div>
+
+        <div class="collect-card rarity-secret">
+          <div class="creature-art">👁️</div>
+          <h3>MYSTERY PACK</h3>
+          <p>2,000 coins • Best overall odds</p>
+          <button onclick="openPack('mystery')">BUY FOR 2,000</button>
+        </div>
+
       </div>
 
-      <h2 style="color:#ffe66d">100 COINS</h2>
-      <button class="card-button" onclick="openPack()">🎁 OPEN BOOSTER PACK</button>
-
-      <p id="packMessage">Good luck finding a rare card!</p>
+      <p id="packMessage">Choose a pack and see what you discover!</p>
       <div id="packResults"></div>
     </div>
 
@@ -923,49 +933,73 @@ footer{
     <!-- ODDS -->
 
     <div class="card-panel" id="cardOdds">
-      <h2>PACK DROP CHANCES</h2>
+      <h2>✨ PACK DROP CHANCES</h2>
       <p class="card-info">
-        These are the chances for each rarity when a card is opened.
+        These are the chances for each individual card.
+        Every pack contains five separate card rolls.
       </p>
 
       <div class="card-grid">
+
         <div class="collect-card rarity-common">
-          <div class="creature-art">🐸</div>
-          <h3>COMMON</h3><p>55%</p>
+          <div class="creature-art">🟢</div>
+          <h3>SUPER COMMON</h3>
+          <p>Common: 100%</p>
         </div>
+
+        <div class="collect-card rarity-common">
+          <div class="creature-art">📦</div>
+          <h3>COMMON PACK</h3>
+          <p>Common: 75%</p>
+          <p>Uncommon: 20%</p>
+          <p>Rare: 5%</p>
+        </div>
+
         <div class="collect-card rarity-uncommon">
-          <div class="creature-art">🐦</div>
-          <h3>UNCOMMON</h3><p>25%</p>
+          <div class="creature-art">🍀</div>
+          <h3>UNCOMMON PACK</h3>
+          <p>Common: 45%</p>
+          <p>Uncommon: 40%</p>
+          <p>Rare: 12%</p>
+          <p>Epic: 3%</p>
         </div>
+
         <div class="collect-card rarity-rare">
-          <div class="creature-art">🐺</div>
-          <h3>RARE</h3><p>12%</p>
+          <div class="creature-art">💎</div>
+          <h3>RARE PACK</h3>
+          <p>Common: 25%</p>
+          <p>Uncommon: 35%</p>
+          <p>Rare: 25%</p>
+          <p>Epic: 12%</p>
+          <p>Legendary: 3%</p>
         </div>
-        <div class="collect-card rarity-epic">
-          <div class="creature-art">🦉</div>
-          <h3>EPIC</h3><p>5%</p>
-        </div>
+
         <div class="collect-card rarity-legendary">
           <div class="creature-art">🔥</div>
-          <h3>LEGENDARY</h3><p>2%</p>
+          <h3>LEGENDARY PACK</h3>
+          <p>Common: 10%</p>
+          <p>Uncommon: 20%</p>
+          <p>Rare: 30%</p>
+          <p>Epic: 22%</p>
+          <p>Legendary: 14%</p>
+          <p>Mythic: 3%</p>
+          <p>Godly: 1%</p>
         </div>
-        <div class="collect-card rarity-mythic">
-          <div class="creature-art">🐲</div>
-          <h3>MYTHIC</h3><p>0.8%</p>
-        </div>
-        <div class="collect-card rarity-godly">
-          <div class="creature-art">👑</div>
-          <h3>✨ GODLY</h3><p>0.18%</p>
-        </div>
+
         <div class="collect-card rarity-secret">
           <div class="creature-art">👁️</div>
-          <h3>👁️ SECRET</h3><p>0.02%</p>
+          <h3>MYSTERY PACK</h3>
+          <p>Common: 5%</p>
+          <p>Uncommon: 10%</p>
+          <p>Rare: 20%</p>
+          <p>Epic: 25%</p>
+          <p>Legendary: 20%</p>
+          <p>Mythic: 12%</p>
+          <p>Godly: 6%</p>
+          <p>Secret: 2%</p>
         </div>
-      </div>
 
-      <p class="card-info">
-        Every card is randomly selected. Each pack has five separate card rolls.
-      </p>
+      </div>
     </div>
 
   </div>
@@ -1209,7 +1243,7 @@ const creatureCards=[
 ];
 
 
-// RARITY CHANCES
+// ORIGINAL RARITY AND SELL VALUES
 
 const rarityOdds=[
   {name:"Common",chance:55,min:1,max:5},
@@ -1314,15 +1348,95 @@ function updateCardCoins(){
 }
 
 
-// RANDOM RARITY
+// =================================
+// SIX DIFFERENT BOOSTER PACKS
+// =================================
 
-function rollRarity(){
+const packTypes={
+  super:{
+    name:"Super Common",
+    cost:0,
+    odds:[
+      {name:"Common",chance:100}
+    ]
+  },
+
+  common:{
+    name:"Common",
+    cost:50,
+    odds:[
+      {name:"Common",chance:75},
+      {name:"Uncommon",chance:20},
+      {name:"Rare",chance:5}
+    ]
+  },
+
+  uncommon:{
+    name:"Uncommon",
+    cost:100,
+    odds:[
+      {name:"Common",chance:45},
+      {name:"Uncommon",chance:40},
+      {name:"Rare",chance:12},
+      {name:"Epic",chance:3}
+    ]
+  },
+
+  rare:{
+    name:"Rare",
+    cost:200,
+    odds:[
+      {name:"Common",chance:25},
+      {name:"Uncommon",chance:35},
+      {name:"Rare",chance:25},
+      {name:"Epic",chance:12},
+      {name:"Legendary",chance:3}
+    ]
+  },
+
+  legendary:{
+    name:"Legendary",
+    cost:500,
+    odds:[
+      {name:"Common",chance:10},
+      {name:"Uncommon",chance:20},
+      {name:"Rare",chance:30},
+      {name:"Epic",chance:22},
+      {name:"Legendary",chance:14},
+      {name:"Mythic",chance:3},
+      {name:"Godly",chance:1}
+    ]
+  },
+
+  mystery:{
+    name:"Mystery",
+    cost:2000,
+    odds:[
+      {name:"Common",chance:5},
+      {name:"Uncommon",chance:10},
+      {name:"Rare",chance:20},
+      {name:"Epic",chance:25},
+      {name:"Legendary",chance:20},
+      {name:"Mythic",chance:12},
+      {name:"Godly",chance:6},
+      {name:"Secret",chance:2}
+    ]
+  }
+};
+
+
+// ROLL A RARITY FOR THE SELECTED PACK
+
+function rollRarity(pack){
   const roll=Math.random()*100;
   let total=0;
 
-  for(const rarity of rarityOdds){
+  for(const rarity of pack.odds){
     total+=rarity.chance;
-    if(roll<total)return rarity;
+
+    if(roll<total){
+      return rarityOdds.find(r=>r.name===rarity.name);
+    }
   }
 
   return rarityOdds[0];
@@ -1340,29 +1454,35 @@ function pickCreature(rarity){
 }
 
 
-// OPEN BOOSTER PACK
+// OPEN SELECTED BOOSTER PACK
 
-function openPack(){
-  const packCost=100;
+function openPack(packId){
+  const pack=packTypes[packId];
 
-  if(cardCoins<packCost){
-    document.getElementById("packMessage").textContent =
-      "Not enough coins! Sell some cards first.";
+  if(!pack)return;
+
+  if(cardCoins<pack.cost){
+    document.getElementById("packMessage").textContent=
+      "Not enough coins! Try the FREE Super Common Pack!";
     return;
   }
 
-  cardCoins-=packCost;
+  cardCoins-=pack.cost;
   lastPack=[];
 
   for(let i=0;i<5;i++){
-    const rarity=rollRarity();
+    const rarity=rollRarity(pack);
     const creature=pickCreature(rarity);
 
     const sellValue=Math.floor(
-      rarity.min+Math.random()*(rarity.max-rarity.min+1)
+      rarity.min+
+      Math.random()*(rarity.max-rarity.min+1)
     );
 
-    lastPack.push({...creature,sellValue:sellValue});
+    lastPack.push({
+      ...creature,
+      sellValue:sellValue
+    });
 
     if(!collection[creature.id]){
       collection[creature.id]={
@@ -1380,15 +1500,18 @@ function openPack(){
   renderCollection();
   saveCardGame();
 
-  const godly=lastPack.some(c=>c.rarity==="Godly");
   const secret=lastPack.some(c=>c.rarity==="Secret");
+  const godly=lastPack.some(c=>c.rarity==="Godly");
+  const legendary=lastPack.some(c=>c.rarity==="Legendary");
 
-  let message="Pack opened! Check out your five cards!";
+  let message=pack.name+" Pack opened! You got 5 cards!";
 
   if(secret){
     message="👁️ SECRET PULL!!! INCREDIBLE!!!";
   }else if(godly){
-    message="✨ GODLY PULL!!! THAT IS AMAZING!";
+    message="✨ GODLY PULL!!! AMAZING!!!";
+  }else if(legendary){
+    message="🔥 LEGENDARY PULL!!!";
   }
 
   document.getElementById("packMessage").textContent=message;
@@ -1441,7 +1564,7 @@ function renderCollection(){
     totalCards+" total cards owned.";
 
   if(cards.length===0){
-    grid.innerHTML='<div class="card-empty">No cards yet! Open your first pack in the shop.</div>';
+    grid.innerHTML='<div class="card-empty">No cards yet! Claim your FREE Super Common Pack in the shop.</div>';
     return;
   }
 
@@ -1581,7 +1704,7 @@ function renderDuelChoices(){
     "🔥 Win streak: "+duelStreak;
 
   if(owned.length===0){
-    grid.innerHTML='<p class="card-empty">Open some booster packs to get monsters for your team!</p>';
+    grid.innerHTML='<p class="card-empty">Claim a free Super Common Pack to get monsters for your team!</p>';
     return;
   }
 
