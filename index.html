@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.2</title>
+<title>Learning Lounge 4.3</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
@@ -420,6 +419,11 @@ footer{
   cursor:pointer;
 }
 
+.collect-card button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
 .creature-art{
   height:110px;
   display:flex;
@@ -514,6 +518,16 @@ footer{
 .card-empty{
   color:#a995bd;
   padding:25px;
+}
+
+/* FREE PACK COOLDOWN */
+
+#superPackTimer{
+  min-height:18px;
+  margin:8px 0 0;
+  color:#8effe6;
+  font-size:10px;
+  line-height:1.5;
 }
 
 /* DUEL ARENA */
@@ -655,7 +669,7 @@ footer{
 <div class="status">
   <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 4.2</span>
+  <span>VERSION 4.3</span>
 </div>
 
 <section id="library">
@@ -810,8 +824,8 @@ footer{
     <div class="card-panel active" id="cardShop">
       <h2>🎁 BOOSTER PACK SHOP</h2>
       <p class="card-info">
-        Every pack contains 5 random creature cards.
-        Higher-tier packs have better chances of rare creatures!
+        Paid packs contain 5 random creature cards.
+        The free Super Common Pack contains 1 card and has a 60-second cooldown.
       </p>
 
       <div class="card-grid">
@@ -819,8 +833,9 @@ footer{
         <div class="collect-card rarity-common">
           <div class="creature-art">🟢</div>
           <h3>SUPER COMMON</h3>
-          <p>FREE • 100% Common cards</p>
-          <button onclick="openPack('super')">CLAIM FREE PACK</button>
+          <p>FREE • 1 Common card</p>
+          <button id="superPackButton" onclick="openPack('super')">CLAIM FREE PACK</button>
+          <p id="superPackTimer">Free pack ready!</p>
         </div>
 
         <div class="collect-card rarity-common">
@@ -936,7 +951,8 @@ footer{
       <h2>✨ PACK DROP CHANCES</h2>
       <p class="card-info">
         These are the chances for each individual card.
-        Every pack contains five separate card rolls.
+        Paid packs contain five separate card rolls.
+        The free Super Common Pack contains one card.
       </p>
 
       <div class="card-grid">
@@ -1206,11 +1222,16 @@ setInterval(()=>{
 // =================================
 
 const CARD_SAVE_KEY="cardClashSave";
+const FREE_PACK_COOLDOWN_KEY="cardClashFreePackCooldown";
+const FREE_PACK_COOLDOWN_MS=60000;
 
 let cardCoins=500;
 let collection={};
 let lastPack=[];
 let duelStreak=0;
+
+let nextFreePackTime=0;
+let freePackTimerInterval=null;
 
 
 // ORIGINAL CREATURE CARDS
@@ -1274,6 +1295,34 @@ function loadCardGame(){
     duelStreak=0;
   }
 
+  // Keep existing cards sellable and prepare copy tracking.
+  // Older saves are treated as previously owned paid cards.
+  Object.values(collection).forEach(card=>{
+    if(!Number.isFinite(Number(card.sellableCount))){
+      card.sellableCount=Number(card.count)||0;
+    }
+
+    if(!Number.isFinite(Number(card.freeCount))){
+      card.freeCount=0;
+    }
+
+    card.sellableCount=Number(card.sellableCount);
+    card.freeCount=Number(card.freeCount);
+  });
+
+  // Load the free pack cooldown separately from the card save.
+  try{
+    const savedCooldown=Number(
+      localStorage.getItem(FREE_PACK_COOLDOWN_KEY)
+    );
+
+    nextFreePackTime=
+      Number.isFinite(savedCooldown)&&savedCooldown>Date.now()
+      ?savedCooldown:0;
+  }catch(e){
+    nextFreePackTime=0;
+  }
+
   updateCardCoins();
   renderCollection();
 }
@@ -1286,12 +1335,74 @@ function saveCardGame(){
 }
 
 
+// FREE PACK COOLDOWN SYSTEM
+
+function saveFreePackCooldown(){
+  try{
+    localStorage.setItem(
+      FREE_PACK_COOLDOWN_KEY,
+      String(nextFreePackTime)
+    );
+  }catch(e){}
+}
+
+function formatCooldown(milliseconds){
+  const totalSeconds=Math.ceil(milliseconds/1000);
+  const minutes=Math.floor(totalSeconds/60);
+  const seconds=totalSeconds%60;
+
+  return minutes+":"+String(seconds).padStart(2,"0");
+}
+
+function updateFreePackButton(){
+  const button=document.getElementById("superPackButton");
+  const timer=document.getElementById("superPackTimer");
+
+  if(!button||!timer)return;
+
+  const remaining=Math.max(0,nextFreePackTime-Date.now());
+
+  if(remaining>0){
+    const displayTime=formatCooldown(remaining);
+
+    button.disabled=true;
+    button.textContent="WAIT "+displayTime;
+    timer.textContent="Next free pack in "+displayTime;
+  }else{
+    if(nextFreePackTime!==0){
+      nextFreePackTime=0;
+
+      try{
+        localStorage.removeItem(FREE_PACK_COOLDOWN_KEY);
+      }catch(e){}
+    }
+
+    button.disabled=false;
+    button.textContent="CLAIM FREE PACK";
+    timer.textContent="Free pack ready!";
+  }
+}
+
+function startFreePackTimer(){
+  if(freePackTimerInterval){
+    clearInterval(freePackTimerInterval);
+  }
+
+  updateFreePackButton();
+
+  freePackTimerInterval=setInterval(()=>{
+    updateFreePackButton();
+  },1000);
+}
+
+
 // OPEN AND CLOSE CARD GAME
 
 function openCardClash(){
   document.getElementById("cardGame").style.display="block";
   updateCardCoins();
   renderCollection();
+  updateFreePackButton();
 }
 
 function closeCardClash(){
@@ -1336,6 +1447,10 @@ function showCardTab(tab,button){
 
   if(tab==="duel"){
     renderDuelChoices();
+  }
+
+  if(tab==="shop"){
+    updateFreePackButton();
   }
 }
 
@@ -1461,20 +1576,45 @@ function openPack(packId){
 
   if(!pack)return;
 
-  if(cardCoins<pack.cost){
+  const isFreePack=packId==="super";
+
+  // Check the free pack cooldown before opening.
+  if(isFreePack){
+    const remaining=nextFreePackTime-Date.now();
+
+    if(remaining>0){
+      updateFreePackButton();
+
+      document.getElementById("packMessage").textContent=
+        "Your free pack is cooling down. Please wait!";
+      return;
+    }
+  }else if(cardCoins<pack.cost){
     document.getElementById("packMessage").textContent=
       "Not enough coins! Try the FREE Super Common Pack!";
     return;
   }
 
-  cardCoins-=pack.cost;
+  // Start the cooldown only after a valid free-pack opening.
+  if(isFreePack){
+    nextFreePackTime=Date.now()+FREE_PACK_COOLDOWN_MS;
+    saveFreePackCooldown();
+    updateFreePackButton();
+  }else{
+    cardCoins-=pack.cost;
+  }
+
   lastPack=[];
 
-  for(let i=0;i<5;i++){
+  // Free pack gives one card. Paid packs still give five.
+  const cardsToOpen=isFreePack?1:5;
+
+  for(let i=0;i<cardsToOpen;i++){
     const rarity=rollRarity(pack);
     const creature=pickCreature(rarity);
 
-    const sellValue=Math.floor(
+    // Free cards always have zero sell value.
+    const sellValue=isFreePack?0:Math.floor(
       rarity.min+
       Math.random()*(rarity.max-rarity.min+1)
     );
@@ -1488,11 +1628,24 @@ function openPack(packId){
       collection[creature.id]={
         ...creature,
         count:0,
-        sellValue:sellValue
+        sellValue:sellValue,
+        sellableCount:0,
+        freeCount:0
       };
     }
 
-    collection[creature.id].count++;
+    const ownedCard=collection[creature.id];
+
+    // Track paid and free copies separately.
+    // This prevents free copies from being sold for paid-card coins.
+    ownedCard.count++;
+
+    if(isFreePack){
+      ownedCard.freeCount=(Number(ownedCard.freeCount)||0)+1;
+    }else{
+      ownedCard.sellableCount=
+        (Number(ownedCard.sellableCount)||0)+1;
+    }
   }
 
   updateCardCoins();
@@ -1504,7 +1657,8 @@ function openPack(packId){
   const godly=lastPack.some(c=>c.rarity==="Godly");
   const legendary=lastPack.some(c=>c.rarity==="Legendary");
 
-  let message=pack.name+" Pack opened! You got 5 cards!";
+  let message=pack.name+" Pack opened! You got "+cardsToOpen+
+    (cardsToOpen===1?" card!":" cards!");
 
   if(secret){
     message="👁️ SECRET PULL!!! INCREDIBLE!!!";
@@ -1592,7 +1746,18 @@ function renderCollection(){
     count.textContent="Owned: "+card.count;
 
     const value=document.createElement("p");
-    value.textContent="Each sells for "+card.sellValue.toLocaleString();
+
+    const paidCount=Number(card.sellableCount)||0;
+    const freeCount=Number(card.freeCount)||0;
+
+    if(paidCount>0){
+      value.textContent=
+        "Paid copies: "+paidCount+
+        " • Sell value: "+card.sellValue.toLocaleString()+
+        " coins • Free copies: "+freeCount;
+    }else{
+      value.textContent="Free copies only • Sell value: 0 coins";
+    }
 
     const sell=document.createElement("button");
     sell.textContent="SELL ONE";
@@ -1611,15 +1776,26 @@ function sellCard(id){
 
   if(!card||card.count<1)return;
 
+  let earned=0;
+
+  // Sell paid copies first. Free copies always sell for zero.
+  if((Number(card.sellableCount)||0)>0){
+    card.sellableCount--;
+    earned=Number(card.sellValue)||0;
+  }else if((Number(card.freeCount)||0)>0){
+    card.freeCount--;
+    earned=0;
+  }
+
   card.count--;
-  cardCoins+=card.sellValue;
+  cardCoins+=earned;
 
   updateCardCoins();
   renderCollection();
   saveCardGame();
 
   document.getElementById("packMessage").textContent =
-    "Sold "+card.name+" for "+card.sellValue.toLocaleString()+" coins!";
+    "Sold "+card.name+" for "+earned.toLocaleString()+" coins!";
 }
 
 
@@ -1632,8 +1808,22 @@ function sellDuplicates(){
   Object.values(collection).forEach(card=>{
     if(card.count>1){
       const duplicates=card.count-1;
-      earned+=duplicates*card.sellValue;
-      sold+=duplicates;
+
+      const paidCount=Number(card.sellableCount)||0;
+      const freeCount=Number(card.freeCount)||0;
+
+      // Sell paid duplicates first, then free duplicates.
+      const paidToSell=Math.min(duplicates,paidCount);
+      const freeToSell=Math.min(
+        duplicates-paidToSell,
+        freeCount
+      );
+
+      earned+=paidToSell*(Number(card.sellValue)||0);
+      sold+=paidToSell+freeToSell;
+
+      card.sellableCount=paidCount-paidToSell;
+      card.freeCount=freeCount-freeToSell;
       card.count=1;
     }
   });
@@ -1956,6 +2146,7 @@ function finishDuel(won){
 
 loadGame();
 loadCardGame();
+startFreePackTimer();
 
 </script>
 
