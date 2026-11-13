@@ -153,7 +153,8 @@ footer{text-align:center;color:#8d80a6;font-size:11px;padding:20px}
 </div>
 <div id="toast"></div>
 
-<script>const $=id=>document.getElementById(id);
+<script>
+const $=id=>document.getElementById(id);
 const money=n=>"$"+Number(n||0).toFixed(2);
 
 const elements=[
@@ -413,9 +414,7 @@ function stockCard(id){
  log("Placed "+c.name+" on display.");
  render();
  drawModal("stock");
-}
-
-function openPack(i){
+}function openPack(i){
  let inv=state.inventory.find(x=>x.pack===i&&x.qty>0);
  if(!inv){toast("You don't have that pack.");return}
  inv.qty--;
@@ -448,7 +447,7 @@ function openPack(i){
  $("modalContent").innerHTML=
   '<p class="muted">Five cards discovered! Your binder has been updated.</p>'+
   '<div class="cardgrid">'+pulls.map(c=>cardHTML(c,state.owned[c.id-1])).join("")+'</div>'+
-  '<button style="margin-top:14px" onclick="drawModal(\\'open\\')">Open another pack</button>';
+  '<button style="margin-top:14px" onclick="drawModal(&quot;open&quot;)">Open another pack</button>';
 
  toast("Five cards added to your collection!");
 }
@@ -562,7 +561,7 @@ function setPayment(n){
 function finishSale(){
  if(!state.queue){toast("No customer at the register.");return}
  if(state.scanned.length!==state.queue.items.length||!state.scanned.length){
-  toast("Scan every item first.");return;
+  toast("Scan every item first.");return
  }
 
  const t=totals();
