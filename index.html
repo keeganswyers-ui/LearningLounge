@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,6 @@
 <meta name="theme-color" content="#090512">
 <title>Learning Lounge 4.7</title>
 <link rel="stylesheet" href="style.css">
-<script src="games/neon-racing.js" defer></script>
-<script src="games/rhythm-jumper.js" defer></script>
 <script src="script.js" defer></script>
 </head>
 <body>
@@ -35,7 +34,6 @@
   <span>VERSION 4.7</span>
 </div>
 
-<!-- ONE BIG GAME AREA -->
 <section id="library">
   <h2 class="section-title">🎮 GAME LIBRARY</h2>
   <p>Choose your next game!</p>
@@ -116,24 +114,6 @@
         <span class="play-button">▶ PLAY DUNGEON RUSH</span>
       </button>
       <p>Explore 50 rooms, battle stronger monsters, collect treasure and defeat powerful bosses!</p>
-    </div>
-
-    <div class="game-card" data-name="neon racing car arcade">
-      <h3>🏁 NEON RACING</h3>
-      <button class="game-card-open" onclick="openNeonRacing()">
-        <div class="game-picture racing-art">🏎️💨<small>NEON SPEEDWAY</small></div>
-        <span class="play-button">▶ PLAY NEON RACING</span>
-      </button>
-      <p>Dodge obstacles, collect coins and race for your highest score!</p>
-    </div>
-
-    <div class="game-card" data-name="rhythm jumper jumping platform arcade">
-      <h3>🎵 RHYTHM JUMPER</h3>
-      <button class="game-card-open" onclick="openRhythmJumper()">
-        <div class="game-picture rhythm-art">🎵🟣<small>JUMP TO THE BEAT</small></div>
-        <span class="play-button">▶ PLAY RHYTHM JUMPER</span>
-      </button>
-      <p>Jump across platforms, avoid obstacles and beat your high score!</p>
     </div>
 
   </div>
@@ -298,49 +278,6 @@
     <h3 class="dungeon-shop-heading">🛒 HERO UPGRADE SHOP</h3>
     <div class="dungeon-shop" id="dungeonShop"></div>
     <p class="dungeon-subtitle">Your room, coins, equipment and upgrades save automatically.</p>
-  </div>
-</div>
-
-<!-- NEON RACING -->
-<div class="game-window" id="neonRacingGame">
-  <div class="game-top">
-    <h2>🏁 NEON RACING</h2>
-    <div>
-      <button onclick="fullscreen('neonRacingGame')">⛶ FULL SCREEN</button>
-      <button onclick="closeNeonRacing()">✕ CLOSE GAME</button>
-    </div>
-  </div>
-  <div class="new-game-wrap">
-    <div id="racingStats"></div>
-    <canvas id="neonRacingCanvas" width="480" height="720"></canvas>
-    <div class="new-game-controls">
-      <button id="racingLeft">◀ LEFT</button>
-      <button id="racingStart">START / RESTART</button>
-      <button id="racingRight">RIGHT ▶</button>
-    </div>
-    <p class="new-game-help">Use the arrow keys or buttons to steer. Dodge traffic and collect coins!</p>
-  </div>
-</div>
-
-<!-- RHYTHM JUMPER -->
-<div class="game-window" id="rhythmJumperGame">
-  <div class="game-top">
-    <h2>🎵 RHYTHM JUMPER</h2>
-    <div>
-      <button onclick="fullscreen('rhythmJumperGame')">⛶ FULL SCREEN</button>
-      <button onclick="closeRhythmJumper()">✕ CLOSE GAME</button>
-    </div>
-  </div>
-  <div class="new-game-wrap">
-    <div id="rhythmStats"></div>
-    <canvas id="rhythmJumperCanvas" width="480" height="720"></canvas>
-    <div class="new-game-controls">
-      <button id="rhythmLeft">◀ LEFT</button>
-      <button id="rhythmJump">JUMP ▲</button>
-      <button id="rhythmRight">RIGHT ▶</button>
-      <button id="rhythmStart">START / RESTART</button>
-    </div>
-    <p class="new-game-help">Jump between platforms, avoid hazards and try to beat your best score!</p>
   </div>
 </div>
 
