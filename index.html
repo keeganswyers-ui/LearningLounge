@@ -1,416 +1,348 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Lounge 4.6</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
-*{box-sizing:border-box}
-body{margin:0;background:#090512;color:white;font-family:Orbitron,Arial,sans-serif}
-header{text-align:center;padding:28px 12px;background:#130a25;border-bottom:2px solid #a855f7}
-.logo{color:#d8a5ff;font-family:'Press Start 2P',monospace;font-size:clamp(17px,4vw,30px);text-shadow:0 0 15px #a855f7}
-header p{color:#c9a8e8;font-size:12px}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:14px;background:#1b1030}
-nav a{color:white;text-decoration:none;padding:10px 15px;border:1px solid #873de0;border-radius:8px}
-.hero{text-align:center;padding:48px 15px;background:linear-gradient(135deg,#160b29,#32105b,#10091d)}
-.hero h1{color:#d9a2ff;font-size:clamp(25px,5vw,42px);text-shadow:0 0 18px #a855f7}
-.hero p{color:#ddd}
-.status{margin:20px auto;max-width:950px;padding:15px;background:#160d25;border:1px solid #7136a9;border-radius:10px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;font-size:12px}
-.online{color:#55ff9a}
-section{max-width:1100px;margin:auto;padding:28px 16px}
-.section-title{color:#d9a2ff;font-size:23px;text-shadow:0 0 10px #922cff}
-#search{width:100%;padding:14px;margin:12px 0 22px;background:#160d25;border:1px solid #a855f7;border-radius:9px;color:white;font-size:16px}
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.game-card{background:#160d25;border:1px solid #7938b5;border-radius:14px;padding:14px;box-shadow:0 0 12px #4c1680;transition:.2s}
-.game-card:hover{transform:translateY(-4px);box-shadow:0 0 22px #963dff}
-.game-card h3{color:#d9a2ff}
-.game-card p{color:#cbb9df;font-size:13px;line-height:1.6}
-.game-link{display:block;text-decoration:none;color:white}
-.game-picture{height:155px;width:100%;border-radius:10px;border:2px solid #a855f7;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;overflow:hidden;font-size:65px;text-shadow:0 0 18px white}
-.game-picture small{font-size:12px;font-weight:bold;letter-spacing:2px}
-.sandbox-art{background:linear-gradient(135deg,#063c3c,#1d9959,#d1a02b)}
-.smash-art{background:linear-gradient(135deg,#21115c,#b52baf,#ed812e)}
-.diep-art{background:linear-gradient(135deg,#092a63,#1675bc,#42d5ef)}
-.critter-art{background:linear-gradient(135deg,#210b3e,#7427ad)}
-.trex-art{background:linear-gradient(135deg,#153b16,#42a52c,#a5e65b)}
-.hexgl-art{background:linear-gradient(135deg,#071b46,#174fbd,#8a35ff)}
-.cards-art{background:linear-gradient(135deg,#123b50,#087e78,#b18b36)}
-.dungeon-art{background:linear-gradient(135deg,#090b24,#452078,#b34b72,#f4a34b)}
-.play-button,.action-button{display:block;width:100%;margin-top:12px;padding:13px;background:#782ac5;border:1px solid #c78aff;border-radius:8px;color:white;font-weight:bold;text-align:center;cursor:pointer;font-family:Orbitron;text-decoration:none}
-.license-note{color:#a995bd;font-size:10px;line-height:1.5}
-.license-note a{color:#d9a2ff}
-.reset-progress-button{display:block;width:100%;max-width:300px;margin:20px auto;padding:14px;background:#8e202f;border:1px solid #ff7585;border-radius:8px;color:white;font-family:Orbitron;font-weight:bold;cursor:pointer}
-.game-window{display:none;position:fixed;z-index:20;inset:0;background:#080410;overflow:auto;padding:12px}
-.game-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;max-width:1000px;margin:0 auto 15px}
-.game-top h2{color:#d9a2ff;font-size:18px}
-.game-top button{padding:10px;border:1px solid #a855f7;background:#35115b;color:white;border-radius:7px;cursor:pointer}
-#clickerScreen{max-width:900px;margin:auto;text-align:center}
-#coinCount{font-size:27px;color:#ffe66d;margin:15px}
-.critter{font-size:100px;cursor:pointer;user-select:none;display:inline-block;padding:25px;border-radius:50%;background:#211039;border:3px solid #b45cff;box-shadow:0 0 30px #9b37ff;margin:20px}
-.upgrades{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:20px auto;text-align:left}
-.upgrade{background:#190d2a;border:1px solid #7439a7;border-radius:9px;padding:12px}
-.upgrade p{font-size:12px;color:#cbb9df}
-.upgrade button{width:100%;margin-top:8px;padding:10px;background:#7025b5;color:white;border:0;border-radius:7px;cursor:pointer}
-.upgrade button:disabled{opacity:.4}
-footer{text-align:center;padding:25px;background:#130a25;border-top:1px solid #7136a9;color:#bda6d5;font-size:12px}
-
-/* CARD CLASH */
-#cardGame{z-index:30;background:radial-gradient(ellipse at 50% 0%,#174b58,#07131f 85%)}
-.card-game-content{max-width:1000px;margin:auto;text-align:center}
-.card-logo{font-family:'Press Start 2P';color:#8effe6;font-size:clamp(20px,5vw,32px);margin:25px 0}
-.card-coins{color:#ffe66d;font-size:23px;margin:18px}
-.card-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin:20px 0}
-.card-tabs button,.card-button{padding:12px 16px;background:#123744;border:1px solid #3b9998;border-radius:8px;color:white;font-family:Orbitron;font-weight:bold;cursor:pointer;margin:5px}
-.card-tabs button.active,.card-tabs button:hover,.card-button:hover{background:#087e78}
-.card-panel{display:none;background:#102b3a;border:1px solid #327b83;border-radius:14px;padding:18px;margin:15px 0}
-.card-panel.active{display:block}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px;margin-top:18px}
-.collect-card{border:2px solid #777;border-radius:11px;padding:12px 7px;background:#102532;overflow:hidden}
-.collect-card h3{font-size:12px}
-.collect-card p{font-size:10px;color:#d5c7e4}
-.collect-card button{width:100%;padding:9px;margin-top:7px;border:0;border-radius:6px;background:#087e78;color:white;font-family:Orbitron;font-size:10px;cursor:pointer}
-.creature-art{height:100px;display:flex;justify-content:center;align-items:center;margin:9px 0;border-radius:10px;font-size:65px;background:radial-gradient(circle,#5c9fa0,#102532)}
-.rarity-common{border-color:#aeb5c2}.rarity-uncommon{border-color:#45d483}.rarity-rare{border-color:#42a5ff}.rarity-epic{border-color:#bd72ff}.rarity-legendary{border-color:#ffd04c}.rarity-mythic{border-color:#ff668e}.rarity-godly{border-color:#ffb52e}.rarity-secret{border-color:#ff347e}
-.card-info,.duel-info{color:#a9d8d7;font-size:12px;line-height:1.7}
-#packResults{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px;margin:20px 0}
-.pack-result-card{border:2px solid #888;border-radius:10px;padding:12px;background:#193d4b}
-#packMessage,#duelMessage{min-height:25px;color:#b9fff0}
-.duel-pick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin:18px 0}
-.duel-pick{background:#142f3c;border:2px solid #347d86;border-radius:12px;padding:12px;color:white;cursor:pointer;font-family:Orbitron}
-.duel-pick.selected{border-color:#8effe6;background:#12665f}
-.duel-fighters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
-.duel-fighter{background:#142f3c;border:2px solid #347d86;border-radius:12px;padding:12px}
-.duel-monster{font-size:55px;margin:10px}
-.duel-health{height:15px;background:#07131f;border-radius:20px;overflow:hidden}
-.duel-health-fill{height:100%;background:#13b96e;transition:width .3s}
-.duel-log{min-height:65px;padding:14px;background:#071c28;border:1px solid #347d86;border-radius:10px;color:#b9fff0}
-
-/* DUNGEON RUSH */
-#dungeonGame{z-index:35;background:radial-gradient(ellipse at top,#24103d,#090817 70%)}
-#dungeonGame .game-top h2{color:#ffc16b}
-.dungeon-wrap{max-width:900px;margin:auto;text-align:center}
-.dungeon-title{font-family:'Press Start 2P';color:#ffc16b;font-size:clamp(17px,4vw,27px);text-shadow:0 0 15px #ff853b;margin:14px}
-.dungeon-subtitle{color:#d5b8e9;font-size:12px;line-height:1.7}
-.dungeon-hud{display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;background:#170f29;border:1px solid #8051a7;border-radius:10px;padding:12px;margin:12px 0;color:#ffe6a6;font-size:12px}
-#dungeonCanvas{display:block;width:100%;max-width:768px;height:auto;margin:10px auto;border:3px solid #a56add;border-radius:8px;background:#080817;image-rendering:pixelated;touch-action:none}
-.dungeon-message{min-height:25px;color:#ffdc93;font-size:12px;line-height:1.6}
-.dungeon-controls{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;margin:14px auto}
-.dpad{display:grid;grid-template-columns:48px 48px 48px;grid-template-rows:48px 48px 48px;gap:4px}
-.dpad button,.attack-touch{background:linear-gradient(145deg,#59317d,#28163f);border:2px solid #c18bff;border-radius:9px;color:white;font-size:20px;font-weight:bold;touch-action:none;user-select:none}
-.dpad .up{grid-column:2;grid-row:1}.dpad .left{grid-column:1;grid-row:2}.dpad .right{grid-column:3;grid-row:2}.dpad .down{grid-column:2;grid-row:3}
-.attack-touch{width:95px;height:95px;border-radius:50%;background:linear-gradient(145deg,#a34b3a,#5a1b38);border-color:#ffad7c;font-size:13px}
-.dungeon-shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:15px 0}
-.dungeon-upgrade{background:#1a1029;border:1px solid #8756ad;border-radius:9px;padding:12px}
-.dungeon-upgrade p{font-size:11px;color:#d7c3e9;line-height:1.5}
-.dungeon-upgrade button{width:100%;padding:10px;border:1px solid #d3a2ff;border-radius:7px;background:#66309a;color:white;font-family:Orbitron;font-weight:bold;cursor:pointer}
-.dungeon-upgrade button:disabled{opacity:.4}
-.dungeon-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.dungeon-actions button{padding:11px 15px;background:#59317d;border:1px solid #c18bff;color:white;border-radius:8px;font-family:Orbitron;cursor:pointer}
-@media(max-width:500px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card-panel{padding:12px}.duel-fighters{grid-template-columns:1fr 1fr}.dungeon-controls{gap:12px}.dpad{grid-template-columns:43px 43px 43px;grid-template-rows:43px 43px 43px}}
-</style>
+<meta name="theme-color" content="#090512">
+<title>Learning Lounge 4.7</title>
+<link rel="stylesheet" href="style.css">
+<script src="games/neon-racing.js" defer></script>
+<script src="games/rhythm-jumper.js" defer></script>
+<script src="script.js" defer></script>
 </head>
 <body>
-<header><div class="logo">LEARNING LOUNGE</div><p>YOUR NEON ARCADE DESTINATION</p></header>
-<nav><a href="#home">HOME</a><a href="#library">GAME LIBRARY</a><a href="#about">ABOUT</a></nav>
-<div class="hero" id="home"><h1>PRESS START!</h1><p>Welcome to your arcade. Pick a game and have fun!</p><a class="play-button" href="#library" style="max-width:220px;margin:20px auto">ENTER ARCADE</a></div>
-<div class="status"><span class="online">● SYSTEM ONLINE</span><span id="clock"></span><span>VERSION 4.6</span></div>
 
-<section id="library">
-<h2 class="section-title">🎮 GAME LIBRARY</h2>
-<p>Choose your next game!</p>
-<input id="search" type="text" placeholder="Search games..." oninput="searchGames()">
-<div class="games" id="gameList">
-<div class="game-card" data-name="sandboxels sandbox simulation"><h3>SANDBOXELS</h3><a class="game-link" href="https://neal.fun/sandboxels/" target="_blank" rel="noopener noreferrer"><div class="game-picture sandbox-art">🧪🌋<small>SANDBOX EXPERIMENTS</small></div><span class="play-button">▶ PLAY SANDBOXELS</span></a><p>Experiment with elements, create reactions and build pixel worlds!</p></div>
-<div class="game-card" data-name="smash karts racing cars battle"><h3>SMASH KARTS</h3><a class="game-link" href="https://smashkarts.io/" target="_blank" rel="noopener noreferrer"><div class="game-picture smash-art">🏎️💥<small>KART BATTLES</small></div><span class="play-button">▶ PLAY SMASH KARTS</span></a><p>Race around arenas and enjoy chaotic kart battles!</p></div>
-<div class="game-card" data-name="diep io tank shooter"><h3>DIEP.IO</h3><a class="game-link" href="https://diep.io/" target="_blank" rel="noopener noreferrer"><div class="game-picture diep-art">🔵🎯<small>TANK ARENA</small></div><span class="play-button">▶ PLAY DIEP.IO</span></a><p>Upgrade your tank and compete in the arena!</p></div>
-<div class="game-card" data-name="neon critter clicker arcade"><h3>NEON CRITTER CLICKER</h3><button onclick="openGame()" style="padding:0;border:0;background:none;width:100%;cursor:pointer"><div class="game-picture critter-art">👾<small>CLICKER ARCADE</small></div><span class="play-button">▶ TAP PICTURE TO PLAY</span></button><p>Click your critter, collect coins and buy 17 powerful upgrades!</p></div>
-<div class="game-card" data-name="t rex trex dinosaur runner"><h3>T-REX RUNNER</h3><a class="game-link" href="https://wayou.github.io/t-rex-runner/" target="_blank" rel="noopener noreferrer"><div class="game-picture trex-art">🦖<small>DINO RUNNER</small></div><span class="play-button">▶ PLAY T-REX RUNNER</span></a><p>Jump over obstacles and see how far your dinosaur can run!</p><p class="license-note">BSD-3-Clause • <a href="https://github.com/wayou/t-rex-runner" target="_blank">Source and licence</a></p></div>
-<div class="game-card" data-name="hexgl racing futuristic spaceship"><h3>HEXGL</h3><a class="game-link" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener noreferrer"><div class="game-picture hexgl-art">🏎️⚡<small>FUTURE RACING</small></div><span class="play-button">▶ PLAY HEXGL</span></a><p>Take control of a futuristic racing ship and speed through the track!</p><p class="license-note">MIT License • <a href="https://github.com/BKcore/HexGL" target="_blank">Source and licence</a></p></div>
-<div class="game-card" data-name="card clash trading cards booster collector monster duel"><h3>🎴 CARD CLASH</h3><button onclick="openCardClash()" style="padding:0;border:0;background:none;width:100%;cursor:pointer"><div class="game-picture cards-art">🃏✨<small>OPEN • COLLECT • DUEL</small></div><span class="play-button">▶ PLAY CARD CLASH</span></button><p>Open booster packs, discover rare creatures, build your collection and battle monsters!</p></div>
-<div class="game-card" data-name="dungeon rush dungeon crawler pixel art monsters boss adventure 50 rooms"><h3>⚔️ DUNGEON RUSH</h3><button onclick="openDungeon()" style="padding:0;border:0;background:none;width:100%;cursor:pointer"><div class="game-picture dungeon-art">🏰⚔️<small>50 ROOM ADVENTURE</small></div><span class="play-button">▶ PLAY DUNGEON RUSH</span></button><p>Explore 50 rooms, battle stronger monsters, collect treasure, upgrade your hero and defeat powerful bosses!</p></div>
+<header>
+  <div class="logo">LEARNING LOUNGE</div>
+  <p>YOUR NEON ARCADE DESTINATION</p>
+</header>
+
+<nav>
+  <a href="#home">HOME</a>
+  <a href="#library">GAME LIBRARY</a>
+  <a href="#about">ABOUT</a>
+</nav>
+
+<div class="hero" id="home">
+  <h1>PRESS START!</h1>
+  <p>Welcome to your arcade. Pick a game and have fun!</p>
+  <a class="play-button hero-button" href="#library">ENTER ARCADE</a>
 </div>
+
+<div class="status">
+  <span class="online">● SYSTEM ONLINE</span>
+  <span id="clock"></span>
+  <span>VERSION 4.7</span>
+</div>
+
+<!-- ONE BIG GAME AREA -->
+<section id="library">
+  <h2 class="section-title">🎮 GAME LIBRARY</h2>
+  <p>Choose your next game!</p>
+
+  <input id="search" type="text" placeholder="Search games...">
+
+  <div class="games" id="gameList">
+
+    <div class="game-card" data-name="sandboxels sandbox simulation">
+      <h3>SANDBOXELS</h3>
+      <a class="game-link" href="https://neal.fun/sandboxels/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture sandbox-art">🧪🌋<small>SANDBOX EXPERIMENTS</small></div>
+        <span class="play-button">▶ PLAY SANDBOXELS</span>
+      </a>
+      <p>Experiment with elements, create reactions and build pixel worlds!</p>
+    </div>
+
+    <div class="game-card" data-name="smash karts racing cars battle">
+      <h3>SMASH KARTS</h3>
+      <a class="game-link" href="https://smashkarts.io/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture smash-art">🏎️💥<small>KART BATTLES</small></div>
+        <span class="play-button">▶ PLAY SMASH KARTS</span>
+      </a>
+      <p>Race around arenas and enjoy chaotic kart battles!</p>
+    </div>
+
+    <div class="game-card" data-name="diep io tank shooter">
+      <h3>DIEP.IO</h3>
+      <a class="game-link" href="https://diep.io/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture diep-art">🔵🎯<small>TANK ARENA</small></div>
+        <span class="play-button">▶ PLAY DIEP.IO</span>
+      </a>
+      <p>Upgrade your tank and compete in the arena!</p>
+    </div>
+
+    <div class="game-card" data-name="neon critter clicker arcade">
+      <h3>NEON CRITTER CLICKER</h3>
+      <button class="game-card-open" onclick="openGame()">
+        <div class="game-picture critter-art">👾<small>CLICKER ARCADE</small></div>
+        <span class="play-button">▶ TAP PICTURE TO PLAY</span>
+      </button>
+      <p>Click your critter, collect coins and buy 17 powerful upgrades!</p>
+    </div>
+
+    <div class="game-card" data-name="t rex trex dinosaur runner">
+      <h3>T-REX RUNNER</h3>
+      <a class="game-link" href="https://wayou.github.io/t-rex-runner/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture trex-art">🦖<small>DINO RUNNER</small></div>
+        <span class="play-button">▶ PLAY T-REX RUNNER</span>
+      </a>
+      <p>Jump over obstacles and see how far your dinosaur can run!</p>
+      <p class="license-note">BSD-3-Clause • <a href="https://github.com/wayou/t-rex-runner" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
+    </div>
+
+    <div class="game-card" data-name="hexgl racing futuristic spaceship">
+      <h3>HEXGL</h3>
+      <a class="game-link" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener noreferrer">
+        <div class="game-picture hexgl-art">🏎️⚡<small>FUTURE RACING</small></div>
+        <span class="play-button">▶ PLAY HEXGL</span>
+      </a>
+      <p>Take control of a futuristic racing ship and speed through the track!</p>
+      <p class="license-note">MIT License • <a href="https://github.com/BKcore/HexGL" target="_blank" rel="noopener noreferrer">Source and licence</a></p>
+    </div>
+
+    <div class="game-card" data-name="card clash trading cards booster collector monster duel">
+      <h3>🎴 CARD CLASH</h3>
+      <button class="game-card-open" onclick="openCardClash()">
+        <div class="game-picture cards-art">🃏✨<small>OPEN • COLLECT • DUEL</small></div>
+        <span class="play-button">▶ PLAY CARD CLASH</span>
+      </button>
+      <p>Open booster packs, discover rare creatures, build your collection and battle monsters!</p>
+    </div>
+
+    <div class="game-card" data-name="dungeon rush dungeon crawler pixel art monsters boss adventure 50 rooms">
+      <h3>⚔️ DUNGEON RUSH</h3>
+      <button class="game-card-open" onclick="openDungeon()">
+        <div class="game-picture dungeon-art">🏰⚔️<small>50 ROOM ADVENTURE</small></div>
+        <span class="play-button">▶ PLAY DUNGEON RUSH</span>
+      </button>
+      <p>Explore 50 rooms, battle stronger monsters, collect treasure and defeat powerful bosses!</p>
+    </div>
+
+    <div class="game-card" data-name="neon racing car arcade">
+      <h3>🏁 NEON RACING</h3>
+      <button class="game-card-open" onclick="openNeonRacing()">
+        <div class="game-picture racing-art">🏎️💨<small>NEON SPEEDWAY</small></div>
+        <span class="play-button">▶ PLAY NEON RACING</span>
+      </button>
+      <p>Dodge obstacles, collect coins and race for your highest score!</p>
+    </div>
+
+    <div class="game-card" data-name="rhythm jumper jumping platform arcade">
+      <h3>🎵 RHYTHM JUMPER</h3>
+      <button class="game-card-open" onclick="openRhythmJumper()">
+        <div class="game-picture rhythm-art">🎵🟣<small>JUMP TO THE BEAT</small></div>
+        <span class="play-button">▶ PLAY RHYTHM JUMPER</span>
+      </button>
+      <p>Jump across platforms, avoid obstacles and beat your high score!</p>
+    </div>
+
+  </div>
 </section>
 
-<section id="about"><h2 class="section-title">ABOUT LEARNING LOUNGE</h2><p>Welcome to Learning Lounge! A purple neon arcade featuring games, experiments and original creations.</p><h3 style="color:#ff8b9b;text-align:center;margin-top:35px">RESET ALL PROGRESS</h3><p style="text-align:center">This resets saved progress in all three original games.</p><button class="reset-progress-button" onclick="resetProgress()">RESET ALL PROGRESS</button></section>
-<footer>LEARNING LOUNGE © 2026<br><br>Keep playing. Keep exploring.</footer>
+<section id="about">
+  <h2 class="section-title">ABOUT LEARNING LOUNGE</h2>
+  <p>Welcome to Learning Lounge! A purple neon arcade featuring games, experiments and original creations.</p>
 
-<!-- CLICKER -->
-<div class="game-window" id="clickerGame"><div class="game-top"><h2>👾 NEON CRITTER CLICKER</h2><div><button onclick="fullscreen('clickerGame')">⛶ FULL SCREEN</button><button onclick="closeWindow('clickerGame')">✕ CLOSE GAME</button></div></div><div id="clickerScreen"><h2>CLICK THE CRITTER!</h2><div id="coinCount">🪙 0 Coins</div><div class="critter" onclick="clickCritter()">👾</div><p id="gameMessage">Your adventure starts here!</p><p id="powerText"></p><h2 style="color:#d9a2ff">UPGRADES SHOP</h2><div class="upgrades" id="upgradeList"></div><button class="action-button" onclick="resetGame()">RESET GAME</button></div></div>
+  <h3 class="reset-heading">RESET ALL PROGRESS</h3>
+  <p class="center-text">This resets saved progress in all Learning Lounge games.</p>
+  <button class="reset-progress-button" onclick="resetProgress()">RESET ALL PROGRESS</button>
+</section>
+
+<footer>
+  LEARNING LOUNGE © 2026
+  <br><br>
+  Keep playing. Keep exploring.
+</footer>
+
+<!-- NEON CRITTER CLICKER -->
+<div class="game-window" id="clickerGame">
+  <div class="game-top">
+    <h2>👾 NEON CRITTER CLICKER</h2>
+    <div>
+      <button onclick="fullscreen('clickerGame')">⛶ FULL SCREEN</button>
+      <button onclick="closeWindow('clickerGame')">✕ CLOSE GAME</button>
+    </div>
+  </div>
+
+  <div id="clickerScreen">
+    <h2>CLICK THE CRITTER!</h2>
+    <div id="coinCount">🪙 0 Coins</div>
+    <div class="critter" onclick="clickCritter()">👾</div>
+    <p id="gameMessage">Your adventure starts here!</p>
+    <p id="powerText"></p>
+    <h2 class="upgrade-heading">UPGRADES SHOP</h2>
+    <div class="upgrades" id="upgradeList"></div>
+    <button class="action-button" onclick="resetGame()">RESET GAME</button>
+  </div>
+</div>
 
 <!-- CARD CLASH -->
 <div class="game-window" id="cardGame">
-<div class="game-top"><h2>🎴 CARD CLASH</h2><div><button onclick="fullscreen('cardGame')">⛶ FULL SCREEN</button><button onclick="closeWindow('cardGame')">✕ CLOSE GAME</button></div></div>
-<div class="card-game-content"><div class="card-logo">CARD CLASH</div><div class="card-coins" id="cardCoins">🪙 500 COINS</div>
-<div class="card-tabs"><button class="active" onclick="showCardTab('shop',this)">🛒 SHOP</button><button onclick="showCardTab('collection',this)">📚 COLLECTION</button><button onclick="showCardTab('duel',this)">⚔️ DUEL</button><button onclick="showCardTab('odds',this)">✨ ODDS</button></div>
-<div class="card-panel active" id="cardShop"><h2>🎁 BOOSTER PACK SHOP</h2><p class="card-info">Free pack gives one card. Paid packs contain five cards.</p><div class="card-grid" id="packShop"></div><p id="superPackTimer"></p><p id="packMessage">Choose a pack!</p><div id="packResults"></div></div>
-<div class="card-panel" id="cardCollection"><h2>YOUR COLLECTION</h2><p id="collectionStats"></p><button class="card-button" onclick="sellDuplicates()">💰 SELL ALL DUPLICATES</button><div class="card-grid" id="collectionGrid"></div></div>
-<div class="card-panel" id="cardDuel"><h2>⚔️ MONSTER DUEL ARENA</h2><p class="duel-info" id="duelStreak"></p><div id="duelSetup"><p id="duelSelectionText">Select 3 monsters.</p><div class="duel-pick-grid" id="duelPickGrid"></div><button class="card-button" onclick="startDuel()">START DUEL</button></div><div id="duelBattle" style="display:none"><div class="duel-fighters"><div class="duel-fighter"><strong id="playerName"></strong><div class="duel-monster" id="playerEmoji"></div><p id="playerHPText"></p><div class="duel-health"><div class="duel-health-fill" id="playerHPBar"></div></div></div><div class="duel-fighter"><strong id="enemyName"></strong><div class="duel-monster" id="enemyEmoji"></div><p id="enemyHPText"></p><div class="duel-health"><div class="duel-health-fill" id="enemyHPBar"></div></div></div></div><button class="card-button" onclick="duelAttack()">⚔️ ATTACK</button><button class="card-button" onclick="duelSpecial()">✨ SPECIAL</button><div class="duel-log" id="duelLog"></div></div><p id="duelMessage"></p></div>
-<div class="card-panel" id="cardOdds"><h2>✨ PACK ODDS</h2><p class="card-info">Common packs: mostly Common cards. Better packs improve the chance of higher rarity cards. Mystery packs have the best overall odds.</p><div id="oddsList" class="card-grid"></div></div>
-</div></div>
+  <div class="game-top">
+    <h2>🎴 CARD CLASH</h2>
+    <div>
+      <button onclick="fullscreen('cardGame')">⛶ FULL SCREEN</button>
+      <button onclick="closeWindow('cardGame')">✕ CLOSE GAME</button>
+    </div>
+  </div>
+
+  <div class="card-game-content">
+    <div class="card-logo">CARD CLASH</div>
+    <div class="card-coins" id="cardCoins">🪙 500 COINS</div>
+
+    <div class="card-tabs">
+      <button class="active" onclick="showCardTab('shop',this)">🛒 SHOP</button>
+      <button onclick="showCardTab('collection',this)">📚 COLLECTION</button>
+      <button onclick="showCardTab('duel',this)">⚔️ DUEL</button>
+      <button onclick="showCardTab('odds',this)">✨ ODDS</button>
+    </div>
+
+    <div class="card-panel active" id="cardShop">
+      <h2>🎁 BOOSTER PACK SHOP</h2>
+      <p class="card-info">Free pack gives one card. Paid packs contain five cards.</p>
+      <div class="card-grid" id="packShop"></div>
+      <p id="superPackTimer"></p>
+      <p id="packMessage">Choose a pack!</p>
+      <div id="packResults"></div>
+    </div>
+
+    <div class="card-panel" id="cardCollection">
+      <h2>YOUR COLLECTION</h2>
+      <p id="collectionStats"></p>
+      <button class="card-button" onclick="sellDuplicates()">💰 SELL ALL DUPLICATES</button>
+      <div class="card-grid" id="collectionGrid"></div>
+    </div>
+
+    <div class="card-panel" id="cardDuel">
+      <h2>⚔️ MONSTER DUEL ARENA</h2>
+      <p class="duel-info" id="duelStreak"></p>
+      <div id="duelSetup">
+        <p id="duelSelectionText">Select 3 monsters.</p>
+        <div class="duel-pick-grid" id="duelPickGrid"></div>
+        <button class="card-button" onclick="startDuel()">START DUEL</button>
+      </div>
+
+      <div id="duelBattle" style="display:none">
+        <div class="duel-fighters">
+          <div class="duel-fighter">
+            <strong id="playerName"></strong>
+            <div class="duel-monster" id="playerEmoji"></div>
+            <p id="playerHPText"></p>
+            <div class="duel-health"><div class="duel-health-fill" id="playerHPBar"></div></div>
+          </div>
+          <div class="duel-fighter">
+            <strong id="enemyName"></strong>
+            <div class="duel-monster" id="enemyEmoji"></div>
+            <p id="enemyHPText"></p>
+            <div class="duel-health"><div class="duel-health-fill" id="enemyHPBar"></div></div>
+          </div>
+        </div>
+        <button class="card-button" onclick="duelAttack()">⚔️ ATTACK</button>
+        <button class="card-button" onclick="duelSpecial()">✨ SPECIAL</button>
+        <div class="duel-log" id="duelLog"></div>
+      </div>
+      <p id="duelMessage"></p>
+    </div>
+
+    <div class="card-panel" id="cardOdds">
+      <h2>✨ PACK ODDS</h2>
+      <p class="card-info">Common packs: mostly Common cards. Better packs improve the chance of higher rarity cards. Mystery packs have the best overall odds.</p>
+      <div id="oddsList" class="card-grid"></div>
+    </div>
+  </div>
+</div>
 
 <!-- DUNGEON RUSH -->
 <div class="game-window" id="dungeonGame">
-<div class="game-top"><h2>⚔️ DUNGEON RUSH</h2><div><button onclick="fullscreen('dungeonGame')">⛶ FULL SCREEN</button><button onclick="closeDungeon()">✕ CLOSE GAME</button></div></div>
-<div class="dungeon-wrap">
-<div class="dungeon-title">DUNGEON RUSH</div>
-<p class="dungeon-subtitle">50 rooms • 10 enemy types • 10 bosses • Loads of upgrades!</p>
-<div class="dungeon-hud"><span id="dungeonRoom">ROOM 1 / 50</span><span id="dungeonHealth">❤️ 100 / 100</span><span id="dungeonCoins">🪙 0</span><span id="dungeonEnemies">MONSTERS: 0</span><span id="dungeonWeapon">SWORD LV. 1</span></div>
-<canvas id="dungeonCanvas" width="768" height="512"></canvas>
-<p class="dungeon-message" id="dungeonMessage">Defeat every monster to unlock the exit!</p>
-<div class="dungeon-controls"><div class="dpad"><button class="up" data-move="up">▲</button><button class="left" data-move="left">◀</button><button class="right" data-move="right">▶</button><button class="down" data-move="down">▼</button></div><button class="attack-touch" id="dungeonAttack">⚔️<br>ATTACK</button></div>
-<p class="dungeon-subtitle">WASD or arrow keys to move • Space to attack. Mobile: use the buttons.</p>
-<div class="dungeon-actions"><button onclick="dungeonRestartRoom()">↻ RESTART ROOM</button><button onclick="dungeonHeal()">❤️ USE POTION</button></div>
-<h3 style="color:#ffc16b">🛒 HERO UPGRADE SHOP</h3>
-<div class="dungeon-shop" id="dungeonShop"></div>
-<p class="dungeon-subtitle">Your room, coins, equipment and upgrades save automatically.</p>
-</div></div>
+  <div class="game-top">
+    <h2>⚔️ DUNGEON RUSH</h2>
+    <div>
+      <button onclick="fullscreen('dungeonGame')">⛶ FULL SCREEN</button>
+      <button onclick="closeDungeon()">✕ CLOSE GAME</button>
+    </div>
+  </div>
 
-<script>
-// SITE
-function updateClock(){document.getElementById("clock").textContent=new Date().toLocaleTimeString()}
-setInterval(updateClock,1000);updateClock();
-function searchGames(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".game-card").forEach(c=>c.style.display=c.dataset.name.includes(q)?"block":"none")}
-function fullscreen(id){let el=document.getElementById(id);if(!document.fullscreenElement)el.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.().catch(()=>{})}
-function closeWindow(id){document.getElementById(id).style.display="none";if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{})}
+  <div class="dungeon-wrap">
+    <div class="dungeon-title">DUNGEON RUSH</div>
+    <p class="dungeon-subtitle">50 rooms • 10 enemy types • 10 bosses • Loads of upgrades!</p>
 
-// CLICKER
-const SAVE_KEY="neonCritterSave";
-let coins=0,levels={};
-const upgrades=[
-["Power Click","+1 coin per click",25,1,0],["Auto Clicker","+1 coin per second",50,0,1],
-["Mega Finger","+3 coins per click",150,3,0],["Coin Magnet","+3 coins per second",250,0,3],
-["Super Tap","+7 coins per click",500,7,0],["Neon Generator","+8 coins per second",900,0,8],
-["Crystal Gloves","+15 coins per click",1800,15,0],["Robot Helper","+20 coins per second",3500,0,20],
-["Turbo Touch","+35 coins per click",7000,35,0],["Power Plant","+45 coins per second",14000,0,45],
-["Golden Fingers","+80 coins per click",28000,80,0],["Coin Factory","+100 coins per second",55000,0,100],
-["Galaxy Touch","+200 coins per click",110000,200,0],["Space Machine","+250 coins per second",220000,0,250],
-["Quantum Click","+500 coins per click",450000,500,0],["Neon Overlord","+1,000 coins per second",900000,0,1000],
-["Ultimate Critter","+2,500 coins per click",2000000,2500,0]
-];
-function loadGame(){try{let s=JSON.parse(localStorage.getItem(SAVE_KEY));if(s){coins=Number(s.coins)||0;levels=s.levels||{}}}catch(e){}renderUpgrades();updateStats()}
-function saveGame(){localStorage.setItem(SAVE_KEY,JSON.stringify({coins,levels}))}
-function clickPower(){return 1+upgrades.reduce((a,u,i)=>a+u[3]*(levels[i]||0),0)}
-function autoPower(){return upgrades.reduce((a,u,i)=>a+u[4]*(levels[i]||0),0)}
-function getCost(i){return Math.floor(upgrades[i][2]*Math.pow(1.65,levels[i]||0))}
-function clickCritter(){coins+=clickPower();updateStats();saveGame()}
-function renderUpgrades(){let el=document.getElementById("upgradeList");if(!el)return;el.innerHTML="";upgrades.forEach((u,i)=>{let d=document.createElement("div");d.className="upgrade";d.innerHTML="<strong>"+u[0]+"</strong><p>"+u[1]+"</p><p>Level: "+(levels[i]||0)+"</p>";let b=document.createElement("button");b.textContent="BUY - "+getCost(i).toLocaleString()+" coins";b.disabled=coins<getCost(i);b.onclick=()=>{let c=getCost(i);if(coins>=c){coins-=c;levels[i]=(levels[i]||0)+1;updateStats();saveGame();document.getElementById("gameMessage").textContent=u[0]+" upgraded!"}};d.appendChild(b);el.appendChild(d)})}
-function updateStats(){document.getElementById("coinCount").textContent="🪙 "+Math.floor(coins).toLocaleString()+" Coins";document.getElementById("powerText").textContent="Click power: "+clickPower()+" | Auto coins: "+autoPower()+"/sec";renderUpgrades()}
-function openGame(){document.getElementById("clickerGame").style.display="block";renderUpgrades()}
-function resetGame(){if(confirm("Reset Neon Critter Clicker?")){coins=0;levels={};saveGame();updateStats()}}
-setInterval(()=>{coins+=autoPower();updateStats();saveGame()},1000);
+    <div class="dungeon-hud">
+      <span id="dungeonRoom">ROOM 1 / 50</span>
+      <span id="dungeonHealth">❤️ 100 / 100</span>
+      <span id="dungeonCoins">🪙 0</span>
+      <span id="dungeonEnemies">MONSTERS: 0</span>
+      <span id="dungeonWeapon">SWORD LV. 1</span>
+    </div>
 
-// CARD CLASH
-const CARD_SAVE_KEY="cardClashSave",COOLDOWN_KEY="cardClashFreePackCooldown";
-let cardCoins=500,collection={},duelStreak=0,lastPack=[],nextFreePackTime=0,duelTeam=[],enemyTeam=[],playerIndex=0,enemyIndex=0,duelBusy=false;
-const creatures=[
-["embercub","Ember Cub","🦊","Common"],["leafling","Leafling","🌱","Common"],["bubbletoad","Bubble Toad","🐸","Common"],
-["rockpup","Rock Pup","🐶","Uncommon"],["stormbird","Storm Bird","🐦","Uncommon"],["frostkit","Frost Kit","🐱","Uncommon"],
-["flamewolf","Flame Wolf","🐺","Rare"],["thunderhorn","Thunderhorn","🦏","Rare"],["coraldragon","Coral Dragon","🐉","Rare"],
-["shadowfang","Shadow Fang","🐈‍⬛","Epic"],["crystalowl","Crystal Owl","🦉","Epic"],["magmarex","Magma Rex","🦖","Epic"],
-["sunphoenix","Sun Phoenix","🔥","Legendary"],["moonserpent","Moon Serpent","🐍","Legendary"],["stargriffin","Star Griffin","🦅","Legendary"],
-["voidtitan","Void Titan","👹","Mythic"],["galaxydrake","Galaxy Drake","🐲","Mythic"],["aurorabeast","Aurora Beast","🦄","Mythic"],
-["celestialking","Celestial King","👑","Godly"],["goldenhydra","Golden Hydra","🐉","Godly"],["cosmicemperor","Cosmic Emperor","🌌","Godly"],
-["unknownone","The Unknown","👁️","Secret"],["glitchbeast","Glitch Beast","👾","Secret"],["ancientzero","Ancient Zero","💀","Secret"]
-];
-const rarityValues={Common:[1,5],Uncommon:[5,15],Rare:[15,50],Epic:[50,150],Legendary:[150,500],Mythic:[500,2000],Godly:[2000,10000],Secret:[10000,50000]};
-const packTypes={
-super:{cost:0,odds:[100,0,0,0,0,0,0,0]},
-common:{cost:50,odds:[75,20,5,0,0,0,0,0]},
-uncommon:{cost:100,odds:[45,40,12,3,0,0,0,0]},
-rare:{cost:200,odds:[25,35,25,12,3,0,0,0]},
-legendary:{cost:500,odds:[10,20,30,22,14,3,1,0]},
-mystery:{cost:2000,odds:[5,10,20,25,20,12,6,2]}
-};
-const rarityNames=Object.keys(rarityValues);
-function saveCards(){localStorage.setItem(CARD_SAVE_KEY,JSON.stringify({cardCoins,collection,duelStreak}))}
-function loadCardGame(){try{let s=JSON.parse(localStorage.getItem(CARD_SAVE_KEY));if(s){cardCoins=Number(s.cardCoins)||0;collection=s.collection||{};duelStreak=Number(s.duelStreak)||0}}catch(e){}try{nextFreePackTime=Number(localStorage.getItem(COOLDOWN_KEY))||0}catch(e){}updateCardCoins();renderCollection();renderPackShop();updateFreePack()}
-function updateCardCoins(){document.getElementById("cardCoins").textContent="🪙 "+cardCoins.toLocaleString()+" COINS"}
-function openCardClash(){document.getElementById("cardGame").style.display="block";updateCardCoins();renderCollection();updateFreePack()}
-function showCardTab(tab,btn){document.querySelectorAll("#cardGame .card-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardGame .card-tabs button").forEach(b=>b.classList.remove("active"));document.getElementById("card"+tab[0].toUpperCase()+tab.slice(1)).classList.add("active");btn.classList.add("active");if(tab==="duel")renderDuelChoices()}
-function renderPackShop(){let el=document.getElementById("packShop");el.innerHTML="";Object.entries(packTypes).forEach(([id,p])=>{let d=document.createElement("div");d.className="collect-card";d.innerHTML="<div class=creature-art>"+({super:"🟢",common:"📦",uncommon:"🍀",rare:"💎",legendary:"🔥",mystery:"👁️"}[id])+"</div><h3>"+id.toUpperCase()+" PACK</h3><p>"+(id==="super"?"Free • 1 card • 60 sec cooldown":p.cost+" coins • 5 cards")+"</p>";let b=document.createElement("button");b.textContent=id==="super"?"CLAIM FREE":"BUY - "+p.cost;b.onclick=()=>openPack(id);d.appendChild(b);el.appendChild(d)})}
-function updateFreePack(){let b=document.querySelector("#packShop .collect-card button");if(!b)return;let left=nextFreePackTime-Date.now();b.disabled=left>0;b.textContent=left>0?"WAIT "+Math.ceil(left/1000)+"s":"CLAIM FREE PACK";document.getElementById("superPackTimer").textContent=left>0?"Free pack cooldown: "+Math.ceil(left/1000)+" seconds":"Free pack ready!"}
-setInterval(updateFreePack,1000);
-function rollCardRarity(pack){let r=Math.random()*100,total=0;for(let i=0;i<8;i++){total+=pack.odds[i];if(r<total)return rarityNames[i]}return "Common"}
-function openPack(id){let p=packTypes[id];if(id==="super"&&Date.now()<nextFreePackTime)return;if(id!=="super"&&cardCoins<p.cost){document.getElementById("packMessage").textContent="Not enough coins!";return}if(id==="super"){nextFreePackTime=Date.now()+60000;localStorage.setItem(COOLDOWN_KEY,nextFreePackTime)}else cardCoins-=p.cost;lastPack=[];for(let i=0;i<(id==="super"?1:5);i++){let rarity=rollCardRarity(p),pool=creatures.filter(c=>c[3]===rarity),c=pool[Math.floor(Math.random()*pool.length)],range=rarityValues[rarity],value=id==="super"?0:Math.floor(range[0]+Math.random()*(range[1]-range[0]+1));lastPack.push({id:c[0],name:c[1],emoji:c[2],rarity,sellValue:value});if(!collection[c[0]])collection[c[0]]={id:c[0],name:c[1],emoji:c[2],rarity,count:0,sellableCount:0,freeCount:0,sellValue:value};let owned=collection[c[0]];owned.count++;if(id==="super")owned.freeCount++;else{owned.sellableCount++;owned.sellValue=value}}renderPackResults();renderCollection();updateCardCoins();saveCards();updateFreePack();document.getElementById("packMessage").textContent="Pack opened! You got "+lastPack.length+" card(s)!"}
-function renderPackResults(){let el=document.getElementById("packResults");el.innerHTML="";lastPack.forEach(c=>{let d=document.createElement("div");d.className="pack-result-card";d.innerHTML="<div class=creature-art>"+c.emoji+"</div><h3>"+c.name+"</h3><p>"+c.rarity+"</p><p>Sell value: "+c.sellValue+"</p>";el.appendChild(d)})}
-function renderCollection(){let el=document.getElementById("collectionGrid");if(!el)return;el.innerHTML="";let cards=Object.values(collection).filter(c=>c.count>0);document.getElementById("collectionStats").textContent=cards.length+" different creatures • "+cards.reduce((a,c)=>a+c.count,0)+" total cards.";cards.forEach(c=>{let d=document.createElement("div");d.className="collect-card";d.innerHTML="<div class=creature-art>"+c.emoji+"</div><h3>"+c.name+"</h3><p>"+c.rarity+" • Owned: "+c.count+"</p><p>Paid copies: "+c.sellableCount+" • Free copies: "+c.freeCount+"</p>";let b=document.createElement("button");b.textContent="SELL ONE";b.onclick=()=>sellCard(c.id);d.appendChild(b);el.appendChild(d)})}
-function sellCard(id){let c=collection[id];if(!c||!c.count)return;let earned=0;if(c.sellableCount>0){c.sellableCount--;earned=c.sellValue||0}else if(c.freeCount>0)c.freeCount--;c.count--;cardCoins+=earned;updateCardCoins();renderCollection();saveCards()}
-function sellDuplicates(){let earned=0;Object.values(collection).forEach(c=>{let extra=Math.max(0,c.count-1),paid=Math.min(extra,c.sellableCount);earned+=paid*(c.sellValue||0);let free=Math.min(extra-paid,c.freeCount);c.sellableCount-=paid;c.freeCount-=free;c.count-=paid+free});cardCoins+=earned;updateCardCoins();renderCollection();saveCards()}
+    <canvas id="dungeonCanvas" width="768" height="512"></canvas>
+    <p class="dungeon-message" id="dungeonMessage">Defeat every monster to unlock the exit!</p>
 
-// CARD DUELS
-const stats={Common:[80,15],Uncommon:[100,22],Rare:[120,30],Epic:[145,38],Legendary:[170,48],Mythic:[210,60],Godly:[260,75],Secret:[320,90]};
-function monsterStats(c){let s=stats[c.rarity]||stats.Common;return{maxHP:s[0],hp:s[0],attack:s[1]}}
-function renderDuelChoices(){let el=document.getElementById("duelPickGrid");el.innerHTML="";document.getElementById("duelStreak").textContent="🔥 Win streak: "+duelStreak;document.getElementById("duelSelectionText").textContent="Selected "+duelTeam.length+" / 3 monsters";Object.values(collection).filter(c=>c.count>0).forEach(c=>{let b=document.createElement("button");b.className="duel-pick"+(duelTeam.some(x=>x.id===c.id)?" selected":"");b.innerHTML="<div class=creature-art>"+c.emoji+"</div>"+c.name+"<p>"+c.rarity+"</p>";b.onclick=()=>{let i=duelTeam.findIndex(x=>x.id===c.id);if(i>=0)duelTeam.splice(i,1);else if(duelTeam.length<3)duelTeam.push(c);renderDuelChoices()};el.appendChild(b)})}
-function startDuel(){if(duelTeam.length!==3){document.getElementById("duelMessage").textContent="Choose exactly 3 monsters!";return}enemyTeam=[...creatures].sort(()=>Math.random()-.5).slice(0,3).map(c=>({id:c[0],name:c[1],emoji:c[2],rarity:c[3],...monsterStats({rarity:c[3]})}));duelTeam=duelTeam.map(c=>({...c,...monsterStats(c)}));playerIndex=0;enemyIndex=0;document.getElementById("duelSetup").style.display="none";document.getElementById("duelBattle").style.display="block";document.getElementById("duelMessage").textContent="";updateDuel()}
-function updateDuel(){let p=duelTeam[playerIndex],e=enemyTeam[enemyIndex];if(!p||!e)return;document.getElementById("playerName").textContent=p.name;document.getElementById("playerEmoji").textContent=p.emoji;document.getElementById("playerHPText").textContent=p.hp+" / "+p.maxHP+" HP";document.getElementById("playerHPBar").style.width=100*p.hp/p.maxHP+"%";document.getElementById("enemyName").textContent=e.name;document.getElementById("enemyEmoji").textContent=e.emoji;document.getElementById("enemyHPText").textContent=e.hp+" / "+e.maxHP+" HP";document.getElementById("enemyHPBar").style.width=100*e.hp/e.maxHP+"%"}
-function duelAttack(){duelMove(1)}function duelSpecial(){duelMove(1.8)}
-function duelMove(mult){if(duelBusy)return;duelBusy=true;let p=duelTeam[playerIndex],e=enemyTeam[enemyIndex],damage=Math.floor(p.attack*mult*(.85+Math.random()*.3));e.hp=Math.max(0,e.hp-damage);document.getElementById("duelLog").textContent=p.name+" dealt "+damage+" damage!";if(e.hp<=0){enemyIndex++;if(enemyIndex>=3)return finishDuel(true)}updateDuel();setTimeout(()=>{if(enemyIndex>=3)return;let p=duelTeam[playerIndex],e=enemyTeam[enemyIndex],d=Math.floor(e.attack*(.8+Math.random()*.4));p.hp=Math.max(0,p.hp-d);document.getElementById("duelLog").textContent+=" Enemy dealt "+d+" damage!";if(p.hp<=0){playerIndex++;if(playerIndex>=3)return finishDuel(false)}updateDuel();duelBusy=false},700)}
-function finishDuel(win){duelBusy=true;if(win){duelStreak++;cardCoins+=150;document.getElementById("duelMessage").textContent="🏆 Victory! +150 coins!";if(duelStreak===3){cardCoins+=300;document.getElementById("duelMessage").textContent+=" 3-win bonus +300!"}}else{duelStreak=0;cardCoins+=25;document.getElementById("duelMessage").textContent="Battle over! +25 coins."}updateCardCoins();saveCards();document.getElementById("duelLog").textContent=win?"You won!":"Your team was defeated.";setTimeout(()=>{document.getElementById("duelBattle").style.display="none";document.getElementById("duelSetup").style.display="block";duelTeam=[];duelBusy=false;renderDuelChoices()},2200)}
+    <div class="dungeon-controls">
+      <div class="dpad">
+        <button class="up" data-move="up">▲</button>
+        <button class="left" data-move="left">◀</button>
+        <button class="right" data-move="right">▶</button>
+        <button class="down" data-move="down">▼</button>
+      </div>
+      <button class="attack-touch" id="dungeonAttack">⚔️<br>ATTACK</button>
+    </div>
 
-// ======================================
-// DUNGEON RUSH - 50 ROOM GAME ENGINE
-// ======================================
-const DUNGEON_SAVE_KEY="dungeonRushSave",canvas=document.getElementById("dungeonCanvas"),ctx=canvas.getContext("2d");
-const TILE=48,MW=16,MH=10;
-let dungeonOpen=false,raf=0,lastTime=0,time=0;
-let room=1,dCoins=0,weapon=1,maxHP=100,hp=100,potions=1;
-let enemies=[],chests=[],map=[],boss=null,doorOpen=false,dead=false,won=false;
-let player={x:2.5,y:2.5,dir:"down",swing:0,invuln:0,walk:0};
-let keys={},touch={},attackCooldown=0;
-let dungeonUpgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
-const enemyTypes={
-slime:{hp:35,damage:7,speed:.62,reward:9,color:"#48d879"},
-bat:{hp:25,damage:6,speed:1.05,reward:10,color:"#a77aff"},
-skeleton:{hp:58,damage:12,speed:.5,reward:15,color:"#e4d8bc"},
-goblin:{hp:75,damage:15,speed:.8,reward:20,color:"#8dc84b"},
-spider:{hp:95,damage:17,speed:1.12,reward:25,color:"#bb62c9"},
-orc:{hp:155,damage:24,speed:.48,reward:35,color:"#7bba45"},
-ghost:{hp:130,damage:21,speed:.9,reward:40,color:"#82dce8"},
-demon:{hp:230,damage:32,speed:.7,reward:60,color:"#e34e64"},
-darkknight:{hp:340,damage:42,speed:.55,reward:85,color:"#7580bd"},
-voidbeast:{hp:480,damage:55,speed:.75,reward:120,color:"#b34be8"}
-};
-const enemyOrder=["slime","bat","skeleton","goblin","spider","orc","ghost","demon","darkknight","voidbeast"];
-const bossNames=["Cave Brute","Bone King","Web Matriarch","Orc Warlord","Frost Horror","Demon General","Phantom Lord","Infernal Dragon","Void Guardian","THE DUNGEON OVERLORD"];
-function saveDungeon(){try{localStorage.setItem(DUNGEON_SAVE_KEY,JSON.stringify({room,coins:dCoins,weapon,maxHP,potions,upgrades:dungeonUpgrades}))}catch(e){}}
-function loadDungeon(){try{let s=JSON.parse(localStorage.getItem(DUNGEON_SAVE_KEY));if(s){room=Math.max(1,Math.min(50,Number(s.room)||1));dCoins=Math.max(0,Number(s.coins)||0);weapon=Math.max(1,Number(s.weapon)||1);maxHP=Math.max(100,Number(s.maxHP)||100);potions=Math.max(0,Number(s.potions)||0);dungeonUpgrades={...dungeonUpgrades,...(s.upgrades||{})}}}catch(e){}hp=maxHP}
-function openDungeon(){document.getElementById("dungeonGame").style.display="block";dungeonOpen=true;loadDungeon();dead=false;won=false;buildRoom();updateHUD();renderDungeonShop();if(!raf){lastTime=0;raf=requestAnimationFrame(loop)}}
-function closeDungeon(){dungeonOpen=false;if(raf)cancelAnimationFrame(raf);raf=0;keys={};touch={};document.getElementById("dungeonGame").style.display="none";if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{})}
-function dungeonFullscreen(){fullscreen("dungeonGame")}
-function message(s){document.getElementById("dungeonMessage").textContent=s}
-function tile(x,y){if(x<0||y<0||x>=MW||y>=MH)return 1;return map[y]?.[x]??1}
-function walkable(x,y){return tile(Math.floor(x),Math.floor(y))===0}
-function addEnemy(type,x,y){let s=enemyTypes[type],scale=1+(room-1)*.085;enemies.push({type,x,y,hp:Math.round(s.hp*scale),maxHP:Math.round(s.hp*scale),damage:Math.round(s.damage*(1+(room-1)*.045)),speed:s.speed*(1+Math.min(room,30)*.008),reward:Math.round(s.reward*(1+room*.035)),flash:0,timer:0,phase:Math.random()*6})}
-function buildRoom(){
- map=Array.from({length:MH},(_,y)=>Array.from({length:MW},(_,x)=>(x===0||y===0||x===MW-1||y===MH-1)?1:0));
- let pattern=room%5;
- if(pattern===1){for(let y=2;y<8;y++)if(y!==4&&y!==5)map[y][5]=1;for(let y=2;y<8;y++)if(y!==3&&y!==6)map[y][10]=1}
- if(pattern===2){for(let x=3;x<13;x++)if(x!==7&&x!==8)map[4][x]=1;for(let x=3;x<13;x++)if(x!==5&&x!==10)map[7][x]=1}
- if(pattern===3){for(let y=2;y<8;y++){if(y!==3)map[y][4]=1;if(y!==6)map[y][11]=1}map[3][8]=1;map[6][8]=1}
- if(pattern===4){for(let x=3;x<13;x+=2){map[3][x]=1;map[6][x]=1}}
- player={x:2.5,y:2.5,dir:"down",swing:0,invuln:0,walk:0};enemies=[];chests=[];boss=null;doorOpen=false;dead=false;won=false;
- const bossRoom=room%5===0;
- let tier=Math.min(9,Math.floor((room-1)/5));
- let count=Math.min(3+Math.floor(room/2),13);
- for(let i=0;i<count;i++){
- let type=enemyOrder[Math.min(9,Math.max(0,tier+(Math.random()<.25?1:0)))];
- let x=7+Math.random()*6,y=2+Math.random()*6;
- if(!walkable(x,y)){x=12.5;y=6.5}
- addEnemy(type,x,y)
- }
- if(bossRoom){
- let bossTier=room/5-1;
- let type=enemyOrder[Math.min(9,bossTier)];
- let s=enemyTypes[type],scale=2.5+room*.12;
- boss={x:11.5,y:5.5,hp:Math.round(s.hp*scale*2),maxHP:Math.round(s.hp*scale*2),damage:Math.round(s.damage*1.7+room*1.4),speed:.35+room*.004,flash:0,timer:0,name:bossNames[bossTier]};
- message("BOSS ROOM "+room+"! "+boss.name+" is waiting!");
- }else message("Room "+room+"! Defeat every monster to unlock the exit.");
- let chestCount=room<5?1:2+Math.floor(room/12);
- for(let i=0;i<chestCount;i++){let x=3+Math.floor(Math.random()*10),y=2+Math.floor(Math.random()*6);chests.push({x:x+.5,y:y+.5,opened:false})}
- updateHUD();saveDungeon()
-}
-function movePlayer(dx,dy){
- if(dead||won)return;
- let speed=.12+dungeonUpgrades.speed*.009;
- let nx=player.x+dx*speed,ny=player.y+dy*speed;
- if(dx<0)player.dir="left";if(dx>0)player.dir="right";if(dy<0)player.dir="up";if(dy>0)player.dir="down";
- if(walkable(nx,player.y))player.x=nx;if(walkable(player.x,ny))player.y=ny;
- if(dx||dy)player.walk+=.25;
- chests.forEach(ch=>{if(!ch.opened&&Math.hypot(ch.x-player.x,ch.y-player.y)<.8){ch.opened=true;let reward=Math.floor((25+Math.random()*35)*(1+dungeonUpgrades.fortune*.12));dCoins+=reward;potions++;message("TREASURE! +"+reward+" coins and +1 potion!");saveDungeon();updateHUD()}});
- if(doorOpen&&Math.hypot(player.x-13.5,player.y-8.5)<.8)nextRoom()
-}
-function nextRoom(){
- if(room>=50){won=true;dCoins+=5000;message("🏆 YOU CONQUERED ALL 50 ROOMS! +5,000 BONUS COINS!");saveDungeon();updateHUD();return}
- room++;hp=Math.min(maxHP,hp+Math.ceil(maxHP*.12));dCoins+=room*3;buildRoom();message("Room "+room+" unlocked! You recovered some health.")
-}
-function attack(){
- if(!dungeonOpen||dead||won||attackCooldown>0)return;
- attackCooldown=.38;player.swing=.22;
- let v={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[player.dir],hits=0;
- function hit(t){let dx=t.x-player.x,dy=t.y-player.y,d=Math.hypot(dx,dy);return d<1.65&&d>.01&&(dx*v[0]+dy*v[1])/d>.05}
- function damageTarget(t){let crit=Math.random()<Math.min(.65,.05+dungeonUpgrades.crit*.035),d=Math.floor((18+weapon*9+dungeonUpgrades.heavy*7)*(crit?2:1));t.hp=Math.max(0,t.hp-d);t.flash=.2;hits++;if(crit)message("CRITICAL HIT! "+d+" damage!");return d}
- enemies.forEach(e=>{if(e.hp>0&&hit(e)){damageTarget(e);if(e.hp===0){let r=e.reward;dCoins+=r;message(e.type.toUpperCase()+" defeated! +"+r+" coins.")}}});
- if(boss&&boss.hp>0&&hit(boss)){damageTarget(boss);if(boss.hp===0){message("BOSS DEFEATED! The exit is open!");doorOpen=true;dCoins+=room*30}}
- if(!hits)message("Your sword swings through the air!");
- checkClear();updateHUD();saveDungeon()
-}
-function checkClear(){if(enemies.every(e=>e.hp<=0)&&(!boss||boss.hp<=0)){if(!doorOpen){doorOpen=true;let reward=40+room*18;dCoins+=reward;message("ROOM CLEAR! Exit unlocked! +"+reward+" coins.")}}}
-function hurt(n){if(player.invuln>0||dead||won)return;let reduced=Math.max(1,Math.round(n*(1-dungeonUpgrades.armor*.055)));hp=Math.max(0,hp-reduced);player.invuln=.7;if(hp<=0){dead=true;message("You were defeated! Restart this room to try again.")}updateHUD()}
-function updateEnemies(dt){
- enemies.forEach(e=>{if(e.hp<=0)return;e.phase+=dt*4;e.flash=Math.max(0,e.flash-dt);e.timer-=dt;let dx=player.x-e.x,dy=player.y-e.y,d=Math.hypot(dx,dy);if(d>.65){let nx=e.x+dx/Math.max(d,.01)*e.speed*dt,ny=e.y+dy/Math.max(d,.01)*e.speed*dt;if(walkable(nx,e.y))e.x=nx;if(walkable(e.x,ny))e.y=ny}else if(e.timer<=0){hurt(e.damage);e.timer=Math.max(.65,1.25-dungeonUpgrades.swift*.04)}});
- if(boss&&boss.hp>0){boss.timer-=dt;boss.flash=Math.max(0,boss.flash-dt);let dx=player.x-boss.x,dy=player.y-boss.y,d=Math.hypot(dx,dy);if(d>1.25){let nx=boss.x+dx/Math.max(d,.01)*boss.speed*dt,ny=boss.y+dy/Math.max(d,.01)*boss.speed*dt;if(walkable(nx,boss.y))boss.x=nx;if(walkable(boss.x,ny))boss.y=ny}else if(boss.timer<=0){hurt(boss.damage);boss.timer=1.3}}
- checkClear()
-}
-function loop(ts){
- if(!dungeonOpen){raf=0;return}
- let dt=lastTime?Math.min(.04,(ts-lastTime)/1000):0;lastTime=ts;time+=dt;
- if(!dead&&!won){
- let dx=0,dy=0;if(keys.ArrowLeft||keys.a||touch.left)dx--;if(keys.ArrowRight||keys.d||touch.right)dx++;if(keys.ArrowUp||keys.w||touch.up)dy--;if(keys.ArrowDown||keys.s||touch.down)dy++;
- if(dx||dy){let l=Math.hypot(dx,dy);movePlayer(dx/l,dy/l)}
- if(keys[" "]||touch.attack)attack();
- player.invuln=Math.max(0,player.invuln-dt);player.swing=Math.max(0,player.swing-dt);attackCooldown=Math.max(0,attackCooldown-dt);
- updateEnemies(dt);
- if(dungeonUpgrades.regen&&Math.random()<dt*.35&&hp<maxHP)hp=Math.min(maxHP,hp+1);
- }
- draw();updateHUD();raf=requestAnimationFrame(loop)
-}
-function draw(){
- let c=ctx;c.clearRect(0,0,768,512);
- for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){let px=x*TILE,py=y*TILE,w=map[y][x]===1;if(w){c.fillStyle="#29243c";c.fillRect(px,py,48,48);c.fillStyle="#48405a";c.fillRect(px+2,py+2,44,5);c.fillStyle="#171426";c.fillRect(px+3,py+41,42,5)}else{c.fillStyle=(x+y)%2?"#242139":"#211e35";c.fillRect(px,py,48,48);c.strokeStyle="#302a43";c.strokeRect(px+.5,py+.5,47,47)}}
- for(let t of [[1,1],[14,1],[1,8],[14,8]]){let x=t[0]*48+24,y=t[1]*48+22;c.fillStyle="#ff9c47";c.shadowColor="#ff702b";c.shadowBlur=18;c.fillRect(x-4,y-7,8,12);c.shadowBlur=0;c.fillStyle="#ffe5a0";c.fillRect(x-2,y-5,4,5)}
- for(let t of [[3,2],[12,2],[3,7],[12,7]]){let x=t[0]*48+24,y=t[1]*48+25;c.fillStyle="#a64cff";c.shadowColor="#a64cff";c.shadowBlur=14;c.beginPath();c.moveTo(x,y-13);c.lineTo(x+8,y);c.lineTo(x,y+12);c.lineTo(x-8,y);c.fill();c.shadowBlur=0}
- chests.forEach(ch=>{let x=ch.x*48,y=ch.y*48;c.fillStyle=ch.opened?"#49324b":"#8c4d21";c.fillRect(x-13,y-8,26,17);c.fillStyle="#e5a73d";c.fillRect(x-13,y-8,26,5);if(!ch.opened){c.fillStyle="#ffe78b";c.fillRect(x-3,y-3,6,7)}});
- c.fillStyle=doorOpen?"#35dca2":"#603a74";c.shadowColor=doorOpen?"#42ffbd":"#b34cff";c.shadowBlur=15;c.fillRect(13*48+7,8*48+3,34,43);c.shadowBlur=0;c.fillStyle="#171124";c.fillRect(13*48+12,8*48+8,24,38);
- enemies.forEach(e=>{if(e.hp<=0)return;let x=e.x*48,y=e.y*48+Math.sin(e.phase)*2;c.save();c.translate(x,y);c.fillStyle=e.flash>0?"#fff":enemyTypes[e.type].color;
- if(e.type==="bat"){c.fillRect(-9,-10,18,18);c.fillRect(-20,-5,11,9);c.fillRect(9,-5,11,9)}
- else if(e.type==="skeleton"||e.type==="darkknight"){c.fillRect(-11,-13,22,24);c.fillStyle="#514b56";c.fillRect(-9,-18,18,9)}
- else{c.fillRect(-15,-12,30,24);c.fillRect(-11,-17,22,8)}
- c.fillStyle="#ff557c";c.fillRect(-7,-5,4,4);c.fillRect(4,-5,4,4);c.restore();c.fillStyle="#120e1c";c.fillRect(x-16,y-24,32,4);c.fillStyle="#f35b67";c.fillRect(x-16,y-24,32*e.hp/e.maxHP,4)});
- if(boss&&boss.hp>0){let x=boss.x*48,y=boss.y*48+Math.sin(time*3)*3;c.fillStyle=boss.flash>0?"#fff":"#702b85";c.fillRect(x-25,y-25,50,50);c.fillStyle="#ffcc55";c.fillRect(x-14,y-15,8,7);c.fillRect(x+7,y-15,8,7);c.fillStyle="#f04d73";c.fillRect(x-35,y-43,70,7);c.fillStyle="#160e22";c.fillRect(x-35,y-43,70,7);c.fillStyle="#f04d73";c.fillRect(x-35,y-43,70*boss.hp/boss.maxHP,7);c.fillStyle="#ffe0a5";c.font="12px Arial";c.textAlign="center";c.fillText(boss.name,x,y-50);c.textAlign="left"}
- let p=player,x=p.x*48,y=p.y*48+Math.sin(p.walk)*2;c.save();c.translate(x,y);if(p.invuln>0&&Math.floor(time*18)%2===0)c.globalAlpha=.4;c.fillStyle="#090713";c.beginPath();c.ellipse(0,13,15,6,0,0,7);c.fill();c.fillStyle="#49305a";c.fillRect(-10,4,8,10);c.fillRect(3,4,8,10);c.fillStyle="#3d65a5";c.fillRect(-12,-12,24,19);c.fillStyle="#68a7ed";c.fillRect(-9,-11,18,5);c.fillStyle="#e6b98f";c.fillRect(-10,-26,20,16);c.fillStyle="#58304a";c.fillRect(-11,-29,22,7);c.fillStyle="#21152b";c.fillRect(-6,-20,3,3);c.fillRect(4,-20,3,3);c.fillStyle="#d9e9ff";if(p.swing>0)c.fillRect(12,-28,5,29);else c.fillRect(p.dir==="left"?-18:12,0,4,22);c.restore();
- if(dead||won){c.fillStyle="rgba(5,3,15,.75)";c.fillRect(0,0,768,512);c.textAlign="center";c.font="bold 30px Orbitron";c.fillStyle=won?"#ffe28c":"#ff8495";c.fillText(won?"50 ROOMS COMPLETE!":"YOU WERE DEFEATED",384,230);c.font="16px Orbitron";c.fillStyle="white";c.fillText(won?"You conquered the dungeon!":"Tap RESTART ROOM to try again.",384,270);c.textAlign="left"}
-}
-function updateHUD(){document.getElementById("dungeonRoom").textContent="ROOM "+room+" / 50";document.getElementById("dungeonHealth").textContent="❤️ "+hp+" / "+maxHP;document.getElementById("dungeonCoins").textContent="🪙 "+dCoins;document.getElementById("dungeonEnemies").textContent="MONSTERS: "+(enemies.filter(e=>e.hp>0).length+(boss&&boss.hp>0?1:0));document.getElementById("dungeonWeapon").textContent="SWORD LV. "+weapon}
-function dungeonRestartRoom(){hp=maxHP;buildRoom();message("Room restarted!")}
-function dungeonHeal(){if(potions<=0){message("No potions! Buy one or find a chest.");return}if(hp>=maxHP){message("Your health is already full!");return}potions--;hp=Math.min(maxHP,hp+Math.ceil(maxHP*.45));saveDungeon();message("Potion used! Health restored.");updateHUD()}
-const shopItems=[
-["sword","⚔️ Sword Damage","Increase damage dealt with every sword attack."],
-["heart","❤️ Maximum Health","Increase your maximum health by 25."],
-["armor","🛡️ Armour","Reduce damage received from enemies."],
-["crit","💥 Critical Hits","Increase your chance of dealing double damage."],
-["speed","👟 Movement Speed","Move around rooms faster."],
-["regen","💚 Regeneration","Slowly recover health over time."],
-["magnet","🧲 Treasure Magnet","Improve treasure rewards."],
-["fortune","💰 Fortune","Earn more coins from chests."],
-["heavy","🔨 Heavy Strike","Add extra damage to sword attacks."],
-["swift","⚡ Quick Recovery","Enemies have less time between attacks."],
-["life","🌟 Potion Master","Potions restore more health."],
-["blast","✨ Power Surge","Increase your critical-hit power."]
-];
-function renderDungeonShop(){let el=document.getElementById("dungeonShop");el.innerHTML="";shopItems.forEach(([id,name,desc])=>{let level=id==="sword"?weapon-1:id==="heart"?Math.round((maxHP-100)/25):dungeonUpgrades[id]||0;let cost=id==="sword"?100*weapon:id==="heart"?150+Math.round((maxHP-100)*2):Math.round(100*Math.pow(1.65,level));let d=document.createElement("div");d.className="dungeon-upgrade";d.innerHTML="<strong>"+name+"</strong><p>"+desc+"</p><p>Level: "+level+"</p>";let b=document.createElement("button");b.textContent="UPGRADE - "+cost+" COINS";b.disabled=dCoins<cost||(id==="sword"&&weapon>=30)||(id==="heart"&&maxHP>=500);b.onclick=()=>buyDungeonUpgrade(id,cost);d.appendChild(b);el.appendChild(d)})}
-function buyDungeonUpgrade(id,cost){if(dCoins<cost)return;dCoins-=cost;if(id==="sword")weapon++;else if(id==="heart"){maxHP+=25;hp+=25}else dungeonUpgrades[id]++;saveDungeon();renderDungeonShop();updateHUD();message("Upgrade purchased! "+id.toUpperCase()+" improved!")}
-function buyDungeonPotion(){if(dCoins<30){message("You need 30 coins for a potion.");return}dCoins-=30;potions++;saveDungeon();updateHUD();message("Potion purchased!")}
-function dungeonLoopKey(e,down){let k=e.key.length===1?e.key.toLowerCase():e.key;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(k)&&dungeonOpen)e.preventDefault();keys[k]=down}
-window.addEventListener("keydown",e=>dungeonLoopKey(e,true));window.addEventListener("keyup",e=>dungeonLoopKey(e,false));
-document.querySelectorAll("[data-move]").forEach(b=>{let d=b.dataset.move;let start=e=>{e.preventDefault();touch[d]=true},end=e=>{e.preventDefault();touch[d]=false};b.addEventListener("pointerdown",start);b.addEventListener("pointerup",end);b.addEventListener("pointerleave",end);b.addEventListener("pointercancel",end)});
-let ab=document.getElementById("dungeonAttack");ab.addEventListener("pointerdown",e=>{e.preventDefault();touch.attack=true;attack()});["pointerup","pointerleave","pointercancel"].forEach(ev=>ab.addEventListener(ev,e=>{e.preventDefault();touch.attack=false}));
+    <p class="dungeon-subtitle">WASD or arrow keys to move • Space to attack. Mobile: use the buttons.</p>
 
-// RESET EVERYTHING
-function resetProgress(){
- if(!confirm("Reset ALL Learning Lounge progress? This erases Clicker, Card Clash, Duel and Dungeon Rush saves. This cannot be undone."))return;
- coins=0;levels={};cardCoins=500;collection={};duelStreak=0;duelTeam=[];enemyTeam=[];lastPack=[];nextFreePackTime=0;
- room=1;dCoins=0;weapon=1;maxHP=100;hp=100;potions=1;dungeonUpgrades={armor:0,crit:0,speed:0,regen:0,magnet:0,fortune:0,heavy:0,swift:0,life:0,blast:0};
- try{[SAVE_KEY,CARD_SAVE_KEY,COOLDOWN_KEY,DUNGEON_SAVE_KEY].forEach(k=>localStorage.removeItem(k))}catch(e){}
- saveGame();saveCards();saveDungeon();updateStats();updateCardCoins();renderCollection();renderPackShop();renderDuelChoices();renderDungeonShop();
- document.getElementById("packResults").innerHTML="";document.getElementById("packMessage").textContent="Progress reset!";document.getElementById("duelBattle").style.display="none";document.getElementById("duelSetup").style.display="block";
- if(dungeonOpen){buildRoom();message("Fresh start! Your 50-room adventure begins again.")}
- alert("All Learning Lounge progress has been reset!")
-}
+    <div class="dungeon-actions">
+      <button onclick="dungeonRestartRoom()">↻ RESTART ROOM</button>
+      <button onclick="dungeonHeal()">❤️ USE POTION</button>
+      <button onclick="buyDungeonPotion()">🧪 BUY POTION - 30 COINS</button>
+    </div>
 
-// START ALL GAMES
-loadGame();loadCardGame();loadDungeon();renderDungeonShop();renderPackShop();
-</script>
+    <h3 class="dungeon-shop-heading">🛒 HERO UPGRADE SHOP</h3>
+    <div class="dungeon-shop" id="dungeonShop"></div>
+    <p class="dungeon-subtitle">Your room, coins, equipment and upgrades save automatically.</p>
+  </div>
+</div>
+
+<!-- NEON RACING -->
+<div class="game-window" id="neonRacingGame">
+  <div class="game-top">
+    <h2>🏁 NEON RACING</h2>
+    <div>
+      <button onclick="fullscreen('neonRacingGame')">⛶ FULL SCREEN</button>
+      <button onclick="closeNeonRacing()">✕ CLOSE GAME</button>
+    </div>
+  </div>
+  <div class="new-game-wrap">
+    <div id="racingStats"></div>
+    <canvas id="neonRacingCanvas" width="480" height="720"></canvas>
+    <div class="new-game-controls">
+      <button id="racingLeft">◀ LEFT</button>
+      <button id="racingStart">START / RESTART</button>
+      <button id="racingRight">RIGHT ▶</button>
+    </div>
+    <p class="new-game-help">Use the arrow keys or buttons to steer. Dodge traffic and collect coins!</p>
+  </div>
+</div>
+
+<!-- RHYTHM JUMPER -->
+<div class="game-window" id="rhythmJumperGame">
+  <div class="game-top">
+    <h2>🎵 RHYTHM JUMPER</h2>
+    <div>
+      <button onclick="fullscreen('rhythmJumperGame')">⛶ FULL SCREEN</button>
+      <button onclick="closeRhythmJumper()">✕ CLOSE GAME</button>
+    </div>
+  </div>
+  <div class="new-game-wrap">
+    <div id="rhythmStats"></div>
+    <canvas id="rhythmJumperCanvas" width="480" height="720"></canvas>
+    <div class="new-game-controls">
+      <button id="rhythmLeft">◀ LEFT</button>
+      <button id="rhythmJump">JUMP ▲</button>
+      <button id="rhythmRight">RIGHT ▶</button>
+      <button id="rhythmStart">START / RESTART</button>
+    </div>
+    <p class="new-game-help">Jump between platforms, avoid hazards and try to beat your best score!</p>
+  </div>
+</div>
+
 </body>
 </html>
