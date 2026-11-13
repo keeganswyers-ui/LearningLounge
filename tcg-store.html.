@@ -1,35 +1,645 @@
-from pathlib import Path
-p=Path("/mnt/data/tcg-store.html")
-s=p.read_text(encoding="utf-8")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monster Card Shop Simulator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;600;700;800&display=swap');
+:root{--bg:#100b20;--panel:#211735;--line:#543c76;--gold:#ffd36a;--pink:#ff70c5;--cyan:#63e7ff;--muted:#b8accd}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#34204f,#100b20 65%);color:white;font-family:Inter,Arial,sans-serif}
+button{border:0;border-radius:10px;padding:11px 14px;background:linear-gradient(135deg,#ffd36a,#ff9955);font-weight:800;cursor:pointer;color:#21142e}
+button:hover{filter:brightness(1.12)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:#382957;color:white;border:1px solid #634b83}
+.pink{background:linear-gradient(135deg,#ff8dca,#a879ff)}
+header{position:sticky;top:0;z-index:5;background:#120d22ed;border-bottom:1px solid var(--line);padding:14px 3%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font:900 27px 'Barlow Condensed';letter-spacing:1px}.brand span{color:var(--gold)}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:#2a2040;border:1px solid var(--line);padding:8px 12px;border-radius:30px;font-size:13px}
+.pill b{color:var(--gold)}
+main{max-width:1400px;margin:auto;padding:24px 3% 50px}
+.hero{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px;flex-wrap:wrap}
+.eyebrow{color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:2px}
+h1{font:900 clamp(35px,5vw,55px)/.95 'Barlow Condensed';margin:8px 0}
+.hero p{color:var(--muted);font-size:14px;max-width:650px}
+.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:17px}
+.panel{background:linear-gradient(150deg,#251a3d,#171126);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 12px 35px #0005}
+.panelhead{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panelhead h2{font:900 23px 'Barlow Condensed';margin:0}
+.panelbody{padding:16px}
+.scene{height:330px;position:relative;overflow:hidden;border-radius:13px;border:1px solid #73578d;background:linear-gradient(#241b43 0 62%,#654b70 62% 66%,#30203f 66%)}
+.scene:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#a56dff55,transparent 60%),repeating-linear-gradient(90deg,transparent 0 90px,#ffffff08 91px 93px)}
+.sign{position:absolute;top:17px;left:50%;transform:translateX(-50%);font:900 34px 'Barlow Condensed';white-space:nowrap;text-shadow:0 0 12px #ff70d0,0 0 25px #a879ff}
+.window{position:absolute;top:80px;left:6%;width:24%;height:100px;background:#66dfff55;border:7px solid #49335e}
+.poster{position:absolute;top:85px;right:8%;width:20%;height:90px;background:linear-gradient(135deg,#7548b7,#ff70b5);border:5px solid #513b6c;display:grid;place-items:center;text-align:center;font:900 20px 'Barlow Condensed'}
+.shelf{position:absolute;top:200px;left:10%;width:80%;height:13px;background:#a87565;border:3px solid #50364d}
+.shelf:before{content:"";position:absolute;bottom:10px;width:100%;height:38px;background:repeating-linear-gradient(90deg,#8b4cae 0 28px,#d9a6ff 29px 32px,#315a85 33px 62px,#8beaff 63px 66px);border:3px solid #50364d}
+.customer{position:absolute;bottom:105px;width:42px;height:65px;border-radius:17px 17px 8px 8px;background:var(--shirt);border:3px solid #20162f;animation:bob 2s infinite ease-in-out}
+.customer:before{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:#f1c59d;top:-24px;left:3px;border:3px solid #20162f}
+.c1{left:25%;--shirt:#4dc9bb}.c2{left:68%;--shirt:#c06cff;animation-delay:.5s}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.counter{position:absolute;bottom:34px;left:7%;width:86%;height:75px;background:linear-gradient(#a66e56,#633b50);border:6px solid #4a2c49;border-radius:9px;box-shadow:0 14px 0 #21152e}
+.counter:after{content:"THE MONSTER DEN";position:absolute;top:20px;left:0;right:0;text-align:center;font:900 22px 'Barlow Condensed';letter-spacing:4px;color:#ffe0ae}
+.actionrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.gridstats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px}
+.stat{background:#2a2040;border:1px solid var(--line);padding:12px;border-radius:11px}
+.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{color:var(--gold);font-size:21px}
+.ticket,.register{background:#130e20;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.rowitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff17;font-size:13px}
+.rowitem button{padding:8px 10px;font-size:11px}
+.cashrow{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+.cashrow button{background:#315c52;color:white}
+.feed{height:125px;overflow:auto;background:#100c1c;border:1px solid #392b52;border-radius:10px;padding:9px;font-size:11px;color:#d7cce8}
+.feed div{padding:5px 0;border-bottom:1px solid #ffffff12}
+.modalback{display:none;position:fixed;inset:0;background:#07040ddd;z-index:20;align-items:center;justify-content:center;padding:12px}
+.modalback.show{display:flex}
+.modal{width:min(950px,100%);max-height:90vh;overflow:auto;background:#1b1430;border:1px solid #76579e;border-radius:17px}
+.modalhead{position:sticky;top:0;background:#1b1430;padding:14px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;z-index:2}
+.modalhead h2{font:900 25px 'Barlow Condensed';margin:0}
+.modalcontent{padding:16px}
+.packgrid,.cardgrid,.upgradegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px}
+.packcard,.upgrade{background:#2a2040;border:1px solid var(--line);border-radius:12px;padding:11px}
+.packart{height:95px;border-radius:9px;display:grid;place-items:center;font-size:44px;background:radial-gradient(circle,var(--c1),#241633 75%);margin-bottom:9px}
+.packcard h3,.upgrade h3{font-size:13px;margin:5px 0}
+.packcard button,.upgrade button{width:100%;margin-top:8px}
+.card{background:linear-gradient(145deg,#f5d77b,#a76dff);color:#1b112b;border-radius:11px;padding:7px;position:relative}
+.art{height:105px;border-radius:8px;background:radial-gradient(circle,var(--glow),#211833 75%);display:grid;place-items:center;border:2px solid white}
+.monster{font-size:49px;filter:drop-shadow(0 5px 5px #0008)}
+.card h3{font:900 14px 'Barlow Condensed';margin:7px 2px 3px}
+.meta{display:flex;justify-content:space-between;font-size:9px;font-weight:900}
+.moves{background:#fff9;border-radius:6px;padding:5px;margin-top:6px;font-size:9px;line-height:1.5}
+.price{font-size:10px;font-weight:900;margin-top:5px}
+.rarity{position:absolute;right:10px;top:10px;background:white;border-radius:20px;padding:3px 6px;font-size:8px;font-weight:900}
+.empty{background:#281e3c;border-radius:10px;padding:17px;text-align:center;color:var(--muted)}
+#toast{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:white;color:#21142e;padding:11px 17px;border-radius:30px;font-weight:900;z-index:40}
+footer{text-align:center;color:#8d80a6;font-size:11px;padding:20px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}}
+@media(max-width:500px){header{align-items:flex-start}.scene{height:270px}.sign{font-size:25px}.counter:after{font-size:16px}.panelbody{padding:12px}.packgrid,.cardgrid,.upgradegrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">MONSTER <span>CARD SHOP</span> SIMULATOR</div>
+ <div class="stats">
+  <div class="pill">💵 <b id="money">$500.00</b></div>
+  <div class="pill">⭐ Day <b id="day">1</b></div>
+  <div class="pill">📦 Stock <b id="stockCount">0</b></div>
+ </div>
+</header>
+<main>
+ <section class="hero">
+  <div><div class="eyebrow">YOUR SHOP • YOUR COLLECTION • YOUR EMPIRE</div>
+   <h1>BUILD THE ULTIMATE<br><span style="color:var(--gold)">CARD SHOP</span></h1>
+   <p>Open monster packs, discover 100 collectible cards, stock your shelves, serve customers and grow your own trading-card store.</p>
+  </div>
+  <button class="pink" onclick="openModal('saves')">💾 Save / Load</button>
+ </section>
+ <div class="layout">
+  <section class="panel">
+   <div class="panelhead"><h2>🏪 YOUR CARD SHOP</h2><span class="muted" id="shopLevel">Level 1 Shop</span></div>
+   <div class="panelbody">
+    <div class="scene">
+     <div class="sign">THE MONSTER DEN</div><div class="window"></div>
+     <div class="poster">COLLECT<br>THEM ALL!</div><div class="shelf"></div>
+     <div class="customer c1"></div><div class="customer c2"></div><div class="counter"></div>
+    </div>
+    <div class="actionrow">
+     <button onclick="openModal('packs')">🛍️ Buy Packs</button>
+     <button class="secondary" onclick="openModal('stock')">🗄️ Stock Shelves</button>
+     <button class="secondary" onclick="openModal('open')">✨ Open Packs</button>
+     <button class="secondary" onclick="openModal('binder')">📖 Card Binder</button>
+     <button class="secondary" onclick="openModal('upgrades')">🔧 Upgrades</button>
+    </div>
+    <div class="gridstats">
+     <div class="stat"><small>Today's sales</small><strong id="sales">$0.00</strong></div>
+     <div class="stat"><small>Customers served</small><strong id="served">0</strong></div>
+     <div class="stat"><small>Cards discovered</small><strong id="discovered">0 / 100</strong></div>
+     <div class="stat"><small>Shop reputation</small><strong id="rep">50 ⭐</strong></div>
+    </div>
+   </div>
+  </section>
+  <aside class="panel">
+   <div class="panelhead"><h2>🧾 CUSTOMER CHECKOUT</h2><span class="pill" id="queueLabel">No customer</span></div>
+   <div class="panelbody">
+    <div class="ticket" id="customerBox"><b>Welcome!</b><p class="muted">Call a customer when your shelves have products.</p><button onclick="callCustomer()">👋 Call Next Customer</button></div>
+    <div class="register">
+     <b>Cash Register</b>
+     <div id="scanList" class="muted" style="margin:10px 0">No items scanned yet.</div>
+     <div class="rowitem"><span>Subtotal</span><b id="subtotal">$0.00</b></div>
+     <div class="rowitem"><span>Tax (5%)</span><b id="tax">$0.00</b></div>
+     <div class="rowitem"><span>Total</span><b id="total">$0.00</b></div>
+     <p class="muted">Customer pays with:</p>
+     <div class="cashrow">
+      <button onclick="setPayment(10)">$10</button><button onclick="setPayment(20)">$20</button>
+      <button onclick="setPayment(50)">$50</button><button onclick="setPayment(100)">$100</button>
+     </div>
+     <div class="rowitem"><span>Cash received</span><b id="paid">$0.00</b></div>
+     <div class="rowitem"><span>Change due</span><b id="change">$0.00</b></div>
+     <button class="pink" style="width:100%;margin-top:10px" onclick="finishSale()">💵 Complete Sale & Give Change</button>
+    </div>
+    <div class="actionrow"><button class="secondary" onclick="callCustomer()">Next Customer</button><button class="secondary" onclick="endDay()">🌙 End Day</button></div>
+    <p><b style="font-size:13px">Shop activity</b></p><div class="feed" id="feed"></div>
+   </div>
+  </aside>
+ </div>
+</main>
+<footer>Monster Card Shop Simulator • Original fictional monster cards • Saves on this device</footer>
+<div class="modalback" id="modalBack" onclick="if(event.target===this)closeModal()">
+ <div class="modal"><div class="modalhead"><h2 id="modalTitle">Shop</h2><button class="secondary" onclick="closeModal()">✕</button></div>
+ <div class="modalcontent" id="modalContent"></div></div>
+</div>
+<div id="toast"></div>
 
-s=s.replace("""<button onclick="openModal('stock')">🗄️ Stock Shelves</button><button onclick="openModal('binder')">📖 Card Binder</button>""",
-            """<button onclick="openModal('stock')">🗄️ Stock Shelves</button><button onclick="openModal('open')">✨ Open Packs</button><button onclick="openModal('binder')">📖 Card Binder</button>""")
-s=s.replace("""const names={packs:"Buy Booster Packs",stock:"Stock Your Shelves",binder:"Card Binder · 100 Cards",checkout:"Checkout Register",shop:"Shop Upgrades",saves:"Save Slots"};""",
-            """const names={packs:"Buy Booster Packs",stock:"Stock Your Shelves",open:"Open Booster Packs",binder:"Card Binder · 100 Cards",checkout:"Checkout Register",shop:"Shop Upgrades",saves:"Save Slots"};""")
+<script>const $=id=>document.getElementById(id);
+const money=n=>"$"+Number(n||0).toFixed(2);
 
-old="""if(modalTab==="stock"){const items=state.inventory.map((it,i)=>`<div class="item"><div><strong>${it.name}</strong><span class="muted">${it.qty} available in back room</span></div><button onclick="putOnShelf(${i})" ${it.qty<1?"disabled":""}>Stock 1</button></div>`).join("");body.innerHTML='<p class="muted">Put products on display so customers can buy them. You can stock up to five product types.</p><div class="inventory-list">'+(items||'<div class="task">Your back room is empty. Buy booster packs first.</div>')+'</div>'}"""
-new="""if(modalTab==="stock"){const items=state.inventory.map((it,i)=>`<div class="item"><div><strong>${it.name}</strong><span class="muted">${it.qty} available in back room</span></div><button onclick="putOnShelf(${i})" ${it.qty<1?"disabled":""}>Stock 1</button></div>`).join("");const singles=cards.filter(c=>state.owned[c.id-1]>0).map(c=>`<div class="item"><div><strong>${c.name}</strong><span class="muted">${state.owned[c.id-1]} owned · ${c.rarity} · ${money(c.value*1.5)} shelf price</span></div><button onclick="putCardOnShelf(${c.id})">Stock 1</button></div>`).join("");body.innerHTML='<p class="muted">Put booster packs or individual cards on display so customers can buy them.</p><div class="inventory-list">'+(items||'<div class="task">Your back room is empty. Buy booster packs first.</div>')+(singles?'<h3 style="margin-top:14px">Your individual cards</h3>'+singles:'')+'</div>'}"""
-if old not in s:
-    print("Stock section not found")
-else:
-    s=s.replace(old,new)
+const elements=[
+ ["Flame","#ff704d","🔥"],["Tide","#56d8ff","🌊"],
+ ["Terra","#a8d66d","🌿"],["Volt","#ffe05d","⚡"],
+ ["Shadow","#a88aff","🌑"],["Frost","#9cecff","❄️"],
+ ["Light","#fff0a1","✨"],["Mystic","#ff91db","🔮"]
+];
 
-needle=' if(modalTab==="binder"){const found=state.owned.reduce((a,b)=>a+(b>0?1:0),0);'
-insert=""" if(modalTab==="open"){const packItems=state.inventory.filter(it=>it.qty>0&&Number.isInteger(it.pack));body.innerHTML='<p class="muted">Open packs you bought for your own collection. Each pack reveals five original monster cards and adds them to your binder.</p><div class="pack-grid">'+(packItems.map(it=>`<div class="pack"><div class="pack-art" style="--c1:${packs[it.pack].color[0]};--c2:${packs[it.pack].color[1]}">${packs[it.pack].emoji}</div><b>${it.name}</b><p>${it.qty} sealed pack(s) in your back room</p><button class="primary" onclick="openBooster(${it.pack})">Open one pack</button></div>`).join("")||'<div class="task">No unopened packs. Buy some booster packs first.</div>')+'</div>'}
-"""
-if needle in s and 'if(modalTab==="open")' not in s:
-    s=s.replace(needle,insert+needle)
+const baseMonsters=[
+ ["Embercub","🔥","Flame"],["Aquaphin","🐬","Tide"],
+ ["Mossmaw","🦖","Terra"],["Zaplet","🦎","Volt"],
+ ["Noctowl","🦉","Shadow"],["Glacibun","🐰","Frost"],
+ ["Solpup","🐕","Light"],["Wispkin","🦊","Mystic"],
+ ["Cindrake","🐉","Flame"],["Coralisk","🐍","Tide"],
+ ["Bramblet","🦔","Terra"],["Voltiger","🐅","Volt"],
+ ["Gloomoth","🦋","Shadow"],["Frostrix","🐺","Frost"],
+ ["Luminaut","🦄","Light"],["Spellimp","👾","Mystic"],
+ ["Magmahorn","🦬","Flame"],["Turtide","🐢","Tide"],
+ ["Rootitan","🦍","Terra"],["Stormwing","🦅","Volt"]
+];
 
-needle='function putOnShelf(i){'
-insert="""function openBooster(packIndex){const inv=state.inventory.find(x=>x.pack===packIndex&&x.qty>0);if(!inv){toast("You don't have that pack.");return}inv.qty--;const pack=packs[packIndex];const pulls=[];for(let n=0;n<5;n++){let pool=cards.filter(c=>(!pack.element||c.element===pack.element)&&c.id>=pack.range[0]&&c.id<=pack.range[1]);if(!pool.length)pool=cards;let card=pool[Math.floor(Math.random()*pool.length)];if(packIndex>=5&&Math.random()<.42){const premium=cards.filter(c=>c.rarity==="Epic"||c.rarity==="Legendary");card=premium[Math.floor(Math.random()*premium.length)]}state.owned[card.id-1]++;state.binderSeen[card.id-1]=true;pulls.push(card)}state.inventory=state.inventory.filter(x=>x.qty>0);save();render();$("modalTitle").textContent="Pack Opening Results";$("modalBody").innerHTML='<div class="task">You opened a '+pack.name+' and discovered '+pulls.length+' cards!</div><div class="gridcards" style="margin-top:12px">'+pulls.map(c=>cardHTML(c,state.owned[c.id-1])).join("")+'</div><button class="primary" style="margin-top:12px" onclick="openModal(\\'open\\')">Open another pack</button>';paintArts();toast("New cards added to your binder!")}
-function putCardOnShelf(cardId){const c=cards[cardId-1];if(!c||state.owned[cardId-1]<1)return;if(state.stock.length>=5&&!state.stock.some(x=>x.key==="card-"+cardId)){toast("All shelf spaces are full. Upgrade your shop!");return}state.owned[cardId-1]--;const item={key:"card-"+cardId,name:c.name,qty:1,price:Math.round(c.value*1.5*100)/100,cardId};const onShelf=state.stock.find(x=>x.key===item.key);if(onShelf)onShelf.qty++;else state.stock.push(item);save();render();drawModal();toast(c.name+" placed on the shelf")}
-"""
-if needle in s and 'function openBooster(' not in s:
-    s=s.replace(needle,insert+needle)
+const rarities=["Common","Uncommon","Rare","Epic","Legendary"];
+const rarityMult=[1,1.5,2.7,5,10];
+const cards=[];
 
-s=s.replace('const p=packs[chosen.pack];const items=Array.from({length:qty},()=>({name:p.name,price:Math.round(p.price*1.35*100)/100}));',
-            'const unitPrice=chosen.price||packs[chosen.pack].price;const items=Array.from({length:qty},()=>({name:chosen.name,price:Math.round(unitPrice*1.35*100)/100}));')
+for(let i=0;i<100;i++){
+ const b=baseMonsters[i%20];
+ const tier=Math.floor(i/20);
+ const e=elements.find(x=>x[0]===b[2]);
+ const prefix=["","Alpha ","Prism ","Ancient ","Celestial "][tier];
+ cards.push({
+  id:i+1,name:prefix+b[0],art:b[1],element:b[2],color:e[1],
+  rarity:rarities[tier],hp:40+(i%20)*5+tier*35,
+  attack:["Spark Burst","Wild Strike","Arcane Pulse","Meteor Rush"][i%4],
+  damage:10+(i%13)*4+tier*18,
+  value:Math.round((3+(i%20)*1.3)*rarityMult[tier]*100)/100,
+  number:String(i+1).padStart(3,"0")
+ });
+}
 
-p.write_text(s,encoding="utf-8")
-print(f"Updated {p} ({len(s):,} characters)")
+const packs=[
+ {name:"Starter Sparks",price:18,emoji:"🔥",color:["#ff9a55","#8c3c9c"],range:[1,40]},
+ {name:"Ocean Wonders",price:24,emoji:"🌊",color:["#5eeaff","#2455a7"],range:[1,100],element:"Tide"},
+ {name:"Wild Grove",price:24,emoji:"🌿",color:["#a4e77a","#28694a"],range:[1,100],element:"Terra"},
+ {name:"Voltage Vault",price:28,emoji:"⚡",color:["#fff27a","#b76a24"],range:[1,100],element:"Volt"},
+ {name:"Shadow Realm",price:35,emoji:"🌑",color:["#c39bff","#38205f"],range:[1,100],element:"Shadow"},
+ {name:"Legendary Legends",price:55,emoji:"👑",color:["#ffe68a","#a044ae"],range:[1,100],premium:true},
+ {name:"Mythic Treasure",price:85,emoji:"💎",color:["#ff9ce1","#5a3cba"],range:[1,100],premium:true}
+];
 
+const fresh=()=>({
+ cash:500,day:1,sales:0,served:0,rep:50,level:1,
+ owned:Array(100).fill(0),seen:Array(100).fill(false),
+ inventory:[],shelf:[],queue:null,scanned:[],paid:0,
+ upgrades:[],feed:[]
+});
+
+let state=fresh();
+let activeSlot=0;
+
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").style.display="block";
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>$("toast").style.display="none",2200);
+}
+
+function log(message){
+ state.feed.unshift("Day "+state.day+" · "+message);
+ state.feed=state.feed.slice(0,30);
+ $("feed").innerHTML=state.feed.map(x=>"<div>"+x+"</div>").join("");
+}
+
+function save(){
+ localStorage.setItem("monsterShopSlot"+activeSlot,JSON.stringify(state));
+}
+
+function render(){
+ $("money").textContent=money(state.cash);
+ $("day").textContent=state.day;
+ $("stockCount").textContent=state.shelf.reduce((a,x)=>a+x.qty,0);
+ $("sales").textContent=money(state.sales);
+ $("served").textContent=state.served;
+ $("discovered").textContent=state.seen.filter(Boolean).length+" / 100";
+ $("rep").textContent=state.rep+" ⭐";
+ $("shopLevel").textContent="Level "+state.level+" Shop";
+ $("queueLabel").textContent=state.queue?"Customer waiting":"No customer";
+ $("feed").innerHTML=state.feed.map(x=>"<div>"+x+"</div>").join("")||"Your shop story starts here.";
+ renderRegister();
+ save();
+}
+
+function openModal(tab){
+ $("modalBack").classList.add("show");
+ drawModal(tab);
+}
+
+function closeModal(){
+ $("modalBack").classList.remove("show");
+}
+
+function drawModal(tab){
+ window.modalTab=tab;
+ const titles={
+  packs:"🛍️ Buy Booster Packs",
+  stock:"🗄️ Stock Your Shelves",
+  open:"✨ Open Booster Packs",
+  binder:"📖 Card Binder · 100 Cards",
+  upgrades:"🔧 Shop Upgrades",
+  saves:"💾 Save Slots"
+ };
+
+ $("modalTitle").textContent=titles[tab]||"Shop";
+ let body="";
+
+ if(tab==="packs"){
+  body='<p class="muted">Buy sealed booster packs for your back room. Open them for your collection or stock them for customers.</p><div class="packgrid">'+
+  packs.map((p,i)=>`
+   <div class="packcard">
+    <div class="packart" style="--c1:${p.color[0]}">${p.emoji}</div>
+    <h3>${p.name}</h3>
+    <p class="muted">${p.premium?"Premium rare-card odds!":"Discover collectible monsters."}</p>
+    <b>${money(p.price)}</b>
+    <button onclick="buyPack(${i})">Buy pack</button>
+   </div>`).join("")+
+  "</div>";
+ }
+
+ if(tab==="stock"){
+  const rows=state.inventory.map((x,i)=>`
+   <div class="rowitem">
+    <div><strong>${x.name}</strong><div class="muted">${x.qty} in back room</div></div>
+    <button onclick="stockPack(${i})" ${x.qty<1?"disabled":""}>Stock 1</button>
+   </div>`).join("");
+
+  const singles=cards.filter(c=>state.owned[c.id-1]>0).map(c=>`
+   <div class="rowitem">
+    <div><strong>${c.name}</strong><div class="muted">${state.owned[c.id-1]} owned · ${c.rarity} · ${money(c.value*1.5)}</div></div>
+    <button onclick="stockCard(${c.id})">Stock 1</button>
+   </div>`).join("");
+
+  body='<p class="muted">Put booster packs and individual cards on display for customers.</p><h3>Booster packs</h3>'+
+  (rows||'<div class="empty">No packs in storage. Buy some first.</div>')+
+  '<h3>Individual cards</h3>'+
+  (singles||'<div class="empty">Open packs to discover cards.</div>');
+ }
+
+ if(tab==="open"){
+  const rows=state.inventory.filter(x=>x.qty>0).map(x=>`
+   <div class="rowitem">
+    <div><strong>${x.name}</strong><div class="muted">${x.qty} sealed pack(s)</div></div>
+    <button onclick="openPack(${x.pack})">Open one</button>
+   </div>`).join("");
+
+  body='<p class="muted">Each booster pack contains five cards.</p>'+
+  (rows||'<div class="empty">No unopened packs. Buy some first.</div>');
+ }
+
+ if(tab==="binder"){
+  const found=state.seen.filter(Boolean).length;
+  body=`<p class="muted">${found}/100 discovered. Your discoveries stay recorded even when you sell copies.</p><div class="cardgrid">`+
+  cards.map(c=>state.seen[c.id-1]?cardHTML(c,state.owned[c.id-1]):`
+   <div class="card" style="background:#292039;color:#9c8cac">
+    <div class="art" style="background:#191326"><span class="monster">?</span></div>
+    <h3>Unknown Monster</h3>
+    <div class="meta"><span>???</span><span>#${c.number}</span></div>
+    <div class="moves">Discover this card by opening booster packs.</div>
+   </div>`).join("")+"</div>";
+ }
+
+ if(tab==="upgrades"){
+  const upgrades=[
+   ["Bigger Store",150,"Increase shelf capacity."],
+   ["Bright Sign",220,"Attract more customers."],
+   ["Premium Counter",350,"Improve customer satisfaction."],
+   ["Rare Collector Wall",500,"Make your shop a destination."]
+  ];
+
+  body='<div class="upgradegrid">'+upgrades.map((u,i)=>`
+   <div class="upgrade">
+    <h3>${u[0]}</h3><p class="muted">${u[2]}</p>
+    <b>${money(u[1]+(state.level-1)*90)}</b>
+    <button onclick="upgrade(${i})" ${state.upgrades.includes(i)?"disabled":""}>
+     ${state.upgrades.includes(i)?"Purchased":"Buy upgrade"}
+    </button>
+   </div>`).join("")+"</div>";
+ }
+
+ if(tab==="saves"){
+  body='<p class="muted">Three independent save slots stored in this browser.</p><div class="upgradegrid">'+
+  [0,1,2].map(i=>`
+   <div class="upgrade">
+    <h3>Save Slot ${i+1} ${activeSlot===i?"· ACTIVE":""}</h3>
+    <p class="muted">${localStorage.getItem("monsterShopSlot"+i)?"Saved game found":"Empty slot"}</p>
+    <button onclick="loadSlot(${i})">Load / Start</button>
+    <button class="secondary" onclick="copySlot(${i})">Copy active save here</button>
+    <button class="secondary" onclick="deleteSlot(${i})">Delete save</button>
+   </div>`).join("")+"</div>";
+ }
+
+ $("modalContent").innerHTML=body;
+}
+
+function cardHTML(c,qty){
+ return `
+ <div class="card" style="--glow:${c.color}">
+  <span class="rarity">${c.rarity}</span>
+  <div class="art"><span class="monster">${c.art}</span></div>
+  <h3>${c.name}</h3>
+  <div class="meta"><span>${c.element}</span><span>#${c.number}</span></div>
+  <div class="moves"><b>${c.hp} HP</b><br>${c.attack} · ${c.damage} DMG</div>
+  <div class="price">Value ${money(c.value)} · Owned ${qty}</div>
+ </div>`;
+}
+
+function buyPack(i){
+ const p=packs[i];
+ if(state.cash<p.price){toast("Not enough cash.");return}
+ state.cash-=p.price;
+ let it=state.inventory.find(x=>x.pack===i);
+ if(it)it.qty++;
+ else state.inventory.push({pack:i,name:p.name,qty:1});
+ log("Bought a "+p.name+".");
+ render();
+ drawModal("packs");
+}
+
+function stockPack(i){
+ const it=state.inventory[i];
+ if(!it||it.qty<1)return;
+ if(state.shelf.length>=5+state.level*2&&!state.shelf.some(x=>x.key==="pack"+it.pack)){
+  toast("Your shelves are full. Upgrade your shop.");return;
+ }
+ it.qty--;
+ const p=packs[it.pack];
+ let s=state.shelf.find(x=>x.key==="pack"+it.pack);
+ if(s)s.qty++;
+ else state.shelf.push({key:"pack"+it.pack,name:p.name,qty:1,price:Math.round(p.price*1.35*100)/100,pack:it.pack});
+ state.inventory=state.inventory.filter(x=>x.qty>0);
+ log("Stocked "+p.name+" on the shelf.");
+ render();
+ drawModal("stock");
+}
+
+function stockCard(id){
+ const c=cards[id-1];
+ if(state.owned[id-1]<1)return;
+ const key="card"+id;
+ if(state.shelf.length>=5+state.level*2&&!state.shelf.some(x=>x.key===key)){
+  toast("Your shelves are full.");return;
+ }
+ state.owned[id-1]--;
+ let s=state.shelf.find(x=>x.key===key);
+ if(s)s.qty++;
+ else state.shelf.push({key,name:c.name,qty:1,price:Math.round(c.value*1.5*100)/100,cardId:id});
+ log("Placed "+c.name+" on display.");
+ render();
+ drawModal("stock");
+}
+
+function openPack(i){
+ let inv=state.inventory.find(x=>x.pack===i&&x.qty>0);
+ if(!inv){toast("You don't have that pack.");return}
+ inv.qty--;
+ const p=packs[i],pulls=[];
+
+ for(let n=0;n<5;n++){
+  let pool=cards.filter(c=>
+   (!p.element||c.element===p.element)&&
+   c.id>=p.range[0]&&c.id<=p.range[1]
+  );
+  if(!pool.length)pool=cards;
+
+  let c=pool[Math.floor(Math.random()*pool.length)];
+
+  if(p.premium&&Math.random()<.45){
+   const rare=cards.filter(c=>c.rarity==="Epic"||c.rarity==="Legendary");
+   c=rare[Math.floor(Math.random()*rare.length)];
+  }
+
+  state.owned[c.id-1]++;
+  state.seen[c.id-1]=true;
+  pulls.push(c);
+ }
+
+ state.inventory=state.inventory.filter(x=>x.qty>0);
+ log("Opened "+p.name+" and found five cards.");
+ render();
+
+ $("modalTitle").textContent="✨ Pack Opening Results";
+ $("modalContent").innerHTML=
+  '<p class="muted">Five cards discovered! Your binder has been updated.</p>'+
+  '<div class="cardgrid">'+pulls.map(c=>cardHTML(c,state.owned[c.id-1])).join("")+'</div>'+
+  '<button style="margin-top:14px" onclick="drawModal(\\'open\\')">Open another pack</button>';
+
+ toast("Five cards added to your collection!");
+}
+
+function upgrade(i){
+ const costs=[150,220,350,500];
+ const cost=costs[i]+(state.level-1)*90;
+ if(state.upgrades.includes(i)||state.cash<cost){
+  toast("Not enough cash or already purchased.");return;
+ }
+ state.cash-=cost;
+ state.upgrades.push(i);
+ state.level++;
+ state.rep=Math.min(100,state.rep+5);
+ log("Purchased a shop upgrade.");
+ render();
+ drawModal("upgrades");
+}
+
+function callCustomer(){
+ if(state.queue){toast("Finish serving the current customer first.");return}
+ let available=state.shelf.filter(x=>x.qty>0);
+
+ if(!available.length){
+  $("customerBox").innerHTML='<b>No products on display!</b><p class="muted">Buy packs, then stock your shelves.</p>';
+  toast("Your shelves are empty.");return;
+ }
+
+ const totalItems=available.reduce((a,x)=>a+x.qty,0);
+ const count=Math.min(1+Math.floor(Math.random()*3),totalItems);
+ const chosen=[];
+
+ for(let n=0;n<count;n++){
+  available=state.shelf.filter(x=>x.qty>0);
+  if(!available.length)break;
+  const it=available[Math.floor(Math.random()*available.length)];
+  it.qty--;
+  chosen.push({...it});
+ }
+
+ state.shelf=state.shelf.filter(x=>x.qty>0);
+ state.queue={
+  name:["Alex","Jordan","Riley","Sam","Taylor","Morgan","Casey"][Math.floor(Math.random()*7)],
+  items:chosen
+ };
+ state.scanned=[];
+ state.paid=0;
+
+ renderCustomer();
+ render();
+ log(state.queue.name+" arrived with "+chosen.length+" item(s).");
+}
+
+function renderCustomer(){
+ if(!state.queue)return;
+ $("customerBox").innerHTML=
+  `<b>🧍 ${state.queue.name} is ready!</b>
+  <p class="muted">Scan each item individually.</p>`+
+  state.queue.items.map((x,i)=>`
+   <div class="rowitem">
+    <span>${x.name}</span>
+    <button onclick="scanItem(${i})" ${state.scanned.includes(i)?"disabled":""}>
+     ${state.scanned.includes(i)?"✓ Scanned":"Scan item"}
+    </button>
+   </div>`).join("");
+}
+
+function scanItem(i){
+ if(!state.queue||state.scanned.includes(i))return;
+ state.scanned.push(i);
+ renderCustomer();
+ renderRegister();
+ if(state.scanned.length===state.queue.items.length){
+  toast("All items scanned. Take payment!");
+ }
+}
+
+function totals(){
+ const subtotal=state.queue?
+  state.scanned.reduce((a,i)=>a+state.queue.items[i].price,0):0;
+ const tax=Math.round(subtotal*.05*100)/100;
+ return {subtotal,tax,total:Math.round((subtotal+tax)*100)/100};
+}
+
+function renderRegister(){
+ const t=totals();
+ $("scanList").innerHTML=state.queue&&state.scanned.length?
+  state.scanned.map(i=>`
+   <div class="rowitem"><span>${state.queue.items[i].name}</span>
+   <b>${money(state.queue.items[i].price)}</b></div>`).join("")
+  :"No items scanned yet.";
+
+ $("subtotal").textContent=money(t.subtotal);
+ $("tax").textContent=money(t.tax);
+ $("total").textContent=money(t.total);
+ $("paid").textContent=money(state.paid);
+ $("change").textContent=money(Math.max(0,state.paid-t.total));
+}
+
+function setPayment(n){
+ if(!state.queue||state.scanned.length!==state.queue.items.length){
+  toast("Scan every item first.");return;
+ }
+ const total=totals().total;
+ state.paid=n;
+ while(state.paid<total)state.paid*=2;
+ renderRegister();
+ toast("Payment received: "+money(state.paid));
+}
+
+function finishSale(){
+ if(!state.queue){toast("No customer at the register.");return}
+ if(state.scanned.length!==state.queue.items.length||!state.scanned.length){
+  toast("Scan every item first.");return;
+ }
+
+ const t=totals();
+ if(state.paid<t.total){toast("Take enough payment first.");return}
+
+ const change=Math.round((state.paid-t.total)*100)/100;
+ state.cash+=t.total;
+ state.sales+=t.total;
+ state.served++;
+ state.rep=Math.min(100,state.rep+1);
+
+ const customerName=state.queue.name;
+ state.queue=null;
+ state.scanned=[];
+ state.paid=0;
+
+ $("customerBox").innerHTML=
+  `<b>✅ Thanks for shopping, ${customerName}!</b>
+  <p class="muted">Sale: ${money(t.total)} · Change given: ${money(change)} · Satisfaction: Great!</p>
+  <button onclick="callCustomer()">Call next customer</button>`;
+
+ log("Sale complete! "+money(t.total)+" earned; "+money(change)+" change given.");
+ render();
+ toast("Sale complete! Correct change: "+money(change));
+}
+
+function endDay(){
+ if(state.queue){toast("Finish checkout before ending the day.");return}
+ state.day++;
+ state.rep=Math.min(100,state.rep+1);
+ const bonus=state.rep*.5;
+ state.cash+=bonus;
+ log("Day ended. Reputation bonus: "+money(bonus)+".");
+ render();
+ toast("Day "+state.day+" begins!");
+}
+
+function copySlot(i){
+ if(i===activeSlot){toast("That is already your active slot.");return}
+ localStorage.setItem("monsterShopSlot"+i,JSON.stringify(state));
+ drawModal("saves");
+ toast("Save copied to slot "+(i+1));
+}
+
+function deleteSlot(i){
+ if(!confirm("Delete save slot "+(i+1)+"?"))return;
+ localStorage.removeItem("monsterShopSlot"+i);
+ drawModal("saves");
+ toast("Save deleted.");
+}
+
+function loadSlot(i){
+ activeSlot=i;
+ const raw=localStorage.getItem("monsterShopSlot"+i);
+ if(raw){
+  try{state=JSON.parse(raw)}catch(e){state=fresh()}
+ }else{
+  state=fresh();
+ }
+ render();
+ closeModal();
+ log("Save slot "+(i+1)+" loaded.");
+ save();
+}
+
+function init(){
+ const saved=localStorage.getItem("monsterShopSlot0");
+ if(saved){
+  try{state=JSON.parse(saved)}catch(e){state=fresh()}
+ }else{
+  state=fresh();
+ }
+ render();
+ log("Welcome to your new card shop!");
+}
+
+init();
+</script>
+</body>
+</html>
