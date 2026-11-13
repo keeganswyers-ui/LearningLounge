@@ -10,25 +10,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
 
 *{box-sizing:border-box}
+
 body{
   margin:0;
   background:#090512;
   color:white;
   font-family:Orbitron,Arial,sans-serif;
 }
+
 header{
   text-align:center;
-  padding:25px 12px;
+  padding:28px 12px;
   background:#130a25;
   border-bottom:2px solid #a855f7;
 }
+
 .logo{
   color:#d8a5ff;
   font-family:'Press Start 2P',monospace;
-  font-size:clamp(18px,4vw,30px);
+  font-size:clamp(17px,4vw,30px);
   text-shadow:0 0 15px #a855f7;
 }
+
 header p{color:#c9a8e8;font-size:12px}
+
 nav{
   display:flex;
   justify-content:center;
@@ -37,6 +42,7 @@ nav{
   padding:14px;
   background:#1b1030;
 }
+
 nav a{
   color:white;
   text-decoration:none;
@@ -44,21 +50,26 @@ nav a{
   border:1px solid #873de0;
   border-radius:8px;
 }
+
 nav a:hover{background:#7628c9}
+
 .hero{
   text-align:center;
-  padding:45px 15px;
+  padding:48px 15px;
   background:linear-gradient(135deg,#160b29,#32105b,#10091d);
 }
+
 .hero h1{
   color:#d9a2ff;
   font-size:clamp(25px,5vw,42px);
   text-shadow:0 0 18px #a855f7;
 }
+
 .hero p{color:#ddd}
+
 .status{
   margin:20px auto;
-  max-width:900px;
+  max-width:950px;
   padding:15px;
   background:#160d25;
   border:1px solid #7136a9;
@@ -67,18 +78,23 @@ nav a:hover{background:#7628c9}
   justify-content:space-around;
   flex-wrap:wrap;
   gap:10px;
+  font-size:12px;
 }
+
 .online{color:#55ff9a}
+
 section{
   max-width:1100px;
   margin:auto;
   padding:28px 16px;
 }
+
 .section-title{
   color:#d9a2ff;
   font-size:23px;
   text-shadow:0 0 10px #922cff;
 }
+
 #search{
   width:100%;
   padding:14px;
@@ -89,28 +105,81 @@ section{
   color:white;
   font-size:16px;
 }
+
 .games{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
   gap:20px;
 }
+
 .game-card{
   background:#160d25;
   border:1px solid #7938b5;
   border-radius:14px;
   padding:14px;
   box-shadow:0 0 12px #4c1680;
+  transition:.2s;
 }
+
+.game-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 22px #963dff;
+}
+
 .game-card h3{color:#d9a2ff}
-.game-card p{color:#cbb9df;font-size:13px;line-height:1.6}
-.game-picture{
-  width:100%;
-  height:155px;
-  object-fit:cover;
-  border-radius:9px;
-  border:2px solid #a855f7;
-  display:block;
+
+.game-card p{
+  color:#cbb9df;
+  font-size:13px;
+  line-height:1.6;
 }
+
+.game-link{
+  display:block;
+  text-decoration:none;
+  color:white;
+}
+
+.game-picture{
+  height:155px;
+  width:100%;
+  border-radius:10px;
+  border:2px solid #a855f7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:8px;
+  overflow:hidden;
+  font-size:65px;
+  text-shadow:0 0 18px white;
+  transition:.2s;
+}
+
+.game-picture:hover{filter:brightness(1.25)}
+
+.game-picture small{
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.sandbox-art{
+  background:linear-gradient(135deg,#063c3c,#1d9959,#d1a02b);
+}
+
+.smash-art{
+  background:linear-gradient(135deg,#21115c,#b52baf,#ed812e);
+}
+
+.diep-art{
+  background:linear-gradient(135deg,#092a63,#1675bc,#42d5ef);
+}
+
+.critter-art{
+  background:linear-gradient(135deg,#210b3e,#7427ad);
+}
+
 .play-button,.action-button{
   display:block;
   width:100%;
@@ -122,11 +191,13 @@ section{
   color:white;
   font-weight:bold;
   text-align:center;
-  text-decoration:none;
   cursor:pointer;
   font-family:Orbitron,Arial,sans-serif;
+  text-decoration:none;
 }
+
 .play-button:hover,.action-button:hover{background:#a044ed}
+
 .game-window{
   display:none;
   position:fixed;
@@ -136,6 +207,7 @@ section{
   overflow:auto;
   padding:12px;
 }
+
 .game-top{
   display:flex;
   align-items:center;
@@ -145,7 +217,9 @@ section{
   max-width:1000px;
   margin:0 auto 15px;
 }
+
 .game-top h2{color:#d9a2ff;font-size:18px}
+
 .game-top button{
   padding:10px;
   border:1px solid #a855f7;
@@ -154,16 +228,19 @@ section{
   border-radius:7px;
   cursor:pointer;
 }
+
 #clickerScreen{
   max-width:900px;
   margin:auto;
   text-align:center;
 }
+
 #coinCount{
   font-size:27px;
   color:#ffe66d;
   margin:15px;
 }
+
 .critter{
   font-size:100px;
   cursor:pointer;
@@ -175,8 +252,11 @@ section{
   border:3px solid #b45cff;
   box-shadow:0 0 30px #9b37ff;
   margin:20px;
+  transition:.1s;
 }
-.critter:active{transform:scale(.94)}
+
+.critter:active{transform:scale(.92)}
+
 .upgrades{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
@@ -184,12 +264,16 @@ section{
   margin:20px auto;
   text-align:left;
 }
+
 .upgrade{
   background:#190d2a;
   border:1px solid #7439a7;
   border-radius:9px;
   padding:12px;
 }
+
+.upgrade p{font-size:12px;color:#cbb9df}
+
 .upgrade button{
   width:100%;
   margin-top:8px;
@@ -201,8 +285,14 @@ section{
   cursor:pointer;
   font-weight:bold;
 }
-.upgrade button:disabled{opacity:.4;cursor:not-allowed}
+
+.upgrade button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
 #gameMessage{color:#cba3f4}
+
 footer{
   text-align:center;
   padding:25px;
@@ -230,20 +320,21 @@ footer{
 <div class="hero" id="home">
   <h1>PRESS START!</h1>
   <p>Welcome to your arcade. Pick a game and have fun!</p>
-  <a class="play-button" href="#library" style="max-width:220px;margin:20px auto">
+  <a class="play-button" href="#library"
+     style="max-width:220px;margin:20px auto">
     ENTER ARCADE
   </a>
 </div>
 
 <div class="status">
-  <span><span class="online">● SYSTEM ONLINE</span></span>
+  <span class="online">● SYSTEM ONLINE</span>
   <span id="clock">LOADING CLOCK...</span>
-  <span>VERSION 2.8</span>
+  <span>VERSION 2.9</span>
 </div>
 
 <section id="library">
   <h2 class="section-title">🎮 GAME LIBRARY</h2>
-  <p>Choose a game to play!</p>
+  <p>Choose your next game!</p>
 
   <input id="search" type="text"
     placeholder="Search games..."
@@ -255,33 +346,78 @@ footer{
     <div class="game-card" data-name="sandboxels sandbox simulation">
       <h3>SANDBOXELS</h3>
 
-      <a href="https://neal.fun/sandboxels/"
+      <a class="game-link"
+         href="https://neal.fun/sandboxels/"
          target="_blank"
          rel="noopener noreferrer">
-        <img class="game-picture"
-          src="https://sandboxels.r74n.com/icons/wallpaper.png"
-          alt="Sandboxels official game artwork">
+
+        <div class="game-picture sandbox-art">
+          🧪🌋
+          <small>SANDBOX EXPERIMENTS</small>
+        </div>
+
         <span class="play-button">▶ PLAY SANDBOXELS</span>
       </a>
 
-      <p>Experiment with hundreds of elements, create reactions and build pixel worlds!</p>
-      <p style="font-size:10px">Game and artwork by R74n. Official game: Neal.fun.</p>
+      <p>Experiment with elements, create reactions and build pixel worlds!</p>
+    </div>
+
+    <!-- SMASH KARTS -->
+    <div class="game-card" data-name="smash karts racing cars battle">
+      <h3>SMASH KARTS</h3>
+
+      <a class="game-link"
+         href="https://smashkarts.io/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <div class="game-picture smash-art">
+          🏎️💥
+          <small>KART BATTLES</small>
+        </div>
+
+        <span class="play-button">▶ PLAY SMASH KARTS</span>
+      </a>
+
+      <p>Race around arenas and enjoy chaotic kart battles!</p>
+    </div>
+
+    <!-- DIEP.IO -->
+    <div class="game-card" data-name="diep io tank shooter">
+      <h3>DIEP.IO</h3>
+
+      <a class="game-link"
+         href="https://diep.io/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <div class="game-picture diep-art">
+          🔵🎯
+          <small>TANK ARENA</small>
+        </div>
+
+        <span class="play-button">▶ PLAY DIEP.IO</span>
+      </a>
+
+      <p>Upgrade your tank and compete in the arena!</p>
     </div>
 
     <!-- NEON CRITTER CLICKER -->
     <div class="game-card" data-name="neon critter clicker arcade">
       <h3>NEON CRITTER CLICKER</h3>
 
-      <button onclick="openGame('clickerGame')"
+      <button onclick="openGame()"
         style="padding:0;border:0;background:none;width:100%;cursor:pointer">
-        <div class="game-picture"
-          style="height:155px;background:linear-gradient(135deg,#210b3e,#7427ad);display:flex;align-items:center;justify-content:center;font-size:75px">
+
+        <div class="game-picture critter-art">
           👾
+          <small>CLICKER ARCADE</small>
         </div>
+
         <span class="play-button">▶ TAP PICTURE TO PLAY</span>
       </button>
 
-      <p>Click your critter, collect coins and buy powerful upgrades!</p>
+      <p>Click your critter, collect coins and buy 17 powerful upgrades!</p>
     </div>
 
   </div>
@@ -290,8 +426,8 @@ footer{
 <section id="about">
   <h2 class="section-title">ABOUT LEARNING LOUNGE</h2>
   <p>
-    Welcome to Learning Lounge! A purple neon arcade with games,
-    experiments and original creations.
+    Welcome to Learning Lounge! A purple neon arcade
+    featuring games, experiments and original creations.
   </p>
 </section>
 
@@ -300,7 +436,7 @@ footer{
   Keep playing. Keep exploring.
 </footer>
 
-<!-- CLICKER GAME WINDOW -->
+<!-- NEON CRITTER CLICKER WINDOW -->
 <div class="game-window" id="clickerGame">
 
   <div class="game-top">
@@ -313,14 +449,17 @@ footer{
 
   <div id="clickerScreen">
     <h2>CLICK THE CRITTER!</h2>
+
     <div id="coinCount">🪙 0 Coins</div>
 
     <div class="critter" onclick="clickCritter()">👾</div>
 
     <p id="gameMessage">Your adventure starts here!</p>
+
     <p id="powerText">Click power: 1 | Auto coins: 0/sec</p>
 
     <h2 style="color:#d9a2ff">UPGRADES SHOP</h2>
+
     <div class="upgrades" id="upgradeList"></div>
 
     <button class="action-button" onclick="resetGame()">
@@ -330,35 +469,45 @@ footer{
 </div>
 
 <script>
+
 // CLOCK
 function updateClock(){
   document.getElementById("clock").textContent =
     new Date().toLocaleTimeString();
 }
+
 setInterval(updateClock,1000);
 updateClock();
+
 
 // SEARCH
 function searchGames(){
   const query=document.getElementById("search").value.toLowerCase();
+
   document.querySelectorAll(".game-card").forEach(card=>{
-    card.style.display=card.dataset.name.includes(query)?"block":"none";
+    card.style.display =
+      card.dataset.name.includes(query) ? "block" : "none";
   });
 }
 
+
 // GAME WINDOW
-function openGame(id){
-  document.getElementById(id).style.display="block";
+function openGame(){
+  document.getElementById("clickerGame").style.display="block";
   renderUpgrades();
 }
+
 function closeGame(){
   document.getElementById("clickerGame").style.display="none";
+
   if(document.fullscreenElement){
     document.exitFullscreen().catch(()=>{});
   }
 }
+
 function fullscreenGame(){
   const screen=document.getElementById("clickerGame");
+
   if(!document.fullscreenElement){
     screen.requestFullscreen?.().catch(()=>{});
   }else{
@@ -366,12 +515,17 @@ function fullscreenGame(){
   }
 }
 
+
 // CLICKER SAVE
 const SAVE_KEY="neonCritterSave";
+
 let coins=0;
 let levels={};
 
+
+// 17 UPGRADES
 const upgrades=[
+
   {name:"Power Click",desc:"+1 coin per click",cost:25,click:1},
   {name:"Auto Clicker",desc:"+1 coin per second",cost:50,auto:1},
 
@@ -390,11 +544,15 @@ const upgrades=[
   {name:"Quantum Click",desc:"+500 coins per click",cost:450000,click:500},
   {name:"Neon Overlord",desc:"+1,000 coins per second",cost:900000,auto:1000},
   {name:"Ultimate Critter",desc:"+2,500 coins per click",cost:2000000,click:2500}
+
 ];
 
+
+// LOAD GAME
 function loadGame(){
   try{
     const saved=JSON.parse(localStorage.getItem(SAVE_KEY));
+
     if(saved){
       coins=Number(saved.coins)||0;
       levels=saved.levels||{};
@@ -403,38 +561,57 @@ function loadGame(){
     coins=0;
     levels={};
   }
+
   renderUpgrades();
   updateStats();
 }
 
+
+// SAVE GAME
 function saveGame(){
-  localStorage.setItem(SAVE_KEY,JSON.stringify({coins,levels}));
+  localStorage.setItem(
+    SAVE_KEY,
+    JSON.stringify({coins,levels})
+  );
 }
 
+
+// UPGRADE COST
 function getCost(index){
-  return Math.floor(upgrades[index].cost*Math.pow(1.65,levels[index]||0));
+  return Math.floor(
+    upgrades[index].cost*Math.pow(1.65,levels[index]||0)
+  );
 }
 
+
+// CLICK POWER
 function getClickPower(){
   return 1+upgrades.reduce((total,item,index)=>{
     return total+(item.click||0)*(levels[index]||0);
   },0);
 }
 
+
+// AUTO POWER
 function getAutoPower(){
   return upgrades.reduce((total,item,index)=>{
     return total+(item.auto||0)*(levels[index]||0);
   },0);
 }
 
+
+// CLICK CRITTER
 function clickCritter(){
   coins+=getClickPower();
   updateStats();
   saveGame();
 }
 
+
+// BUY UPGRADE
 function buyUpgrade(index){
   const cost=getCost(index);
+
   if(coins<cost)return;
 
   coins-=cost;
@@ -443,17 +620,22 @@ function buyUpgrade(index){
   renderUpgrades();
   updateStats();
   saveGame();
-  document.getElementById("gameMessage").textContent=
+
+  document.getElementById("gameMessage").textContent =
     upgrades[index].name+" upgraded!";
 }
 
+
+// DISPLAY UPGRADES
 function renderUpgrades(){
   const list=document.getElementById("upgradeList");
+
   if(!list)return;
 
   list.innerHTML="";
 
   upgrades.forEach((item,index)=>{
+
     const level=levels[index]||0;
     const cost=getCost(index);
 
@@ -476,28 +658,40 @@ function renderUpgrades(){
 
     card.append(title,description,levelText,button);
     list.appendChild(card);
+
   });
 }
 
+
+// UPDATE STATS
 function updateStats(){
-  document.getElementById("coinCount").textContent=
+
+  document.getElementById("coinCount").textContent =
     "🪙 "+Math.floor(coins).toLocaleString()+" Coins";
 
-  document.getElementById("powerText").textContent=
+  document.getElementById("powerText").textContent =
     "Click power: "+getClickPower().toLocaleString()+
     " | Auto coins: "+getAutoPower().toLocaleString()+"/sec";
 
   renderUpgrades();
 }
 
+
+// RESET GAME
 function resetGame(){
+
   if(!confirm("Are you sure you want to reset your game?"))return;
+
   coins=0;
   levels={};
+
   saveGame();
   updateStats();
-  document.getElementById("gameMessage").textContent="Fresh start!";
+
+  document.getElementById("gameMessage").textContent =
+    "Fresh start!";
 }
+
 
 // AUTOMATIC COINS
 setInterval(()=>{
@@ -506,7 +700,10 @@ setInterval(()=>{
   saveGame();
 },1000);
 
+
+// START
 loadGame();
+
 </script>
 
 </body>
